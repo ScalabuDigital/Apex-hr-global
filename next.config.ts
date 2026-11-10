@@ -30,16 +30,25 @@ const nextConfig: NextConfig = {
     ],
   },
 
-  // Full 72-rule permanent redirect registry — see src/config/redirects.ts
-  // and docs/URL-DECISION-REGISTER.md section "Redirect implementation
-  // checklist". Validated for duplicate sources/loops in
-  // tests/unit/redirects.test.ts.
+  // 1. Bare domain → www: www.apexhrllc.com is the only canonical host, so
+  //    every request to apexhrllc.com is sent to the same path on www
+  //    (preview *.vercel.app hosts are unaffected).
+  // 2. The legacy permanent redirect registry — see src/config/redirects.ts.
+  //    Validated for duplicate sources/loops in tests/unit/redirects.test.ts.
   async redirects() {
-    return redirectRules.map((rule) => ({
-      source: rule.source,
-      destination: rule.destination,
-      permanent: true,
-    }));
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host" as const, value: "apexhrllc.com" }],
+        destination: "https://www.apexhrllc.com/:path*",
+        permanent: true,
+      },
+      ...redirectRules.map((rule) => ({
+        source: rule.source,
+        destination: rule.destination,
+        permanent: true,
+      })),
+    ];
   },
 };
 
