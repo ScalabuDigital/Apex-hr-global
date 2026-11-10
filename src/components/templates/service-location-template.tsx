@@ -11,12 +11,13 @@ import { StaggerContainer, StaggerItem } from "@/components/motion/stagger";
 import { routes } from "@/config/routes";
 import type { RouteRecord } from "@/types/route";
 import type { ContentFaqItem } from "@/types/content";
+import type { FrameworkPoint } from "@/content/locations-data";
 
 interface ServiceLocationTemplateProps {
   breadcrumbTrail: RouteRecord[];
   /** e.g. "Permanent Recruitment" or "Recruitment & Talent Acquisition" */
   entityTitle: string;
-  /** The real service or category page this combination page supports, e.g. "/services/permanent-recruitment-firm-in-the-uk/" */
+  /** The real service or category page this combination page supports, e.g. "/services/permanent-recruitment-firm/" */
   entityHref: string;
   /** service.heroSummary or category.summary — real, unmodified per-entity copy. */
   entitySummary: string;
@@ -28,6 +29,14 @@ interface ServiceLocationTemplateProps {
   locationHref: string;
   /** location.localContext or location.coverageStatement — real, unmodified per-location copy. */
   localContext: string;
+  /** Further country market paragraphs (location.marketOverview). */
+  marketOverview?: string[];
+  /** Why this service matters in this country (location.serviceAngles[service]). */
+  localAngle?: string;
+  /** Country hiring considerations (location.hiringConsiderations). */
+  considerations?: string[];
+  /** A few relevant employment-framework points for the country. */
+  frameworkPoints?: FrameworkPoint[];
   faqs: ContentFaqItem[];
 }
 
@@ -61,6 +70,10 @@ export function ServiceLocationTemplate({
   locationRegion,
   locationHref,
   localContext,
+  marketOverview = [],
+  localAngle,
+  considerations = [],
+  frameworkPoints = [],
   faqs,
 }: ServiceLocationTemplateProps) {
   return (
@@ -109,11 +122,16 @@ export function ServiceLocationTemplate({
           <RevealHeading>
             <SectionKicker tone="light">Local context</SectionKicker>
             <h2 className="mt-4 max-w-lg font-display text-h1 font-bold text-navy">
-              {locationTitle}&apos;s people market
+              The people market in {locationTitle}
             </h2>
           </RevealHeading>
           <FadeUp delay={0.15}>
             <p className="mt-4 max-w-lg text-body-lg text-text-secondary">{localContext}</p>
+            {marketOverview.slice(0, 1).map((paragraph) => (
+              <p key={paragraph.slice(0, 32)} className="mt-4 max-w-lg text-body text-text-secondary">
+                {paragraph}
+              </p>
+            ))}
             <Link
               href={locationHref}
               className="mt-4 inline-flex w-fit items-center gap-2 text-caption font-bold uppercase tracking-widest text-gold-ink underline-offset-4 hover:underline"
@@ -137,6 +155,63 @@ export function ServiceLocationTemplate({
           </StaggerContainer>
         </aside>
       </section>
+
+      {localAngle && (
+        <section aria-labelledby="local-angle" className="grid grid-cols-1 gap-10 bg-navy p-8 sm:p-10 lg:grid-cols-2 lg:p-14">
+          <div>
+            <RevealHeading>
+              <SectionKicker tone="dark">{`${entityTitle} in ${locationTitle}`}</SectionKicker>
+              <h2 id="local-angle" className="mt-4 max-w-md font-display text-h1 font-bold text-white">
+                Why it matters in {locationTitle}
+              </h2>
+            </RevealHeading>
+            <FadeUp delay={0.1}>
+              <p className="mt-4 max-w-lg text-body-lg text-white/80">{localAngle}</p>
+            </FadeUp>
+          </div>
+          {frameworkPoints.length > 0 && (
+            <div>
+              <h3 className="text-small font-semibold uppercase tracking-widest text-gold">
+                Local rules to keep in view
+              </h3>
+              <StaggerContainer>
+                <ul className="mt-4 flex flex-col gap-3">
+                  {frameworkPoints.map((point) => (
+                    <StaggerItem key={point.title} as="li" className="rounded-md border border-white/15 bg-white/5 p-4">
+                      <span className="block font-display text-body font-bold text-white">{point.title}</span>
+                      <span className="mt-1 block text-small text-white/70">{point.detail}</span>
+                    </StaggerItem>
+                  ))}
+                </ul>
+              </StaggerContainer>
+              <p className="mt-4 text-small text-white/50">
+                General information, not legal advice. Confirm current requirements with in-country counsel.
+              </p>
+            </div>
+          )}
+        </section>
+      )}
+
+      {considerations.length > 0 && (
+        <section aria-labelledby="practical-considerations" className="p-8 sm:p-10 lg:p-14">
+          <RevealHeading>
+            <SectionKicker tone="light">Practical considerations</SectionKicker>
+            <h2 id="practical-considerations" className="mt-4 max-w-2xl font-display text-h2 font-bold text-navy">
+              Planning {entityTitle.toLowerCase()} in {locationTitle}
+            </h2>
+          </RevealHeading>
+          <StaggerContainer>
+            <ul className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2">
+              {considerations.map((item) => (
+                <StaggerItem key={item} as="li" className="flex items-start gap-3 rounded-md border border-border-subtle bg-surface-card p-5 text-body text-text-secondary">
+                  <CheckCircle2 aria-hidden="true" className="mt-0.5 h-5 w-5 shrink-0 text-gold-ink" />
+                  {item}
+                </StaggerItem>
+              ))}
+            </ul>
+          </StaggerContainer>
+        </section>
+      )}
 
       {faqs.length > 0 && (
         <section className="bg-surface-card p-8 sm:p-10 lg:p-14">

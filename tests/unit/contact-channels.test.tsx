@@ -14,9 +14,8 @@ describe("public contact channels", () => {
     expect(siteConfig.whatsappUrl).toBe("https://wa.me/447762272692");
   });
 
-  it("keeps the job board email separate from, and unchanged by, the general contact email", () => {
-    expect(siteConfig.jobBoardContactEmail).toBe("hello@apexhrllc.co.uk");
-    expect(siteConfig.jobBoardContactEmail).not.toBe(siteConfig.contactEmail);
+  it("uses the global site's own address for the job board email", () => {
+    expect(siteConfig.jobBoardContactEmail).toBe("hello@apexhrllc.com");
   });
 
   it("renders the contact page with the approved email and WhatsApp-only contact options", () => {

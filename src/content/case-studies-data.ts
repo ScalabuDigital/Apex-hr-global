@@ -95,173 +95,29 @@ export interface CaseStudyContent {
   dateModified: string;
 }
 
-const CIPD_RTP_2026: CaseStudySource = {
-  label: "Resourcing and talent planning report 2026",
-  publisher: "CIPD",
-  date: "September 2026",
-  href: "https://www.cipd.org/uk/knowledge/reports/resourcing-surveys/",
-};
 
-const GOV_WRITTEN_STATEMENT: CaseStudySource = {
-  label: "Employment contracts: written statement of employment particulars",
-  publisher: "GOV.UK",
-  date: "checked November 2026",
-  href: "https://www.gov.uk/employment-contracts-and-conditions/written-statement-of-employment-particulars",
-};
 
-const GOV_RIGHT_TO_WORK: CaseStudySource = {
-  label: "Check a job applicant's right to work",
-  publisher: "GOV.UK",
-  date: "checked November 2026",
-  href: "https://www.gov.uk/check-job-applicant-right-to-work",
-};
 
-const GOV_EQUALITY_ACT: CaseStudySource = {
-  label: "Equality Act 2010: guidance",
-  publisher: "GOV.UK",
-  date: "checked November 2026",
-  href: "https://www.gov.uk/guidance/equality-act-2010-guidance",
-};
 
-const GOV_ERA_2025: CaseStudySource = {
-  label: "Implementing the Plan to Make Work Pay and Employment Rights Act",
-  publisher: "GOV.UK",
-  date: "checked November 2026",
-  href: "https://www.gov.uk/government/publications/implementing-the-plan-to-make-work-pay-and-employment-rights-act",
-};
 
-const ACAS_DISCIPLINARY_CODE: CaseStudySource = {
-  label: "Acas Code of Practice on disciplinary and grievance procedures",
-  publisher: "Acas",
-  date: "checked November 2026",
-  href: "https://www.acas.org.uk/acas-code-of-practice-on-disciplinary-and-grievance-procedures",
-};
 
-const FCA_SMCR: CaseStudySource = {
-  label: "Senior Managers and Certification Regime",
-  publisher: "Financial Conduct Authority",
-  date: "checked November 2026",
-  href: "https://www.fca.org.uk/firms/senior-managers-certification-regime",
-};
 
-const GOV_SPONSORSHIP: CaseStudySource = {
-  label: "UK visa sponsorship for employers",
-  publisher: "GOV.UK",
-  date: "checked November 2026",
-  href: "https://www.gov.uk/uk-visa-sponsorship-employers",
-};
 
-const GOV_SKILLED_WORKER: CaseStudySource = {
-  label: "Skilled Worker visa",
-  publisher: "GOV.UK",
-  date: "checked November 2026",
-  href: "https://www.gov.uk/skilled-worker-visa",
-};
 
-const HSE_STRESS: CaseStudySource = {
-  label: "Work-related stress and how to manage it",
-  publisher: "Health and Safety Executive",
-  date: "checked November 2026",
-  href: "https://www.hse.gov.uk/stress/",
-};
 
-const GOV_REDUNDANCY_CONSULTATION: CaseStudySource = {
-  label: "Making staff redundant: redundancy consultations",
-  publisher: "GOV.UK",
-  date: "checked November 2026",
-  href: "https://www.gov.uk/staff-redundant/redundancy-consultations",
-};
 
-const GOV_TUPE: CaseStudySource = {
-  label: "Business transfers, takeovers and TUPE",
-  publisher: "GOV.UK",
-  date: "checked November 2026",
-  href: "https://www.gov.uk/transfers-takeovers",
-};
 
-const ACAS_TUPE: CaseStudySource = {
-  label: "TUPE: transfer of employees",
-  publisher: "Acas",
-  date: "checked November 2026",
-  href: "https://www.acas.org.uk/tupe",
-};
 
-const ACAS_INVESTIGATIONS: CaseStudySource = {
-  label: "Investigations at work: step by step",
-  publisher: "Acas",
-  date: "checked November 2026",
-  href: "https://www.acas.org.uk/investigations-for-discipline-and-grievance-step-by-step",
-};
 
-const ACAS_MEDIATION: CaseStudySource = {
-  label: "Mediation",
-  publisher: "Acas",
-  date: "checked November 2026",
-  href: "https://www.acas.org.uk/mediation",
-};
 
-const GOV_GENDER_PAY_GAP: CaseStudySource = {
-  label: "Who needs to report their gender pay gap",
-  publisher: "GOV.UK",
-  date: "checked November 2026",
-  href: "https://www.gov.uk/guidance/who-needs-to-report-their-gender-pay-gap",
-};
 
-const ACAS_EQUAL_PAY: CaseStudySource = {
-  label: "Equal pay",
-  publisher: "Acas",
-  date: "checked November 2026",
-  href: "https://www.acas.org.uk/equal-pay",
-};
 
-const GOV_MINIMUM_WAGE: CaseStudySource = {
-  label: "National Minimum Wage and National Living Wage rates",
-  publisher: "GOV.UK",
-  date: "checked November 2026",
-  href: "https://www.gov.uk/national-minimum-wage-rates",
-};
 
-const CIPD_GOOD_WORK: CaseStudySource = {
-  label: "CIPD Good Work Index",
-  publisher: "CIPD",
-  date: "checked November 2026",
-  href: "https://www.cipd.org/uk/knowledge/reports/goodwork/",
-};
 
-const ACAS_FLEXIBLE_WORKING: CaseStudySource = {
-  label: "Flexible working",
-  publisher: "Acas",
-  date: "checked November 2026",
-  href: "https://www.acas.org.uk/flexible-working",
-};
 
-const GOV_DATA_PROTECTION: CaseStudySource = {
-  label: "Data protection",
-  publisher: "GOV.UK",
-  date: "checked November 2026",
-  href: "https://www.gov.uk/data-protection",
-};
 
-const GOV_APPRENTICESHIP_CHANGES: CaseStudySource = {
-  label: "Apprenticeship changes",
-  publisher: "GOV.UK",
-  date: "checked November 2026",
-  href: "https://www.gov.uk/government/collections/apprenticeship-changes",
-};
 
-const HSE_CONSTRUCTION: CaseStudySource = {
-  label: "Construction: health and safety",
-  publisher: "Health and Safety Executive",
-  date: "checked November 2026",
-  href: "https://www.hse.gov.uk/construction/",
-};
 
-const GOV_WORKING_ABROAD: CaseStudySource = {
-  label: "Working abroad",
-  publisher: "GOV.UK",
-  date: "checked November 2026",
-  href: "https://www.gov.uk/working-abroad",
-};
 
 const STANDARD_DRAFT = {
   evidenceBasis: "illustrative" as const,
@@ -288,7 +144,7 @@ export const caseStudyContent: CaseStudyContent[] = [
       "How Apex HR would help a funded software scale-up move from founder-led, ad hoc hiring to a planned, repeatable recruitment process for engineering, product and data roles.",
     seoTitle: "Scale-Up Recruitment Case Study: Building a Tech Team",
     metaDescription:
-      "Scenario: how Apex HR would help a UK tech scale-up plan headcount, sharpen its EVP and run structured permanent recruitment and RPO at pace.",
+      "Scenario: how Apex HR would help a Lagos tech scale-up plan headcount, sharpen its EVP and run structured permanent recruitment and RPO at pace.",
     primaryKeyword: "scale-up recruitment case study",
     secondaryKeywords: [
       "tech recruitment for scale-ups",
@@ -304,19 +160,19 @@ export const caseStudyContent: CaseStudyContent[] = [
       "hiring manager capability",
     ],
     serviceSlugs: [
-      "permanent-recruitment-firm-in-the-uk",
-      "recruitment-process-outsourcing-rpo-firm-in-the-uk",
-      "employer-branding-and-employee-value-proposition-evp-firm-in-the-uk",
-      "strategic-workforce-planning-firm-in-the-uk",
+      "permanent-recruitment-firm",
+      "recruitment-process-outsourcing-rpo-firm",
+      "employer-branding-and-employee-value-proposition-evp-firm",
+      "strategic-workforce-planning-firm",
     ],
-    sectorSlugs: ["hr-company-for-startups-and-scale-ups-in-the-uk", "hr-company-for-it-in-the-uk"],
+    sectorSlugs: ["hr-company-for-startups-and-scale-ups", "hr-company-for-it"],
     sectorLabel: "Startups & scale-ups · IT",
     executiveSummary:
-      "A UK software business has closed a growth funding round and committed to investors to roughly double its engineering, product and data capability within a year. Hiring so far has been led by the founders through referrals and job boards, with no agreed headcount plan, no consistent interview process and no in-house recruiter. In this scenario, Apex HR would start with a workforce plan tied to the product roadmap, give the business a clear employer value proposition, and then run structured permanent recruitment, scaling into a recruitment process outsourcing (RPO) model once hiring volumes justify it. Success would be judged on hiring against plan, quality of hire and how well new starters are retained.",
+      "A Lagos-based software business has closed a growth funding round and committed to investors to roughly double its engineering, product and data capability within a year. Hiring so far has been led by the founders through referrals and job boards, with no agreed headcount plan, no consistent interview process and no in-house recruiter. In this scenario, Apex HR would start with a workforce plan tied to the product roadmap, give the business a clear employer value proposition, and then run structured permanent recruitment, scaling into a recruitment process outsourcing (RPO) model once hiring volumes justify it. Success would be judged on hiring against plan, quality of hire and how well new starters are retained.",
     clientBackground: [
-      "The organisation in this scenario is a venture-backed UK software company with an established product, paying customers and a mainly hybrid team. It is the kind of business described on our [startups and scale-ups](/sector/hr-company-for-startups-and-scale-ups-in-the-uk/) and [IT sector](/sector/hr-company-for-it-in-the-uk/) pages: technically strong, commercially ambitious and light on HR infrastructure.",
+      "The organisation in this scenario is a venture-backed Nigerian software company with an established product, paying customers across West Africa and a mainly hybrid team. It is described further on our [Nigeria](/ng/) page. It is the kind of business described on our [startups and scale-ups](/sector/hr-company-for-startups-and-scale-ups/) and [IT sector](/sector/hr-company-for-it/) pages: technically strong, commercially ambitious and light on HR infrastructure.",
       "Recruitment has worked while the company was small, because the founders knew every hire personally. As the hiring plan grows, that informal approach becomes a bottleneck. Founders' time is pulled away from customers and product, hiring managers interview inconsistently, and offers are sometimes lost to competitors who move faster.",
-      "This mirrors a wider pattern. The CIPD's Resourcing and talent planning report 2026 found that 46% of UK employers still handle recruitment on an ad hoc basis, and 52% said competition for well-qualified talent had grown. Those figures describe the UK market, not Apex HR clients, but they explain why growing businesses often look for external recruitment support at this stage.",
+      "The hiring market adds pressure. Experienced engineers, product managers and data specialists in Lagos are approached by local competitors and by overseas employers offering remote roles, often paid in foreign currency. A slow or inconsistent process loses candidates quickly, and pay that was set a year ago may no longer be competitive.",
     ],
     challenge: {
       intro:
@@ -347,7 +203,7 @@ export const caseStudyContent: CaseStudyContent[] = [
         {
           heading: "Stage 1: Understand the growth plan",
           paragraphs: [
-            "Interviews with founders, the CTO and team leads would establish the product roadmap, funding milestones and the capabilities each stage needs. This forms the basis of a [strategic workforce plan](/services/strategic-workforce-planning-firm-in-the-uk/): which roles are needed, in what order, at what level, and which could be filled through internal development rather than external hiring.",
+            "Interviews with founders, the CTO and team leads would establish the product roadmap, funding milestones and the capabilities each stage needs. This forms the basis of a [strategic workforce plan](/services/strategic-workforce-planning-firm/): which roles are needed, in what order, at what level, and which could be filled through internal development rather than external hiring.",
           ],
         },
         {
@@ -359,7 +215,7 @@ export const caseStudyContent: CaseStudyContent[] = [
         {
           heading: "Stage 3: Recommend a resourcing model",
           paragraphs: [
-            "For the first wave of critical hires, [permanent recruitment](/services/permanent-recruitment-firm-in-the-uk/) on a role-by-role basis keeps commitment low. Once the plan shows a sustained pipeline of roles, an embedded [recruitment process outsourcing (RPO)](/services/recruitment-process-outsourcing-rpo-firm-in-the-uk/) model can take ownership of the end-to-end process, giving consistency and capacity without the fixed cost of building a full internal team too early.",
+            "For the first wave of critical hires, [permanent recruitment](/services/permanent-recruitment-firm/) on a role-by-role basis keeps commitment low. Once the plan shows a sustained pipeline of roles, an embedded [recruitment process outsourcing (RPO)](/services/recruitment-process-outsourcing-rpo-firm/) model can take ownership of the end-to-end process, giving consistency and capacity without the fixed cost of building a full internal team too early.",
           ],
         },
       ],
@@ -377,13 +233,13 @@ export const caseStudyContent: CaseStudyContent[] = [
         {
           heading: "An employer value proposition grounded in reality",
           paragraphs: [
-            "Through short interviews and an anonymous pulse survey of current staff, Apex HR would identify what people genuinely value about working there, such as ownership, technical challenge or flexibility, and what candidates are likely to question. The resulting [employer value proposition](/services/employer-branding-and-employee-value-proposition-evp-firm-in-the-uk/) shapes job adverts, careers-page copy and how interviewers describe the company. It must stay honest, because overselling drives early attrition.",
+            "Through short interviews and an anonymous pulse survey of current staff, Apex HR would identify what people genuinely value about working there, such as ownership, technical challenge or flexibility, and what candidates are likely to question. The resulting [employer value proposition](/services/employer-branding-and-employee-value-proposition-evp-firm/) shapes job adverts, careers-page copy and how interviewers describe the company. It must stay honest, because overselling drives early attrition.",
           ],
         },
         {
           heading: "Role scorecards and structured interviews",
           paragraphs: [
-            "Each role gets a scorecard of the outcomes expected in the first year and the competencies needed to achieve them. Interview stages, such as a technical exercise, a structured competency interview and a values conversation, are each assessed against the scorecard with agreed questions and rating guides. Structured, consistent assessment supports fairer decisions and helps the business meet its obligations under the [Equality Act 2010](https://www.gov.uk/guidance/equality-act-2010-guidance).",
+            "Each role gets a scorecard of the outcomes expected in the first year and the competencies needed to achieve them. Interview stages, such as a technical exercise, a structured competency interview and a values conversation, are each assessed against the scorecard with agreed questions and rating guides. Structured, consistent assessment supports fairer, more defensible decisions and a better candidate experience.",
           ],
         },
         {
@@ -395,7 +251,7 @@ export const caseStudyContent: CaseStudyContent[] = [
         {
           heading: "Compliant offers and onboarding",
           paragraphs: [
-            "Offer templates and a pre-start checklist covering [right to work checks](https://www.gov.uk/check-job-applicant-right-to-work), references and the [written statement of employment particulars](https://www.gov.uk/employment-contracts-and-conditions/written-statement-of-employment-particulars), which must be given on or before the first day. A structured first-90-days plan for each new starter gives managers a simple framework for induction.",
+            "Offer templates and a pre-start checklist covering identity and reference checks, written contracts of employment, pension registration under the Pension Reform Act 2014, and how candidate data is handled under the Nigeria Data Protection Act 2023. A structured first-90-days plan for each new starter gives managers a simple framework for induction.",
           ],
         },
       ],
@@ -447,7 +303,7 @@ export const caseStudyContent: CaseStudyContent[] = [
           "Yes. A clear, honest explanation of why someone should join helps candidates choose you over larger, better-known employers. It does not need to be a large branding exercise; it needs to be accurate and used consistently by everyone involved in hiring.",
       },
     ],
-    sources: [CIPD_RTP_2026, GOV_EQUALITY_ACT, GOV_RIGHT_TO_WORK, GOV_WRITTEN_STATEMENT],
+    sources: [],
     cta: {
       heading: "Planning a period of rapid hiring?",
       body: "Tell us about your growth plan and the roles you need to fill. We will suggest a recruitment model that fits your stage and budget.",
@@ -466,18 +322,18 @@ export const caseStudyContent: CaseStudyContent[] = [
     shortTitle: "Executive search in financial services",
     title: "Appointing a senior finance leader in a regulated financial services firm",
     summary:
-      "How Apex HR would run a confidential executive search for a business-critical finance role in an FCA-regulated firm, from success profile to regulatory approval and onboarding.",
+      "How Apex HR would run a confidential executive search for a business-critical finance role in a DIFC-regulated firm in Dubai, from success profile to regulatory approval and onboarding.",
     seoTitle: "Executive Search Case Study: Financial Services",
     metaDescription:
-      "Scenario: how Apex HR would run a confidential executive search for a senior finance leader in a UK regulated firm, including succession and onboarding.",
+      "Scenario: how Apex HR would run a confidential executive search for a senior finance leader in a regulated Dubai firm, including succession and onboarding.",
     primaryKeyword: "executive search case study",
     secondaryKeywords: [
-      "financial services executive search UK",
+      "financial services executive search Dubai",
       "senior finance leadership recruitment",
       "confidential executive search",
     ],
     relatedTerms: [
-      "Senior Managers and Certification Regime",
+      "DFSA authorised individuals",
       "success profile",
       "talent mapping",
       "succession planning",
@@ -485,19 +341,19 @@ export const caseStudyContent: CaseStudyContent[] = [
       "360 feedback",
     ],
     serviceSlugs: [
-      "executive-search-firm-in-the-uk",
-      "succession-planning-and-talent-mapping-firm-in-the-uk",
-      "executive-compensation-and-share-schemes-firm-in-the-uk",
-      "executive-coaching-and-360-feedback-firm-in-the-uk",
+      "executive-search-firm",
+      "succession-planning-and-talent-mapping-firm",
+      "executive-compensation-and-share-schemes-firm",
+      "executive-coaching-and-360-feedback-firm",
     ],
-    sectorSlugs: ["hr-company-for-financial-services-in-the-uk", "hr-company-for-professional-services-in-the-uk"],
+    sectorSlugs: ["hr-company-for-financial-services", "hr-company-for-professional-services"],
     sectorLabel: "Financial services · Professional services",
     executiveSummary:
-      "A mid-sized UK financial services firm needs to replace its finance director, who has given notice. The role is business-critical, the incumbent is well regarded, and the appointment is likely to require regulatory approval before the new leader can perform certain functions. There is no ready internal successor. In this scenario, Apex HR would run a confidential executive search built around a clear success profile, map the external market, assess finalists in depth, advise on a competitive package, and support onboarding. Alongside the search, Apex HR would help the firm start a succession plan so it is better prepared next time.",
+      "A mid-sized financial services firm in the Dubai International Financial Centre (DIFC) needs to replace its finance director, who has given notice. The role is business-critical, the incumbent is well regarded, and the appointment is likely to require regulatory approval before the new leader can perform certain functions. There is no ready internal successor. In this scenario, Apex HR would run a confidential executive search built around a clear success profile, map the external market, assess finalists in depth, advise on a competitive package, and support onboarding. Alongside the search, Apex HR would help the firm start a succession plan so it is better prepared next time.",
     clientBackground: [
-      "The firm in this scenario is an established, FCA-authorised business with a stable client base and a lean leadership team. It is typical of the organisations described on our [financial services sector](/sector/hr-company-for-financial-services-in-the-uk/) page, where leadership appointments carry regulatory as well as commercial weight.",
+      "The firm in this scenario is an established, DFSA-regulated business with a stable client base across the Gulf and a lean leadership team. Our [United Arab Emirates](/ae/) page describes the wider market. It is typical of the organisations described on our [financial services sector](/sector/hr-company-for-financial-services/) page, where leadership appointments carry regulatory as well as commercial weight.",
       "The departing finance director has been closely involved with the board, auditors and regulator for several years. Their departure is amicable but leaves a gap in both technical leadership and relationships, and the firm has not hired at this level for some time.",
-      "Under the [Senior Managers and Certification Regime](https://www.fca.org.uk/firms/senior-managers-certification-regime), certain senior roles require regulatory approval, and firms are expected to assess that candidates are fit and proper. The timetable for the appointment therefore has to allow for notice periods and regulatory steps, not just the search itself. Whether a specific role needs approval is for the firm and its compliance advisers to confirm.",
+      "In the DIFC, certain senior functions, including finance roles, are typically performed by individuals approved by the Dubai Financial Services Authority, and firms are expected to assess that candidates are fit and proper. Strong candidates are often based elsewhere in the Gulf, in Europe or in Asia, so the timetable has to allow for notice periods, relocation, visas and regulatory steps, not just the search itself. Whether a specific role needs approval is for the firm and its compliance advisers to confirm.",
     ],
     challenge: {
       intro: "The board faces several connected risks:",
@@ -531,7 +387,7 @@ export const caseStudyContent: CaseStudyContent[] = [
         {
           heading: "Stage 2: Map the market",
           paragraphs: [
-            "[Executive search](/services/executive-search-firm-in-the-uk/) means identifying people currently doing comparable roles across relevant financial services and [professional services](/sector/hr-company-for-professional-services-in-the-uk/) businesses and approaching them discreetly. The market map also gives the board an objective view of where talent sits and what it is likely to cost.",
+            "[Executive search](/services/executive-search-firm/) means identifying people currently doing comparable roles across relevant financial services and [professional services](/sector/hr-company-for-professional-services/) businesses and approaching them discreetly. The market map also gives the board an objective view of where talent sits and what it is likely to cost.",
           ],
         },
         {
@@ -561,19 +417,19 @@ export const caseStudyContent: CaseStudyContent[] = [
         {
           heading: "Package design",
           paragraphs: [
-            "Advice on salary, bonus and any [executive compensation and share scheme](/services/executive-compensation-and-share-schemes-firm-in-the-uk/) elements, so the offer is competitive and consistent with the firm's remuneration policies and any regulatory remuneration requirements that apply. Formal tax or legal advice on incentive structures would come from the firm's specialist advisers.",
+            "Advice on salary, bonus and any [executive compensation and share scheme](/services/executive-compensation-and-share-schemes-firm/) elements, so the offer is competitive and consistent with the firm's remuneration policies and any regulatory remuneration requirements that apply. Formal tax or legal advice on incentive structures would come from the firm's specialist advisers.",
           ],
         },
         {
           heading: "Onboarding and early support",
           paragraphs: [
-            "A structured onboarding plan covering board, auditor and regulator introductions, and optional [executive coaching with 360 feedback](/services/executive-coaching-and-360-feedback-firm-in-the-uk/) during the first six months to help the new leader settle in.",
+            "A structured onboarding plan covering board, auditor and regulator introductions, and optional [executive coaching with 360 feedback](/services/executive-coaching-and-360-feedback-firm/) during the first six months to help the new leader settle in.",
           ],
         },
         {
           heading: "Succession planning",
           paragraphs: [
-            "Using the success profile as a template, Apex HR would help the leadership team identify other critical roles and begin [succession planning and talent mapping](/services/succession-planning-and-talent-mapping-firm-in-the-uk/), with development plans for internal people who could step up in future.",
+            "Using the success profile as a template, Apex HR would help the leadership team identify other critical roles and begin [succession planning and talent mapping](/services/succession-planning-and-talent-mapping-firm/), with development plans for internal people who could step up in future.",
           ],
         },
       ],
@@ -613,7 +469,7 @@ export const caseStudyContent: CaseStudyContent[] = [
       },
       {
         id: "cs-exec-search-smcr",
-        question: "Does Apex HR handle FCA approval for senior managers?",
+        question: "Does Apex HR handle regulatory approval for senior appointments?",
         answer:
           "No. Regulatory applications are the firm's responsibility, usually led by its compliance function. Apex HR plans the search timeline around any approval process and works with the firm's compliance team so candidates are assessed with fit-and-proper requirements in mind.",
       },
@@ -624,7 +480,7 @@ export const caseStudyContent: CaseStudyContent[] = [
           "Yes. Confidential searches commonly use a code name, a limited steering group and carefully worded approaches that do not identify the client until a candidate has shown interest and agreed to confidentiality.",
       },
     ],
-    sources: [FCA_SMCR, CIPD_RTP_2026, GOV_EQUALITY_ACT],
+    sources: [],
     cta: {
       heading: "Planning a senior appointment?",
       body: "Talk to Apex HR in confidence about a leadership hire, a succession risk or the shape of a senior role.",
@@ -646,12 +502,12 @@ export const caseStudyContent: CaseStudyContent[] = [
       "How Apex HR would help a growing accountancy or architecture practice with no HR function replace inconsistent, informal people management with compliant policies, clear processes and ongoing outsourced support.",
     seoTitle: "Outsourced HR Case Study: HR Foundations for a Practice",
     metaDescription:
-      "Scenario: how Apex HR would audit HR compliance, update contracts and policies, and provide retained HR support for a growing UK professional practice.",
+      "Scenario: how Apex HR would audit HR compliance, update contracts and policies, and provide retained HR support for a growing professional practice in Nairobi.",
     primaryKeyword: "outsourced HR case study",
     secondaryKeywords: [
       "HR support for professional practices",
       "HR compliance audit for small businesses",
-      "retained HR services UK",
+      "retained HR services Kenya",
     ],
     relatedTerms: [
       "employee handbook",
@@ -659,28 +515,28 @@ export const caseStudyContent: CaseStudyContent[] = [
       "disciplinary and grievance procedure",
       "fractional HR director",
       "payroll advisory",
-      "Employment Rights Act 2025",
+      "Employment Act 2007",
     ],
     serviceSlugs: [
-      "retained-hr-services-firm-in-the-uk",
-      "hr-support-for-small-businesses-and-startups-firm-in-the-uk",
-      "hr-compliance-audit-firm-in-the-uk",
-      "employee-handbooks-and-hr-policies-firm-in-the-uk",
-      "fractional-hr-director-chief-people-officer-firm-in-the-uk",
-      "payroll-advisory-firm-in-the-uk",
+      "retained-hr-services-firm",
+      "hr-support-for-small-businesses-and-startups-firm",
+      "hr-compliance-audit-firm",
+      "employee-handbooks-and-hr-policies-firm",
+      "fractional-hr-director-chief-people-officer-firm",
+      "payroll-advisory-firm",
     ],
     sectorSlugs: [
-      "hr-company-for-accountants-in-the-uk",
-      "hr-company-for-architects-in-the-uk",
-      "hr-company-for-professional-services-in-the-uk",
+      "hr-company-for-accountants",
+      "hr-company-for-architects",
+      "hr-company-for-professional-services",
     ],
     sectorLabel: "Accountants · Architects · Professional services",
     executiveSummary:
       "A partner-led professional practice has grown steadily through hiring and a small acquisition, but HR is handled by a practice manager alongside other duties. Contracts differ depending on when people joined, the staff handbook is out of date, and partners handle absence and performance issues in different ways. In this scenario, Apex HR would start with an HR compliance audit, fix the highest-risk gaps first, introduce a consistent handbook and core processes, and then provide ongoing retained HR support with access to senior HR leadership when needed. Success would be measured by closing the compliance gaps, consistent people management and fewer issues escalating.",
     clientBackground: [
-      "The practice in this scenario is a partner-owned firm of the type described on our [accountants](/sector/hr-company-for-accountants-in-the-uk/) and [architects](/sector/hr-company-for-architects-in-the-uk/) sector pages. It has qualified professionals, trainees and support staff, with partners acting as line managers alongside fee-earning work.",
+      "The practice in this scenario is a partner-owned firm of the type described on our [accountants](/sector/hr-company-for-accountants/) and [architects](/sector/hr-company-for-architects/) sector pages. It has qualified professionals, trainees and support staff, with partners acting as line managers alongside fee-earning work.",
       "The firm recently absorbed a smaller practice, bringing employees with different terms and conditions. Day-to-day HR administration sits with the practice manager, who is capable but not an HR specialist and has no time to keep up with employment law changes.",
-      "Employment law is changing. The [Employment Rights Act 2025](https://www.gov.uk/government/publications/implementing-the-plan-to-make-work-pay-and-employment-rights-act) is being implemented in stages under the Government's published timetable, and small employers without HR expertise can find it difficult to know which changes affect them and when.",
+      "Kenya's Employment Act 2007 expects written contracts and fair procedure in discipline and termination, and statutory deductions and levies have changed in recent years. Small employers without HR expertise can find it difficult to keep contracts, payroll and policies up to date. Our [Kenya](/ke/) page describes the wider employment framework.",
     ],
     challenge: {
       intro: "The partners recognise several risks building up:",
@@ -688,7 +544,7 @@ export const caseStudyContent: CaseStudyContent[] = [
         "Inconsistent contracts: employees on different templates, some missing required particulars, and staff from the acquired practice on different terms.",
         "An out-of-date handbook: policies that do not reflect current law or how the firm now works, including hybrid working.",
         "Uneven people management: partners deal with absence, performance and conduct in different ways, creating fairness and legal risk.",
-        "No documented disciplinary or grievance procedure aligned with the Acas Code of Practice.",
+        "No documented disciplinary or grievance procedure that gives employees a fair hearing before decisions are made.",
         "Limited capacity: the practice manager is stretched, and there is no one to turn to for HR advice when a difficult issue arises.",
         "Payroll questions: uncertainty about how contract terms, benefits and absence should feed through to payroll.",
       ],
@@ -709,19 +565,19 @@ export const caseStudyContent: CaseStudyContent[] = [
         {
           heading: "Stage 1: HR compliance audit",
           paragraphs: [
-            "An [HR compliance audit](/services/hr-compliance-audit-firm-in-the-uk/) reviews contracts, the handbook, right to work records, absence and holiday records, data-protection practice for employee records, and how disciplinary and grievance matters have been handled. The output is a prioritised list of risks, not a lengthy report.",
+            "An [HR compliance audit](/services/hr-compliance-audit-firm/) reviews contracts, the handbook, right to work records, absence and holiday records, data-protection practice for employee records, and how disciplinary and grievance matters have been handled. The output is a prioritised list of risks, not a lengthy report.",
           ],
         },
         {
           heading: "Stage 2: Fix the foundations",
           paragraphs: [
-            "Contracts are aligned with the requirements for a [written statement of employment particulars](https://www.gov.uk/employment-contracts-and-conditions/written-statement-of-employment-particulars), and any changes to existing terms are planned carefully with appropriate consultation. Where the acquisition involved a TUPE transfer, changes to transferred employees' terms carry particular legal restrictions, so the firm's employment lawyer should review the approach before anything changes.",
+            "Every employee has a written contract that reflects the Employment Act 2007, and any changes to existing terms are planned carefully with consultation. Where staff joined through the acquisition of another practice, the firm's employment lawyer should review any proposed changes to their terms before anything changes.",
           ],
         },
         {
           heading: "Stage 3: Ongoing support",
           paragraphs: [
-            "Once the foundations are in place, [retained HR services](/services/retained-hr-services-firm-in-the-uk/) give the firm a named adviser for day-to-day questions, with access to a [fractional HR director](/services/fractional-hr-director-chief-people-officer-firm-in-the-uk/) for strategic issues such as partner succession or a future acquisition.",
+            "Once the foundations are in place, [retained HR services](/services/retained-hr-services-firm/) give the firm a named adviser for day-to-day questions, with access to a [fractional HR director](/services/fractional-hr-director-chief-people-officer-firm/) for strategic issues such as partner succession or a future acquisition.",
           ],
         },
       ],
@@ -733,7 +589,7 @@ export const caseStudyContent: CaseStudyContent[] = [
         {
           heading: "A current employee handbook",
           paragraphs: [
-            "A practical [employee handbook and policy set](/services/employee-handbooks-and-hr-policies-firm-in-the-uk/) covering conduct, absence, flexible and hybrid working, family leave, equality, data protection, and disciplinary and grievance procedures aligned with the [Acas Code of Practice](https://www.acas.org.uk/acas-code-of-practice-on-disciplinary-and-grievance-procedures). Policies are written in plain English and reviewed as legislation changes.",
+            "A practical [employee handbook and policy set](/services/employee-handbooks-and-hr-policies-firm/) covering conduct, absence, flexible and hybrid working, family leave, equality, data protection, and disciplinary and grievance procedures that give employees notice, a hearing and a right to respond. Policies are written in plain English and reviewed as legislation changes.",
           ],
         },
         {
@@ -751,13 +607,13 @@ export const caseStudyContent: CaseStudyContent[] = [
         {
           heading: "Payroll touchpoints",
           paragraphs: [
-            "[Payroll advisory](/services/payroll-advisory-firm-in-the-uk/) support so that contract terms, benefits and absence policies are reflected correctly in the information the firm sends to its payroll provider or accountant. Apex HR does not process payroll or give tax advice.",
+            "[Payroll advisory](/services/payroll-advisory-firm/) support so that contract terms, benefits and absence policies are reflected correctly in the information the firm sends to its payroll provider or accountant. Apex HR does not process payroll or give tax advice.",
           ],
         },
         {
           heading: "Retained HR advice",
           paragraphs: [
-            "An agreed service level for HR queries, support with more complex cases, and periodic updates on employment law changes that affect the firm. This is the core of our [HR support for small businesses](/services/hr-support-for-small-businesses-and-startups-firm-in-the-uk/).",
+            "An agreed service level for HR queries, support with more complex cases, and periodic updates on employment law changes that affect the firm. This is the core of our [HR support for small businesses](/services/hr-support-for-small-businesses-and-startups-firm/).",
           ],
         },
       ],
@@ -805,17 +661,17 @@ export const caseStudyContent: CaseStudyContent[] = [
         id: "cs-outsourced-hr-legal",
         question: "Is outsourced HR the same as legal advice?",
         answer:
-          "No. Apex HR provides practical HR advice and support. Where a matter needs formal legal advice, such as changing transferred employees' terms or defending a tribunal claim, the firm should involve a qualified employment lawyer.",
+          "No. Apex HR provides practical HR advice and support. Where a matter needs formal legal advice, such as changing transferred employees' terms or defending a claim at the Employment and Labour Relations Court, the firm should involve a qualified employment lawyer.",
       },
     ],
-    sources: [GOV_WRITTEN_STATEMENT, ACAS_DISCIPLINARY_CODE, GOV_ERA_2025, GOV_RIGHT_TO_WORK],
+    sources: [],
     cta: {
       heading: "Need dependable HR support for your firm?",
       body: "Tell us how your practice is set up today. We will suggest where to start and what level of support makes sense.",
       label: "Discuss Your Needs",
       href: "/contact/",
     },
-    // Contract changes, TUPE-adjacent terms and disciplinary procedure
+    // Contract changes and disciplinary procedure
     // content are employment-law-adjacent — see CLAUDE.md section 31.
     legalReviewRequired: true,
   },
@@ -832,31 +688,31 @@ export const caseStudyContent: CaseStudyContent[] = [
       "How Apex HR would help a group of care homes reduce reliance on short-notice agency cover by combining planned contract staffing, permanent recruitment, compliant sponsorship management and better staff wellbeing support.",
     seoTitle: "Healthcare Recruitment Case Study: Care Staffing",
     metaDescription:
-      "Scenario: how Apex HR would help a UK care provider plan contract and permanent staffing, manage sponsor duties and support staff wellbeing.",
+      "Scenario: how Apex HR would help an Irish care provider plan contract and permanent staffing, manage employment permit processes and support staff wellbeing.",
     primaryKeyword: "healthcare recruitment case study",
     secondaryKeywords: ["care home staffing", "contract staffing for healthcare", "sponsor licence HR support"],
     relatedTerms: [
       "rota planning",
       "agency spend",
-      "Skilled Worker sponsorship",
+      "employment permits for care workers",
       "sponsor compliance duties",
       "staff wellbeing",
       "right to work checks",
     ],
     serviceSlugs: [
-      "contract-staffing-firm-in-the-uk",
-      "skilled-worker-sponsorship-hr-support-firm-in-the-uk",
-      "workplace-wellbeing-and-mental-health-firm-in-the-uk",
-      "permanent-recruitment-firm-in-the-uk",
+      "contract-staffing-firm",
+      "skilled-worker-sponsorship-hr-support-firm",
+      "workplace-wellbeing-and-mental-health-firm",
+      "permanent-recruitment-firm",
     ],
-    sectorSlugs: ["hr-company-for-care-homes-in-the-uk", "hr-company-for-healthcare-in-the-uk"],
+    sectorSlugs: ["hr-company-for-care-homes", "hr-company-for-healthcare"],
     sectorLabel: "Care homes · Healthcare",
     executiveSummary:
       "A regional group of residential care homes is filling rota gaps with last-minute agency staff, which is costly and makes continuity of care harder. Several existing team members are sponsored workers, and the managers are unsure how recent immigration changes affect future hiring. Staff absence linked to stress is also rising. In this scenario, Apex HR would help the group plan its workforce by home and shift pattern, set up a planned contract staffing arrangement for predictable gaps, run permanent recruitment for core roles, review sponsor compliance processes, and introduce practical wellbeing support. Success would be measured by more planned cover, steadier teams and lower stress-related absence.",
     clientBackground: [
-      "The provider in this scenario operates several residential homes across one region, of the type described on our [care homes](/sector/hr-company-for-care-homes-in-the-uk/) and [healthcare](/sector/hr-company-for-healthcare-in-the-uk/) sector pages. Each home has its own manager, and staffing is planned week by week.",
-      "Some care staff are sponsored under the Skilled Worker route. Immigration rules for care roles have changed significantly. New overseas recruitment of care workers through the Skilled Worker route closed in July 2025, with transitional arrangements for some people already in the UK. Sponsors also have ongoing record-keeping and reporting duties. Providers should check current [GOV.UK sponsorship guidance](https://www.gov.uk/uk-visa-sponsorship-employers) and take immigration advice before acting, because the rules continue to change.",
-      "Care work is physically and emotionally demanding. The Health and Safety Executive's [guidance on work-related stress](https://www.hse.gov.uk/stress/) sets out employers' responsibility to assess and manage the risks.",
+      "The provider in this scenario operates several residential care homes in Ireland, of the type described on our [care homes](/sector/hr-company-for-care-homes/) and [healthcare](/sector/hr-company-for-healthcare/) sector pages. Each home has its own manager, and staffing is planned week by week.",
+      "Some care staff are recruited from outside the EEA and need an employment permit. Permit rules, eligible occupations and conditions for care roles have changed in recent years, and employers have ongoing obligations to the people they employ on permits. Providers should check current official guidance and take immigration advice before acting. Our [Ireland](/ie/) page describes the wider employment framework.",
+      "Care work is physically and emotionally demanding, and employers have a duty to assess and manage workplace risks, including work-related stress, under Irish health and safety law.",
     ],
     challenge: {
       intro: "Managers describe a cycle that is hard to break:",
@@ -890,13 +746,13 @@ export const caseStudyContent: CaseStudyContent[] = [
         {
           heading: "Stage 2: Design a blended staffing model",
           paragraphs: [
-            "Planned [contract staffing](/services/contract-staffing-firm-in-the-uk/) covers predictable gaps with consistent people who learn the homes. Group-wide [permanent recruitment](/services/permanent-recruitment-firm-in-the-uk/) fills core roles. Agency cover becomes the exception rather than the default.",
+            "Planned [contract staffing](/services/contract-staffing-firm/) covers predictable gaps with consistent people who learn the homes. Group-wide [permanent recruitment](/services/permanent-recruitment-firm/) fills core roles. Agency cover becomes the exception rather than the default.",
           ],
         },
         {
           heading: "Stage 3: Review sponsorship and wellbeing",
           paragraphs: [
-            "Alongside the staffing model, Apex HR would review the group's sponsor processes through its [Skilled Worker sponsorship HR support](/services/skilled-worker-sponsorship-hr-support-firm-in-the-uk/), and run a short stress risk assessment with staff to target [wellbeing support](/services/workplace-wellbeing-and-mental-health-firm-in-the-uk/) where it is most needed.",
+            "Alongside the staffing model, Apex HR would review the group's permit processes through its [work visa and sponsorship HR support](/services/skilled-worker-sponsorship-hr-support-firm/), and run a short stress risk assessment with staff to target [wellbeing support](/services/workplace-wellbeing-and-mental-health-firm/) where it is most needed.",
           ],
         },
       ],
@@ -914,7 +770,7 @@ export const caseStudyContent: CaseStudyContent[] = [
         {
           heading: "Shared recruitment pipeline",
           paragraphs: [
-            "One advertising and screening process for care assistants, senior carers and nurses across the group, with consistent values-based interviews and pre-employment checks including [right to work](https://www.gov.uk/check-job-applicant-right-to-work), references and the vetting the role requires.",
+            "One advertising and screening process for care assistants, senior carers and nurses across the group, with consistent values-based interviews and pre-employment checks including right to work, references and the Garda vetting the role requires.",
           ],
         },
         {
@@ -965,10 +821,10 @@ export const caseStudyContent: CaseStudyContent[] = [
         id: "cs-care-sponsorship",
         question: "Can Apex HR advise on immigration law?",
         answer:
-          "No. Apex HR supports the HR processes around sponsorship, such as record-keeping, reporting calendars and right to work checks. Questions about eligibility or immigration law should go to a regulated immigration adviser or solicitor.",
+          "No. Apex HR supports the HR processes around employment permits, such as record-keeping, renewal calendars and right to work checks. Questions about eligibility or immigration law should go to a regulated immigration adviser or solicitor.",
       },
     ],
-    sources: [GOV_SPONSORSHIP, GOV_SKILLED_WORKER, GOV_RIGHT_TO_WORK, HSE_STRESS],
+    sources: [],
     cta: {
       heading: "Struggling to keep rotas covered?",
       body: "Tell us about your homes, roles and current cover. We will suggest a staffing model that fits.",
@@ -988,12 +844,12 @@ export const caseStudyContent: CaseStudyContent[] = [
     shortTitle: "Manufacturing site restructure",
     title: "Managing a manufacturing site restructure fairly and transparently",
     summary:
-      "How Apex HR would support a manufacturer consolidating production and moving distribution to a third party, covering collective consultation, TUPE, union negotiation, outplacement and change management.",
+      "How Apex HR would support a manufacturer consolidating production and moving distribution to a third party, covering retrenchment consultation, the transfer of staff to a new employer, union negotiation, outplacement and change management.",
     seoTitle: "Redundancy and Restructuring Case Study: Manufacturing",
     metaDescription:
-      "Scenario: how Apex HR would support a UK manufacturer through collective redundancy consultation, TUPE, union talks and outplacement.",
+      "Scenario: how Apex HR would support a South African manufacturer through retrenchment consultation, a business transfer, union talks and outplacement.",
     primaryKeyword: "redundancy and restructuring case study",
-    secondaryKeywords: ["collective consultation support", "TUPE outsourcing HR support", "outplacement for manufacturing"],
+    secondaryKeywords: ["retrenchment consultation support", "section 197 transfer HR support", "outplacement for manufacturing"],
     relatedTerms: [
       "collective redundancy consultation",
       "HR1 form",
@@ -1003,25 +859,25 @@ export const caseStudyContent: CaseStudyContent[] = [
       "service provision change",
     ],
     serviceSlugs: [
-      "redundancy-and-restructuring-support-firm-in-the-uk",
-      "tupe-advisory-firm-in-the-uk",
-      "industrial-relations-and-trade-union-negotiations-firm-in-the-uk",
-      "outplacement-and-career-transition-services-firm-in-the-uk",
-      "change-management-firm-in-the-uk",
+      "redundancy-and-restructuring-support-firm",
+      "tupe-advisory-firm",
+      "industrial-relations-and-trade-union-negotiations-firm",
+      "outplacement-and-career-transition-services-firm",
+      "change-management-firm",
     ],
-    sectorSlugs: ["hr-company-for-manufacturers-in-the-uk", "hr-company-for-distribution-in-the-uk"],
+    sectorSlugs: ["hr-company-for-manufacturers", "hr-company-for-distribution"],
     sectorLabel: "Manufacturers · Distribution",
     executiveSummary:
-      "A UK manufacturer plans to consolidate two production lines into one site and outsource its in-house warehousing to a logistics provider. The proposals could affect a significant number of roles, some covered by a recognised trade union, and the warehousing change may involve a TUPE transfer. In this scenario, Apex HR would help the leadership team plan a fair, well-documented process: collective consultation, TUPE information and consultation, constructive union negotiation, support for people leaving, and clear communication for those staying. Success would be measured by a compliant process, constructive employee relations, and how well affected people and the remaining workforce are supported.",
+      "A South African manufacturer in KwaZulu-Natal plans to consolidate two production lines into one site and outsource its in-house warehousing to a logistics provider. The proposals could affect a significant number of roles, some covered by a recognised trade union, and the warehousing change may involve a transfer of staff to the new provider. In this scenario, Apex HR would help the leadership team plan a fair, well-documented process: retrenchment consultation, information and consultation on the transfer, constructive union negotiation, support for people leaving, and clear communication for those staying. Success would be measured by a compliant process, constructive employee relations, and how well affected people and the remaining workforce are supported.",
     clientBackground: [
-      "The business in this scenario is an established manufacturer of the type described on our [manufacturers](/sector/hr-company-for-manufacturers-in-the-uk/) and [distribution](/sector/hr-company-for-distribution-in-the-uk/) sector pages, with long-serving staff, shift patterns and a recognised trade union for production employees.",
-      "When an employer proposes 20 or more redundancies at one establishment within 90 days, collective consultation rules apply, including minimum periods before any dismissal and notifying the Redundancy Payments Service using form HR1. The [GOV.UK guidance on redundancy consultations](https://www.gov.uk/staff-redundant/redundancy-consultations) sets out the thresholds. Outsourcing an activity can also trigger [TUPE](https://www.gov.uk/transfers-takeovers), which has its own information and consultation duties.",
-      "Employment law in this area is changing under the Employment Rights Act 2025, so the employer's employment lawyer should confirm the current requirements before the process starts.",
+      "The business in this scenario is an established manufacturer of the type described on our [manufacturers](/sector/hr-company-for-manufacturers/) and [distribution](/sector/hr-company-for-distribution/) sector pages, with long-serving staff, shift patterns and a recognised trade union for production employees. Our [South Africa](/za/) page describes the wider employment framework.",
+      "Dismissals for operational requirements are governed by section 189 of the Labour Relations Act, which requires meaningful joint consultation with the union or affected employees, and larger-scale retrenchments follow the additional process in section 189A, which can involve facilitation through the CCMA. Outsourcing an activity can also trigger section 197, under which employees transfer to the new employer on terms that are on the whole not less favourable.",
+      "Retrenchment and transfer disputes are frequently referred to the CCMA and the Labour Court, so the employer's employment lawyer should confirm the requirements before the process starts.",
     ],
     challenge: {
       intro: "The leadership team needs to manage several risks at once:",
       points: [
-        "Legal and procedural risk: collective consultation, TUPE and individual consultation must run correctly and in the right order.",
+        "Legal and procedural risk: section 189 consultation, the section 197 transfer and individual consultation must run correctly and in the right order.",
         "Employee relations: the union and staff are likely to be anxious, and trust could be damaged if communication is poor.",
         "Fair selection: any selection for redundancy must use objective, consistently applied criteria.",
         "Business continuity: production and customer commitments must continue during the change.",
@@ -1045,19 +901,19 @@ export const caseStudyContent: CaseStudyContent[] = [
         {
           heading: "Stage 1: Plan the process",
           paragraphs: [
-            "Through [redundancy and restructuring support](/services/redundancy-and-restructuring-support-firm-in-the-uk/), Apex HR would build a timeline covering the business case, pools, selection criteria, collective and individual consultation, HR1 notification and notice periods, so nothing is left to chance.",
+            "Through [redundancy and restructuring support](/services/redundancy-and-restructuring-support-firm/), Apex HR would build a timeline covering the business case, pools, selection criteria, collective and individual consultation, HR1 notification and notice periods, so nothing is left to chance.",
           ],
         },
         {
-          heading: "Stage 2: Handle the TUPE element",
+          heading: "Stage 2: Handle the business transfer",
           paragraphs: [
-            "[TUPE advisory](/services/tupe-advisory-firm-in-the-uk/) support would cover employee liability information, measures letters and consultation with representatives of transferring staff, coordinated with the incoming logistics provider. The [Acas TUPE guidance](https://www.acas.org.uk/tupe) is a useful plain-English reference for managers.",
+            "[Business transfer advisory](/services/tupe-advisory-firm/) support would cover information for the transferring employees, consultation with the union and coordination with the incoming logistics provider so that terms, service and records transfer correctly under section 197.",
           ],
         },
         {
           heading: "Stage 3: Engage the union early",
           paragraphs: [
-            "[Industrial relations support](/services/industrial-relations-and-trade-union-negotiations-firm-in-the-uk/) would help managers prepare for consultation meetings, share information openly, respond to counter-proposals and record agreements properly.",
+            "[Industrial relations support](/services/industrial-relations-and-trade-union-negotiations-firm/) would help managers prepare for consultation meetings, share information openly, respond to counter-proposals and record agreements properly.",
           ],
         },
       ],
@@ -1081,21 +937,21 @@ export const caseStudyContent: CaseStudyContent[] = [
         {
           heading: "Outplacement",
           paragraphs: [
-            "[Outplacement and career transition services](/services/outplacement-and-career-transition-services-firm-in-the-uk/) for affected employees, including CV support, interview preparation and help identifying transferable skills.",
+            "[Outplacement and career transition services](/services/outplacement-and-career-transition-services-firm/) for affected employees, including CV support, interview preparation and help identifying transferable skills.",
           ],
         },
         {
           heading: "Change management for those staying",
           paragraphs: [
-            "[Change management](/services/change-management-firm-in-the-uk/) support including team briefings on the new structure, manager guidance on handling questions, and regular check-ins during the transition.",
+            "[Change management](/services/change-management-firm/) support including team briefings on the new structure, manager guidance on handling questions, and regular check-ins during the transition.",
           ],
         },
       ],
     },
     implementation: [
       { phase: "Initial assessment", detail: "Review the business case, affected roles, union agreements and contracts with the employer and its lawyer." },
-      { phase: "Planning", detail: "Agree the timeline, pools, draft selection criteria, communication plan and TUPE coordination with the incoming provider." },
-      { phase: "Execution", detail: "Notify the Redundancy Payments Service where required, run collective and individual consultation, and carry out selection and redeployment." },
+      { phase: "Planning", detail: "Agree the timeline, pools, draft selection criteria, communication plan and transfer coordination with the incoming provider." },
+      { phase: "Execution", detail: "Issue the section 189 notice, run joint and individual consultation (with CCMA facilitation where it applies), and carry out selection and redeployment." },
       { phase: "Communication", detail: "Announce proposals to all staff at the same time, hold regular updates, and keep a published question-and-answer log." },
       { phase: "Monitoring", detail: "Track consultation actions, union feedback, redeployment outcomes and wellbeing concerns throughout." },
       { phase: "Evaluation", detail: "A post-restructure review covering process, employee sentiment and lessons for future change." },
@@ -1112,25 +968,25 @@ export const caseStudyContent: CaseStudyContent[] = [
     takeaways: [
       "Plan the whole process before announcing anything; sequencing matters.",
       "Consultation must be genuine: listen to alternatives and record how they were considered.",
-      "Outsourcing can trigger TUPE, which has its own duties alongside any redundancies.",
+      "Outsourcing can trigger a section 197 transfer, which has its own duties alongside any retrenchments.",
       "Early, honest engagement with the union is usually better than late, defensive engagement.",
       "Look after the people who stay as well as those who leave.",
     ],
     faqs: [
       {
         id: "cs-restructure-collective",
-        question: "When does collective redundancy consultation apply?",
+        question: "What does retrenchment consultation involve in South Africa?",
         answer:
-          "GOV.UK guidance says collective consultation applies when an employer proposes making 20 or more employees redundant at a single establishment within any 90-day period. Minimum periods apply before dismissals, and the employer must notify the Redundancy Payments Service using form HR1. Take legal advice on your specific situation.",
+          "Section 189 of the Labour Relations Act requires the employer to consult the union or affected employees on ways to avoid or minimise dismissals, selection criteria, timing and severance, and larger retrenchments follow section 189A. Take legal advice on your specific situation.",
       },
       {
         id: "cs-restructure-legal",
         question: "Does Apex HR replace an employment lawyer in a restructure?",
         answer:
-          "No. Apex HR manages the HR planning, process and people support. Legal questions, such as whether TUPE applies or how to manage claims risk, should be answered by a qualified employment lawyer.",
+          "No. Apex HR manages the HR planning, process and people support. Legal questions, such as whether section 197 applies or how to manage claims risk, should be answered by a qualified employment lawyer.",
       },
     ],
-    sources: [GOV_REDUNDANCY_CONSULTATION, GOV_TUPE, ACAS_TUPE, GOV_ERA_2025],
+    sources: [],
     cta: {
       heading: "Planning a restructure?",
       body: "Talk to Apex HR in confidence before you announce anything. Early planning makes a fair process much easier.",
@@ -1149,35 +1005,35 @@ export const caseStudyContent: CaseStudyContent[] = [
     shortTitle: "Resolving a complex employee relations case",
     title: "Resolving a complex grievance with an impartial investigation and mediation",
     summary:
-      "How Apex HR would help a school trust or charity handle linked grievances between colleagues through an independent investigation, mediation and well-prepared next steps.",
+      "How Apex HR would help a private school group or charity in Ghana handle linked grievances between colleagues through an independent investigation, mediation and well-prepared next steps.",
     seoTitle: "Workplace Investigation Case Study: Grievance Handling",
     metaDescription:
-      "Scenario: how Apex HR would run an independent workplace investigation and mediation for linked grievances in a UK school trust or charity.",
+      "Scenario: how Apex HR would run an independent workplace investigation and mediation for linked grievances in a private school group or charity in Ghana.",
     primaryKeyword: "workplace investigation case study",
-    secondaryKeywords: ["independent workplace investigator", "grievance investigation support", "workplace mediation UK"],
+    secondaryKeywords: ["independent workplace investigator", "grievance investigation support", "workplace mediation Ghana"],
     relatedTerms: [
-      "Acas Code of Practice",
+      "fair hearing",
       "terms of reference",
       "investigation report",
       "case to answer",
       "mediation",
-      "employment tribunal",
+      "National Labour Commission",
     ],
     serviceSlugs: [
-      "workplace-investigations-firm-in-the-uk",
-      "workplace-mediation-and-conflict-resolution-firm-in-the-uk",
-      "employment-tribunal-hr-support-firm-in-the-uk",
+      "workplace-investigations-firm",
+      "workplace-mediation-and-conflict-resolution-firm",
+      "employment-tribunal-hr-support-firm",
     ],
-    sectorSlugs: ["hr-company-for-education-in-the-uk", "hr-company-for-charity-in-the-uk"],
+    sectorSlugs: ["hr-company-for-education", "hr-company-for-charity"],
     sectorLabel: "Education · Charity",
     executiveSummary:
-      "A multi-academy trust receives two linked grievances from staff in one department, each alleging unfair treatment by the other, alongside a wider complaint about the department's culture. Internal managers know everyone involved, so an impartial investigation is difficult. In this scenario, Apex HR would provide an independent investigator, run a fair investigation in line with the Acas Code of Practice, recommend next steps, and offer mediation where appropriate to rebuild working relationships. If any party later brings a claim, Apex HR would help the trust prepare its HR records. Success would be measured by a fair, timely process and whether working relationships recover.",
+      "A private school group in Accra receives two linked grievances from staff in one department, each alleging unfair treatment by the other, alongside a wider complaint about the department's culture. Internal managers know everyone involved, so an impartial investigation is difficult. In this scenario, Apex HR would provide an independent investigator, run a fair investigation that gives everyone a proper hearing, recommend next steps, and offer mediation where appropriate to rebuild working relationships. If any party later refers the matter to the National Labour Commission, Apex HR would help the group prepare its HR records. Success would be measured by a fair, timely process and whether working relationships recover.",
     clientBackground: [
-      "The organisation in this scenario is a multi-academy trust, though the same situation often arises in charities. Both sectors are described on our [education](/sector/hr-company-for-education-in-the-uk/) and [charity](/sector/hr-company-for-charity-in-the-uk/) pages: values-led organisations with small HR teams, close-knit staff and governance boards that expect fair process.",
-      "The [Acas Code of Practice on disciplinary and grievance procedures](https://www.acas.org.uk/acas-code-of-practice-on-disciplinary-and-grievance-procedures) sets out the minimum standard for handling grievances, and employment tribunals take it into account. Acas's [guide to investigations at work](https://www.acas.org.uk/investigations-for-discipline-and-grievance-step-by-step) explains that a reasonable investigation is an important part of a fair process.",
+      "The organisation in this scenario is a group of private schools, though the same situation often arises in charities and NGOs. Both sectors are described on our [education](/sector/hr-company-for-education/) and [charity](/sector/hr-company-for-charity/) pages: values-led organisations with small HR teams, close-knit staff and governance boards that expect fair process.",
+      "Ghana's Labour Act 2003 protects employees against unfair termination and expects employers to act fairly, and disputes can be referred to the National Labour Commission. A reasonable, well-documented investigation that hears both sides is the foundation of any fair outcome. Our [Ghana](/gh/) page describes the wider employment framework.",
     ],
     challenge: {
-      intro: "The trust's HR lead faces a difficult combination:",
+      intro: "The group's HR lead faces a difficult combination:",
       points: [
         "Linked grievances: each party's complaint concerns the other, so the process must be visibly even-handed.",
         "Limited independence: internal managers who could investigate have working relationships with those involved.",
@@ -1202,7 +1058,7 @@ export const caseStudyContent: CaseStudyContent[] = [
         {
           heading: "Stage 1: Set clear terms of reference",
           paragraphs: [
-            "With the HR lead, Apex HR would agree what the [workplace investigation](/services/workplace-investigations-firm-in-the-uk/) covers, who will be interviewed, timescales, confidentiality arrangements and who will make the final decision. The investigator gathers and assesses evidence; they do not make the decision.",
+            "With the HR lead, Apex HR would agree what the [workplace investigation](/services/workplace-investigations-firm/) covers, who will be interviewed, timescales, confidentiality arrangements and who will make the final decision. The investigator gathers and assesses evidence; they do not make the decision.",
           ],
         },
         {
@@ -1214,7 +1070,7 @@ export const caseStudyContent: CaseStudyContent[] = [
         {
           heading: "Stage 3: Report and resolve",
           paragraphs: [
-            "A written report sets out findings of fact and whether there is a case to answer. Where appropriate, [workplace mediation](/services/workplace-mediation-and-conflict-resolution-firm-in-the-uk/) can then help the parties agree how they will work together. [Acas describes mediation](https://www.acas.org.uk/mediation) as voluntary and confidential.",
+            "A written report sets out findings of fact and whether there is a case to answer. Where appropriate, [workplace mediation](/services/workplace-mediation-and-conflict-resolution-firm/) can then help the parties agree how they will work together. Mediation works best when it is voluntary and confidential.",
           ],
         },
       ],
@@ -1242,9 +1098,9 @@ export const caseStudyContent: CaseStudyContent[] = [
           ],
         },
         {
-          heading: "Tribunal readiness",
+          heading: "Dispute readiness",
           paragraphs: [
-            "If a claim follows, [employment tribunal HR support](/services/employment-tribunal-hr-support-firm-in-the-uk/) helps the trust organise records, chronologies and witness availability for its legal advisers.",
+            "If the matter is referred to the National Labour Commission, [employment dispute HR support](/services/employment-tribunal-hr-support-firm/) helps the school group organise records, chronologies and witness availability for its legal advisers.",
           ],
         },
       ],
@@ -1287,7 +1143,7 @@ export const caseStudyContent: CaseStudyContent[] = [
           "Sometimes, if both parties agree and the issues are suitable for informal resolution. Where there are serious allegations, a formal investigation is usually needed first. Mediation is voluntary.",
       },
     ],
-    sources: [ACAS_DISCIPLINARY_CODE, ACAS_INVESTIGATIONS, ACAS_MEDIATION],
+    sources: [],
     cta: {
       heading: "Facing a difficult employee relations case?",
       body: "Talk to Apex HR about an independent investigation, mediation or support with your next steps.",
@@ -1309,30 +1165,30 @@ export const caseStudyContent: CaseStudyContent[] = [
       "How Apex HR would support a life sciences or engineering business through people due diligence, organisation design and culture integration after acquiring a smaller competitor.",
     seoTitle: "Post-Merger Integration HR Case Study",
     metaDescription:
-      "Scenario: how Apex HR would support people due diligence, organisation design and culture integration after a UK life sciences acquisition.",
+      "Scenario: how Apex HR would support people due diligence, organisation design and culture integration after a German life sciences acquisition.",
     primaryKeyword: "post-merger integration HR case study",
     secondaryKeywords: ["people due diligence", "organisation design after acquisition", "culture integration"],
     relatedTerms: [
       "M&A people due diligence",
-      "TUPE",
+      "transfer of undertakings",
       "harmonisation of terms",
       "operating model",
       "culture assessment",
       "retention of key people",
     ],
     serviceSlugs: [
-      "ma-people-due-diligence-and-post-merger-integration-firm-in-the-uk",
-      "organisation-design-firm-in-the-uk",
-      "culture-transformation-firm-in-the-uk",
-      "people-strategy-firm-in-the-uk",
+      "ma-people-due-diligence-and-post-merger-integration-firm",
+      "organisation-design-firm",
+      "culture-transformation-firm",
+      "people-strategy-firm",
     ],
-    sectorSlugs: ["hr-company-for-life-sciences-in-the-uk", "hr-company-for-engineers-in-the-uk"],
+    sectorSlugs: ["hr-company-for-life-sciences", "hr-company-for-engineers"],
     sectorLabel: "Life sciences · Engineering",
     executiveSummary:
-      "A growing life sciences company plans to acquire a smaller specialist business to add scientific capability. Leaders know that the value of the deal depends on keeping key scientists and engineers and on the two teams working well together. In this scenario, Apex HR would carry out people due diligence before completion, then help design the combined organisation, plan any harmonisation of terms carefully, and support culture integration and a joint people strategy. Success would be measured by retention of critical people, a clear combined structure and how quickly teams work effectively together.",
+      "A growing life sciences company in Munich plans to acquire a smaller specialist business to add scientific capability. Leaders know that the value of the deal depends on keeping key scientists and engineers and on the two teams working well together. In this scenario, Apex HR would carry out people due diligence before completion, then help design the combined organisation, plan any harmonisation of terms carefully, and support culture integration and a joint people strategy. Success would be measured by retention of critical people, a clear combined structure and how quickly teams work effectively together.",
     clientBackground: [
-      "The acquirer in this scenario is a mid-sized UK company of the type described on our [life sciences](/sector/hr-company-for-life-sciences-in-the-uk/) and [engineering](/sector/hr-company-for-engineers-in-the-uk/) sector pages. Its value depends heavily on specialist people whose knowledge is hard to replace.",
-      "The target business is smaller, founder-led and informal, with different terms, benefits and ways of working. Depending on how the deal is structured, the transaction may involve [TUPE](https://www.gov.uk/transfers-takeovers), which protects employees' terms when a business transfers. The deal's legal advisers would confirm this.",
+      "The acquirer in this scenario is a mid-sized German company, with a works council at its main site, of the type described on our [life sciences](/sector/hr-company-for-life-sciences/) and [engineering](/sector/hr-company-for-engineers/) sector pages. Its value depends heavily on specialist people whose knowledge is hard to replace.",
+      "The target business is smaller, founder-led and informal, with different terms, benefits and ways of working. Depending on how the deal is structured, the transaction may be a transfer of undertaking under section 613a of the German Civil Code, which protects employees' terms when a business transfers, and works councils may have information and consultation rights. The deal's legal advisers would confirm this. Our [Germany](/de/) page describes the wider employment framework.",
     ],
     challenge: {
       intro: "Leaders are concerned about several people risks:",
@@ -1359,19 +1215,19 @@ export const caseStudyContent: CaseStudyContent[] = [
         {
           heading: "Stage 1: People due diligence",
           paragraphs: [
-            "[M&A people due diligence](/services/ma-people-due-diligence-and-post-merger-integration-firm-in-the-uk/) reviews contracts, terms, benefits, disputes, key-person dependencies and HR compliance in the target business, giving the deal team a clear picture of people risks. Legal, financial and tax due diligence remains with the relevant advisers.",
+            "[M&A people due diligence](/services/ma-people-due-diligence-and-post-merger-integration-firm/) reviews contracts, terms, benefits, disputes, key-person dependencies and HR compliance in the target business, giving the deal team a clear picture of people risks. Legal, financial and tax due diligence remains with the relevant advisers.",
           ],
         },
         {
           heading: "Stage 2: Design the combined organisation",
           paragraphs: [
-            "[Organisation design](/services/organisation-design-firm-in-the-uk/) work defines how the combined business will be structured, which roles are needed and how decisions are made, starting from the strategy rather than from existing job titles.",
+            "[Organisation design](/services/organisation-design-firm/) work defines how the combined business will be structured, which roles are needed and how decisions are made, starting from the strategy rather than from existing job titles.",
           ],
         },
         {
           heading: "Stage 3: Integrate cultures",
           paragraphs: [
-            "A short [culture](/services/culture-transformation-firm-in-the-uk/) assessment in both businesses identifies what each values and where friction is likely, so integration plans can protect what matters to people.",
+            "A short [culture](/services/culture-transformation-firm/) assessment in both businesses identifies what each values and where friction is likely, so integration plans can protect what matters to people.",
           ],
         },
       ],
@@ -1389,7 +1245,7 @@ export const caseStudyContent: CaseStudyContent[] = [
         {
           heading: "Harmonisation roadmap",
           paragraphs: [
-            "A careful plan for whether and how to align terms and benefits over time. Changing terms after a TUPE transfer is legally restricted, so any proposals would be reviewed by the employer's lawyer first.",
+            "A careful plan for whether and how to align terms and benefits over time. Changing terms after a transfer of undertaking is legally restricted, and works councils and collective agreements may also be involved, so any proposals would be reviewed by the employer's lawyer first.",
           ],
         },
         {
@@ -1401,7 +1257,7 @@ export const caseStudyContent: CaseStudyContent[] = [
         {
           heading: "Joint people strategy",
           paragraphs: [
-            "A combined [people strategy](/services/people-strategy-firm-in-the-uk/) covering talent, development, reward and culture priorities for the first two years.",
+            "A combined [people strategy](/services/people-strategy-firm/) covering talent, development, reward and culture priorities for the first two years.",
           ],
         },
       ],
@@ -1441,10 +1297,10 @@ export const caseStudyContent: CaseStudyContent[] = [
         id: "cs-ma-harmonise",
         question: "Can we harmonise terms straight after an acquisition?",
         answer:
-          "It depends on the deal structure. Where TUPE applies, changing transferred employees' terms because of the transfer is restricted. Take legal advice before proposing any changes.",
+          "It depends on the deal structure. Where a transfer of undertaking applies, changing transferred employees' terms because of the transfer is restricted, and works council rights may apply. Take legal advice before proposing any changes.",
       },
     ],
-    sources: [GOV_TUPE, ACAS_TUPE],
+    sources: [],
     cta: {
       heading: "Planning an acquisition or merger?",
       body: "Talk to Apex HR early about people due diligence, retention and integration planning.",
@@ -1466,9 +1322,9 @@ export const caseStudyContent: CaseStudyContent[] = [
       "How Apex HR would help an employer replace inconsistent, negotiated salaries with benchmarked pay ranges, job evaluation, a clear reward strategy and better pay gap reporting.",
     seoTitle: "Pay Structure Case Study: Fair Pay and Reward",
     metaDescription:
-      "Scenario: how Apex HR would benchmark salaries, evaluate jobs and design fair pay ranges and benefits for a growing UK employer.",
+      "Scenario: how Apex HR would benchmark salaries, evaluate jobs and design fair pay ranges and benefits for a growing employer in the Netherlands.",
     primaryKeyword: "pay structure case study",
-    secondaryKeywords: ["salary benchmarking case study", "job evaluation UK", "gender pay gap reporting support"],
+    secondaryKeywords: ["salary benchmarking case study", "job evaluation Netherlands", "EU pay transparency support"],
     relatedTerms: [
       "pay bands",
       "job evaluation",
@@ -1478,20 +1334,20 @@ export const caseStudyContent: CaseStudyContent[] = [
       "benefits review",
     ],
     serviceSlugs: [
-      "salary-benchmarking-firm-in-the-uk",
-      "job-evaluation-and-pay-structures-firm-in-the-uk",
-      "reward-strategy-firm-in-the-uk",
-      "pay-equity-and-pay-gap-reporting-firm-in-the-uk",
-      "employee-benefits-consulting-firm-in-the-uk",
+      "salary-benchmarking-firm",
+      "job-evaluation-and-pay-structures-firm",
+      "reward-strategy-firm",
+      "pay-equity-and-pay-gap-reporting-firm",
+      "employee-benefits-consulting-firm",
     ],
-    sectorSlugs: ["hr-company-for-financial-services-in-the-uk", "hr-company-for-leisure-in-the-uk"],
+    sectorSlugs: ["hr-company-for-financial-services", "hr-company-for-leisure"],
     sectorLabel: "Financial services · Leisure",
     executiveSummary:
-      "An employer that has grown past 250 employees has pay that was mostly set by individual negotiation. Similar roles are paid differently, managers cannot explain pay decisions, and the organisation now needs to report its gender pay gap. In this scenario, Apex HR would benchmark pay against the market, evaluate roles consistently, design pay ranges and a clear reward strategy, review benefits, and help the employer understand and explain its pay gap data. Success would be measured by consistent, explainable pay decisions and better understanding of pay gaps over time.",
+      "An employer in the Netherlands that has grown quickly has pay that was mostly set by individual negotiation. Similar roles are paid differently, managers cannot explain pay decisions, and the organisation needs to prepare for pay transparency and gender pay gap reporting under the EU Pay Transparency Directive. In this scenario, Apex HR would benchmark pay against the market, evaluate roles consistently, design pay ranges and a clear reward strategy, review benefits, and help the employer understand and explain its pay gap data. Success would be measured by consistent, explainable pay decisions and better understanding of pay gaps over time.",
     clientBackground: [
-      "The organisation in this scenario could be a financial services firm or a multi-site leisure operator, both described on our [financial services](/sector/hr-company-for-financial-services-in-the-uk/) and [leisure](/sector/hr-company-for-leisure-in-the-uk/) sector pages. Each has a mix of head office, specialist and frontline roles.",
-      "According to [GOV.UK](https://www.gov.uk/guidance/who-needs-to-report-their-gender-pay-gap), employers with 250 or more employees on their snapshot date must report gender pay gap information, and must publish it within a year of that date. Separately, [Acas guidance on equal pay](https://www.acas.org.uk/equal-pay) explains employers' duty to give men and women equal pay for equal work.",
-      "In frontline roles, pay must also respect the [National Minimum Wage and National Living Wage](https://www.gov.uk/national-minimum-wage-rates), which change each year.",
+      "The organisation in this scenario could be a financial services firm or a multi-site leisure operator, both described on our [financial services](/sector/hr-company-for-financial-services/) and [leisure](/sector/hr-company-for-leisure/) sector pages. Each has a mix of head office, specialist and frontline roles.",
+      "The EU Pay Transparency Directive strengthens the principle of equal pay for equal work or work of equal value. It introduces pay information rights for candidates and employees and gender pay gap reporting for employers above set sizes, with requirements applied through national law. Our [Netherlands](/nl/) page describes the wider employment framework.",
+      "In frontline roles, pay must also respect the Dutch statutory minimum wage and any applicable collective labour agreement (CAO), both of which are updated regularly.",
     ],
     challenge: {
       intro: "Pay has become a source of frustration and risk:",
@@ -1518,19 +1374,19 @@ export const caseStudyContent: CaseStudyContent[] = [
         {
           heading: "Stage 1: Benchmark and analyse",
           paragraphs: [
-            "[Salary benchmarking](/services/salary-benchmarking-firm-in-the-uk/) against appropriate market data for each role family, and an analysis of current pay by role, level and gender to identify unexplained differences.",
+            "[Salary benchmarking](/services/salary-benchmarking-firm/) against appropriate market data for each role family, and an analysis of current pay by role, level and gender to identify unexplained differences.",
           ],
         },
         {
           heading: "Stage 2: Evaluate jobs",
           paragraphs: [
-            "A consistent [job evaluation](/services/job-evaluation-and-pay-structures-firm-in-the-uk/) method groups roles by their size and demands, not job titles or the person currently in post. This creates the basis for fair pay ranges.",
+            "A consistent [job evaluation](/services/job-evaluation-and-pay-structures-firm/) method groups roles by their size and demands, not job titles or the person currently in post. This creates the basis for fair pay ranges.",
           ],
         },
         {
           heading: "Stage 3: Design the reward framework",
           paragraphs: [
-            "A [reward strategy](/services/reward-strategy-firm-in-the-uk/) setting out where the business wants to position pay against the market, how people progress through ranges, and how pay decisions are approved.",
+            "A [reward strategy](/services/reward-strategy-firm/) setting out where the business wants to position pay against the market, how people progress through ranges, and how pay decisions are approved.",
           ],
         },
       ],
@@ -1548,13 +1404,13 @@ export const caseStudyContent: CaseStudyContent[] = [
         {
           heading: "Pay gap analysis and narrative",
           paragraphs: [
-            "[Pay equity and pay gap reporting](/services/pay-equity-and-pay-gap-reporting-firm-in-the-uk/) support to calculate and understand the figures, explain the main drivers, and agree realistic actions.",
+            "[Pay equity and pay gap reporting](/services/pay-equity-and-pay-gap-reporting-firm/) support to calculate and understand the figures, explain the main drivers, and agree realistic actions.",
           ],
         },
         {
           heading: "Benefits review",
           paragraphs: [
-            "[Employee benefits consulting](/services/employee-benefits-consulting-firm-in-the-uk/) to compare benefits with what employees value, identify low-value spend and improve how benefits are communicated.",
+            "[Employee benefits consulting](/services/employee-benefits-consulting-firm/) to compare benefits with what employees value, identify low-value spend and improve how benefits are communicated.",
           ],
         },
         {
@@ -1592,9 +1448,9 @@ export const caseStudyContent: CaseStudyContent[] = [
     faqs: [
       {
         id: "cs-pay-gpg",
-        question: "Who has to report their gender pay gap?",
+        question: "Who will have to report their gender pay gap under the EU directive?",
         answer:
-          "GOV.UK guidance says employers with 250 or more employees on their snapshot date must report. For most private and voluntary sector employers the snapshot date is 5 April, and figures must be published within a year.",
+          "The directive sets reporting obligations for employers above certain headcount thresholds, phased in over time, with the detail set by each member state's implementing law. Check the current Dutch requirements and take advice on how they apply to you.",
       },
       {
         id: "cs-pay-job-evaluation",
@@ -1603,7 +1459,7 @@ export const caseStudyContent: CaseStudyContent[] = [
           "Benchmarking shows what the market pays. Job evaluation shows how roles compare inside your organisation. Using both gives pay ranges that are competitive and internally consistent.",
       },
     ],
-    sources: [GOV_GENDER_PAY_GAP, ACAS_EQUAL_PAY, GOV_MINIMUM_WAGE],
+    sources: [],
     cta: {
       heading: "Want pay you can explain with confidence?",
       body: "Talk to Apex HR about benchmarking, pay ranges, pay gap reporting or your benefits.",
@@ -1626,7 +1482,7 @@ export const caseStudyContent: CaseStudyContent[] = [
       "How Apex HR would help a hospitality operator understand why frontline staff leave and improve retention through engagement surveys, better management, fairer performance conversations and an inclusive employee experience.",
     seoTitle: "Staff Retention Case Study: Hospitality",
     metaDescription:
-      "Scenario: how Apex HR would help a UK hospitality operator reduce frontline turnover through engagement, manager training and performance management.",
+      "Scenario: how Apex HR would help a US hospitality operator reduce frontline turnover through engagement, manager training and performance management.",
     primaryKeyword: "staff retention case study hospitality",
     secondaryKeywords: ["reduce staff turnover hospitality", "employee engagement survey action plan", "hospitality manager training"],
     relatedTerms: [
@@ -1638,19 +1494,19 @@ export const caseStudyContent: CaseStudyContent[] = [
       "onboarding",
     ],
     serviceSlugs: [
-      "employee-engagement-surveys-and-action-planning-firm-in-the-uk",
-      "employee-experience-strategy-firm-in-the-uk",
-      "leadership-and-management-training-firm-in-the-uk",
-      "performance-management-firm-in-the-uk",
-      "diversity-equity-and-inclusion-dei-consulting-firm-in-the-uk",
+      "employee-engagement-surveys-and-action-planning-firm",
+      "employee-experience-strategy-firm",
+      "leadership-and-management-training-firm",
+      "performance-management-firm",
+      "diversity-equity-and-inclusion-dei-consulting-firm",
     ],
-    sectorSlugs: ["hr-company-for-hospitality-in-the-uk", "hr-company-for-leisure-in-the-uk"],
+    sectorSlugs: ["hr-company-for-hospitality", "hr-company-for-leisure"],
     sectorLabel: "Hospitality · Leisure",
     executiveSummary:
-      "A hospitality group with restaurants and venues in several towns is constantly recruiting frontline staff. Many leave within their first few months, putting pressure on managers and service quality. In this scenario, Apex HR would find out why people leave, using exit data and an engagement survey, then focus on the factors the business can control: onboarding, scheduling, manager capability, fair performance conversations and an inclusive working environment. Success would be measured by early-leaver rates, engagement scores and how consistently managers apply the new practices.",
+      "A hospitality group with restaurants and venues in several US states is constantly recruiting frontline staff. Many leave within their first few months, putting pressure on managers and service quality. In this scenario, Apex HR would find out why people leave, using exit data and an engagement survey, then focus on the factors the business can control: onboarding, scheduling, manager capability, fair performance conversations and an inclusive working environment. Success would be measured by early-leaver rates, engagement scores and how consistently managers apply the new practices.",
     clientBackground: [
-      "The operator in this scenario runs a mix of sites with young, diverse and often part-time teams, typical of businesses on our [hospitality](/sector/hr-company-for-hospitality-in-the-uk/) and [leisure](/sector/hr-company-for-leisure-in-the-uk/) sector pages. General managers are promoted from within and have had little formal management training.",
-      "Pay must meet [National Minimum Wage and National Living Wage](https://www.gov.uk/national-minimum-wage-rates) rates, but pay is only one reason people stay or leave. Research such as the [CIPD Good Work Index](https://www.cipd.org/uk/knowledge/reports/goodwork/) looks at wider factors, including relationships at work, work-life balance and how people are managed.",
+      "The operator in this scenario runs a mix of sites with young, diverse and often part-time teams, typical of businesses on our [hospitality](/sector/hr-company-for-hospitality/) and [leisure](/sector/hr-company-for-leisure/) sector pages. General managers are promoted from within and have had little formal management training.",
+      "Pay must meet federal, state and local minimum wage rules, which differ between the states the group operates in, along with tipped-wage, overtime and, in some cities, predictive scheduling rules. But pay is only one reason people stay or leave: relationships at work, predictable schedules and how people are managed matter just as much. Our [United States](/us/) page describes the wider employment framework.",
     ],
     challenge: {
       intro: "Leaders see the symptoms but not the causes:",
@@ -1677,19 +1533,19 @@ export const caseStudyContent: CaseStudyContent[] = [
         {
           heading: "Stage 1: Listen",
           paragraphs: [
-            "An anonymous [engagement survey with action planning](/services/employee-engagement-surveys-and-action-planning-firm-in-the-uk/), short stay interviews with longer-serving staff, and a review of leaver data by site, role and length of service.",
+            "An anonymous [engagement survey with action planning](/services/employee-engagement-surveys-and-action-planning-firm/), short stay interviews with longer-serving staff, and a review of leaver data by site, role and length of service.",
           ],
         },
         {
           heading: "Stage 2: Focus on what matters most",
           paragraphs: [
-            "Mapping the [employee experience](/services/employee-experience-strategy-firm-in-the-uk/) from application to the first three months identifies the moments that most affect whether people stay, such as their first shift, rota notice and how problems are handled.",
+            "Mapping the [employee experience](/services/employee-experience-strategy-firm/) from application to the first three months identifies the moments that most affect whether people stay, such as their first shift, rota notice and how problems are handled.",
           ],
         },
         {
           heading: "Stage 3: Equip managers",
           paragraphs: [
-            "Practical [leadership and management training](/services/leadership-and-management-training-firm-in-the-uk/) for general and assistant managers on onboarding, scheduling, feedback and handling concerns.",
+            "Practical [leadership and management training](/services/leadership-and-management-training-firm/) for general and assistant managers on onboarding, scheduling, feedback and handling concerns.",
           ],
         },
       ],
@@ -1707,19 +1563,19 @@ export const caseStudyContent: CaseStudyContent[] = [
         {
           heading: "Fair scheduling principles",
           paragraphs: [
-            "Clear rota notice standards and a fair process for requesting changes, aligned with the business's [flexible working](https://www.acas.org.uk/flexible-working) policy.",
+            "Clear rota notice standards and a fair process for requesting changes, aligned with the business's scheduling policy and any local predictive scheduling rules.",
           ],
         },
         {
           heading: "Light-touch performance conversations",
           paragraphs: [
-            "Short, regular check-ins rather than annual appraisals, through practical [performance management](/services/performance-management-firm-in-the-uk/) that frontline managers can actually use.",
+            "Short, regular check-ins rather than annual appraisals, through practical [performance management](/services/performance-management-firm/) that frontline managers can actually use.",
           ],
         },
         {
           heading: "Inclusion in practice",
           paragraphs: [
-            "[DEI consulting](/services/diversity-equity-and-inclusion-dei-consulting-firm-in-the-uk/) to review recruitment, scheduling and progression for fairness, and to help managers create teams where people from different backgrounds feel they belong.",
+            "[DEI consulting](/services/diversity-equity-and-inclusion-dei-consulting-firm/) to review recruitment, scheduling and progression for fairness, and to help managers create teams where people from different backgrounds feel they belong.",
           ],
         },
       ],
@@ -1762,7 +1618,7 @@ export const caseStudyContent: CaseStudyContent[] = [
           "Pay matters, but it is rarely the only reason. Scheduling, management, training and how people are treated in their first weeks often make a big difference too.",
       },
     ],
-    sources: [CIPD_GOOD_WORK, GOV_MINIMUM_WAGE, ACAS_FLEXIBLE_WORKING],
+    sources: [],
     cta: {
       heading: "Losing too many new starters?",
       body: "Talk to Apex HR about finding the causes of turnover and practical ways to keep good people.",
@@ -1784,7 +1640,7 @@ export const caseStudyContent: CaseStudyContent[] = [
       "How Apex HR would help a growing business select and implement an HR information system, build practical people dashboards and set clear rules for using AI tools in HR.",
     seoTitle: "HRIS Implementation Case Study: HR Software",
     metaDescription:
-      "Scenario: how Apex HR would help a UK business choose and implement an HRIS, build people dashboards and set an AI workplace policy.",
+      "Scenario: how Apex HR would help a Canadian business choose and implement an HRIS, build people dashboards and set an AI workplace policy.",
     primaryKeyword: "HRIS implementation case study",
     secondaryKeywords: ["HR software selection", "people analytics dashboard", "AI workplace policy"],
     relatedTerms: [
@@ -1796,19 +1652,19 @@ export const caseStudyContent: CaseStudyContent[] = [
       "digital HR",
     ],
     serviceSlugs: [
-      "hr-software-selection-firm-in-the-uk",
-      "hris-implementation-firm-in-the-uk",
-      "people-analytics-and-hr-dashboards-firm-in-the-uk",
-      "digital-hr-transformation-firm-in-the-uk",
-      "ai-workplace-policy-and-hr-integration-firm-in-the-uk",
+      "hr-software-selection-firm",
+      "hris-implementation-firm",
+      "people-analytics-and-hr-dashboards-firm",
+      "digital-hr-transformation-firm",
+      "ai-workplace-policy-and-hr-integration-firm",
     ],
-    sectorSlugs: ["hr-company-for-it-in-the-uk", "hr-company-for-distribution-in-the-uk"],
+    sectorSlugs: ["hr-company-for-it", "hr-company-for-distribution"],
     sectorLabel: "IT · Distribution",
     executiveSummary:
-      "A growing business manages employee records, holidays and absence through spreadsheets and email. Data is duplicated, reports take days to compile and managers cannot easily see their teams' information. Some staff have also started using AI tools for HR tasks without guidance. In this scenario, Apex HR would define requirements, run a fair software selection, manage implementation and data migration, build a small set of useful people dashboards, and help the business introduce a clear AI workplace policy. Success would be measured by system adoption, data quality and time saved on routine HR administration.",
+      "A growing Canadian business with staff in Ontario, British Columbia and Quebec manages employee records, holidays and absence through spreadsheets and email. Data is duplicated, reports take days to compile and managers cannot easily see their teams' information. Some staff have also started using AI tools for HR tasks without guidance. In this scenario, Apex HR would define requirements, run a fair software selection, manage implementation and data migration, build a small set of useful people dashboards, and help the business introduce a clear AI workplace policy. Success would be measured by system adoption, data quality and time saved on routine HR administration.",
     clientBackground: [
-      "The business in this scenario could be a technology company or a distribution business with depots and shift workers, as described on our [IT](/sector/hr-company-for-it-in-the-uk/) and [distribution](/sector/hr-company-for-distribution-in-the-uk/) sector pages.",
-      "Employee data is personal data, and some of it is special category data, such as health information. Any new system must be set up with [data protection](https://www.gov.uk/data-protection) requirements in mind, including access controls, retention rules and, where appropriate, a data protection impact assessment.",
+      "The business in this scenario could be a technology company or a distribution business with depots and shift workers, as described on our [IT](/sector/hr-company-for-it/) and [distribution](/sector/hr-company-for-distribution/) sector pages.",
+      "Employee data is personal data, and some of it is special category data, such as health information. Any new system must be set up with Canadian privacy requirements in mind, including PIPEDA and provincial laws such as Quebec's Law 25, with access controls, retention rules and, where appropriate, a privacy impact assessment. It must also handle provincial differences in holidays and leave, and French-language needs for Quebec staff. Our [Canada](/ca/) page describes the wider employment framework.",
     ],
     challenge: {
       intro: "The current set-up creates daily friction and risk:",
@@ -1841,13 +1697,13 @@ export const caseStudyContent: CaseStudyContent[] = [
         {
           heading: "Stage 2: Select fairly",
           paragraphs: [
-            "Vendor-neutral [HR software selection](/services/hr-software-selection-firm-in-the-uk/): a shortlist, scripted demonstrations based on real scenarios, reference checks and a scoring model, so the decision is evidence-based.",
+            "Vendor-neutral [HR software selection](/services/hr-software-selection-firm/): a shortlist, scripted demonstrations based on real scenarios, reference checks and a scoring model, so the decision is evidence-based.",
           ],
         },
         {
           heading: "Stage 3: Implement and embed",
           paragraphs: [
-            "[HRIS implementation](/services/hris-implementation-firm-in-the-uk/) support covering configuration, data cleansing and migration, testing, training and go-live, as part of a wider [digital HR transformation](/services/digital-hr-transformation-firm-in-the-uk/) of processes.",
+            "[HRIS implementation](/services/hris-implementation-firm/) support covering configuration, data cleansing and migration, testing, training and go-live, as part of a wider [digital HR transformation](/services/digital-hr-transformation-firm/) of processes.",
           ],
         },
       ],
@@ -1871,13 +1727,13 @@ export const caseStudyContent: CaseStudyContent[] = [
         {
           heading: "People dashboards",
           paragraphs: [
-            "A small set of [people analytics dashboards](/services/people-analytics-and-hr-dashboards-firm-in-the-uk/) covering headcount, turnover, absence and recruitment, with clear definitions so everyone reads the numbers the same way.",
+            "A small set of [people analytics dashboards](/services/people-analytics-and-hr-dashboards-firm/) covering headcount, turnover, absence and recruitment, with clear definitions so everyone reads the numbers the same way.",
           ],
         },
         {
           heading: "AI workplace policy",
           paragraphs: [
-            "An [AI workplace policy](/services/ai-workplace-policy-and-hr-integration-firm-in-the-uk/) setting out which tools may be used, what data must never be entered into them, and where human review is required, especially for decisions about people.",
+            "An [AI workplace policy](/services/ai-workplace-policy-and-hr-integration-firm/) setting out which tools may be used, what data must never be entered into them, and where human review is required, especially for decisions about people.",
           ],
         },
       ],
@@ -1920,7 +1776,7 @@ export const caseStudyContent: CaseStudyContent[] = [
           "Staff may already be using AI tools. A policy sets out what is allowed, protects personal and confidential data, and makes sure people decisions keep meaningful human review.",
       },
     ],
-    sources: [GOV_DATA_PROTECTION],
+    sources: [],
     cta: {
       heading: "Ready to move HR off spreadsheets?",
       body: "Talk to Apex HR about requirements, software selection and a practical implementation plan.",
@@ -1942,11 +1798,11 @@ export const caseStudyContent: CaseStudyContent[] = [
       "How Apex HR would help a construction or engineering firm design a graduate and early-careers programme, define competencies, plan learning and support international project assignments.",
     seoTitle: "Graduate Scheme Case Study: Construction",
     metaDescription:
-      "Scenario: how Apex HR would design a graduate and early-careers programme with competency frameworks and learning paths for a UK construction firm.",
+      "Scenario: how Apex HR would design a graduate and early-careers programme with competency frameworks and learning paths for a Saudi construction firm.",
     primaryKeyword: "graduate scheme case study",
     secondaryKeywords: ["early careers programme design", "construction graduate scheme", "competency framework for engineers"],
     relatedTerms: [
-      "apprenticeships",
+      "Saudisation",
       "graduate development",
       "competency framework",
       "capability development",
@@ -1954,18 +1810,18 @@ export const caseStudyContent: CaseStudyContent[] = [
       "talent pipeline",
     ],
     serviceSlugs: [
-      "graduate-schemes-and-early-careers-design-firm-in-the-uk",
-      "competency-frameworks-firm-in-the-uk",
-      "learning-strategy-and-capability-development-firm-in-the-uk",
-      "global-mobility-and-expatriate-hr-management-firm-in-the-uk",
+      "graduate-schemes-and-early-careers-design-firm",
+      "competency-frameworks-firm",
+      "learning-strategy-and-capability-development-firm",
+      "global-mobility-and-expatriate-hr-management-firm",
     ],
-    sectorSlugs: ["hr-company-for-construction-in-the-uk", "hr-company-for-engineers-in-the-uk"],
+    sectorSlugs: ["hr-company-for-construction", "hr-company-for-engineers"],
     sectorLabel: "Construction · Engineering",
     executiveSummary:
-      "A construction and engineering contractor struggles to recruit experienced site managers, quantity surveyors and engineers, and many of its senior people are approaching retirement. It takes on graduates and apprentices informally but has no structured programme. In this scenario, Apex HR would design an early-careers programme, define the competencies each role needs at each stage, build a learning plan, and set up a fair process for international project assignments. Success would be measured by programme completion, progression into qualified roles and retention of early-careers hires.",
+      "A construction and engineering contractor in Riyadh, working on major Vision 2030 projects, struggles to recruit experienced site managers, quantity surveyors and engineers, and relies heavily on expatriate senior staff while it needs to grow its share of Saudi nationals under Nitaqat. It takes on Saudi graduates informally but has no structured programme. In this scenario, Apex HR would design an early-careers programme, define the competencies each role needs at each stage, build a learning plan, and set up a fair process for international project assignments. Success would be measured by programme completion, progression into qualified roles and retention of early-careers hires.",
     clientBackground: [
-      "The contractor in this scenario works on commercial and infrastructure projects, of the type described on our [construction](/sector/hr-company-for-construction-in-the-uk/) and [engineering](/sector/hr-company-for-engineers-in-the-uk/) sector pages. Projects are site-based, safety-critical and sometimes international.",
-      "Early-careers routes in the UK include graduate schemes and apprenticeships, and the funding rules for apprenticeships have been changing. Employers should check current [GOV.UK apprenticeship guidance](https://www.gov.uk/government/collections/apprenticeship-changes). Health and safety competence is central on site, as set out in [HSE construction guidance](https://www.hse.gov.uk/construction/).",
+      "The contractor in this scenario works on commercial and infrastructure projects, of the type described on our [construction](/sector/hr-company-for-construction/) and [engineering](/sector/hr-company-for-engineers/) sector pages. Projects are site-based, safety-critical and sometimes international.",
+      "Saudisation targets under the Nitaqat programme make developing Saudi engineers, surveyors and site managers a business priority, not just a social goal, and government training and wage-support programmes can help. Health and safety competence is central on site, and the programme has to build it from day one. Our [Saudi Arabia](/sa/) page describes the wider employment framework.",
     ],
     challenge: {
       intro: "The business has an ageing workforce and a thin pipeline:",
@@ -1998,13 +1854,13 @@ export const caseStudyContent: CaseStudyContent[] = [
         {
           heading: "Stage 2: Define competencies",
           paragraphs: [
-            "[Competency frameworks](/services/competency-frameworks-firm-in-the-uk/) for site management, commercial and engineering roles, describing the technical, safety and behavioural capabilities expected at each stage.",
+            "[Competency frameworks](/services/competency-frameworks-firm/) for site management, commercial and engineering roles, describing the technical, safety and behavioural capabilities expected at each stage.",
           ],
         },
         {
           heading: "Stage 3: Design the programme",
           paragraphs: [
-            "A [graduate and early-careers programme](/services/graduate-schemes-and-early-careers-design-firm-in-the-uk/) with structured rotations, mentoring, support for professional qualifications and clear progression points.",
+            "A [graduate and early-careers programme](/services/graduate-schemes-and-early-careers-design-firm/) with structured rotations, mentoring, support for professional qualifications and clear progression points.",
           ],
         },
       ],
@@ -2022,7 +1878,7 @@ export const caseStudyContent: CaseStudyContent[] = [
         {
           heading: "Learning plan",
           paragraphs: [
-            "A [learning strategy](/services/learning-strategy-and-capability-development-firm-in-the-uk/) combining on-site experience, formal training, mentoring by senior staff and support towards professional qualifications.",
+            "A [learning strategy](/services/learning-strategy-and-capability-development-firm/) combining on-site experience, formal training, mentoring by senior staff and support towards professional qualifications.",
           ],
         },
         {
@@ -2034,7 +1890,7 @@ export const caseStudyContent: CaseStudyContent[] = [
         {
           heading: "International assignment support",
           paragraphs: [
-            "[Global mobility](/services/global-mobility-and-expatriate-hr-management-firm-in-the-uk/) processes for project assignments abroad, including selection, assignment letters, pre-departure briefings and return planning. Immigration, tax and social security questions go to specialist advisers; [GOV.UK guidance on working abroad](https://www.gov.uk/working-abroad) is a useful starting point.",
+            "[Global mobility](/services/global-mobility-and-expatriate-hr-management-firm/) processes for project assignments abroad, including selection, assignment letters, pre-departure briefings and return planning. Immigration, tax and social security questions go to specialist advisers in each country involved.",
           ],
         },
       ],
@@ -2077,7 +1933,7 @@ export const caseStudyContent: CaseStudyContent[] = [
           "It describes the skills, knowledge and behaviours expected in a role at each level. It helps with recruitment, development, performance conversations and promotion decisions.",
       },
     ],
-    sources: [GOV_APPRENTICESHIP_CHANGES, HSE_CONSTRUCTION, GOV_WORKING_ABROAD],
+    sources: [],
     cta: {
       heading: "Building your future workforce?",
       body: "Talk to Apex HR about graduate schemes, competency frameworks and development programmes.",

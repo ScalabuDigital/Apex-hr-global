@@ -3,9 +3,7 @@ import { render } from "@testing-library/react";
 import { getServicesByCategory, getService, services } from "@/config/services";
 import { serviceContent } from "@/content/services-data";
 import { redirectRules } from "@/config/redirects";
-import { serviceLocationCombos } from "@/config/service-locations";
 import { ServicePageTemplate } from "@/components/templates/service-page-template";
-import { ServiceLocationTemplate } from "@/components/templates/service-location-template";
 import { getBreadcrumbJsonLd, getServiceJsonLd } from "@/lib/seo/structured-data";
 import { routes } from "@/config/routes";
 
@@ -16,19 +14,19 @@ import { routes } from "@/config/routes";
  */
 
 const APPROVED_FIVE = [
-  "permanent-recruitment-firm-in-the-uk",
-  "executive-search-firm-in-the-uk",
-  "contract-staffing-firm-in-the-uk",
-  "recruitment-process-outsourcing-rpo-firm-in-the-uk",
-  "graduate-schemes-and-early-careers-design-firm-in-the-uk",
+  "permanent-recruitment-firm",
+  "executive-search-firm",
+  "contract-staffing-firm",
+  "recruitment-process-outsourcing-rpo-firm",
+  "graduate-schemes-and-early-careers-design-firm",
 ];
 
 const APPROVED_INTENTS: Record<string, string> = {
-  "permanent-recruitment-firm-in-the-uk": "Recruitment support for permanent employees",
-  "executive-search-firm-in-the-uk": "Search and recruitment for senior, executive and leadership appointments",
-  "contract-staffing-firm-in-the-uk": "Recruitment support for temporary, interim or contract staffing needs",
-  "recruitment-process-outsourcing-rpo-firm-in-the-uk": "Outsourcing some or all recruitment-process activity",
-  "graduate-schemes-and-early-careers-design-firm-in-the-uk": "Designing structured graduate and early-career recruitment programmes",
+  "permanent-recruitment-firm": "Recruitment support for permanent employees",
+  "executive-search-firm": "Search and recruitment for senior, executive and leadership appointments",
+  "contract-staffing-firm": "Recruitment support for temporary, interim or contract staffing needs",
+  "recruitment-process-outsourcing-rpo-firm": "Outsourcing some or all recruitment-process activity",
+  "graduate-schemes-and-early-careers-design-firm": "Designing structured graduate and early-career recruitment programmes",
 };
 
 const NOINDEX_HUB_PATHS = ["/insights/", "/resources/", "/case-study/"];
@@ -39,9 +37,9 @@ function buildBreadcrumbTrail(serviceTitle: string, serviceSlug: string) {
   return [
     routes.services,
     {
-      id: "recruitment-and-talent-acquisition-firm-in-the-uk",
+      id: "recruitment-and-talent-acquisition-firm",
       label: "Recruitment & Talent Acquisition",
-      path: "/services/recruitment-and-talent-acquisition-firm-in-the-uk/",
+      path: "/services/recruitment-and-talent-acquisition-firm/",
       status: "confirmed" as const,
       readyToIndex: true,
     },
@@ -50,7 +48,7 @@ function buildBreadcrumbTrail(serviceTitle: string, serviceSlug: string) {
 }
 
 describe("Recruitment & Talent Acquisition children — catalogue integrity", () => {
-  const family = getServicesByCategory("recruitment-and-talent-acquisition-firm-in-the-uk");
+  const family = getServicesByCategory("recruitment-and-talent-acquisition-firm");
 
   it("has exactly five children, matching the approved slug list exactly", () => {
     expect(family.length).toBe(5);
@@ -128,7 +126,7 @@ describe("Recruitment & Talent Acquisition children — catalogue integrity", ()
   });
 
   it("Contract Staffing does not claim Apex HR is the legal employer, agency, payroll operator or tax adviser by default", () => {
-    const content = serviceContent.find((c) => c.slug === "contract-staffing-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "contract-staffing-firm")!;
     const allText = JSON.stringify(content).toLowerCase();
     // The service must acknowledge these roles only to disclaim them, not
     // assert them — checked via the explicit outOfScope/FAQ content.
@@ -138,7 +136,7 @@ describe("Recruitment & Talent Acquisition children — catalogue integrity", ()
   });
 
   it("expands RPO as 'Recruitment Process Outsourcing (RPO)' in its service title (first meaningful use = the H1)", () => {
-    const service = getService("recruitment-process-outsourcing-rpo-firm-in-the-uk")!;
+    const service = getService("recruitment-process-outsourcing-rpo-firm")!;
     expect(service.title).toBe("Recruitment Process Outsourcing (RPO)");
   });
 });
@@ -169,7 +167,7 @@ describe("Recruitment & Talent Acquisition children — rendered content, per se
           />,
         );
         const links = getAllByRole("link").map((el) => el.getAttribute("href")?.replace(/\/$/, ""));
-        expect(links).toContain("/services/recruitment-and-talent-acquisition-firm-in-the-uk");
+        expect(links).toContain("/services/recruitment-and-talent-acquisition-firm");
         expect(links).toContain("/for-employers");
       });
 
@@ -224,79 +222,6 @@ describe("Recruitment & Talent Acquisition children — rendered content, per se
         expect(breadcrumbLd.itemListElement.some((item) => item.name === "Recruitment & Talent Acquisition")).toBe(true);
         expect(breadcrumbLd.itemListElement.at(-1)?.name).toBe(service.title);
       });
-    });
-  }
-});
-
-describe("Recruitment & Talent Acquisition children — service-location pages unaffected", () => {
-  // Permanent Recruitment and Executive Search both have live
-  // service-location combinations (confirmed via
-  // src/config/service-locations.ts). This renders representative combo
-  // pages with the exact original heroSummary/whatItIncludes values
-  // (hardcoded here as the pre-Batch-6B baseline) and confirms the new
-  // Batch 6B fields never reached location-page rendering.
-  const AFFECTED = [
-    {
-      serviceSlug: "permanent-recruitment-firm-in-the-uk",
-      locationSlug: "manchester",
-      locationTitle: "Manchester",
-      heroSummary: "Permanent recruitment support from role definition through to offer, informed by genuine HR expertise, not just CV matching.",
-      whatItIncludes: [
-        "Role scoping and person-specification support",
-        "Candidate sourcing, screening and shortlisting",
-        "Interview process design and support",
-        "Offer and onboarding guidance",
-      ],
-    },
-    {
-      serviceSlug: "executive-search-firm-in-the-uk",
-      locationSlug: "london",
-      locationTitle: "London",
-      heroSummary: "A targeted, confidential search approach for senior and leadership hires where the wrong appointment carries real organisational risk.",
-      whatItIncludes: [
-        "Confidential search and direct approach",
-        "Structured leadership-level assessment",
-        "Market mapping and competitor insight where useful",
-        "Support through offer and transition",
-      ],
-    },
-  ];
-
-  for (const { serviceSlug, locationSlug, locationTitle, heroSummary, whatItIncludes } of AFFECTED) {
-    it(`${serviceSlug} service-location page (${locationSlug}) still renders the original shared fields`, () => {
-      const combo = serviceLocationCombos.find((c) => c.serviceSlug === serviceSlug && c.locationSlug === locationSlug);
-      expect(combo, `No combo found for ${serviceSlug}-${locationSlug}`).toBeDefined();
-
-      const content = serviceContent.find((c) => c.slug === serviceSlug)!;
-      const service = getService(serviceSlug)!;
-
-      // Confirm the live data still matches the hardcoded pre-batch baseline.
-      expect(content.heroSummary).toBe(heroSummary);
-      expect(content.whatItIncludes).toEqual(whatItIncludes);
-
-      const { getByText } = render(
-        <ServiceLocationTemplate
-          breadcrumbTrail={[]}
-          entityTitle={service.title}
-          entityHref={`/services/${serviceSlug}/`}
-          entitySummary={content.heroSummary}
-          bulletListTitle="What this includes"
-          bulletList={content.whatItIncludes}
-          locationTitle={locationTitle}
-          locationRegion="Test Region"
-          locationHref={`/locations/${locationSlug}/`}
-          localContext="Test local context."
-          faqs={[...content.faqs.slice(0, 3)]}
-        />,
-      );
-
-      expect(getByText(heroSummary)).toBeInTheDocument();
-      for (const item of whatItIncludes) {
-        expect(getByText(item)).toBeInTheDocument();
-      }
-      for (const extra of content.additionalFaqs ?? []) {
-        expect(() => getByText(extra.question)).toThrow();
-      }
     });
   }
 });

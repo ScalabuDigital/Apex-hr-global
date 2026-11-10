@@ -5,8 +5,8 @@ import { serviceContent } from "@/content/services-data";
 import { sectors } from "@/config/sectors";
 import { sectorContent } from "@/content/sectors-data";
 import { locations } from "@/config/locations";
+import { locationPath } from "@/config/locations";
 import { locationContent } from "@/content/locations-data";
-import { talentRoleContent } from "@/content/talent-roles-data";
 import { redirectRules } from "@/config/redirects";
 import { serviceLocationCombos, categoryLocationCombos } from "@/config/service-locations";
 import { getLocation } from "@/config/locations";
@@ -31,14 +31,14 @@ import path from "node:path";
  */
 
 const FINAL_EIGHT = [
-  "hris-implementation-firm-in-the-uk",
-  "hr-software-selection-firm-in-the-uk",
-  "people-analytics-and-hr-dashboards-firm-in-the-uk",
-  "digital-hr-transformation-firm-in-the-uk",
-  "ai-workplace-policy-and-hr-integration-firm-in-the-uk",
-  "people-strategy-firm-in-the-uk",
-  "strategic-workforce-planning-firm-in-the-uk",
-  "global-mobility-and-expatriate-hr-management-firm-in-the-uk",
+  "hris-implementation-firm",
+  "hr-software-selection-firm",
+  "people-analytics-and-hr-dashboards-firm",
+  "digital-hr-transformation-firm",
+  "ai-workplace-policy-and-hr-integration-firm",
+  "people-strategy-firm",
+  "strategic-workforce-planning-firm",
+  "global-mobility-and-expatriate-hr-management-firm",
 ];
 
 const GUARANTEE_LANGUAGE = /\bguarantee(d|s)?\b|\bpromise(d|s)?\b|\b100%\b/i;
@@ -60,8 +60,8 @@ function buildBreadcrumbTrail(categoryId: string, categoryLabel: string, service
 
 describe("Final eight services — catalogue integrity", () => {
   it("HR Technology & People Analytics has exactly five children; Strategic HR & Workforce Advisory has exactly three", () => {
-    expect(getServicesByCategory("hr-technology-and-people-analytics-firm-in-the-uk").length).toBe(5);
-    expect(getServicesByCategory("strategic-hr-and-workforce-advisory-firm-in-the-uk").length).toBe(3);
+    expect(getServicesByCategory("hr-technology-and-people-analytics-firm").length).toBe(5);
+    expect(getServicesByCategory("strategic-hr-and-workforce-advisory-firm").length).toBe(3);
   });
 
   it("all 48 individual services now carry outOfScope, differentiationNote and additionalFaqs", () => {
@@ -90,7 +90,7 @@ describe("Final eight services — catalogue integrity", () => {
     // employer wants, not a claim about Apex HR's own regulatory or
     // audited status. Only the fields that previously made that
     // positioning claim are checked here.
-    const content = serviceContent.find((c) => c.slug === "hr-software-selection-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "hr-software-selection-firm")!;
     const positioningFields = [
       content.metaDescription,
       content.heroSummary,
@@ -103,7 +103,7 @@ describe("Final eight services — catalogue integrity", () => {
   });
 
   it("HRIS Implementation's independence-adjacent FAQ was corrected without touching its two protected shared fields", () => {
-    const content = serviceContent.find((c) => c.slug === "hris-implementation-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "hris-implementation-firm")!;
     expect(content.faqs[0].answer.toLowerCase()).not.toMatch(/\bindependent\b/);
     expect(content.heroSummary).toBe(
       "Practical support implementing a new HRIS, so the rollout actually improves how HR data and processes work.",
@@ -116,12 +116,12 @@ describe("Final eight services — catalogue integrity", () => {
   });
 
   it("HRIS Implementation expands 'Human Resources Information System (HRIS)' in safely-editable copy", () => {
-    const content = serviceContent.find((c) => c.slug === "hris-implementation-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "hris-implementation-firm")!;
     expect(content.employerChallenge).toMatch(/Human Resources Information System \(HRIS\)/);
   });
 
   it("AI Workplace Policy & HR Integration expands 'artificial intelligence (AI)' in its hero summary", () => {
-    const content = serviceContent.find((c) => c.slug === "ai-workplace-policy-and-hr-integration-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "ai-workplace-policy-and-hr-integration-firm")!;
     expect(content.heroSummary).toMatch(/artificial intelligence \(AI\)/);
   });
 
@@ -145,21 +145,9 @@ describe("Final eight services — catalogue integrity", () => {
     expect(offenders).toEqual([]);
   });
 
-  it("HRIS Implementation has exactly Manchester and Leeds combos; Strategic Workforce Planning has exactly its known eight; the other six have none", () => {
-    expect(
-      serviceLocationCombos.filter((c) => c.serviceSlug === "hris-implementation-firm-in-the-uk").map((c) => c.locationSlug).sort(),
-    ).toEqual(["leeds", "manchester"]);
-    expect(
-      serviceLocationCombos.filter((c) => c.serviceSlug === "strategic-workforce-planning-firm-in-the-uk").map((c) => c.locationSlug).sort(),
-    ).toEqual(["birmingham", "glasgow", "leicester", "manchester", "nottingham", "oxford", "warwickshire", "yorkshire"].sort());
-    for (const slug of FINAL_EIGHT.filter((s) => s !== "hris-implementation-firm-in-the-uk" && s !== "strategic-workforce-planning-firm-in-the-uk")) {
-      expect(serviceLocationCombos.filter((c) => c.serviceSlug === slug)).toEqual([]);
-    }
-  });
-
   it("Strategic Workforce Planning's shared fields (heroSummary, whatItIncludes, first FAQ) are untouched, and no outOfScope content leaks onto its location pages", () => {
-    const content = serviceContent.find((c) => c.slug === "strategic-workforce-planning-firm-in-the-uk")!;
-    const combos = serviceLocationCombos.filter((c) => c.serviceSlug === "strategic-workforce-planning-firm-in-the-uk");
+    const content = serviceContent.find((c) => c.slug === "strategic-workforce-planning-firm")!;
+    const combos = serviceLocationCombos.filter((c) => c.serviceSlug === "strategic-workforce-planning-firm");
     expect(combos.length).toBeGreaterThan(0);
     for (const combo of combos) {
       const location = getLocation(combo.locationSlug);
@@ -169,7 +157,7 @@ describe("Final eight services — catalogue integrity", () => {
         <ServiceLocationTemplate
           breadcrumbTrail={[]}
           entityTitle="Strategic Workforce Planning"
-          entityHref="/services/strategic-workforce-planning-firm-in-the-uk/"
+          entityHref="/services/strategic-workforce-planning-firm/"
           entitySummary={content.heroSummary}
           bulletListTitle="What this includes"
           bulletList={content.whatItIncludes}
@@ -191,14 +179,14 @@ describe("Final eight services — catalogue integrity", () => {
 
 describe("Final eight services — rendered content and employer-link completion", () => {
   const categoryLookup: Record<string, { id: string; label: string }> = {
-    "hris-implementation-firm-in-the-uk": { id: "hr-technology-and-people-analytics-firm-in-the-uk", label: "HR Technology & People Analytics" },
-    "hr-software-selection-firm-in-the-uk": { id: "hr-technology-and-people-analytics-firm-in-the-uk", label: "HR Technology & People Analytics" },
-    "people-analytics-and-hr-dashboards-firm-in-the-uk": { id: "hr-technology-and-people-analytics-firm-in-the-uk", label: "HR Technology & People Analytics" },
-    "digital-hr-transformation-firm-in-the-uk": { id: "hr-technology-and-people-analytics-firm-in-the-uk", label: "HR Technology & People Analytics" },
-    "ai-workplace-policy-and-hr-integration-firm-in-the-uk": { id: "hr-technology-and-people-analytics-firm-in-the-uk", label: "HR Technology & People Analytics" },
-    "people-strategy-firm-in-the-uk": { id: "strategic-hr-and-workforce-advisory-firm-in-the-uk", label: "Strategic HR & Workforce Advisory" },
-    "strategic-workforce-planning-firm-in-the-uk": { id: "strategic-hr-and-workforce-advisory-firm-in-the-uk", label: "Strategic HR & Workforce Advisory" },
-    "global-mobility-and-expatriate-hr-management-firm-in-the-uk": { id: "strategic-hr-and-workforce-advisory-firm-in-the-uk", label: "Strategic HR & Workforce Advisory" },
+    "hris-implementation-firm": { id: "hr-technology-and-people-analytics-firm", label: "HR Technology & People Analytics" },
+    "hr-software-selection-firm": { id: "hr-technology-and-people-analytics-firm", label: "HR Technology & People Analytics" },
+    "people-analytics-and-hr-dashboards-firm": { id: "hr-technology-and-people-analytics-firm", label: "HR Technology & People Analytics" },
+    "digital-hr-transformation-firm": { id: "hr-technology-and-people-analytics-firm", label: "HR Technology & People Analytics" },
+    "ai-workplace-policy-and-hr-integration-firm": { id: "hr-technology-and-people-analytics-firm", label: "HR Technology & People Analytics" },
+    "people-strategy-firm": { id: "strategic-hr-and-workforce-advisory-firm", label: "Strategic HR & Workforce Advisory" },
+    "strategic-workforce-planning-firm": { id: "strategic-hr-and-workforce-advisory-firm", label: "Strategic HR & Workforce Advisory" },
+    "global-mobility-and-expatriate-hr-management-firm": { id: "strategic-hr-and-workforce-advisory-firm", label: "Strategic HR & Workforce Advisory" },
   };
 
   for (const slug of FINAL_EIGHT) {
@@ -238,24 +226,20 @@ describe("Route inventory and sitemap", () => {
     expect(serviceCategories.length).toBe(10);
   });
 
-  it("has exactly 17 sectors and 16 locations", () => {
+  it("has exactly 17 sectors and 12 countries", () => {
     expect(sectors.length).toBe(17);
-    expect(locations.length).toBe(16);
+    expect(locations.length).toBe(12);
   });
 
-  it("has exactly 62 talent-acquisition role pages", () => {
-    expect(talentRoleContent.length).toBe(62);
-  });
-
-  it("has exactly 48 service-location combos and 2 retained category-location combos", () => {
-    expect(serviceLocationCombos.length).toBe(48);
+  it("has exactly 36 service-country combos and 2 category-country combos", () => {
+    expect(serviceLocationCombos.length).toBe(36);
     expect(categoryLocationCombos.length).toBe(2);
     expect(categoryLocationCombos.map((c) => c.slug).sort()).toEqual(
-      ["outsourced-hr-services-firm-in-the-uk-worcester", "recruitment-and-talent-acquisition-firm-in-the-uk-liverpool"].sort(),
+      ["outsourced-hr-services-firm-in-ghana", "organisation-development-and-change-management-firm-in-germany"].sort(),
     );
   });
 
-  it("sitemap contains exactly 223 URLs, matching the indexable manifest entries, with no lastModified field", async () => {
+  it("sitemap contains exactly 187 URLs, matching the indexable manifest entries, with no lastModified field", async () => {
     // WordPress is unconfigured in the test environment (no WORDPRESS_API_URL),
     // so sitemap() contributes zero article entries here — see
     // tests/unit/wordpress.test.ts for WordPress-specific sitemap coverage
@@ -264,15 +248,17 @@ describe("Route inventory and sitemap", () => {
     // docs/URL-DECISION-REGISTER.md D-016) + /privacy-policy/, /partnership/
     // and the confirmed Job Board (/jobs/, D-019).
     const entries = flattenSitemapGroups(await getSitemapGroups());
-    expect(entries.length).toBe(223);
+    // Global site: 187 = 12 pages + 96 service + 17 sector + 12 country + 42 city
+    // pages; UK-only talent-acquisition role pages are canonical on the UK site.
+    expect(entries.length).toBe(187);
     expect(entries.length).toBe(contentManifest.filter((e) => e.indexable).length);
     for (const entry of entries) {
       expect(entry.lastModified).toBeUndefined();
     }
   });
 
-  it("116 redirect rules exist and none point to a sitemap URL as a competing duplicate source", async () => {
-    expect(redirectRules.length).toBe(116);
+  it("69 redirect rules exist and none point to a sitemap URL as a competing duplicate source", async () => {
+    expect(redirectRules.length).toBe(69);
     const entries = flattenSitemapGroups(await getSitemapGroups());
     const sitemapPaths = new Set(entries.map((e) => new URL(e.loc).pathname));
     for (const rule of redirectRules) {
@@ -318,10 +304,10 @@ describe("Hub pages — CollectionPage/ItemList structured data matches visible 
       items: serviceCategories.map((c) => ({ name: c.title, path: `/services/${c.slug}/` })),
     });
     expect(jsonLd.mainEntity.itemListElement).toHaveLength(10);
-    expect(jsonLd.mainEntity.itemListElement.every((item) => item.url.startsWith("https://www.apexhrllc.co.uk/services/"))).toBe(true);
+    expect(jsonLd.mainEntity.itemListElement.every((item) => item.url.startsWith("https://www.apexhrllc.com/services/"))).toBe(true);
   });
 
-  it("Sectors hub lists all 17 sectors; Locations hub lists all 16 locations", () => {
+  it("Sectors hub lists all 17 sectors; Locations hub lists all 12 countries", () => {
     const sectorLd = getCollectionPageJsonLd({
       path: routes.sectors.path,
       name: "Sectors We Support",
@@ -334,9 +320,9 @@ describe("Hub pages — CollectionPage/ItemList structured data matches visible 
       path: routes.locations.path,
       name: "Locations We Support",
       description: "test",
-      items: locations.map((l) => ({ name: l.title, path: `/locations/${l.slug}/` })),
+      items: locations.map((l) => ({ name: l.title, path: locationPath(l.slug) })),
     });
-    expect(locationLd.mainEntity.numberOfItems).toBe(16);
+    expect(locationLd.mainEntity.numberOfItems).toBe(12);
   });
 });
 
@@ -380,26 +366,9 @@ describe("Individual sector pages — data integrity", () => {
   });
 });
 
-describe("Talent-acquisition role pages — no live-vacancy or fabrication claims", () => {
-  it("has 62 roles with unique meta descriptions, each with a candidate-availability disclaimer", () => {
-    expect(talentRoleContent.length).toBe(62);
-    expect(new Set(talentRoleContent.map((r) => r.metaDescription)).size).toBe(62);
-    for (const role of talentRoleContent) {
-      expect(role.faqs.some((f) => /guarantee/i.test(f.answer) && /no/i.test(f.answer))).toBe(true);
-    }
-  });
-
-  it("no role page fabricates salary figures, live vacancies, placement records or candidate numbers", () => {
-    const FABRICATION = /£\d|\bcurrently hiring\b|\blive vacanc(y|ies)\b|\bplacement rate\b|\bcandidates? (available|on file|in our database)\b/i;
-    for (const role of talentRoleContent) {
-      expect(FABRICATION.test(JSON.stringify(role)), `${role.slug} fabrication check`).toBe(false);
-    }
-  });
-});
-
 describe("llms.txt — canonical link validity against route configuration", () => {
   const llmsTxt = fs.readFileSync(path.join(process.cwd(), "public/llms.txt"), "utf8");
-  const links = [...llmsTxt.matchAll(/\((https:\/\/www\.apexhrllc\.co\.uk[^)]*)\)/g)].map((m) => m[1]);
+  const links = [...llmsTxt.matchAll(/\((https:\/\/www\.apexhrllc\.com[^)]*)\)/g)].map((m) => m[1]);
 
   it("has no duplicate links", () => {
     expect(new Set(links).size).toBe(links.length);
@@ -435,11 +404,10 @@ describe("llms.txt — canonical link validity against route configuration", () 
     expect(llmsTxt).not.toMatch(/\bpostcode\b|\bregistration number\b|\bcompany number\b/i);
   });
 
-  it("uses the current www.apexhrllc.co.uk website domain throughout", () => {
+  it("uses only the global www.apexhrllc.com domain (standalone site)", () => {
     expect(links.length).toBeGreaterThan(0);
-    const withoutEmail = llmsTxt.replace(siteConfig.contactEmail, "");
-    expect(withoutEmail).not.toContain("apexhrllc.com");
-    expect(llmsTxt).toContain("https://www.apexhrllc.co.uk");
+    expect(llmsTxt).toContain("https://www.apexhrllc.com");
+    expect(llmsTxt).not.toContain("apexhrllc.co.uk");
   });
 });
 
@@ -454,15 +422,14 @@ describe("No duplicate FAQPage schema on pages that use FaqWithContactForm", () 
   // FaqWithContactForm (src/components/content/faq-with-contact-form.tsx)
   // already emits its own FAQPage JSON-LD by default (`includeSchema` is
   // true unless explicitly disabled) from whatever `items` array it's
-  // given. SectorPageTemplate, LocationPageTemplate and TalentRoleTemplate
+  // given. SectorPageTemplate and LocationPageTemplate
   // all render their FAQs through it, so their route files must not also
   // call getFaqPageJsonLd themselves — this was a real bug caught and
   // fixed during the final consolidated SEO phase (Part 9), initially
   // introduced by this same phase's own schema additions.
   const routeFiles = [
     "src/app/sector/[slug]/page.tsx",
-    "src/app/locations/[slug]/page.tsx",
-    "src/app/talent-acquisition/[slug]/page.tsx",
+    "src/lib/country-route.tsx",
   ];
 
   it.each(routeFiles)("%s does not import or call getFaqPageJsonLd", (relativePath) => {

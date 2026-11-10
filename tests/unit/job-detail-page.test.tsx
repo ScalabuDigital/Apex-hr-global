@@ -92,6 +92,6 @@ describe("vacancy detail route", () => {
     const metadata = await generateMetadata({ params: Promise.resolve({ slug: "people-partner" }) });
 
     expect(metadata.robots).toMatchObject({ index: false, follow: true });
-    expect(metadata.alternates?.canonical).toBe("https://www.apexhrllc.co.uk/jobs/people-partner/");
+    expect(metadata.alternates?.canonical).toBe("https://www.apexhrllc.com/jobs/people-partner/");
   });
 });

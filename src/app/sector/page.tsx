@@ -13,6 +13,7 @@ import { sectorContent } from "@/content/sectors-data";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { getBreadcrumbJsonLd, getCollectionPageJsonLd, toJsonLdScript } from "@/lib/seo/structured-data";
 import { routes } from "@/config/routes";
+import { MarketsBand } from "@/components/sections/markets-band";
 
 const HUB_DESCRIPTION =
   "Browse HR and recruitment support by sector. Explore the people challenges and service pathways relevant to your industry, from healthcare to technology and beyond.";
@@ -47,7 +48,7 @@ const heroExamplePills = [
  * single rounded cream "page shell" card inset from the browser edges).
  */
 export default function SectorsPage() {
-  const healthCare = sectorContent.find((entry) => entry.slug === "hr-company-for-healthcare-in-the-uk");
+  const healthCare = sectorContent.find((entry) => entry.slug === "hr-company-for-healthcare");
   const jsonLd = [
     getCollectionPageJsonLd({
       path: routes.sectors.path,
@@ -180,6 +181,11 @@ export default function SectorsPage() {
               </div>
             </SlideInRight>
           </section>
+
+      <MarketsBand
+        heading="Sector expertise across twelve countries"
+        intro="The same sector can look very different from one market to the next: healthcare staffing in the Gulf, fintech hiring in Lagos or works councils in German manufacturing. Each sector page explains how its workforce differs across the regions we support."
+      />
 
       <div className="flex flex-col gap-6 bg-gold p-8 sm:flex-row sm:items-center sm:justify-between sm:p-10 lg:p-14">
         <RevealHeading>

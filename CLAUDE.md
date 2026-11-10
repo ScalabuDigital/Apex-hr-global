@@ -1,3 +1,10 @@
+> **Global site note:** this repository is the global site (www.apexhrllc.com),
+> a standalone website separate from the UK site (never link, redirect or
+> canonicalise to apexhrllc.co.uk, and never edit the UK repository from
+> here). Where this brief says "UK", read
+> [docs/GLOBAL-SITE.md](./docs/GLOBAL-SITE.md) for the global decisions
+> (countries, URLs, hreflang), which take precedence.
+
 # CLAUDE.md — Apex HR Website
 
 > Repository-level operating instructions for Claude Code and other coding agents working on the Apex HR website.

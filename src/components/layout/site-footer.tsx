@@ -5,6 +5,7 @@ import { footerNavigation, primaryCta } from "@/config/navigation";
 import { LinkButton } from "@/components/ui/link-button";
 import { StaggerContainer, StaggerItem } from "@/components/motion/stagger";
 import { siteConfig } from "@/config/site";
+import { countryRegions, locationPath, locations } from "@/config/locations";
 
 function FooterColumn({
   title,
@@ -48,7 +49,7 @@ export function SiteFooter() {
           <StaggerItem className="sm:col-span-2 lg:col-span-2">
             <Logo surface="dark" />
             <p className="mt-4 max-w-sm text-body text-white/80">
-              A UK HR, recruitment and people-consulting partner for employers.
+              A global HR, recruitment and people-consulting partner for employers.
             </p>
             <LinkButton
               href={primaryCta.route.path}
@@ -73,7 +74,33 @@ export function SiteFooter() {
           </StaggerItem>
         </StaggerContainer>
 
-        <div className="mt-14 border-t border-white/15 pt-8 text-small text-white/60">
+        <nav aria-label="Countries" className="mt-14 border-t border-white/15 pt-8">
+          <h2 className="text-small font-semibold uppercase tracking-[0.08em] text-gold">Countries we support</h2>
+          <div className="mt-4 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {countryRegions.map((region) => (
+              <div key={region}>
+                <p className="text-small font-semibold text-white">{region}</p>
+                <ul className="mt-2 flex flex-col gap-2">
+                  {locations
+                    .filter((location) => location.region === region)
+                    .map((location) => (
+                      <li key={location.slug}>
+                        <Link
+                          href={locationPath(location.slug)}
+                          hrefLang={location.hreflang}
+                          className="text-small text-white/70 underline-offset-4 hover:text-white hover:underline"
+                        >
+                          {location.title}
+                        </Link>
+                      </li>
+                    ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </nav>
+
+        <div className="mt-8 border-t border-white/15 pt-8 text-small text-white/60">
           <p>
             &copy; {new Date().getFullYear()} {siteConfig.legalName}. All rights reserved.
           </p>

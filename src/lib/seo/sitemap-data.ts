@@ -8,7 +8,7 @@ import { getAllPublishedPostsForSitemap, getOpenVacanciesForSitemap } from "@/li
  * Single source of truth for grouped sitemap data, shared by every
  * sitemap route handler (src/app/sitemap.xml, page-sitemap.xml,
  * service-sitemap.xml, sector-sitemap.xml, location-sitemap.xml,
- * talent-acquisition-sitemap.xml, insight-sitemap.xml, vacancy-sitemap.xml)
+ * insight-sitemap.xml, vacancy-sitemap.xml)
  * and by the
  * sitemap test suite. There is deliberately no second, hand-maintained
  * URL list anywhere — every entry is derived from src/content/manifest.ts
@@ -22,7 +22,7 @@ import { getAllPublishedPostsForSitemap, getOpenVacanciesForSitemap } from "@/li
  * carry a fabricated `lastModified` — see docs/URL-DECISION-REGISTER.md
  * and the SEO audit final consolidated phase, Part 9.
  *
- * Local groups (page/service/sector/location/talentAcquisition) are
+ * Local groups (page/service/sector/location) are
  * derived synchronously from the manifest alone, so their route handlers
  * never touch the WordPress feed and stay fully static. Only the insight
  * insight/vacancy groups and sitemap index fetch WordPress, inheriting its
@@ -47,7 +47,6 @@ export const SITEMAP_GROUP_KEYS = [
   "service",
   "sector",
   "location",
-  "talentAcquisition",
   "insight",
   "vacancy",
 ] as const;
@@ -92,8 +91,6 @@ function classifyPageType(pageType: PageType): LocalGroupKey | "insight" {
       return "sector";
     case "location":
       return "location";
-    case "talentAcquisitionRole":
-      return "talentAcquisition";
     case "insightCategory":
       return "insight";
     default: {
@@ -107,11 +104,11 @@ function classifyPageType(pageType: PageType): LocalGroupKey | "insight" {
  * The five manifest-only groups (everything except Insights/WordPress).
  * Synchronous and free of any network call, so the route handlers that
  * only need one of these groups (page-sitemap.xml, service-sitemap.xml,
- * sector-sitemap.xml, location-sitemap.xml, talent-acquisition-sitemap.xml)
+ * sector-sitemap.xml, location-sitemap.xml)
  * stay fully static.
  */
 export function getLocalSitemapGroups(): LocalSitemapGroups {
-  const groups: LocalSitemapGroups = { page: [], service: [], sector: [], location: [], talentAcquisition: [] };
+  const groups: LocalSitemapGroups = { page: [], service: [], sector: [], location: [] };
 
   for (const entry of contentManifest) {
     if (!entry.indexable) continue;

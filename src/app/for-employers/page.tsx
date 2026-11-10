@@ -26,6 +26,7 @@ import { serviceCategoryContent } from "@/content/services-data";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { getBreadcrumbJsonLd, toJsonLdScript } from "@/lib/seo/structured-data";
 import { routes } from "@/config/routes";
+import { MarketsBand } from "@/components/sections/markets-band";
 
 // SEO audit Phase 3 Batch 4: title made intent-descriptive (was the generic
 // nav label "For Employers") to better match this page's principal intent
@@ -51,9 +52,9 @@ const employerNeedServiceLinks = Array.from(
 // Reuses the same three real service categories highlighted on the About
 // page — see src/content/services-data.ts.
 const supportPillars = [
-  { categorySlug: "recruitment-and-talent-acquisition-firm-in-the-uk", title: "Recruitment", icon: UserRoundSearch },
-  { categorySlug: "outsourced-hr-services-firm-in-the-uk", title: "Outsourced HR", icon: UsersRound },
-  { categorySlug: "strategic-hr-and-workforce-advisory-firm-in-the-uk", title: "People advisory", icon: ShieldCheck },
+  { categorySlug: "recruitment-and-talent-acquisition-firm", title: "Recruitment", icon: UserRoundSearch },
+  { categorySlug: "outsourced-hr-services-firm", title: "Outsourced HR", icon: UsersRound },
+  { categorySlug: "strategic-hr-and-workforce-advisory-firm", title: "People advisory", icon: ShieldCheck },
 ];
 
 // Original, non-quantified descriptions of how an engagement can be
@@ -307,6 +308,11 @@ export default function ForEmployersPage() {
               ))}
             </StaggerContainer>
           </section>
+
+          <MarketsBand
+            heading="HR and recruitment support in the markets you operate in"
+            intro="Whether you are hiring your first person in a new country or managing teams in several, Apex HR adapts recruitment, policies, pay and employee relations to each market's rules and talent pool, with one point of contact for the whole engagement."
+          />
 
           {forEmployersPageContent.faqs && forEmployersPageContent.faqs.length > 0 && (
             <section className="bg-surface-card p-8 sm:p-10 lg:p-14">

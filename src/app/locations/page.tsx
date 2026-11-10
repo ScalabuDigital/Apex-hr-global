@@ -7,17 +7,27 @@ import { RevealHeading } from "@/components/motion/reveal-heading";
 import { FadeUp } from "@/components/motion/fade-up";
 import { SlideInRight } from "@/components/motion/slide-in";
 import { StaggerContainer, StaggerItem } from "@/components/motion/stagger";
-import { locations } from "@/config/locations";
+import { countryRegions, locationPath, locations } from "@/config/locations";
+import { regionSummaries } from "@/components/sections/markets-band";
+import { cityPath, citiesForCountry } from "@/content/cities";
+import { FaqWithContactForm } from "@/components/content/faq-with-contact-form";
 import { locationContent } from "@/content/locations-data";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { getBreadcrumbJsonLd, getCollectionPageJsonLd, toJsonLdScript } from "@/lib/seo/structured-data";
 import { routes } from "@/config/routes";
 
+const hubFaqs = [
+  { id: "offices", question: "Do you have offices in each of these countries?", answer: "Apex HR is headquartered in London and supports employers in these countries remotely and, where useful, on-site. Country pages do not claim local offices." },
+  { id: "several", question: "Can you support us in several countries at once?", answer: "Yes. Many employers work with Apex HR across more than one country. We agree consistent standards and one point of contact, and adapt the detail to each market." },
+  { id: "not-listed", question: "What if our country is not listed?", answer: "Contact us. We may be able to support you, particularly if you also have teams in one of the countries listed, and we will be clear about what we can and cannot do." },
+  { id: "law", question: "Do you advise on each country's employment law?", answer: "We provide practical HR guidance and build processes that reflect local rules. Formal legal advice should come from qualified in-country counsel, and we work alongside them." },
+];
+
 const HUB_DESCRIPTION =
-  "Apex HR supports employers with HR and recruitment services across 16 UK locations, including remote and hybrid teams, from its London base.";
+  "Apex HR supports employers with HR and recruitment services across Africa, North America, Europe and the Middle East, including remote and cross-border teams.";
 
 export const metadata = buildMetadata({
-  title: "Locations We Support",
+  title: "Countries We Support",
   description: HUB_DESCRIPTION,
   path: routes.locations.path,
   index: routes.locations.readyToIndex,
@@ -45,9 +55,9 @@ export default function LocationsPage() {
   const jsonLd = [
     getCollectionPageJsonLd({
       path: routes.locations.path,
-      name: "Locations We Support",
+      name: "Countries We Support",
       description: HUB_DESCRIPTION,
-      items: locations.map((location) => ({ name: location.title, path: `/locations/${location.slug}/` })),
+      items: locations.map((location) => ({ name: location.title, path: locationPath(location.slug) })),
     }),
     getBreadcrumbJsonLd(routes.home.label, [routes.locations]),
   ];
@@ -67,21 +77,21 @@ export default function LocationsPage() {
           <RevealHeading>
             <SectionKicker tone="dark">Locations</SectionKicker>
             <h1 className="max-w-xl font-display text-display font-bold text-white">
-              HR and recruitment support across the UK
+              HR and recruitment support around the world
             </h1>
           </RevealHeading>
           <FadeUp delay={0.15} className="flex flex-col gap-6">
             <p className="max-w-lg text-lead text-white/70">
-              Apex HR supports employers hiring and managing people across these locations, including
-              remote and hybrid teams.
+              Apex HR supports employers hiring and managing people across these countries, including
+              remote and cross-border teams.
             </p>
             <div className="flex flex-wrap items-center gap-4">
               <LinkButton href="#location-directory" variant="primary" surface="dark">
-                Browse locations
+                Browse countries
                 <ArrowDown aria-hidden="true" className="h-4 w-4" />
               </LinkButton>
               <LinkButton href={routes.contact.path} variant="secondary" surface="dark">
-                Discuss your location
+                Discuss your market
               </LinkButton>
             </div>
           </FadeUp>
@@ -108,7 +118,7 @@ export default function LocationsPage() {
             <MapPin aria-hidden="true" className="mx-auto h-7 w-7 text-navy" />
             <p className="mt-1 font-display text-display font-bold text-navy">{locations.length}</p>
             <p className="mt-2 max-w-44 text-small text-text-secondary">
-              locations supported by one connected HR partner
+              countries supported by one connected HR partner
             </p>
           </div>
         </SlideInRight>
@@ -118,7 +128,7 @@ export default function LocationsPage() {
         <RevealHeading>
           <SectionKicker tone="light">Where we support</SectionKicker>
           <h2 className="mt-4 max-w-2xl font-display text-h1 font-bold text-navy">
-            Find HR and recruitment support in your area
+            Find HR and recruitment support in your country
           </h2>
         </RevealHeading>
 
@@ -128,7 +138,7 @@ export default function LocationsPage() {
             return (
               <StaggerItem key={location.slug}>
                 <Link
-                  href={`/locations/${location.slug}/`}
+                  href={locationPath(location.slug)}
                   className="group flex items-center justify-between gap-4 rounded-md border border-border-subtle bg-surface-card p-6 transition-colors duration-(--duration-fast) hover:border-navy"
                 >
                   <span className="flex items-center gap-4">
@@ -137,7 +147,7 @@ export default function LocationsPage() {
                     </span>
                     <span>
                       <span className="block font-display text-body-lg font-bold text-navy">{location.title}</span>
-                      {content && <span className="block text-small text-text-secondary">{content.region}</span>}
+                      <span className="block text-small text-text-secondary">{content ? `${content.region} · ` : ""}{location.region}</span>
                     </span>
                   </span>
                   <ArrowRight
@@ -149,14 +159,76 @@ export default function LocationsPage() {
             );
           })}
         </StaggerContainer>
+
+      </section>
+
+      {countryRegions.map((region, regionIndex) => (
+        <section
+          key={region}
+          aria-labelledby={`region-${regionIndex}`}
+          className={`${regionIndex % 2 === 0 ? "bg-surface-card" : "bg-surface-page"} p-8 sm:p-10 lg:p-14`}
+        >
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+            <RevealHeading>
+              <SectionKicker tone="light">{region}</SectionKicker>
+              <h2 id={`region-${regionIndex}`} className="mt-4 max-w-md font-display text-h1 font-bold text-navy">
+                HR and recruitment in {region === "Middle East" ? "the Middle East" : region}
+              </h2>
+            </RevealHeading>
+            <FadeUp delay={0.1}>
+              <p className="max-w-xl text-body text-text-secondary">{regionSummaries[region]}</p>
+            </FadeUp>
+          </div>
+          <StaggerContainer className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {locations
+              .filter((location) => location.region === region)
+              .map((location) => {
+                const content = locationContent.find((entry) => entry.slug === location.slug);
+                return (
+                  <StaggerItem key={location.slug} className="flex flex-col gap-3 rounded-md border border-border-subtle bg-surface-page p-6">
+                    <h3 className="font-display text-h4 font-bold text-navy">{location.title}</h3>
+                    {content && (
+                      <>
+                        <p className="text-body text-text-secondary">{content.localContext.split(". ")[0]}.</p>
+                        <p className="flex flex-wrap gap-x-2 gap-y-1 text-small text-text-secondary">
+                          <span>Main hubs:</span>
+                          {citiesForCountry(location.slug).map((city) => (
+                            <Link key={city.slug} href={cityPath(city)} className="font-semibold text-navy underline-offset-4 hover:underline">
+                              {city.name}
+                            </Link>
+                          ))}
+                        </p>
+                      </>
+                    )}
+                    <Link
+                      href={locationPath(location.slug)}
+                      className="mt-auto inline-flex text-caption font-bold uppercase tracking-widest text-gold-ink underline-offset-4 hover:underline"
+                    >
+                      {`HR and recruitment in ${location.title}`}
+                    </Link>
+                  </StaggerItem>
+                );
+              })}
+          </StaggerContainer>
+        </section>
+      ))}
+
+      <section className="bg-surface-card p-8 sm:p-10 lg:p-14">
+        <RevealHeading>
+          <SectionKicker tone="light">Frequently asked questions</SectionKicker>
+          <h2 className="mt-4 max-w-2xl font-display text-h2 font-bold text-navy">Working with Apex HR across countries</h2>
+        </RevealHeading>
+        <div className="mt-10">
+          <FaqWithContactForm items={hubFaqs} />
+        </div>
       </section>
 
       <div className="flex flex-col gap-6 bg-gold p-8 sm:flex-row sm:items-center sm:justify-between sm:p-10 lg:p-14">
         <RevealHeading>
-          <h3 className="font-display text-h2 font-bold text-navy">Don&apos;t see your location?</h3>
+          <h3 className="font-display text-h2 font-bold text-navy">Don&apos;t see your country?</h3>
           <p className="mt-2 max-w-md text-body text-navy/80">
-            Apex HR can support employers beyond this list, including remote and hybrid teams. Tell
-            us where you&apos;re based.
+            Apex HR can support employers beyond this list, including remote and cross-border teams.
+            Tell us where you&apos;re hiring.
           </p>
         </RevealHeading>
         <FadeUp delay={0.15} className="shrink-0">

@@ -12,7 +12,26 @@ import { CrawlableLinkList } from "@/components/content/crawlable-link-list";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { getBreadcrumbJsonLd, getCollectionPageJsonLd, toJsonLdScript } from "@/lib/seo/structured-data";
 import { routes } from "@/config/routes";
-import { serviceCategories } from "@/config/services";
+import { getServicesByCategory, serviceCategories } from "@/config/services";
+import { serviceCategoryContent } from "@/content/services-data";
+import { MarketsBand } from "@/components/sections/markets-band";
+import { FaqWithContactForm } from "@/components/content/faq-with-contact-form";
+
+const startingPoints = [
+  { need: "We need to hire", detail: "Permanent, executive, contract or high-volume hiring, in one country or several.", label: "Recruitment & Talent Acquisition", href: "/services/recruitment-and-talent-acquisition-firm/" },
+  { need: "We need HR support without a full HR team", detail: "Ongoing advice, contracts, policies, compliance and payroll guidance.", label: "Outsourced HR Services", href: "/services/outsourced-hr-services-firm/" },
+  { need: "We have a difficult people issue", detail: "Investigations, grievances, restructuring, transfers and disputes.", label: "Employment Law & Employee Relations", href: "/services/employment-law-and-employee-relations-firm/" },
+  { need: "Our pay feels inconsistent or uncompetitive", detail: "Benchmarking, grading, pay ranges, benefits and pay equity.", label: "Compensation, Reward & Benefits", href: "/services/compensation-reward-and-benefits-firm/" },
+  { need: "Our managers need to lead better", detail: "Leadership training, coaching, performance and succession.", label: "Learning & Leadership Development", href: "/services/learning-and-leadership-development-firm/" },
+  { need: "We are expanding or restructuring", detail: "People strategy, workforce planning, organisation design and change.", label: "Strategic HR & Workforce Advisory", href: "/services/strategic-hr-and-workforce-advisory-firm/" },
+];
+
+const servicesHubFaqs = [
+  { id: "combine", question: "Can we combine services from different families?", answer: "Yes. Many engagements combine services, for example recruitment with onboarding and contracts, or a restructure with outplacement and change management. One Apex HR contact coordinates the work." },
+  { id: "countries", question: "Are all services available in every country you support?", answer: "Yes. Every service family is available across Africa, North America, Europe and the Middle East, adapted to local rules and practice. Where formal legal advice is needed, we work alongside in-country counsel." },
+  { id: "engagement", question: "How are services priced and scoped?", answer: "Scope is agreed upfront, from a single project or hire to an ongoing retained partnership. We confirm fees and deliverables in writing before work starts." },
+  { id: "unsure", question: "What if we are not sure which service we need?", answer: "Describe the situation and we will suggest where to start. Many organisations begin with a short conversation or a review, then decide on the right support." },
+];
 
 const HUB_DESCRIPTION =
   "Explore Apex HR's ten connected HR and recruitment service families, from outsourced HR support to workforce strategy, and find the right expertise for your organisation.";
@@ -32,19 +51,19 @@ const priorityRoutes = [
     icon: UserRoundSearch,
     title: "Hire the right people",
     detail: "Recruitment and executive search",
-    href: "/services/recruitment-and-talent-acquisition-firm-in-the-uk/",
+    href: "/services/recruitment-and-talent-acquisition-firm/",
   },
   {
     icon: UsersRound,
     title: "Strengthen your HR",
     detail: "Outsourced support and compliance",
-    href: "/services/outsourced-hr-services-firm-in-the-uk/",
+    href: "/services/outsourced-hr-services-firm/",
   },
   {
     icon: ChartNoAxesCombined,
     title: "Shape what comes next",
     detail: "Strategy, change and workforce advisory",
-    href: "/services/strategic-hr-and-workforce-advisory-firm-in-the-uk/",
+    href: "/services/strategic-hr-and-workforce-advisory-firm/",
   },
 ];
 
@@ -167,6 +186,74 @@ export default function ServicesPage() {
           items={serviceCategories.map((category) => ({ label: category.title, href: `/services/${category.slug}/` }))}
         />
       </div>
+
+      <section aria-labelledby="family-summaries" className="bg-surface-card p-8 sm:p-10 lg:p-14">
+        <RevealHeading>
+          <SectionKicker tone="light">The ten service families</SectionKicker>
+          <h2 id="family-summaries" className="mt-4 max-w-2xl font-display text-h1 font-bold text-navy">
+            What each service family covers
+          </h2>
+        </RevealHeading>
+        <StaggerContainer className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2">
+          {serviceCategories.map((category) => {
+            const content = serviceCategoryContent.find((entry) => entry.slug === category.slug);
+            return (
+              <StaggerItem key={category.slug} className="flex flex-col gap-2 rounded-md border border-border-subtle bg-surface-page p-6">
+                <h3 className="font-display text-h4 font-bold text-navy">
+                  <Link href={`/services/${category.slug}/`} className="underline-offset-4 hover:underline">
+                    {category.title}
+                  </Link>
+                </h3>
+                {content && <p className="text-body text-text-secondary">{content.summary}</p>}
+                <p className="mt-auto pt-2 text-small text-text-secondary">
+                  {getServicesByCategory(category.slug).length} services
+                </p>
+              </StaggerItem>
+            );
+          })}
+        </StaggerContainer>
+      </section>
+
+      <section aria-labelledby="where-to-start" className="p-8 sm:p-10 lg:p-14">
+        <RevealHeading>
+          <SectionKicker tone="light">Where to start</SectionKicker>
+          <h2 id="where-to-start" className="mt-4 max-w-2xl font-display text-h1 font-bold text-navy">
+            Start from the problem you need to solve
+          </h2>
+        </RevealHeading>
+        <StaggerContainer>
+          <ul className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2">
+            {startingPoints.map((point) => (
+              <StaggerItem key={point.need} as="li" className="rounded-md border border-border-subtle bg-surface-card p-6">
+                <p className="font-display text-body-lg font-bold text-navy">{point.need}</p>
+                <p className="mt-2 text-body text-text-secondary">{point.detail}</p>
+                <Link
+                  href={point.href}
+                  className="mt-3 inline-flex text-caption font-bold uppercase tracking-widest text-gold-ink underline-offset-4 hover:underline"
+                >
+                  {point.label}
+                </Link>
+              </StaggerItem>
+            ))}
+          </ul>
+        </StaggerContainer>
+      </section>
+
+      <MarketsBand
+        heading="Services delivered across twelve countries"
+        intro="Every service family is available to employers across Africa, North America, Europe and the Middle East. We adapt each service to local employment rules, pay norms and talent markets, and many services have dedicated country pages."
+        tone="dark"
+      />
+
+      <section className="bg-surface-page p-8 sm:p-10 lg:p-14">
+        <RevealHeading>
+          <SectionKicker tone="light">Frequently asked questions</SectionKicker>
+          <h2 className="mt-4 max-w-2xl font-display text-h2 font-bold text-navy">Choosing HR and recruitment services</h2>
+        </RevealHeading>
+        <div className="mt-10">
+          <FaqWithContactForm items={servicesHubFaqs} />
+        </div>
+      </section>
 
       <div className="flex flex-col gap-6 bg-navy p-8 sm:flex-row sm:items-center sm:justify-between sm:p-10 lg:p-14">
         <RevealHeading>

@@ -1,13 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { render, within } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { getServicesByCategory, getService, services } from "@/config/services";
 import { serviceContent } from "@/content/services-data";
 import { redirectRules } from "@/config/redirects";
-import { serviceLocationCombos, categoryLocationCombos } from "@/config/service-locations";
-import { getLocation } from "@/config/locations";
-import { locationContent } from "@/content/locations-data";
 import { ServicePageTemplate } from "@/components/templates/service-page-template";
-import { ServiceLocationTemplate } from "@/components/templates/service-location-template";
 import { getBreadcrumbJsonLd, getServiceJsonLd } from "@/lib/seo/structured-data";
 import { routes } from "@/config/routes";
 
@@ -20,12 +16,12 @@ import { routes } from "@/config/routes";
  * guaranteed-result wording.
  */
 
-const APPROVED_THREE = ["performance-management-firm-in-the-uk", "succession-planning-and-talent-mapping-firm-in-the-uk", "competency-frameworks-firm-in-the-uk"];
+const APPROVED_THREE = ["performance-management-firm", "succession-planning-and-talent-mapping-firm", "competency-frameworks-firm"];
 
 const APPROVED_INTENTS: Record<string, string> = {
-  "performance-management-firm-in-the-uk": "Designing and improving structured employee-performance processes",
-  "succession-planning-and-talent-mapping-firm-in-the-uk": "Identifying critical roles, succession needs and internal talent considerations",
-  "competency-frameworks-firm-in-the-uk": "Defining the skills, knowledge and behaviours associated with roles or organisational levels",
+  "performance-management-firm": "Designing and improving structured employee-performance processes",
+  "succession-planning-and-talent-mapping-firm": "Identifying critical roles, succession needs and internal talent considerations",
+  "competency-frameworks-firm": "Defining the skills, knowledge and behaviours associated with roles or organisational levels",
 };
 
 const NOINDEX_HUB_PATHS = ["/insights/", "/resources/", "/case-study/"];
@@ -37,9 +33,9 @@ function buildBreadcrumbTrail(serviceTitle: string, serviceSlug: string) {
   return [
     routes.services,
     {
-      id: "performance-and-talent-management-firm-in-the-uk",
+      id: "performance-and-talent-management-firm",
       label: "Performance & Talent Management",
-      path: "/services/performance-and-talent-management-firm-in-the-uk/",
+      path: "/services/performance-and-talent-management-firm/",
       status: "confirmed" as const,
       readyToIndex: true,
     },
@@ -48,7 +44,7 @@ function buildBreadcrumbTrail(serviceTitle: string, serviceSlug: string) {
 }
 
 describe("Performance & Talent Management children (Batch 6G) — catalogue integrity", () => {
-  const family = getServicesByCategory("performance-and-talent-management-firm-in-the-uk");
+  const family = getServicesByCategory("performance-and-talent-management-firm");
 
   it("has exactly these three approved services and no others", () => {
     expect(family.length).toBe(3);
@@ -128,13 +124,13 @@ describe("Performance & Talent Management children (Batch 6G) — catalogue inte
   it("marks only Performance Management for legal review among the three", () => {
     for (const slug of APPROVED_THREE) {
       const content = serviceContent.find((c) => c.slug === slug)!;
-      const expected = slug === "performance-management-firm-in-the-uk";
+      const expected = slug === "performance-management-firm";
       expect(content.legalReviewRequired, `${slug} legalReviewRequired mismatch`).toBe(expected);
     }
   });
 
   it("Performance Management is not framed as an annual appraisal only, and excludes guaranteed improvement/engagement/compliance, bias elimination and Apex HR decision-making", () => {
-    const content = serviceContent.find((c) => c.slug === "performance-management-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "performance-management-firm")!;
     const scope = (content.outOfScope ?? []).join(" ").toLowerCase();
     expect(scope).toMatch(/guaranteed performance improvement/);
     expect(scope).toMatch(/guaranteed employee engagement/);
@@ -149,14 +145,14 @@ describe("Performance & Talent Management children (Batch 6G) — catalogue inte
   });
 
   it("Performance Management is distinguished from Executive Coaching and Competency Frameworks", () => {
-    const content = serviceContent.find((c) => c.slug === "performance-management-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "performance-management-firm")!;
     const note = content.differentiationNote?.toLowerCase() ?? "";
     expect(note).toMatch(/executive coaching & 360 feedback/);
     expect(note).toMatch(/competency frameworks/);
   });
 
   it("Succession Planning & Talent Mapping excludes promotion promises, readiness/confidentiality guarantees, bias-elimination claims, discriminatory criteria and automated decision-making", () => {
-    const content = serviceContent.find((c) => c.slug === "succession-planning-and-talent-mapping-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "succession-planning-and-talent-mapping-firm")!;
     const scope = (content.outOfScope ?? []).join(" ").toLowerCase();
     expect(scope).toMatch(/guarantee of succession readiness/);
     expect(scope).toMatch(/promise of promotion or appointment/);
@@ -168,7 +164,7 @@ describe("Performance & Talent Management children (Batch 6G) — catalogue inte
   });
 
   it("Succession Planning & Talent Mapping explains employee-data handling and is distinguished from Strategic Workforce Planning and recruitment", () => {
-    const content = serviceContent.find((c) => c.slug === "succession-planning-and-talent-mapping-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "succession-planning-and-talent-mapping-firm")!;
     const note = content.differentiationNote?.toLowerCase() ?? "";
     expect(note).toMatch(/strategic workforce planning/);
     expect(note).toMatch(/external recruitment/);
@@ -177,7 +173,7 @@ describe("Performance & Talent Management children (Batch 6G) — catalogue inte
   });
 
   it("Competency Frameworks is not presented as a scientific, psychological, clinical or psychometric assessment anywhere in its visible content", () => {
-    const content = serviceContent.find((c) => c.slug === "competency-frameworks-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "competency-frameworks-firm")!;
     const allFaqs = [...content.faqs, ...(content.additionalFaqs ?? [])];
     const allText = [
       content.heroSummary,
@@ -198,7 +194,7 @@ describe("Performance & Talent Management children (Batch 6G) — catalogue inte
   });
 
   it("Competency Frameworks excludes guaranteed objectivity, legal compliance, bias elimination, performance improvement and personal-worth determinations", () => {
-    const content = serviceContent.find((c) => c.slug === "competency-frameworks-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "competency-frameworks-firm")!;
     const scope = (content.outOfScope ?? []).join(" ").toLowerCase();
     expect(scope).toMatch(/guaranteed objectivity/);
     expect(scope).toMatch(/legal compliance guaranteed/);
@@ -208,21 +204,12 @@ describe("Performance & Talent Management children (Batch 6G) — catalogue inte
   });
 
   it("Competency Frameworks is distinguished from Job Evaluation and Performance Management", () => {
-    const content = serviceContent.find((c) => c.slug === "competency-frameworks-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "competency-frameworks-firm")!;
     const note = content.differentiationNote?.toLowerCase() ?? "";
     expect(note).toMatch(/job evaluation & pay structures/);
     expect(note).toMatch(/performance management/);
   });
 
-  it("Competency Frameworks has a live Warwickshire service-location combo; the other two have zero combos", () => {
-    const competencyCombos = serviceLocationCombos.filter((c) => c.serviceSlug === "competency-frameworks-firm-in-the-uk");
-    expect(competencyCombos.map((c) => c.locationSlug)).toEqual(["warwickshire"]);
-    for (const slug of ["performance-management-firm-in-the-uk", "succession-planning-and-talent-mapping-firm-in-the-uk"]) {
-      expect(serviceLocationCombos.filter((c) => c.serviceSlug === slug)).toEqual([]);
-    }
-    const categorySlugs = categoryLocationCombos.map((c) => c.categorySlug);
-    expect(categorySlugs).not.toContain("performance-and-talent-management-firm-in-the-uk");
-  });
 });
 
 describe("Performance & Talent Management children (Batch 6G) — rendered content, per service", () => {
@@ -251,7 +238,7 @@ describe("Performance & Talent Management children (Batch 6G) — rendered conte
           />,
         );
         const links = getAllByRole("link").map((el) => el.getAttribute("href")?.replace(/\/$/, ""));
-        expect(links).toContain("/services/performance-and-talent-management-firm-in-the-uk");
+        expect(links).toContain("/services/performance-and-talent-management-firm");
         expect(links).toContain("/for-employers");
       });
 
@@ -323,45 +310,4 @@ describe("Performance & Talent Management children (Batch 6G) — rendered conte
       });
     });
   }
-});
-
-describe("Competency Frameworks — Warwickshire location-page regression protection", () => {
-  const content = serviceContent.find((c) => c.slug === "competency-frameworks-firm-in-the-uk")!;
-
-  it("the Warwickshire service-location page still renders the untouched shared heroSummary, whatItIncludes and first FAQ", () => {
-    const combo = serviceLocationCombos.find((c) => c.serviceSlug === "competency-frameworks-firm-in-the-uk" && c.locationSlug === "warwickshire")!;
-    const location = getLocation(combo.locationSlug)!;
-    const locationInfo = locationContent.find((l) => l.slug === combo.locationSlug)!;
-
-    const { container } = render(
-      <ServiceLocationTemplate
-        breadcrumbTrail={[]}
-        entityTitle="Competency Frameworks"
-        entityHref="/services/competency-frameworks-firm-in-the-uk/"
-        entitySummary={content.heroSummary}
-        bulletListTitle="What this includes"
-        bulletList={content.whatItIncludes}
-        locationTitle={location.title}
-        locationRegion={locationInfo.region}
-        locationHref={`/locations/${location.slug}/`}
-        localContext={locationInfo.localContext}
-        faqs={[...content.faqs.slice(0, 3)]}
-      />,
-    );
-    const scoped = within(container);
-    expect(scoped.getByText(content.heroSummary)).toBeInTheDocument();
-    for (const item of content.whatItIncludes) {
-      expect(scoped.getByText(item)).toBeInTheDocument();
-    }
-    expect(scoped.getByText(content.faqs[0].question)).toBeInTheDocument();
-    // outOfScope/differentiationNote/additionalFaqs must never leak into
-    // the location template — it doesn't accept those props at all.
-    for (const scopeItem of content.outOfScope ?? []) {
-      expect(scoped.queryByText(scopeItem)).toBeNull();
-    }
-  });
-
-  it("Competency Frameworks' unchanged heroSummary contains none of the newly-banned metadata words", () => {
-    expect(BANNED_METADATA_WORDS.test(content.heroSummary)).toBe(false);
-  });
 });

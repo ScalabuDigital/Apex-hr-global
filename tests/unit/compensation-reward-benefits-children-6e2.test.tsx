@@ -3,7 +3,6 @@ import { render } from "@testing-library/react";
 import { getServicesByCategory, getService, services } from "@/config/services";
 import { serviceContent } from "@/content/services-data";
 import { redirectRules } from "@/config/redirects";
-import { serviceLocationCombos, categoryLocationCombos } from "@/config/service-locations";
 import { ServicePageTemplate } from "@/components/templates/service-page-template";
 import { getBreadcrumbJsonLd, getServiceJsonLd } from "@/lib/seo/structured-data";
 import { routes } from "@/config/routes";
@@ -18,22 +17,22 @@ import { routes } from "@/config/routes";
  */
 
 const APPROVED_THREE = [
-  "pay-equity-and-pay-gap-reporting-firm-in-the-uk",
-  "employee-benefits-consulting-firm-in-the-uk",
-  "executive-compensation-and-share-schemes-firm-in-the-uk",
+  "pay-equity-and-pay-gap-reporting-firm",
+  "employee-benefits-consulting-firm",
+  "executive-compensation-and-share-schemes-firm",
 ];
 
 const ALL_SIX = [
-  "salary-benchmarking-firm-in-the-uk",
-  "job-evaluation-and-pay-structures-firm-in-the-uk",
-  "reward-strategy-firm-in-the-uk",
+  "salary-benchmarking-firm",
+  "job-evaluation-and-pay-structures-firm",
+  "reward-strategy-firm",
   ...APPROVED_THREE,
 ];
 
 const APPROVED_INTENTS: Record<string, string> = {
-  "pay-equity-and-pay-gap-reporting-firm-in-the-uk": "Reviewing pay patterns and supporting appropriate pay-gap analysis and reporting",
-  "employee-benefits-consulting-firm-in-the-uk": "Helping employers review and develop employee-benefits arrangements",
-  "executive-compensation-and-share-schemes-firm-in-the-uk":
+  "pay-equity-and-pay-gap-reporting-firm": "Reviewing pay patterns and supporting appropriate pay-gap analysis and reporting",
+  "employee-benefits-consulting-firm": "Helping employers review and develop employee-benefits arrangements",
+  "executive-compensation-and-share-schemes-firm":
     "Supporting the design and governance of executive reward and employee share arrangements",
 };
 
@@ -47,9 +46,9 @@ function buildBreadcrumbTrail(serviceTitle: string, serviceSlug: string) {
   return [
     routes.services,
     {
-      id: "compensation-reward-and-benefits-firm-in-the-uk",
+      id: "compensation-reward-and-benefits-firm",
       label: "Compensation, Reward & Benefits",
-      path: "/services/compensation-reward-and-benefits-firm-in-the-uk/",
+      path: "/services/compensation-reward-and-benefits-firm/",
       status: "confirmed" as const,
       readyToIndex: true,
     },
@@ -59,12 +58,12 @@ function buildBreadcrumbTrail(serviceTitle: string, serviceSlug: string) {
 
 describe("Preliminary check (Batch 6E2) — Salary Benchmarking public-facing language", () => {
   it("has no internal QA/workflow language anywhere in its public-facing content", () => {
-    const content = serviceContent.find((c) => c.slug === "salary-benchmarking-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "salary-benchmarking-firm")!;
     expect(INTERNAL_QA_LANGUAGE.test(JSON.stringify(content))).toBe(false);
   });
 
   it("its outOfScope salary-figure boundary reads as natural visitor-facing wording, not a literal 'no invented figures' phrase", () => {
-    const content = serviceContent.find((c) => c.slug === "salary-benchmarking-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "salary-benchmarking-firm")!;
     const scope = (content.outOfScope ?? []).join(" ");
     expect(scope).not.toMatch(/invented figures?/i);
     expect(scope.toLowerCase()).toMatch(/specific salary figure.*without current, relevant market data/);
@@ -73,7 +72,7 @@ describe("Preliminary check (Batch 6E2) — Salary Benchmarking public-facing la
 
 describe("Compensation, Reward & Benefits children (Batch 6E2) — catalogue integrity", () => {
   it("completes the six-member family with exactly these three approved services", () => {
-    const family = getServicesByCategory("compensation-reward-and-benefits-firm-in-the-uk");
+    const family = getServicesByCategory("compensation-reward-and-benefits-firm");
     expect(family.length).toBe(6);
     expect(family.map((s) => s.slug).sort()).toEqual([...ALL_SIX].sort());
   });
@@ -157,22 +156,13 @@ describe("Compensation, Reward & Benefits children (Batch 6E2) — catalogue int
   it("marks Pay Equity & Pay Gap Reporting and Executive Compensation & Share Schemes for legal review, but not Employee Benefits Consulting", () => {
     for (const slug of APPROVED_THREE) {
       const content = serviceContent.find((c) => c.slug === slug)!;
-      const expected = slug !== "employee-benefits-consulting-firm-in-the-uk";
+      const expected = slug !== "employee-benefits-consulting-firm";
       expect(content.legalReviewRequired, `${slug} legalReviewRequired mismatch`).toBe(expected);
     }
   });
 
-  it("none of the three have live service-location combinations, and Compensation, Reward & Benefits has no retained category-location page (confirming they were safe to edit freely)", () => {
-    for (const slug of APPROVED_THREE) {
-      const combos = serviceLocationCombos.filter((c) => c.serviceSlug === slug);
-      expect(combos, `${slug} unexpectedly has service-location combos`).toEqual([]);
-    }
-    const categorySlugs = categoryLocationCombos.map((c) => c.categorySlug);
-    expect(categorySlugs).not.toContain("compensation-reward-and-benefits-firm-in-the-uk");
-  });
-
   it("Pay Equity & Pay Gap Reporting excludes equal-pay certification, discrimination determinations, closed-gap guarantees, reporting-compliance guarantees and legal representation", () => {
-    const content = serviceContent.find((c) => c.slug === "pay-equity-and-pay-gap-reporting-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "pay-equity-and-pay-gap-reporting-firm")!;
     const scope = (content.outOfScope ?? []).join(" ").toLowerCase();
     expect(scope).toMatch(/certification of equal pay compliance/);
     expect(scope).toMatch(/legal determination of whether unlawful pay discrimination/);
@@ -182,7 +172,7 @@ describe("Compensation, Reward & Benefits children (Batch 6E2) — catalogue int
   });
 
   it("Pay Equity & Pay Gap Reporting is distinguished from Salary Benchmarking, Job Evaluation and Reward Strategy", () => {
-    const content = serviceContent.find((c) => c.slug === "pay-equity-and-pay-gap-reporting-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "pay-equity-and-pay-gap-reporting-firm")!;
     const note = content.differentiationNote?.toLowerCase() ?? "";
     expect(note).toMatch(/salary benchmarking/);
     expect(note).toMatch(/job evaluation & pay structures/);
@@ -190,14 +180,14 @@ describe("Compensation, Reward & Benefits children (Batch 6E2) — catalogue int
   });
 
   it("Pay Equity & Pay Gap Reporting states no reporting thresholds, deadlines or calculation rules as fixed facts", () => {
-    const content = serviceContent.find((c) => c.slug === "pay-equity-and-pay-gap-reporting-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "pay-equity-and-pay-gap-reporting-firm")!;
     const allText = JSON.stringify(content);
     expect(allText).not.toMatch(/£\d/);
     expect(allText).not.toMatch(/\b\d+%\b.{0,30}(gap|threshold|employees)/i);
   });
 
   it("Employee Benefits Consulting excludes regulated financial/investment/insurance/pension/tax/legal advice and provider endorsement", () => {
-    const content = serviceContent.find((c) => c.slug === "employee-benefits-consulting-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "employee-benefits-consulting-firm")!;
     const scope = (content.outOfScope ?? []).join(" ").toLowerCase();
     expect(scope).toMatch(/regulated financial advice, investment advice or insurance broking/);
     expect(scope).toMatch(/pension advice/);
@@ -208,7 +198,7 @@ describe("Compensation, Reward & Benefits children (Batch 6E2) — catalogue int
   });
 
   it("Employee Benefits Consulting's provider FAQ does not imply Apex HR arranges, selects or endorses providers", () => {
-    const content = serviceContent.find((c) => c.slug === "employee-benefits-consulting-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "employee-benefits-consulting-firm")!;
     const providerFaq = content.faqs.find((f) => f.id === "provider");
     expect(providerFaq).toBeDefined();
     expect(providerFaq!.answer.toLowerCase()).toMatch(/not an insurance broker, financial adviser or pension adviser/);
@@ -216,12 +206,12 @@ describe("Compensation, Reward & Benefits children (Batch 6E2) — catalogue int
   });
 
   it("Employee Benefits Consulting is distinguished from Reward Strategy", () => {
-    const content = serviceContent.find((c) => c.slug === "employee-benefits-consulting-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "employee-benefits-consulting-firm")!;
     expect(content.differentiationNote?.toLowerCase()).toMatch(/reward strategy/);
   });
 
   it("Executive Compensation & Share Schemes excludes legal/tax/accounting/investment/securities advice, valuation, documentation, approvals, tax-efficiency and performance guarantees, and fiduciary authority", () => {
-    const content = serviceContent.find((c) => c.slug === "executive-compensation-and-share-schemes-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "executive-compensation-and-share-schemes-firm")!;
     const scope = (content.outOfScope ?? []).join(" ").toLowerCase();
     expect(scope).toMatch(/legal, tax, accounting, investment or securities advice/);
     expect(scope).toMatch(/valuation of the company or its shares/);
@@ -234,7 +224,7 @@ describe("Compensation, Reward & Benefits children (Batch 6E2) — catalogue int
   });
 
   it("Executive Compensation & Share Schemes does not broaden into general M&A advisory, only cross-referencing the distinct M&A service where relevant", () => {
-    const content = serviceContent.find((c) => c.slug === "executive-compensation-and-share-schemes-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "executive-compensation-and-share-schemes-firm")!;
     const note = content.differentiationNote ?? "";
     expect(note).toMatch(/Mergers and Acquisitions \(M&A\)/);
     expect(note.toLowerCase()).toMatch(/does not extend into/);
@@ -245,7 +235,7 @@ describe("Compensation, Reward & Benefits children (Batch 6E2) — catalogue int
   });
 
   it("Executive Compensation & Share Schemes is distinguished from Reward Strategy and Employee Benefits Consulting", () => {
-    const content = serviceContent.find((c) => c.slug === "executive-compensation-and-share-schemes-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "executive-compensation-and-share-schemes-firm")!;
     const note = content.differentiationNote?.toLowerCase() ?? "";
     expect(note).toMatch(/reward strategy/);
     expect(note).toMatch(/employee benefits consulting/);
@@ -278,7 +268,7 @@ describe("Compensation, Reward & Benefits children (Batch 6E2) — rendered cont
           />,
         );
         const links = getAllByRole("link").map((el) => el.getAttribute("href")?.replace(/\/$/, ""));
-        expect(links).toContain("/services/compensation-reward-and-benefits-firm-in-the-uk");
+        expect(links).toContain("/services/compensation-reward-and-benefits-firm");
         expect(links).toContain("/for-employers");
       });
 

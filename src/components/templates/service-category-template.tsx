@@ -11,8 +11,8 @@ import { StaggerContainer, StaggerItem } from "@/components/motion/stagger";
 import { CategoryServiceExplorer } from "@/components/content/category-service-explorer";
 import { FaqWithContactForm } from "@/components/content/faq-with-contact-form";
 import { ContentGuideBand, RelatedInsightsList } from "@/components/content/content-guide";
+import { serviceFamilyGuides } from "@/content/service-family-guides";
 import { InlineLinkText } from "@/components/content/inline-link-text";
-import { talentRoleContent } from "@/content/talent-roles-data";
 import { serviceCategoryIcons } from "@/lib/service-category-icons";
 import { getServiceCategory } from "@/config/services";
 import { serviceContent } from "@/content/services-data";
@@ -59,20 +59,10 @@ export function ServiceCategoryTemplate({
   childServices,
 }: ServiceCategoryTemplateProps) {
   const Icon = serviceCategoryIcons[category.slug];
+  const guide = category.guide ?? serviceFamilyGuides[category.slug];
   const relatedFamilies = category.relatedFamilySlugs
     .map((slug) => getServiceCategory(slug))
     .filter((entry): entry is NonNullable<typeof entry> => Boolean(entry));
-  // Talent-acquisition SEO pass: hub → spoke links to every role page,
-  // grouped by role family in data order. Only rendered for a family that
-  // opts in via `showRoleDirectory`.
-  const roleGroups = category.showRoleDirectory
-    ? talentRoleContent.reduce<{ family: string; roles: typeof talentRoleContent }[]>((groups, role) => {
-        const group = groups.find((entry) => entry.family === role.roleFamily);
-        if (group) group.roles.push(role);
-        else groups.push({ family: role.roleFamily, roles: [role] });
-        return groups;
-      }, [])
-    : [];
 
   return (
     <div className="bg-surface-page">
@@ -82,7 +72,7 @@ export function ServiceCategoryTemplate({
           <RevealHeading>
             <SectionKicker tone="dark">Service family</SectionKicker>
             <h1 className="mt-4 max-w-xl font-display text-display font-bold text-white">
-              {title} Firm in the UK
+              Global {title} Firm
             </h1>
             <p className="mt-3 max-w-xl font-display text-h4 font-semibold text-gold">
               {category.tagline}
@@ -145,14 +135,9 @@ export function ServiceCategoryTemplate({
           <a href="#approach" className="text-caption font-bold text-text-secondary hover:text-navy">
             Our approach
           </a>
-          {category.guide && (
+          {guide && (
             <a href="#guide" className="text-caption font-bold text-text-secondary hover:text-navy">
               Guide
-            </a>
-          )}
-          {roleGroups.length > 0 && (
-            <a href="#roles" className="text-caption font-bold text-text-secondary hover:text-navy">
-              Roles
             </a>
           )}
           <a href="#outcomes" className="text-caption font-bold text-text-secondary hover:text-navy">
@@ -342,41 +327,7 @@ export function ServiceCategoryTemplate({
         </StaggerContainer>
       </section>
 
-      {category.guide && <ContentGuideBand guide={category.guide} id="guide" className="bg-surface-card" />}
-
-      {roleGroups.length > 0 && (
-        <section id="roles" className="bg-navy px-8 py-16 sm:px-10 lg:px-14 lg:py-20">
-          <RevealHeading className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:items-end lg:gap-14">
-            <div>
-              <SectionKicker tone="dark">Roles we recruit for</SectionKicker>
-              <h2 className="mt-4 max-w-md font-display text-h1 font-bold text-white">Recruitment by role</h2>
-            </div>
-            <p className="text-body text-white/70">
-              Each role page explains the typical hiring challenges, the skills employers usually assess and how
-              the search is approached, from regulated healthcare roles to engineering trades and senior leadership.
-            </p>
-          </RevealHeading>
-          <StaggerContainer className="mt-10 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
-            {roleGroups.map((group) => (
-              <StaggerItem key={group.family}>
-                <h3 className="font-display text-h4 font-bold text-white">{group.family}</h3>
-                <ul className="mt-4 flex flex-col gap-2">
-                  {group.roles.map((role) => (
-                    <li key={role.slug}>
-                      <Link
-                        href={`/talent-acquisition/${role.slug}/`}
-                        className="text-body text-white/70 underline-offset-4 hover:text-gold hover:underline"
-                      >
-                        {role.title}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-        </section>
-      )}
+      {guide && <ContentGuideBand guide={guide} id="guide" className="bg-surface-card" />}
 
       {relatedFamilies.length > 0 && (
         <section className="bg-surface-warm p-8 sm:p-10 lg:p-14">

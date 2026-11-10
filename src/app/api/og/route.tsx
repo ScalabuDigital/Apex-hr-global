@@ -53,7 +53,7 @@ export async function GET() {
               textTransform: "uppercase",
             }}
           >
-            www.apexhrllc.co.uk
+            www.apexhrllc.com
           </div>
         </div>
       </div>

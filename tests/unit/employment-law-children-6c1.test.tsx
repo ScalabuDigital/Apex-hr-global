@@ -3,9 +3,7 @@ import { render } from "@testing-library/react";
 import { getServicesByCategory, getService, services } from "@/config/services";
 import { serviceContent } from "@/content/services-data";
 import { redirectRules } from "@/config/redirects";
-import { serviceLocationCombos } from "@/config/service-locations";
 import { ServicePageTemplate } from "@/components/templates/service-page-template";
-import { ServiceLocationTemplate } from "@/components/templates/service-location-template";
 import { getBreadcrumbJsonLd, getServiceJsonLd } from "@/lib/seo/structured-data";
 import { routes } from "@/config/routes";
 
@@ -19,10 +17,10 @@ import { routes } from "@/config/routes";
  */
 
 const APPROVED_FOUR = [
-  "redundancy-and-restructuring-support-firm-in-the-uk",
-  "tupe-advisory-firm-in-the-uk",
-  "workplace-investigations-firm-in-the-uk",
-  "workplace-mediation-and-conflict-resolution-firm-in-the-uk",
+  "redundancy-and-restructuring-support-firm",
+  "tupe-advisory-firm",
+  "workplace-investigations-firm",
+  "workplace-mediation-and-conflict-resolution-firm",
 ];
 
 const NOINDEX_HUB_PATHS = ["/insights/", "/resources/", "/case-study/"];
@@ -37,9 +35,9 @@ function buildBreadcrumbTrail(serviceTitle: string, serviceSlug: string) {
   return [
     routes.services,
     {
-      id: "employment-law-and-employee-relations-firm-in-the-uk",
+      id: "employment-law-and-employee-relations-firm",
       label: "Employment Law & Employee Relations",
-      path: "/services/employment-law-and-employee-relations-firm-in-the-uk/",
+      path: "/services/employment-law-and-employee-relations-firm/",
       status: "confirmed" as const,
       readyToIndex: true,
     },
@@ -49,7 +47,7 @@ function buildBreadcrumbTrail(serviceTitle: string, serviceSlug: string) {
 
 describe("Employment Law children (Batch 6C1) — catalogue integrity", () => {
   it("has exactly these four approved services, confirmed as members of Employment Law & Employee Relations", () => {
-    const family = getServicesByCategory("employment-law-and-employee-relations-firm-in-the-uk");
+    const family = getServicesByCategory("employment-law-and-employee-relations-firm");
     for (const slug of APPROVED_FOUR) {
       expect(family.some((s) => s.slug === slug), `${slug} missing from family`).toBe(true);
     }
@@ -73,7 +71,7 @@ describe("Employment Law children (Batch 6C1) — catalogue integrity", () => {
   });
 
   it("expands TUPE as 'Transfer of Undertakings (Protection of Employment)' on first meaningful use", () => {
-    const content = serviceContent.find((c) => c.slug === "tupe-advisory-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "tupe-advisory-firm")!;
     // First meaningful use = heroSummary, the first body text after the H1
     // (the H1 itself is just the approved service name "TUPE Advisory").
     expect(content.heroSummary).toContain("Transfer of Undertakings (Protection of Employment)");
@@ -127,14 +125,14 @@ describe("Employment Law children (Batch 6C1) — catalogue integrity", () => {
   });
 
   it("Workplace Investigations explicitly declines to guarantee confidentiality or legal privilege", () => {
-    const content = serviceContent.find((c) => c.slug === "workplace-investigations-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "workplace-investigations-firm")!;
     const allText = JSON.stringify(content).toLowerCase();
     expect(allText).toMatch(/complete confidentiality cannot be guaranteed/);
     expect(allText).toMatch(/not automatically.*privilege|privilege.*not automatically|does not automatically carry|legal privilege depends/);
   });
 
   it("Workplace Mediation explicitly declines to guarantee a resolution and states it is not suitable for every dispute", () => {
-    const content = serviceContent.find((c) => c.slug === "workplace-mediation-and-conflict-resolution-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "workplace-mediation-and-conflict-resolution-firm")!;
     const allText = JSON.stringify(content).toLowerCase();
     expect(allText).toMatch(/cannot be guaranteed/);
     expect(allText).toMatch(/not (appropriate for every dispute|always the appropriate route)/);
@@ -167,7 +165,7 @@ describe("Employment Law children (Batch 6C1) — rendered content, per service"
           />,
         );
         const links = getAllByRole("link").map((el) => el.getAttribute("href")?.replace(/\/$/, ""));
-        expect(links).toContain("/services/employment-law-and-employee-relations-firm-in-the-uk");
+        expect(links).toContain("/services/employment-law-and-employee-relations-firm");
         expect(links).toContain("/for-employers");
       });
 
@@ -233,57 +231,6 @@ describe("Employment Law children (Batch 6C1) — rendered content, per service"
       });
     });
   }
-});
-
-describe("Employment Law children (Batch 6C1) — service-location page unaffected", () => {
-  // Redundancy & Restructuring Support has one live combination
-  // (Staffordshire) — confirmed via src/config/service-locations.ts.
-  const serviceSlug = "redundancy-and-restructuring-support-firm-in-the-uk";
-  const locationSlug = "staffordshire";
-  const heroSummary =
-    "Practical HR support for redundancy and restructuring situations, focused on running a fair, well-documented process.";
-  const whatItIncludes = [
-    "Process planning and documentation support",
-    "Selection-criteria and consultation guidance",
-    "Support drafting communications and letters",
-    "Manager briefing and support through the process",
-  ];
-
-  it(`${serviceSlug} service-location page (${locationSlug}) still renders the original shared fields`, () => {
-    const combo = serviceLocationCombos.find((c) => c.serviceSlug === serviceSlug && c.locationSlug === locationSlug);
-    expect(combo, `No combo found for ${serviceSlug}-${locationSlug}`).toBeDefined();
-
-    const content = serviceContent.find((c) => c.slug === serviceSlug)!;
-    const service = getService(serviceSlug)!;
-
-    // Confirm the live data still matches the hardcoded pre-batch baseline.
-    expect(content.heroSummary).toBe(heroSummary);
-    expect(content.whatItIncludes).toEqual(whatItIncludes);
-
-    const { getByText } = render(
-      <ServiceLocationTemplate
-        breadcrumbTrail={[]}
-        entityTitle={service.title}
-        entityHref={`/services/${serviceSlug}/`}
-        entitySummary={content.heroSummary}
-        bulletListTitle="What this includes"
-        bulletList={content.whatItIncludes}
-        locationTitle="Staffordshire"
-        locationRegion="Test Region"
-        locationHref="/locations/staffordshire/"
-        localContext="Test local context."
-        faqs={[...content.faqs.slice(0, 3)]}
-      />,
-    );
-
-    expect(getByText(heroSummary)).toBeInTheDocument();
-    for (const item of whatItIncludes) {
-      expect(getByText(item)).toBeInTheDocument();
-    }
-    for (const extra of content.additionalFaqs ?? []) {
-      expect(() => getByText(extra.question)).toThrow();
-    }
-  });
 });
 
 describe("Employment Law children (Batch 6C1) — related-service integrity", () => {

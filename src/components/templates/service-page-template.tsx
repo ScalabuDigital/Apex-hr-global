@@ -14,6 +14,7 @@ import { SlideInRight } from "@/components/motion/slide-in";
 import { StaggerContainer, StaggerItem } from "@/components/motion/stagger";
 import { serviceCategoryIcons } from "@/lib/service-category-icons";
 import { routes } from "@/config/routes";
+import { serviceInternationalNotes } from "@/content/service-international-data";
 import type { RouteRecord } from "@/types/route";
 import type { ServiceContent } from "@/content/services-data";
 import { getService, getServiceCategory } from "@/config/services";
@@ -77,7 +78,7 @@ export function ServicePageTemplate({ title, breadcrumbTrail, service, showForEm
     .filter((entry): entry is NonNullable<typeof entry> => Boolean(entry));
   // Only the curated, demand-justified service-location combinations for
   // this specific service (src/config/service-locations.ts) — never a
-  // generated list of every UK location, per CLAUDE.md section 9's
+  // generated list of every country, per CLAUDE.md section 9's
   // doorway-page restriction.
   const availableLocations = serviceLocationCombos
     .filter((combo) => combo.serviceSlug === service.slug)
@@ -91,6 +92,7 @@ export function ServicePageTemplate({ title, breadcrumbTrail, service, showForEm
   // on ServiceContent.additionalFaqs. Combined only here, for the
   // canonical page's own visible FAQ section and schema.
   const allFaqs = [...service.faqs, ...(service.additionalFaqs ?? [])];
+  const internationalNote = serviceInternationalNotes[service.slug];
   // Closest case study (CLAUDE.md section 12 item 11), driven by the case
   // study's own serviceSlugs relationship — never pasted per page.
   const closestCaseStudy = getCaseStudiesForService(service.slug)[0];
@@ -102,7 +104,7 @@ export function ServicePageTemplate({ title, breadcrumbTrail, service, showForEm
               <Breadcrumbs trail={breadcrumbTrail} tone="dark" />
               <RevealHeading>
                 <SectionKicker tone="dark">{service.primaryKeyword}</SectionKicker>
-                <h1 className="mt-4 max-w-xl font-display text-display font-bold text-white">{title} Firm in the UK</h1>
+                <h1 className="mt-4 max-w-xl font-display text-display font-bold text-white">Global {title} Firm</h1>
               </RevealHeading>
               <FadeUp delay={0.15} className="flex flex-col gap-6">
                 <p className="max-w-lg text-lead text-white/70">{service.heroSummary}</p>
@@ -342,8 +344,11 @@ export function ServicePageTemplate({ title, breadcrumbTrail, service, showForEm
               </div>
               <div className="mt-10">
                 <h3 className="font-display text-h4 font-bold text-navy">
-                  {availableLocations.length > 0 ? `${title} in these UK locations` : "UK-wide coverage"}
+                  {`Delivering ${title.toLowerCase()} internationally`}
                 </h3>
+                {internationalNote && (
+                  <p className="mt-4 max-w-2xl text-body text-text-secondary">{internationalNote}</p>
+                )}
                 {availableLocations.length > 0 ? (
                   <StaggerContainer>
                     <ul className="mt-4 flex flex-wrap gap-2">
@@ -360,15 +365,16 @@ export function ServicePageTemplate({ title, breadcrumbTrail, service, showForEm
                     </ul>
                   </StaggerContainer>
                 ) : (
-                  <p className="mt-4 max-w-md text-body text-text-secondary">
-                    {`${title} is available to employers across the UK, delivered remotely and, where useful, on-site.`}
+                  <p className="mt-4 max-w-2xl text-small text-text-secondary">
+                    Available to employers across Africa, North America, Europe and the Middle East, delivered
+                    remotely and, where useful, on-site.
                   </p>
                 )}
                 <Link
                   href={routes.locations.path}
                   className="mt-4 inline-flex w-fit items-center gap-2 text-caption font-bold uppercase tracking-widest text-gold-ink underline-offset-4 hover:underline"
                 >
-                  View all UK locations Apex HR supports
+                  View all countries Apex HR supports
                 </Link>
               </div>
             </section>

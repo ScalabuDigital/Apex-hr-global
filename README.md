@@ -1,6 +1,9 @@
-# Apex HR Website
+# Apex HR Website (Global — www.apexhrllc.com)
 
-Employer-first HR, recruitment and people-consulting platform for Apex HR.
+Employer-first HR, recruitment and people-consulting platform for Apex HR,
+for employers across Africa, North America, Europe and the Middle East.
+This is a standalone website, separate from the UK site — read
+[docs/GLOBAL-SITE.md](./docs/GLOBAL-SITE.md) first for how it is set up.
 See [CLAUDE.md](./CLAUDE.md) for the full operating brief and
 [DESIGN.md](./DESIGN.md) for the design system this build implements.
 

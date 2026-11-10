@@ -1,5 +1,6 @@
 import { getService, type ServiceItem } from "@/config/services";
 import { locationContent } from "@/content/locations-data";
+import { comboSlug } from "@/config/locations";
 
 /**
  * Curated service+location and category+location combination pages, per
@@ -49,7 +50,7 @@ export type LocationCombo = ServiceLocationCombo | CategoryLocationCombo;
 export const serviceLocationCombos: ServiceLocationCombo[] = locationContent.flatMap((location) =>
   location.relatedServiceSlugs.map((serviceSlug) => ({
     type: "service" as const,
-    slug: `${serviceSlug}-${location.slug}`,
+    slug: comboSlug(serviceSlug, location.slug),
     serviceSlug,
     locationSlug: location.slug,
   })),
@@ -70,7 +71,7 @@ export const categoryLocationCombos: CategoryLocationCombo[] = (() => {
       if (count < 2) continue;
       combos.push({
         type: "category",
-        slug: `${categorySlug}-${location.slug}`,
+        slug: comboSlug(categorySlug, location.slug),
         categorySlug,
         locationSlug: location.slug,
       });

@@ -21,12 +21,12 @@ import { routes } from "@/config/routes";
  * the absence of banned guaranteed-result wording.
  */
 
-const APPROVED_THREE = ["salary-benchmarking-firm-in-the-uk", "job-evaluation-and-pay-structures-firm-in-the-uk", "reward-strategy-firm-in-the-uk"];
+const APPROVED_THREE = ["salary-benchmarking-firm", "job-evaluation-and-pay-structures-firm", "reward-strategy-firm"];
 
 const APPROVED_INTENTS: Record<string, string> = {
-  "salary-benchmarking-firm-in-the-uk": "Comparing roles and pay against relevant external market data",
-  "job-evaluation-and-pay-structures-firm-in-the-uk": "Assessing role value and developing consistent job grades, pay bands or structures",
-  "reward-strategy-firm-in-the-uk": "Developing an organisation-wide approach to pay, recognition, incentives and benefits",
+  "salary-benchmarking-firm": "Comparing roles and pay against relevant external market data",
+  "job-evaluation-and-pay-structures-firm": "Assessing role value and developing consistent job grades, pay bands or structures",
+  "reward-strategy-firm": "Developing an organisation-wide approach to pay, recognition, incentives and benefits",
 };
 
 const NOINDEX_HUB_PATHS = ["/insights/", "/resources/", "/case-study/"];
@@ -38,9 +38,9 @@ function buildBreadcrumbTrail(serviceTitle: string, serviceSlug: string) {
   return [
     routes.services,
     {
-      id: "compensation-reward-and-benefits-firm-in-the-uk",
+      id: "compensation-reward-and-benefits-firm",
       label: "Compensation, Reward & Benefits",
-      path: "/services/compensation-reward-and-benefits-firm-in-the-uk/",
+      path: "/services/compensation-reward-and-benefits-firm/",
       status: "confirmed" as const,
       readyToIndex: true,
     },
@@ -50,7 +50,7 @@ function buildBreadcrumbTrail(serviceTitle: string, serviceSlug: string) {
 
 describe("Compensation, Reward & Benefits children (Batch 6E1) — catalogue integrity", () => {
   it("has exactly these three approved services within the six-member family", () => {
-    const family = getServicesByCategory("compensation-reward-and-benefits-firm-in-the-uk");
+    const family = getServicesByCategory("compensation-reward-and-benefits-firm");
     expect(family.length).toBe(6);
     for (const slug of APPROVED_THREE) {
       expect(family.some((s) => s.slug === slug), `${slug} missing from family`).toBe(true);
@@ -128,20 +128,20 @@ describe("Compensation, Reward & Benefits children (Batch 6E1) — catalogue int
   it("marks only Job Evaluation & Pay Structures for legal review among the three", () => {
     for (const slug of APPROVED_THREE) {
       const content = serviceContent.find((c) => c.slug === slug)!;
-      const expected = slug === "job-evaluation-and-pay-structures-firm-in-the-uk";
+      const expected = slug === "job-evaluation-and-pay-structures-firm";
       expect(content.legalReviewRequired, `${slug} legalReviewRequired mismatch`).toBe(expected);
     }
   });
 
   it("Salary Benchmarking is distinguished from Job Evaluation & Pay Structures in both directions", () => {
-    const benchmarking = serviceContent.find((c) => c.slug === "salary-benchmarking-firm-in-the-uk")!;
-    const evaluation = serviceContent.find((c) => c.slug === "job-evaluation-and-pay-structures-firm-in-the-uk")!;
+    const benchmarking = serviceContent.find((c) => c.slug === "salary-benchmarking-firm")!;
+    const evaluation = serviceContent.find((c) => c.slug === "job-evaluation-and-pay-structures-firm")!;
     expect(benchmarking.differentiationNote?.toLowerCase()).toMatch(/job evaluation/);
     expect(evaluation.differentiationNote?.toLowerCase()).toMatch(/salary benchmarking/);
   });
 
   it("Salary Benchmarking excludes proprietary/exhaustive data claims, guaranteed outcomes and 'fair pay' determinations", () => {
-    const content = serviceContent.find((c) => c.slug === "salary-benchmarking-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "salary-benchmarking-firm")!;
     const scope = (content.outOfScope ?? []).join(" ").toLowerCase();
     expect(scope).toMatch(/proprietary or exclusive salary data/);
     expect(scope).toMatch(/real-time or fully exhaustive market coverage/);
@@ -150,7 +150,7 @@ describe("Compensation, Reward & Benefits children (Batch 6E1) — catalogue int
   });
 
   it("Job Evaluation & Pay Structures is distinguished from performance appraisal of individual employees", () => {
-    const content = serviceContent.find((c) => c.slug === "job-evaluation-and-pay-structures-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "job-evaluation-and-pay-structures-firm")!;
     const scope = (content.outOfScope ?? []).join(" ").toLowerCase();
     expect(scope).toMatch(/assessment of an individual employee's personal performance/);
     const allFaqs = [...content.faqs, ...(content.additionalFaqs ?? [])];
@@ -158,7 +158,7 @@ describe("Compensation, Reward & Benefits children (Batch 6E1) — catalogue int
   });
 
   it("Job Evaluation & Pay Structures excludes guaranteed equal pay compliance, legal defensibility, acceptance and dispute elimination", () => {
-    const content = serviceContent.find((c) => c.slug === "job-evaluation-and-pay-structures-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "job-evaluation-and-pay-structures-firm")!;
     const scope = (content.outOfScope ?? []).join(" ").toLowerCase();
     expect(scope).toMatch(/guaranteed equal pay compliance/);
     expect(scope).toMatch(/legal defensibility as a certified or guaranteed outcome/);
@@ -167,7 +167,7 @@ describe("Compensation, Reward & Benefits children (Batch 6E1) — catalogue int
   });
 
   it("Reward Strategy excludes guaranteed retention/engagement/performance, cost savings, tax efficiency and regulated advice", () => {
-    const content = serviceContent.find((c) => c.slug === "reward-strategy-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "reward-strategy-firm")!;
     const scope = (content.outOfScope ?? []).join(" ").toLowerCase();
     expect(scope).toMatch(/guaranteed improvements to retention, engagement or performance/);
     expect(scope).toMatch(/guaranteed cost savings/);
@@ -176,7 +176,7 @@ describe("Compensation, Reward & Benefits children (Batch 6E1) — catalogue int
   });
 
   it("Reward Strategy is distinguished from Employee Benefits Consulting and Executive Compensation & Share Schemes", () => {
-    const content = serviceContent.find((c) => c.slug === "reward-strategy-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "reward-strategy-firm")!;
     const note = content.differentiationNote?.toLowerCase() ?? "";
     expect(note).toMatch(/employee benefits consulting/);
     expect(note).toMatch(/executive compensation & share schemes/);
@@ -209,7 +209,7 @@ describe("Compensation, Reward & Benefits children (Batch 6E1) — rendered cont
           />,
         );
         const links = getAllByRole("link").map((el) => el.getAttribute("href")?.replace(/\/$/, ""));
-        expect(links).toContain("/services/compensation-reward-and-benefits-firm-in-the-uk");
+        expect(links).toContain("/services/compensation-reward-and-benefits-firm");
         expect(links).toContain("/for-employers");
       });
 
@@ -290,49 +290,38 @@ describe("Preliminary metadata corrections (Batch 6E1)", () => {
     // (no "sponsoring visas" claim, the specific UK route named, a
     // qualified immigration adviser referenced) are re-checked here
     // against the current wording rather than the retired phrasing.
-    const content = serviceContent.find((c) => c.slug === "skilled-worker-sponsorship-hr-support-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "skilled-worker-sponsorship-hr-support-firm")!;
     expect(content.metaDescription).not.toMatch(/sponsoring skilled worker visas/i);
-    expect(content.metaDescription).toMatch(/UK Skilled Worker route/);
+    // Global site: the meta now covers every market, not only the UK route.
+    expect(content.metaDescription).toMatch(/sponsored international hires/);
     expect(content.metaDescription).toMatch(/qualified immigration advisers/i);
   });
 
   it("Employment Tribunal HR Support no longer presumes legal representation has already been appointed", () => {
-    const content = serviceContent.find((c) => c.slug === "employment-tribunal-hr-support-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "employment-tribunal-hr-support-firm")!;
     expect(content.metaDescription).not.toMatch(/working alongside legal representation/i);
     expect(content.metaDescription).toMatch(/appointed legal advisers where applicable/i);
   });
 
   it("Change Management no longer claims an unverifiable comparative 'less disruption' outcome in metadata or hero copy", () => {
-    const content = serviceContent.find((c) => c.slug === "change-management-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "change-management-firm")!;
     expect(content.metaDescription).not.toMatch(/less disruption/i);
     expect(content.heroSummary).not.toMatch(/less disruption/i);
     expect(content.metaDescription).toMatch(/communication, engagement and adoption planning/i);
   });
 
-  it("Change Management has zero service-location combinations, so the metadata/hero fix cannot affect any location page", () => {
-    const combos = serviceLocationCombos.filter((c) => c.serviceSlug === "change-management-firm-in-the-uk");
-    expect(combos).toEqual([]);
-  });
 });
 
 describe("Salary Benchmarking — location-page regression protection", () => {
-  const content = serviceContent.find((c) => c.slug === "salary-benchmarking-firm-in-the-uk")!;
-
-  it("has live service-location combinations (confirming the shared-field protection was necessary)", () => {
-    const combos = serviceLocationCombos.filter((c) => c.serviceSlug === "salary-benchmarking-firm-in-the-uk");
-    expect(combos.length).toBeGreaterThan(0);
-    expect(combos.map((c) => c.locationSlug).sort()).toEqual(
-      ["bristol", "edinburgh", "leeds", "london", "newcastle", "oxford", "yorkshire"].sort(),
-    );
-  });
+  const content = serviceContent.find((c) => c.slug === "salary-benchmarking-firm")!;
 
   it("is not part of any retained category-location page (Compensation, Reward & Benefits has no such combo)", () => {
     const categorySlugs = categoryLocationCombos.map((c) => c.categorySlug);
-    expect(categorySlugs).not.toContain("compensation-reward-and-benefits-firm-in-the-uk");
+    expect(categorySlugs).not.toContain("compensation-reward-and-benefits-firm");
   });
 
   it("every Salary Benchmarking service-location page still renders the untouched shared heroSummary, whatItIncludes and first FAQ", () => {
-    const combos = serviceLocationCombos.filter((c) => c.serviceSlug === "salary-benchmarking-firm-in-the-uk");
+    const combos = serviceLocationCombos.filter((c) => c.serviceSlug === "salary-benchmarking-firm");
     for (const combo of combos) {
       const location = getLocation(combo.locationSlug);
       const locationInfo = locationContent.find((l) => l.slug === combo.locationSlug);
@@ -342,7 +331,7 @@ describe("Salary Benchmarking — location-page regression protection", () => {
         <ServiceLocationTemplate
           breadcrumbTrail={[]}
           entityTitle="Salary Benchmarking"
-          entityHref="/services/salary-benchmarking-firm-in-the-uk/"
+          entityHref="/services/salary-benchmarking-firm/"
           entitySummary={content.heroSummary}
           bulletListTitle="What this includes"
           bulletList={content.whatItIncludes}
@@ -370,7 +359,7 @@ describe("Salary Benchmarking — location-page regression protection", () => {
   });
 
   it("every Salary Benchmarking combo's meta description is the corrected base description plus a unique location clause", () => {
-    const combos = serviceLocationCombos.filter((c) => c.serviceSlug === "salary-benchmarking-firm-in-the-uk");
+    const combos = serviceLocationCombos.filter((c) => c.serviceSlug === "salary-benchmarking-firm");
     const descriptions = new Set<string>();
     for (const combo of combos) {
       const location = getLocation(combo.locationSlug);

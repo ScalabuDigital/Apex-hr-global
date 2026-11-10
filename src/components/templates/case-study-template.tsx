@@ -252,7 +252,7 @@ export function CaseStudyTemplate({ breadcrumbTrail, caseStudy, indexable }: Cas
           </RevealHeading>
           <FadeUp delay={0.15}>
             <p className="mt-4 max-w-(--container-reading) text-small text-text-secondary">
-              Industry figures quoted on this page come from the third-party sources below. They describe the wider UK market, not Apex HR client results.
+              Industry figures quoted on this page come from the third-party sources below. They describe the wider market, not Apex HR client results.
             </p>
             <ul className="mt-6 flex flex-col gap-3">
               {caseStudy.sources.map((source) => (

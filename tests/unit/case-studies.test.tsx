@@ -91,7 +91,10 @@ describe("case-study records", () => {
     ]);
     expect(cs.results.measures.length).toBeGreaterThan(0);
     expect(cs.takeaways.length).toBeGreaterThan(0);
-    expect(cs.sources.length).toBeGreaterThan(0);
+    // Global site: UK-only sources (GOV.UK, Acas, CIPD UK) were removed when
+    // each scenario moved to one of the global site's markets; no scenario
+    // may cite UK-only material.
+    expect(JSON.stringify(cs)).not.toMatch(/gov\.uk|acas\.org|cipd\.org\/uk|\bUK\b/);
   });
 
   it.each(caseStudyContent.map((cs) => [cs.slug, cs]))("%s only links to real internal pages and approved official sources", (_slug, cs) => {

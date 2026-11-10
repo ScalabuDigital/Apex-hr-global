@@ -2,12 +2,9 @@ import { describe, expect, it } from "vitest";
 import { render } from "@testing-library/react";
 import { getService, getServiceCategory, getServicesByCategory, services, serviceCategories } from "@/config/services";
 import { serviceCategoryContent, serviceContent } from "@/content/services-data";
-import { talentRoleContent } from "@/content/talent-roles-data";
-import { talentRoleEnhancements } from "@/content/talent-roles-enhancements";
 import { extractInlineLinks, stripInlineLinks } from "@/components/content/inline-link-text";
 import { ServiceCategoryTemplate } from "@/components/templates/service-category-template";
 import { ServicePageTemplate } from "@/components/templates/service-page-template";
-import { TalentRoleTemplate } from "@/components/templates/talent-role-template";
 import { routes } from "@/config/routes";
 import type { ContentGuide } from "@/types/content";
 
@@ -16,13 +13,13 @@ import type { ContentGuide } from "@/types/content";
  * (docs/seo/talent-acquisition-research.md).
  */
 
-const PILLAR = "recruitment-and-talent-acquisition-firm-in-the-uk";
+const PILLAR = "recruitment-and-talent-acquisition-firm";
 const CHILDREN = [
-  "permanent-recruitment-firm-in-the-uk",
-  "executive-search-firm-in-the-uk",
-  "contract-staffing-firm-in-the-uk",
-  "recruitment-process-outsourcing-rpo-firm-in-the-uk",
-  "graduate-schemes-and-early-careers-design-firm-in-the-uk",
+  "permanent-recruitment-firm",
+  "executive-search-firm",
+  "contract-staffing-firm",
+  "recruitment-process-outsourcing-rpo-firm",
+  "graduate-schemes-and-early-careers-design-firm",
 ];
 
 /** Insight articles verified live (HTTP 200, self-canonical) on 9 November 2026. */
@@ -75,17 +72,14 @@ function isKnownInternalPath(href: string): boolean {
   if (serviceMatch) {
     return Boolean(getService(serviceMatch[1]) ?? getServiceCategory(serviceMatch[1]));
   }
-  const roleMatch = href.match(/^\/talent-acquisition\/([^/]+)\/$/);
-  if (roleMatch) return talentRoleContent.some((role) => role.slug === roleMatch[1]);
   return VERIFIED_INSIGHT_PATHS.has(href);
 }
 
 describe("Talent acquisition cluster — content coverage", () => {
-  it("gives the pillar a lifecycle, guide, role directory, insights and a proper meta description", () => {
+  it("gives the pillar a lifecycle, guide, insights and a proper meta description", () => {
     expect(pillar.lifecycle?.length).toBeGreaterThanOrEqual(6);
     expect(pillar.lifecycleHeading).toBe("How does the talent acquisition process work?");
     expect(pillar.guide?.sections.length).toBeGreaterThanOrEqual(4);
-    expect(pillar.showRoleDirectory).toBe(true);
     expect(pillar.relatedInsights?.length).toBeGreaterThan(0);
     expect(pillar.metaDescription!.length).toBeGreaterThanOrEqual(120);
     expect(pillar.metaDescription!.length).toBeLessThanOrEqual(160);
@@ -169,7 +163,7 @@ describe("Talent acquisition cluster — internal linking", () => {
 });
 
 describe("Talent acquisition cluster — rendered pages", () => {
-  it("renders the pillar's process, guide and a crawlable link to all 62 role pages with one H1", () => {
+  it("renders the pillar's process and guide with one H1, with no role-page links", () => {
     const category = getServiceCategory(PILLAR)!;
     const { container } = render(
       <ServiceCategoryTemplate
@@ -184,7 +178,7 @@ describe("Talent acquisition cluster — rendered pages", () => {
     expect(h2s).toContain("How does the talent acquisition process work?");
     expect(h2s).toContain(pillar.guide!.heading);
     const hrefs = hrefsOf(container);
-    for (const role of talentRoleContent) expect(hrefs).toContain(noSlash(`/talent-acquisition/${role.slug}/`));
+    expect(hrefs.some((href) => href.startsWith("/talent-acquisition/"))).toBe(false);
     for (const slug of CHILDREN) expect(hrefs).toContain(noSlash(`/services/${slug}/`));
     // Inline-link markup must never leak into the rendered text.
     expect(container.textContent).not.toMatch(/\]\(/);
@@ -195,7 +189,6 @@ describe("Talent acquisition cluster — rendered pages", () => {
       const content = serviceCategoryContent.find((c) => c.slug === category.slug)!;
       expect(content.lifecycle, category.slug).toBeUndefined();
       expect(content.guide, category.slug).toBeUndefined();
-      expect(content.showRoleDirectory, category.slug).toBeUndefined();
     }
   });
 
@@ -220,50 +213,5 @@ describe("Talent acquisition cluster — rendered pages", () => {
   it("only adds guides to the recruitment children, leaving other services unchanged", () => {
     const withGuides = services.filter((s) => serviceContent.find((c) => c.slug === s.slug)?.guide).map((s) => s.slug);
     expect(withGuides.sort()).toEqual([...CHILDREN].sort());
-  });
-});
-
-describe("Talent acquisition role pages", () => {
-  it("has an enhancement for every one of the 62 roles and no orphan enhancements", () => {
-    expect(Object.keys(talentRoleEnhancements).sort()).toEqual(talentRoleContent.map((r) => r.slug).sort());
-  });
-
-  it("gives every role a unique SEO title and a 110–160 character meta description", () => {
-    expect(new Set(talentRoleContent.map((r) => r.seoTitle)).size).toBe(62);
-    for (const role of talentRoleContent) {
-      expect(role.seoTitle, role.slug).toBeTruthy();
-      expect(`${role.seoTitle} | Apex HR`.length, role.slug).toBeLessThanOrEqual(65);
-      expect(role.metaDescription.length, role.slug).toBeGreaterThanOrEqual(110);
-      expect(role.metaDescription.length, role.slug).toBeLessThanOrEqual(160);
-      expect(role.metaDescription, role.slug).not.toMatch(LEADING_CLAIM);
-    }
-  });
-
-  it("gives every role three challenges and role-specific FAQs with no question repeated across roles", () => {
-    const specificQuestions: string[] = [];
-    for (const role of talentRoleContent) {
-      expect(role.hiringChallenges.length, role.slug).toBeGreaterThanOrEqual(3);
-      expect(role.faqs.length, role.slug).toBeGreaterThanOrEqual(3);
-      specificQuestions.push(...role.faqs.filter((f) => f.id !== "availability").map((f) => f.question));
-    }
-    expect(new Set(specificQuestions).size).toBe(specificQuestions.length);
-  });
-
-  it("keeps the availability disclaimer FAQ last on every role", () => {
-    for (const role of talentRoleContent) expect(role.faqs.at(-1)?.id, role.slug).toBe("availability");
-  });
-
-  it("renders a link to the pillar and to related roles in the same family", () => {
-    const role = talentRoleContent.find((r) => r.slug === "it-operations-technicians")!;
-    const { container } = render(<TalentRoleTemplate breadcrumbTrail={[]} role={role} />);
-    const hrefs = hrefsOf(container);
-    expect(hrefs).toContain(noSlash(`/services/${PILLAR}/`));
-    const siblings = talentRoleContent.filter((r) => r.roleFamily === role.roleFamily && r.slug !== role.slug);
-    expect(hrefs).toContain(noSlash(`/talent-acquisition/${siblings[0].slug}/`));
-    expect(hrefs).not.toContain(noSlash(`/talent-acquisition/${role.slug}/`));
-    expect(container.querySelectorAll("h1")).toHaveLength(1);
-    // Acronyms survive mid-sentence casing.
-    expect(container.textContent).toMatch(/supports IT operations technicians hiring/);
-    expect([...container.querySelectorAll("h3")].map((h) => h.textContent)).toContain("Related IT & data roles");
   });
 });

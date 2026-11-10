@@ -36,10 +36,10 @@ export interface HeroContent {
 
 // TODO: Replace with stakeholder-approved CMS content once copy is signed off.
 export const hero: HeroContent = {
-  kicker: "HR Company in the UK",
+  kicker: "Global HR & Recruitment Company",
   heading: "A people partner built for growing employers",
   description:
-    "Apex HR helps UK employers hire, manage and develop people with confidence, from outsourced HR support to executive search and strategic workforce advisory.",
+    "Apex HR helps employers across Africa, North America, Europe and the Middle East hire, manage and develop people with confidence, from outsourced HR support to executive search and strategic workforce advisory.",
   primaryCta: { label: "Find Talent", href: routes.findTalent.path, analyticsId: "hero-find-talent" },
   secondaryCta: { label: "Meet Apex HR", href: routes.about.path, analyticsId: "hero-meet-apex" },
   candidateLink: { label: "Job Board", href: routes.jobs.path, analyticsId: "hero-job-board" },
@@ -49,7 +49,7 @@ export const hero: HeroContent = {
 // trust-indicator row — not claims of scale, awards or specific results, so
 // no verification gate applies (contrast `trust.stats` below, which are
 // explicit placeholder statistics).
-export const heroTrustIndicators: string[] = ["UK-wide support", "Practical HR expertise", "Built around your business"];
+export const heroTrustIndicators: string[] = ["International support", "Practical HR expertise", "Built around your business"];
 
 // --- Hero media: workplace facts -------------------------------------------
 
@@ -279,7 +279,7 @@ export const employerProblems: EmployerProblem[] = [
     detail:
       "Keep policies, contracts and people processes current, consistent and legally sound, before small gaps become costly risks.",
     serviceLabel: "HR Compliance Audit",
-    href: "/services/hr-compliance-audit-firm-in-the-uk/",
+    href: "/services/hr-compliance-audit-firm/",
   },
   {
     id: "slow-hiring",
@@ -289,7 +289,7 @@ export const employerProblems: EmployerProblem[] = [
     detail:
       "Reduce long vacancies and avoid poor-fit hires with a focused recruitment process built around the role and your organisation.",
     serviceLabel: "Permanent Recruitment",
-    href: "/services/permanent-recruitment-firm-in-the-uk/",
+    href: "/services/permanent-recruitment-firm/",
   },
   {
     id: "unclear-reward",
@@ -299,7 +299,7 @@ export const employerProblems: EmployerProblem[] = [
     detail:
       "Bring consistency to pay decisions with robust market benchmarking, clear salary bands and an approach employees can trust.",
     serviceLabel: "Salary Benchmarking",
-    href: "/services/salary-benchmarking-firm-in-the-uk/",
+    href: "/services/salary-benchmarking-firm/",
   },
   {
     id: "leadership-gaps",
@@ -309,7 +309,7 @@ export const employerProblems: EmployerProblem[] = [
     detail:
       "Develop confident people leaders who can communicate clearly, manage performance and bring out the best in their teams.",
     serviceLabel: "Leadership & Management Training",
-    href: "/services/leadership-and-management-training-firm-in-the-uk/",
+    href: "/services/leadership-and-management-training-firm/",
   },
 ];
 
@@ -329,32 +329,32 @@ export interface FeaturedServiceGroup {
 // (CLAUDE.md section 31) — original, non-quantified capability summaries for
 // each Confirmed service category; no claims, figures or outcomes asserted.
 const featuredServiceCategories: Record<string, { description: string; imageSrc: string }> = {
-  "outsourced-hr-services-firm-in-the-uk": {
+  "outsourced-hr-services-firm": {
     description:
       "Ongoing HR support from an embedded partner who knows your business, covering everything from day-to-day people queries to full HR management.",
     imageSrc: "/images/outsourced-hr-services.png",
   },
-  "recruitment-and-talent-acquisition-firm-in-the-uk": {
+  "recruitment-and-talent-acquisition-firm": {
     description:
       "Permanent, contract and executive hiring delivered by recruiters who understand HR as well as talent, so you find the right people without compromising on fit.",
     imageSrc: "/images/recruitment-talent-acquisition.png",
   },
-  "employment-law-and-employee-relations-firm-in-the-uk": {
+  "employment-law-and-employee-relations-firm": {
     description:
       "Practical, informed support through redundancies, investigations, disputes and tribunal processes, so sensitive situations are handled with confidence.",
     imageSrc: "/images/employment-law-and-employee-relations.png",
   },
-  "compensation-reward-and-benefits-firm-in-the-uk": {
+  "compensation-reward-and-benefits-firm": {
     description:
       "Salary benchmarking, pay structures and reward strategy that keep your offer competitive and fair, helping you attract and retain the people you need.",
     imageSrc: "/images/compensation-reward-and-benefits.png",
   },
-  "learning-and-leadership-development-firm-in-the-uk": {
+  "learning-and-leadership-development-firm": {
     description:
       "Leadership training, coaching and capability programmes built around your people's real challenges, developing managers who get the best from their teams.",
     imageSrc: "/images/learning-and-leadership-development.png",
   },
-  "strategic-hr-and-workforce-advisory-firm-in-the-uk": {
+  "strategic-hr-and-workforce-advisory-firm": {
     description:
       "People strategy and workforce planning that align your HR function with where the business is heading, so you can plan ahead with confidence.",
     imageSrc: "/images/strategic-hr-and-workforce-advisory.png",
@@ -393,10 +393,10 @@ export const recruitmentSpotlight: RecruitmentSpotlightContent = {
     "From single permanent hires to executive search and full RPO, Apex HR combines recruitment delivery with HR expertise.",
   cta: { label: "Find Talent", href: routes.findTalent.path, analyticsId: "recruitment-spotlight-find-talent" },
   features: [
-    { title: "Permanent Recruitment", href: "/services/permanent-recruitment-firm-in-the-uk/" },
-    { title: "Executive Search", href: "/services/executive-search-firm-in-the-uk/" },
-    { title: "Contract Staffing", href: "/services/contract-staffing-firm-in-the-uk/" },
-    { title: "Recruitment Process Outsourcing (RPO)", href: "/services/recruitment-process-outsourcing-rpo-firm-in-the-uk/" },
+    { title: "Permanent Recruitment", href: "/services/permanent-recruitment-firm/" },
+    { title: "Executive Search", href: "/services/executive-search-firm/" },
+    { title: "Contract Staffing", href: "/services/contract-staffing-firm/" },
+    { title: "Recruitment Process Outsourcing (RPO)", href: "/services/recruitment-process-outsourcing-rpo-firm/" },
   ],
 };
 
@@ -430,7 +430,7 @@ export const valuePropositions: ValueProposition[] = [
   {
     id: "compliance-first",
     title: "Compliance built in, not bolted on",
-    detail: "Policies and processes designed to keep pace with UK employment law, not a one-off audit.",
+    detail: "Policies and processes built to keep pace with local employment rules in each country you operate in, working alongside in-country legal counsel where needed.",
   },
   {
     id: "sector-aware",
@@ -438,9 +438,9 @@ export const valuePropositions: ValueProposition[] = [
     detail: "Support shaped around your sector's real hiring and people challenges, not a generic playbook.",
   },
   {
-    id: "uk-focused",
-    title: "Built for UK employers",
-    detail: "Apex HR's primary market is the UK, with international capability considered case by case.",
+    id: "global-reach",
+    title: "Built for international employers",
+    detail: "One partner for teams across Africa, North America, Europe and the Middle East, with consistent standards in every market.",
   },
 ];
 
@@ -460,14 +460,14 @@ export interface FeaturedSector {
 // Chosen to match the sectors with an approved photo (see
 // featuredSectorImages below); swap in other sectors as more photos land.
 const featuredSectorSlugs = [
-  "hr-company-for-startups-and-scale-ups-in-the-uk",
-  "hr-company-for-professional-services-in-the-uk",
-  "hr-company-for-healthcare-in-the-uk",
-  "hr-company-for-it-in-the-uk",
-  "hr-company-for-construction-in-the-uk",
-  "hr-company-for-distribution-in-the-uk",
-  "hr-company-for-manufacturers-in-the-uk",
-  "hr-company-for-hospitality-in-the-uk",
+  "hr-company-for-startups-and-scale-ups",
+  "hr-company-for-professional-services",
+  "hr-company-for-healthcare",
+  "hr-company-for-it",
+  "hr-company-for-construction",
+  "hr-company-for-distribution",
+  "hr-company-for-manufacturers",
+  "hr-company-for-hospitality",
 ];
 
 export const featuredSectors: FeaturedSector[] = sectors
@@ -602,9 +602,9 @@ export const employerFaqs: FaqItem[] = [
   },
   {
     id: "international",
-    question: "Do you work with businesses outside the UK?",
+    question: "Which countries do you work in?",
     answer:
-      "Apex HR's primary market is the UK. International capability is considered case by case where it can be properly supported.",
+      "Apex HR supports employers across Africa (including Nigeria, Kenya, South Africa and Ghana), North America (the United States and Canada), Europe and the Middle East (including the UAE, Saudi Arabia and Qatar).",
   },
   {
     id: "find-talent-process",

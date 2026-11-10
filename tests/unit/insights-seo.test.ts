@@ -31,7 +31,7 @@ let unsetDomain: { siteConfig: typeof import("@/config/site").siteConfig; metada
 
 beforeAll(async () => {
   vi.resetModules();
-  vi.stubEnv("NEXT_PUBLIC_SITE_URL", "https://www.apexhrllc.co.uk");
+  vi.stubEnv("NEXT_PUBLIC_SITE_URL", "https://www.apexhrllc.com");
   vi.stubEnv("WORDPRESS_API_URL", "");
   const configured = await Promise.all([import("@/config/site"), import("@/app/insights/page")]);
   configuredDomain = { siteConfig: configured[0].siteConfig, metadata: configured[1].metadata };
@@ -53,10 +53,10 @@ describe("Insights archive — SEO metadata", () => {
     expect(routes.insights.readyToIndex).toBe(true);
   });
 
-  it("with NEXT_PUBLIC_SITE_URL set to the confirmed production domain, the canonical is www.apexhrllc.co.uk/insights/, never apexhrllc.com", () => {
+  it("with NEXT_PUBLIC_SITE_URL set to the confirmed production domain, the canonical is www.apexhrllc.com/insights/, never the UK site", () => {
     const canonical = String(configuredDomain.metadata.alternates?.canonical ?? "");
-    expect(canonical).toBe("https://www.apexhrllc.co.uk/insights/");
-    expect(canonical).not.toContain("apexhrllc.com");
+    expect(canonical).toBe("https://www.apexhrllc.com/insights/");
+    expect(canonical).not.toContain("apexhrllc.co.uk");
   });
 
   it("is indexable (index: true, follow: true) rather than noindex, regardless of domain configuration", () => {
@@ -64,15 +64,15 @@ describe("Insights archive — SEO metadata", () => {
   });
 
   it("Open Graph url matches the same NEXT_PUBLIC_SITE_URL-driven canonical host", () => {
-    expect(String(configuredDomain.metadata.openGraph?.url ?? "")).toBe("https://www.apexhrllc.co.uk/insights/");
+    expect(String(configuredDomain.metadata.openGraph?.url ?? "")).toBe("https://www.apexhrllc.com/insights/");
   });
 
   it("siteConfig.productionUrl is driven by NEXT_PUBLIC_SITE_URL, not a value hard-coded independently of it", () => {
-    expect(configuredDomain.siteConfig.productionUrl).toBe("https://www.apexhrllc.co.uk");
+    expect(configuredDomain.siteConfig.productionUrl).toBe("https://www.apexhrllc.com");
   });
 
-  it("falls back to the confirmed production domain (never the old apexhrllc.com) when NEXT_PUBLIC_SITE_URL is genuinely unset — not a silently broken empty host", () => {
-    expect(unsetDomain.siteConfig.productionUrl).toBe("https://www.apexhrllc.co.uk");
-    expect(String(unsetDomain.metadata.alternates?.canonical ?? "")).toBe("https://www.apexhrllc.co.uk/insights/");
+  it("falls back to the confirmed production domain (the global www.apexhrllc.com) when NEXT_PUBLIC_SITE_URL is genuinely unset — not a silently broken empty host", () => {
+    expect(unsetDomain.siteConfig.productionUrl).toBe("https://www.apexhrllc.com");
+    expect(String(unsetDomain.metadata.alternates?.canonical ?? "")).toBe("https://www.apexhrllc.com/insights/");
   });
 });

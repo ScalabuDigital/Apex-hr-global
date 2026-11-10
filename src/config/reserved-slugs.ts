@@ -1,4 +1,5 @@
 import { routes } from "@/config/routes";
+import { locations } from "@/config/locations";
 
 /**
  * Central guard protecting every existing Apex HR route from being shadowed
@@ -18,7 +19,6 @@ import { routes } from "@/config/routes";
  * docs/URL-DECISION-REGISTER.md for the recorded decision.
  */
 const EXPLICIT_RESERVED_SEGMENTS = [
-  "talent-acquisition",
   "api",
   "privacy-policy",
   "terms",
@@ -38,6 +38,8 @@ export const reservedSlugs: ReadonlySet<string> = new Set(
       .map((route) => firstPathSegment(route.path))
       .filter((segment): segment is string => segment !== null),
     ...EXPLICIT_RESERVED_SEGMENTS,
+    // Global site: country hubs (`/ng/`, `/us/`, …) — src/config/locations.ts.
+    ...locations.map((location) => location.countryCode),
   ].map((segment) => segment.toLowerCase()),
 );
 

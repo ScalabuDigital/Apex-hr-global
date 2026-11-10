@@ -95,7 +95,7 @@ export const privacyPolicySections: PolicySection[] = [
         "subscribe to our marketing communications or insights; or",
         "otherwise interact with Apex HR.",
       ]),
-      { type: "contact", lines: [{ label: "Our website is", value: "https://www.apexhrllc.co.uk", href: "/" }] },
+      { type: "contact", lines: [{ label: "Our website is", value: "https://www.apexhrllc.com", href: "/" }] },
       p(
         'This policy has been prepared with regard to the principles of the UK General Data Protection Regulation ("UK GDPR"), the Data Protection Act 2018 and applicable UK privacy and electronic communications requirements.',
       ),
@@ -113,7 +113,7 @@ export const privacyPolicySections: PolicySection[] = [
         type: "contact",
         lines: [
           { label: "Email", value: siteConfig.contactEmail, href: `mailto:${siteConfig.contactEmail}` },
-          { label: "Website", value: "https://www.apexhrllc.co.uk", href: "/" },
+          { label: "Website", value: "https://www.apexhrllc.com", href: "/" },
         ],
       },
     ],
@@ -561,7 +561,7 @@ export const privacyPolicySections: PolicySection[] = [
         lines: [
           { label: "", value: "Apex HR" },
           { label: "Email", value: siteConfig.contactEmail, href: `mailto:${siteConfig.contactEmail}` },
-          { label: "Website", value: "https://www.apexhrllc.co.uk", href: "/" },
+          { label: "Website", value: "https://www.apexhrllc.com", href: "/" },
         ],
       },
     ],

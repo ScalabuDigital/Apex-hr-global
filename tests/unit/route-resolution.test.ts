@@ -2,7 +2,6 @@ import { describe, expect, it } from "vitest";
 import { getService, getServiceCategory, services, serviceCategories } from "@/config/services";
 import { getSector, sectors } from "@/config/sectors";
 import { getLocation, locations } from "@/config/locations";
-import { talentRoleContent } from "@/content/talent-roles-data";
 import { serviceContent, serviceCategoryContent } from "@/content/services-data";
 import { sectorContent } from "@/content/sectors-data";
 import { locationContent } from "@/content/locations-data";
@@ -76,11 +75,6 @@ describe("content records — 1:1 coverage with route config", () => {
     expect(contentSlugs).toEqual(configSlugs);
   });
 
-  it("has exactly 62 talent-acquisition role records with unique slugs", () => {
-    expect(talentRoleContent.length).toBe(62);
-    const slugs = new Set(talentRoleContent.map((r) => r.slug));
-    expect(slugs.size).toBe(62);
-  });
 });
 
 describe("content records — cross-reference integrity", () => {
@@ -109,14 +103,4 @@ describe("content records — cross-reference integrity", () => {
     }
   });
 
-  it("has every talent role's relatedServiceSlugs and relatedSectorSlugs pointing to real records", () => {
-    for (const role of talentRoleContent) {
-      for (const serviceSlug of role.relatedServiceSlugs) {
-        expect(getService(serviceSlug), `${role.slug} -> service ${serviceSlug}`).toBeDefined();
-      }
-      for (const sectorSlug of role.relatedSectorSlugs) {
-        expect(getSector(sectorSlug), `${role.slug} -> sector ${sectorSlug}`).toBeDefined();
-      }
-    }
-  });
 });

@@ -4,7 +4,6 @@ import { serviceContent, serviceCategoryContent } from "@/content/services-data"
 import { sectors } from "@/config/sectors";
 import { sectorContent } from "@/content/sectors-data";
 import { locationContent } from "@/content/locations-data";
-import { talentRoleContent } from "@/content/talent-roles-data";
 import { serviceLocationCombos, categoryLocationCombos } from "@/config/service-locations";
 import { redirectRules } from "@/config/redirects";
 import { getSitemapGroups, flattenSitemapGroups } from "@/lib/seo/sitemap-data";
@@ -37,36 +36,46 @@ function slugifyTitle(title: string): string {
   return s;
 }
 
+// Global site: two services were retitled for international use but keep
+// their original slug, so each still pairs 1:1 with its UK site page for
+// hreflang (src/lib/seo/hreflang.ts derives the UK slug from this one).
+const GLOBAL_RETITLED_SLUGS: Record<string, string> = {
+  "TUPE & Business Transfer Advisory": "tupe-advisory-firm",
+  "Work Visa & Sponsorship HR Support": "skilled-worker-sponsorship-hr-support-firm",
+};
+
 function expectedServiceSlug(title: string): string {
-  return `${slugifyTitle(title)}-firm-in-the-uk`;
+  return GLOBAL_RETITLED_SLUGS[title] ?? `${slugifyTitle(title)}-firm`;
 }
 
 function expectedSectorSlug(title: string): string {
-  return `hr-company-for-${slugifyTitle(title)}-in-the-uk`;
+  return `hr-company-for-${slugifyTitle(title)}`;
 }
 
-describe("1. All 58 service/category URLs follow '{title}-firm-in-the-uk'", () => {
-  it("every one of the 10 service family slugs is exactly slugify(title) + '-firm-in-the-uk'", () => {
+describe("1. All 58 service/category URLs follow '{title}-firm'", () => {
+  it("every one of the 10 service family slugs is exactly slugify(title) + '-firm'", () => {
     for (const category of serviceCategories) {
       expect(category.slug, category.title).toBe(expectedServiceSlug(category.title));
     }
   });
 
-  it("every one of the 48 service slugs is exactly slugify(title) + '-firm-in-the-uk'", () => {
+  it("every one of the 48 service slugs is exactly slugify(title) + '-firm'", () => {
     expect(services.length).toBe(48);
     for (const service of services) {
       expect(service.slug, service.title).toBe(expectedServiceSlug(service.title));
     }
   });
 
-  it("preserves the M&A special case: 'M&A People Due Diligence & Post-Merger Integration' -> 'ma-people-due-diligence-and-post-merger-integration-firm-in-the-uk'", () => {
+  it("preserves the M&A special case: 'M&A People Due Diligence & Post-Merger Integration' -> 'ma-people-due-diligence-and-post-merger-integration-firm'", () => {
     const maService = services.find((s) => s.title.startsWith("M&A"));
     expect(maService).toBeDefined();
-    expect(maService!.slug).toBe("ma-people-due-diligence-and-post-merger-integration-firm-in-the-uk");
+    expect(maService!.slug).toBe("ma-people-due-diligence-and-post-merger-integration-firm");
   });
 
   it("represents every other '&' in a title as 'and' in its slug, never deleted", () => {
-    const ampersandServices = [...serviceCategories, ...services].filter((s) => s.title.includes("&") && !s.title.startsWith("M&A"));
+    const ampersandServices = [...serviceCategories, ...services].filter(
+      (s) => s.title.includes("&") && !s.title.startsWith("M&A") && !(s.title in GLOBAL_RETITLED_SLUGS),
+    );
     expect(ampersandServices.length).toBeGreaterThan(0);
     for (const entry of ampersandServices) {
       expect(entry.slug).toContain("-and-");
@@ -89,7 +98,7 @@ describe("2. All 17 sector URLs follow 'hr-company-for-{title}-in-the-uk'", () =
 
   it("represents 'Startups & Scale-ups' with 'and' in its slug", () => {
     const sector = sectors.find((s) => s.title === "Startups & Scale-ups");
-    expect(sector?.slug).toBe("hr-company-for-startups-and-scale-ups-in-the-uk");
+    expect(sector?.slug).toBe("hr-company-for-startups-and-scale-ups");
   });
 
   it("has no punctuation characters in any of the 17 sector slugs", () => {
@@ -158,15 +167,6 @@ describe("4. Every relatedServiceSlugs reference resolves to a real service", ()
     expect(offenders).toEqual([]);
   });
 
-  it("talent-roles-data.ts relatedServiceSlugs all resolve", () => {
-    const offenders: string[] = [];
-    for (const role of talentRoleContent) {
-      for (const slug of role.relatedServiceSlugs) {
-        if (!liveServiceSlugs.has(slug)) offenders.push(`${role.slug} -> ${slug}`);
-      }
-    }
-    expect(offenders).toEqual([]);
-  });
 });
 
 describe("5. Every relatedSectorSlugs reference resolves to a real sector", () => {
@@ -192,35 +192,26 @@ describe("5. Every relatedSectorSlugs reference resolves to a real sector", () =
     expect(offenders).toEqual([]);
   });
 
-  it("talent-roles-data.ts relatedSectorSlugs all resolve", () => {
-    const offenders: string[] = [];
-    for (const role of talentRoleContent) {
-      for (const slug of role.relatedSectorSlugs) {
-        if (!liveSectorSlugs.has(slug)) offenders.push(`${role.slug} -> ${slug}`);
-      }
-    }
-    expect(offenders).toEqual([]);
-  });
 });
 
-describe("6. All 48 service-location pages still exist", () => {
-  it("has exactly 48 service-location combinations, each built from a live renamed service slug", () => {
-    expect(serviceLocationCombos.length).toBe(48);
+describe("6. All 36 service-country pages exist", () => {
+  it("has exactly 36 service-country combinations, each built from a live service slug", () => {
+    expect(serviceLocationCombos.length).toBe(36);
     const liveServiceSlugs = new Set(services.map((s) => s.slug));
     for (const combo of serviceLocationCombos) {
       expect(liveServiceSlugs.has(combo.serviceSlug), `${combo.slug} references unknown service ${combo.serviceSlug}`).toBe(true);
-      expect(combo.slug).toBe(`${combo.serviceSlug}-${combo.locationSlug}`);
-      expect(combo.slug.endsWith("-firm-in-the-uk-" + combo.locationSlug)).toBe(true);
+      expect(combo.slug).toBe(`${combo.serviceSlug}-in-${combo.locationSlug}`);
+      expect(combo.slug.endsWith("-firm-in-" + combo.locationSlug)).toBe(true);
     }
   });
 });
 
-describe("7. Both category-location pages still exist", () => {
-  it("keeps exactly Outsourced HR Services–Worcester and Recruitment & Talent Acquisition–Liverpool", () => {
+describe("7. Both category-country pages exist", () => {
+  it("keeps exactly Outsourced HR Services–Ghana and Organisation Development & Change Management–Germany", () => {
     expect(categoryLocationCombos.length).toBe(2);
     const slugs = categoryLocationCombos.map((c) => c.slug).sort();
     expect(slugs).toEqual(
-      ["outsourced-hr-services-firm-in-the-uk-worcester", "recruitment-and-talent-acquisition-firm-in-the-uk-liverpool"].sort(),
+      ["outsourced-hr-services-firm-in-ghana", "organisation-development-and-change-management-firm-in-germany"].sort(),
     );
   });
 });
@@ -248,13 +239,13 @@ describe("8 & 9. Sitemap contains only new canonical service/sector URLs; old UR
     expect(offenders).toEqual([]);
   });
 
-  it("does not contain any legacy pre-rename service or sector slug pattern lacking 'firm-in-the-uk' / 'hr-company-for'", async () => {
+  it("does not contain any legacy pre-rename service or sector slug pattern lacking '-firm' / 'hr-company-for'", async () => {
     const entries = flattenSitemapGroups(await getSitemapGroups());
     const offenders: string[] = [];
     for (const entry of entries) {
       const path = new URL(entry.loc).pathname;
       if (path === "/services/" || path === "/sector/") continue;
-      if (/^\/services\//.test(path) && !path.includes("firm-in-the-uk")) offenders.push(path);
+      if (/^\/services\//.test(path) && !path.includes("-firm")) offenders.push(path);
       if (/^\/sector\//.test(path) && !path.includes("hr-company-for-")) offenders.push(path);
     }
     expect(offenders).toEqual([]);
@@ -262,8 +253,8 @@ describe("8 & 9. Sitemap contains only new canonical service/sector URLs; old UR
 });
 
 describe("10. No new old-URL-to-new-URL redirect was created for this rename", () => {
-  it("keeps exactly 116 redirect rules (the pre-rename baseline; none added, none removed)", () => {
-    expect(redirectRules.length).toBe(116);
+  it("keeps exactly 69 redirect rules (the global baseline; none added, none removed)", () => {
+    expect(redirectRules.length).toBe(69);
   });
 
   it("has no redirect rule whose source and destination are both current, renamed service/sector/category slugs (which would indicate a rename-only redirect)", () => {

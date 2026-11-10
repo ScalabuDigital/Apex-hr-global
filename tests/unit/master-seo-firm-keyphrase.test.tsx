@@ -4,7 +4,7 @@ import { serviceContent, serviceCategoryContent } from "@/content/services-data"
 import { sectors } from "@/config/sectors";
 import { sectorContent } from "@/content/sectors-data";
 import { serviceLocationCombos } from "@/config/service-locations";
-import { getLocation } from "@/config/locations";
+import { getLocation, withArticle } from "@/config/locations";
 import { generateMetadata as generateServiceMetadata } from "@/app/services/[slug]/page";
 import { generateMetadata as generateSectorMetadata } from "@/app/sector/[slug]/page";
 import { getServiceJsonLd } from "@/lib/seo/structured-data";
@@ -29,26 +29,26 @@ import { getServiceJsonLd } from "@/lib/seo/structured-data";
 const LEADING_CLAIM = /\bleading\b(?!\s+to\b)/i;
 
 describe("Service and category pages — firm keyphrase", () => {
-  it("every one of the 48 services generates a title of '{Service} Firm in the UK' with no 'leading' claim", async () => {
+  it("every one of the 48 services generates a title of 'Global {Service} Firm' with no 'leading' claim", async () => {
     for (const service of services) {
       const metadata = await generateServiceMetadata({ params: Promise.resolve({ slug: service.slug }) });
-      expect(metadata.title).toBe(`${service.title} Firm in the UK`);
+      expect(metadata.title).toBe(`Global ${service.title} Firm`);
       expect(String(metadata.title)).not.toMatch(LEADING_CLAIM);
     }
   });
 
-  it("every one of the 10 service families generates a title of '{Category} Firm in the UK'", async () => {
+  it("every one of the 10 service families generates a title of 'Global {Category} Firm'", async () => {
     for (const category of serviceCategories) {
       const metadata = await generateServiceMetadata({ params: Promise.resolve({ slug: category.slug }) });
-      expect(metadata.title).toBe(`${category.title} Firm in the UK`);
+      expect(metadata.title).toBe(`Global ${category.title} Firm`);
     }
   });
 
   it("every service and category Service JSON-LD name matches the firm keyphrase", () => {
     for (const service of services) {
       const content = serviceContent.find((c) => c.slug === service.slug)!;
-      const ld = getServiceJsonLd({ name: `${service.title} Firm in the UK`, description: content.metaDescription, path: `/services/${service.slug}/` });
-      expect(ld.name).toBe(`${service.title} Firm in the UK`);
+      const ld = getServiceJsonLd({ name: `Global ${service.title} Firm`, description: content.metaDescription, path: `/services/${service.slug}/` });
+      expect(ld.name).toBe(`Global ${service.title} Firm`);
       expect(ld.name).not.toMatch(LEADING_CLAIM);
     }
   });
@@ -60,16 +60,17 @@ describe("Service and category pages — firm keyphrase", () => {
     for (const content of serviceContent) {
       expect(content.metaDescription, `${content.slug} meta description pattern`).toMatch(/^Apex HR is an? .+ firm /);
       expect(content.metaDescription).not.toMatch(LEADING_CLAIM);
-      expect(content.metaDescription).toMatch(/\bUK\b/);
+      // Global site: no description may target UK employers specifically.
+      expect(content.metaDescription).not.toMatch(/\bUK employers\b/);
     }
   });
 });
 
 describe("Sector pages — HR company keyphrase", () => {
-  it("every one of the 17 sectors generates a title of 'HR Company for {Sector} in the UK' with no 'leading' claim", async () => {
+  it("every one of the 17 sectors generates a title of 'Global HR Company for {Sector}' with no 'leading' claim", async () => {
     for (const sector of sectors) {
       const metadata = await generateSectorMetadata({ params: Promise.resolve({ slug: sector.slug }) });
-      expect(metadata.title).toBe(`HR Company for ${sector.title} in the UK`);
+      expect(metadata.title).toBe(`Global HR Company for ${sector.title}`);
       expect(String(metadata.title)).not.toMatch(LEADING_CLAIM);
     }
   });
@@ -81,7 +82,7 @@ describe("Sector pages — HR company keyphrase", () => {
     for (const content of sectorContent) {
       expect(content.metaDescription, `${content.slug} meta description pattern`).toMatch(/^Apex HR is a specialist HR company for /);
       expect(content.metaDescription).not.toMatch(LEADING_CLAIM);
-      expect(content.metaDescription).toMatch(/\bin the UK\b/);
+      expect(content.metaDescription).toMatch(/\bworldwide\b/);
     }
   });
 
@@ -94,18 +95,18 @@ describe("Sector pages — HR company keyphrase", () => {
 });
 
 describe("Service-location pages — firm-in-location keyphrase, curated combinations only", () => {
-  it("generates a title of '{Service} Firm in {Location}' for every one of the 48 curated combinations", async () => {
+  it("generates a title of '{Service} Firm in {Location}' for every one of the 36 curated combinations", async () => {
     for (const combo of serviceLocationCombos) {
       const metadata = await generateServiceMetadata({ params: Promise.resolve({ slug: combo.slug }) });
       const service = getService(combo.serviceSlug)!;
       const location = getLocation(combo.locationSlug)!;
-      expect(metadata.title).toBe(`${service.title} Firm in ${location.title}`);
+      expect(metadata.title).toBe(`${service.title} Firm in ${withArticle(location.title)}`);
       expect(String(metadata.title)).not.toMatch(LEADING_CLAIM);
     }
   });
 
-  it("does not expand beyond the 48 curated combinations (no new service x location doorway pages)", () => {
-    expect(serviceLocationCombos.length).toBe(48);
+  it("does not expand beyond the 36 curated combinations (no new service x location doorway pages)", () => {
+    expect(serviceLocationCombos.length).toBe(36);
   });
 });
 

@@ -1,14 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { render, within } from "@testing-library/react";
-import { getServicesByCategory, getService, services, getServiceCategory } from "@/config/services";
+import { render } from "@testing-library/react";
+import { getServicesByCategory, getService, services } from "@/config/services";
 import { serviceContent } from "@/content/services-data";
 import { redirectRules } from "@/config/redirects";
-import { serviceLocationCombos, categoryLocationCombos, getChildServicesForCategoryCombo } from "@/config/service-locations";
-import { getLocation } from "@/config/locations";
-import { locationContent } from "@/content/locations-data";
+import { serviceLocationCombos } from "@/config/service-locations";
 import { ServicePageTemplate } from "@/components/templates/service-page-template";
-import { ServiceLocationTemplate } from "@/components/templates/service-location-template";
-import { CategoryLocationTemplate } from "@/components/templates/category-location-template";
 import { getBreadcrumbJsonLd, getServiceJsonLd } from "@/lib/seo/structured-data";
 import { routes } from "@/config/routes";
 
@@ -22,10 +18,10 @@ import { routes } from "@/config/routes";
  */
 
 const APPROVED_FOUR = [
-  "employment-tribunal-hr-support-firm-in-the-uk",
-  "outplacement-and-career-transition-services-firm-in-the-uk",
-  "industrial-relations-and-trade-union-negotiations-firm-in-the-uk",
-  "skilled-worker-sponsorship-hr-support-firm-in-the-uk",
+  "employment-tribunal-hr-support-firm",
+  "outplacement-and-career-transition-services-firm",
+  "industrial-relations-and-trade-union-negotiations-firm",
+  "skilled-worker-sponsorship-hr-support-firm",
 ];
 
 const NOINDEX_HUB_PATHS = ["/insights/", "/resources/", "/case-study/"];
@@ -37,9 +33,9 @@ function buildBreadcrumbTrail(serviceTitle: string, serviceSlug: string) {
   return [
     routes.services,
     {
-      id: "employment-law-and-employee-relations-firm-in-the-uk",
+      id: "employment-law-and-employee-relations-firm",
       label: "Employment Law & Employee Relations",
-      path: "/services/employment-law-and-employee-relations-firm-in-the-uk/",
+      path: "/services/employment-law-and-employee-relations-firm/",
       status: "confirmed" as const,
       readyToIndex: true,
     },
@@ -49,7 +45,7 @@ function buildBreadcrumbTrail(serviceTitle: string, serviceSlug: string) {
 
 describe("Employment Law children (Batch 6C2) — catalogue integrity", () => {
   it("has exactly these four approved services, completing all 8 members of Employment Law & Employee Relations", () => {
-    const family = getServicesByCategory("employment-law-and-employee-relations-firm-in-the-uk");
+    const family = getServicesByCategory("employment-law-and-employee-relations-firm");
     expect(family.length).toBe(8);
     for (const slug of APPROVED_FOUR) {
       expect(family.some((s) => s.slug === slug), `${slug} missing from family`).toBe(true);
@@ -79,9 +75,9 @@ describe("Employment Law children (Batch 6C2) — catalogue integrity", () => {
 
   it("marks Employment Tribunal HR Support, Industrial Relations and Skilled Worker Sponsorship for legal review", () => {
     for (const slug of [
-      "employment-tribunal-hr-support-firm-in-the-uk",
-      "industrial-relations-and-trade-union-negotiations-firm-in-the-uk",
-      "skilled-worker-sponsorship-hr-support-firm-in-the-uk",
+      "employment-tribunal-hr-support-firm",
+      "industrial-relations-and-trade-union-negotiations-firm",
+      "skilled-worker-sponsorship-hr-support-firm",
     ]) {
       const content = serviceContent.find((c) => c.slug === slug)!;
       expect(content.legalReviewRequired, `${slug} should be flagged for legal review`).toBe(true);
@@ -130,7 +126,7 @@ describe("Employment Law children (Batch 6C2) — catalogue integrity", () => {
   });
 
   it("Employment Tribunal HR Support explicitly excludes legal representation, pleadings and outcome predictions", () => {
-    const content = serviceContent.find((c) => c.slug === "employment-tribunal-hr-support-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "employment-tribunal-hr-support-firm")!;
     const scope = (content.outOfScope ?? []).join(" ").toLowerCase();
     expect(scope).toMatch(/legal representation/);
     expect(scope).toMatch(/pleadings/);
@@ -139,14 +135,14 @@ describe("Employment Law children (Batch 6C2) — catalogue integrity", () => {
   });
 
   it("Outplacement explicitly declines to guarantee placement and states participants are never auto-enrolled in the candidate database", () => {
-    const content = serviceContent.find((c) => c.slug === "outplacement-and-career-transition-services-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "outplacement-and-career-transition-services-firm")!;
     const allText = JSON.stringify(content).toLowerCase();
     expect(allText).toMatch(/guarantee of interviews, job offers or placement/);
     expect(allText).toMatch(/never (added|be added) to apex hr's (talent pool or )?candidate database without/);
   });
 
   it("Industrial Relations explicitly declines to guarantee agreement, avoiding industrial action, or a specific result", () => {
-    const content = serviceContent.find((c) => c.slug === "industrial-relations-and-trade-union-negotiations-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "industrial-relations-and-trade-union-negotiations-firm")!;
     const scope = (content.outOfScope ?? []).join(" ").toLowerCase();
     expect(scope).toMatch(/reaching agreement or avoiding industrial action/);
     expect(scope).toMatch(/specific negotiation result/);
@@ -154,9 +150,10 @@ describe("Employment Law children (Batch 6C2) — catalogue integrity", () => {
   });
 
   it("Skilled Worker Sponsorship explicitly declines to determine visa eligibility or guarantee immigration outcomes, and distinguishes sponsorship from the visa itself", () => {
-    const content = serviceContent.find((c) => c.slug === "skilled-worker-sponsorship-hr-support-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "skilled-worker-sponsorship-hr-support-firm")!;
     const scope = (content.outOfScope ?? []).join(" ").toLowerCase();
-    expect(scope).toMatch(/qualifies for a skilled worker visa/);
+    // Global site: wording generalised from the UK Skilled Worker route.
+    expect(scope).toMatch(/qualifies for a work visa or permit/);
     expect(scope).toMatch(/guaranteeing a sponsor licence, visa approval/);
     expect(content.differentiationNote?.toLowerCase()).toMatch(/related but distinct/);
   });
@@ -188,7 +185,7 @@ describe("Employment Law children (Batch 6C2) — rendered content, per service"
           />,
         );
         const links = getAllByRole("link").map((el) => el.getAttribute("href")?.replace(/\/$/, ""));
-        expect(links).toContain("/services/employment-law-and-employee-relations-firm-in-the-uk");
+        expect(links).toContain("/services/employment-law-and-employee-relations-firm");
         expect(links).toContain("/for-employers");
       });
 
@@ -261,82 +258,5 @@ describe("Employment Law children (Batch 6C2) — rendered content, per service"
         expect(services.some((s) => s.slug === relatedSlug), `${slug} -> unknown related service ${relatedSlug}`).toBe(true);
       }
     }
-  });
-});
-
-describe("HR Compliance Audit — 'independent' wording fully removed, shared-field regression", () => {
-  const content = serviceContent.find((c) => c.slug === "hr-compliance-audit-firm-in-the-uk")!;
-
-  it("contains no 'independent' claim anywhere in the canonical record", () => {
-    const allText = JSON.stringify(content);
-    expect(allText).not.toMatch(/\bindependent\b/i);
-  });
-
-  it("service-location pages for HR Compliance Audit render the corrected wording, not the retired 'independent' phrase", () => {
-    const combos = serviceLocationCombos.filter((c) => c.serviceSlug === "hr-compliance-audit-firm-in-the-uk");
-    expect(combos.length).toBeGreaterThan(0);
-
-    for (const combo of combos) {
-      const location = getLocation(combo.locationSlug);
-      const locationInfo = locationContent.find((l) => l.slug === combo.locationSlug);
-      if (!location || !locationInfo) continue;
-
-      const { container } = render(
-        <ServiceLocationTemplate
-          breadcrumbTrail={[]}
-          entityTitle="HR Compliance Audit"
-          entityHref="/services/hr-compliance-audit-firm-in-the-uk/"
-          entitySummary={content.heroSummary}
-          bulletListTitle="What this includes"
-          bulletList={content.whatItIncludes}
-          locationTitle={location.title}
-          locationRegion={locationInfo.region}
-          locationHref={`/locations/${location.slug}/`}
-          localContext={locationInfo.localContext}
-          faqs={[...content.faqs.slice(0, 3)]}
-        />,
-      );
-      // Scoped to this render's own container — render() is called once
-      // per combo in this loop without unmounting the previous one, so
-      // unscoped document-wide queries would see every prior iteration's
-      // output too.
-      const scoped = within(container);
-      expect(scoped.getByText(content.heroSummary)).toBeInTheDocument();
-      expect(scoped.queryByText(/An independent review of your HR practices/)).toBeNull();
-    }
-  });
-
-  it("the Outsourced HR Services–Worcester category-location page's child card renders the corrected wording", () => {
-    const combo = categoryLocationCombos.find((c) => c.slug === "outsourced-hr-services-firm-in-the-uk-worcester");
-    expect(combo).toBeDefined();
-
-    const location = getLocation(combo!.locationSlug)!;
-    const category = getServiceCategory(combo!.categorySlug)!;
-    const childServices = getChildServicesForCategoryCombo(combo!).map((child) => {
-      const childContent = serviceContent.find((c) => c.slug === child.slug)!;
-      return { title: child.title, href: `/services/${child.slug}-${location.slug}/`, summary: childContent.heroSummary };
-    });
-
-    expect(childServices.some((c) => c.title === "HR Compliance Audit")).toBe(true);
-
-    const { queryByText } = render(
-      <CategoryLocationTemplate
-        breadcrumbTrail={[]}
-        categoryTitle={category.title}
-        categoryHref={`/services/${category.slug}/`}
-        categorySummary="Summary"
-        bulletListTitle="Where this family helps"
-        bulletList={["Point one"]}
-        childServices={childServices}
-        locationTitle={location.title}
-        locationRegion="Test Region"
-        locationHref={`/locations/${location.slug}/`}
-        localContext="Test local context."
-        faqs={[]}
-      />,
-    );
-
-    expect(queryByText(/An independent review of your HR practices/)).toBeNull();
-    expect(queryByText(content.heroSummary)).toBeInTheDocument();
   });
 });

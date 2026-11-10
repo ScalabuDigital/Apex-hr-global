@@ -1,13 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { render, within } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { getServicesByCategory, getService, services } from "@/config/services";
 import { serviceContent } from "@/content/services-data";
 import { redirectRules } from "@/config/redirects";
-import { serviceLocationCombos, categoryLocationCombos } from "@/config/service-locations";
-import { getLocation } from "@/config/locations";
-import { locationContent } from "@/content/locations-data";
 import { ServicePageTemplate } from "@/components/templates/service-page-template";
-import { ServiceLocationTemplate } from "@/components/templates/service-location-template";
 import { getBreadcrumbJsonLd, getServiceJsonLd } from "@/lib/seo/structured-data";
 import { routes } from "@/config/routes";
 
@@ -22,22 +18,22 @@ import { routes } from "@/config/routes";
  */
 
 const APPROVED_FIVE = [
-  "employee-experience-strategy-firm-in-the-uk",
-  "employee-engagement-surveys-and-action-planning-firm-in-the-uk",
-  "employer-branding-and-employee-value-proposition-evp-firm-in-the-uk",
-  "workplace-wellbeing-and-mental-health-firm-in-the-uk",
-  "diversity-equity-and-inclusion-dei-consulting-firm-in-the-uk",
+  "employee-experience-strategy-firm",
+  "employee-engagement-surveys-and-action-planning-firm",
+  "employer-branding-and-employee-value-proposition-evp-firm",
+  "workplace-wellbeing-and-mental-health-firm",
+  "diversity-equity-and-inclusion-dei-consulting-firm",
 ];
 
 const APPROVED_INTENTS: Record<string, string> = {
-  "employee-experience-strategy-firm-in-the-uk": "Designing a coherent employee-experience approach across relevant stages of the employee journey",
-  "employee-engagement-surveys-and-action-planning-firm-in-the-uk":
+  "employee-experience-strategy-firm": "Designing a coherent employee-experience approach across relevant stages of the employee journey",
+  "employee-engagement-surveys-and-action-planning-firm":
     "Supporting the design, delivery and interpretation of employee-engagement surveys and turning findings into practical action planning",
-  "employer-branding-and-employee-value-proposition-evp-firm-in-the-uk":
+  "employer-branding-and-employee-value-proposition-evp-firm":
     "Helping an employer define and communicate what it offers employees and prospective employees",
-  "workplace-wellbeing-and-mental-health-firm-in-the-uk":
+  "workplace-wellbeing-and-mental-health-firm":
     "HR-led support for workplace wellbeing and organisational approaches to mental-health-related work issues",
-  "diversity-equity-and-inclusion-dei-consulting-firm-in-the-uk":
+  "diversity-equity-and-inclusion-dei-consulting-firm":
     "Organisational HR support for diversity, equity and inclusion strategy, policies, practices and implementation",
 };
 
@@ -52,9 +48,9 @@ function buildBreadcrumbTrail(serviceTitle: string, serviceSlug: string) {
   return [
     routes.services,
     {
-      id: "employee-experience-and-engagement-firm-in-the-uk",
+      id: "employee-experience-and-engagement-firm",
       label: "Employee Experience & Engagement",
-      path: "/services/employee-experience-and-engagement-firm-in-the-uk/",
+      path: "/services/employee-experience-and-engagement-firm/",
       status: "confirmed" as const,
       readyToIndex: true,
     },
@@ -74,7 +70,7 @@ function sharedSentences(content: (typeof serviceContent)[number]): string[] {
 }
 
 describe("Employee Experience & Engagement children (Batch 6H) — catalogue integrity", () => {
-  const family = getServicesByCategory("employee-experience-and-engagement-firm-in-the-uk");
+  const family = getServicesByCategory("employee-experience-and-engagement-firm");
 
   it("has exactly these five approved services and no others", () => {
     expect(family.length).toBe(5);
@@ -141,13 +137,13 @@ describe("Employee Experience & Engagement children (Batch 6H) — catalogue int
   });
 
   it("Employer Branding & EVP expands 'Employee Value Proposition (EVP)' in visible, safely-editable copy (employerChallenge)", () => {
-    const content = serviceContent.find((c) => c.slug === "employer-branding-and-employee-value-proposition-evp-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "employer-branding-and-employee-value-proposition-evp-firm")!;
     expect(content.employerChallenge).toMatch(/Employee Value Proposition \(EVP\)/);
     expect(content.metaDescription).toMatch(/Employee Value Proposition \(EVP\)/);
   });
 
   it("DEI Consulting expands 'Diversity, Equity & Inclusion (DEI)' in its hero summary and meta description", () => {
-    const content = serviceContent.find((c) => c.slug === "diversity-equity-and-inclusion-dei-consulting-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "diversity-equity-and-inclusion-dei-consulting-firm")!;
     expect(content.heroSummary).toMatch(/Diversity, Equity & Inclusion \(DEI\)/);
     expect(content.metaDescription).toMatch(/Diversity, Equity & Inclusion \(DEI\)/);
   });
@@ -180,21 +176,8 @@ describe("Employee Experience & Engagement children (Batch 6H) — catalogue int
     expect(offenders).toEqual([]);
   });
 
-  it("none of the five have live service-location combinations except Employer Branding & EVP (London), and Employee Experience & Engagement has no retained category-location page", () => {
-    for (const slug of APPROVED_FIVE) {
-      const combos = serviceLocationCombos.filter((c) => c.serviceSlug === slug);
-      if (slug === "employer-branding-and-employee-value-proposition-evp-firm-in-the-uk") {
-        expect(combos.map((c) => c.locationSlug)).toEqual(["london"]);
-      } else {
-        expect(combos, `${slug} unexpectedly has service-location combos`).toEqual([]);
-      }
-    }
-    const categorySlugs = categoryLocationCombos.map((c) => c.categorySlug);
-    expect(categorySlugs).not.toContain("employee-experience-and-engagement-firm-in-the-uk");
-  });
-
   it("Employee Experience Strategy is distinguished from a survey alone and from Culture Transformation, without guaranteeing engagement/retention/productivity/cultural change", () => {
-    const content = serviceContent.find((c) => c.slug === "employee-experience-strategy-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "employee-experience-strategy-firm")!;
     const scope = (content.outOfScope ?? []).join(" ").toLowerCase();
     expect(scope).toMatch(/guaranteed engagement, retention, productivity or cultural change/);
     expect(scope).toMatch(/not only a single engagement survey/);
@@ -203,7 +186,7 @@ describe("Employee Experience & Engagement children (Batch 6H) — catalogue int
   });
 
   it("Employee Engagement Surveys excludes identification guarantees, participation/response-rate/candour guarantees, clinical validation and objective-truth framing", () => {
-    const content = serviceContent.find((c) => c.slug === "employee-engagement-surveys-and-action-planning-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "employee-engagement-surveys-and-action-planning-firm")!;
     const scope = (content.outOfScope ?? []).join(" ").toLowerCase();
     expect(scope).toMatch(/individual respondents cannot be identified/);
     expect(scope).toMatch(/guaranteed participation, response rates or candid answers/);
@@ -213,7 +196,7 @@ describe("Employee Experience & Engagement children (Batch 6H) — catalogue int
   });
 
   it("Employee Engagement Surveys has a dedicated FAQ distinguishing anonymous from confidential without claiming Apex HR provides either by default", () => {
-    const content = serviceContent.find((c) => c.slug === "employee-engagement-surveys-and-action-planning-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "employee-engagement-surveys-and-action-planning-firm")!;
     const allFaqs = [...content.faqs, ...(content.additionalFaqs ?? [])];
     const faq = allFaqs.find((f) => /anonymous.*confidential|confidential.*anonymous/i.test(f.question));
     expect(faq, "Missing anonymous-vs-confidential FAQ").toBeDefined();
@@ -222,7 +205,7 @@ describe("Employee Experience & Engagement children (Batch 6H) — catalogue int
   });
 
   it("Employer Branding & EVP excludes guaranteed applicant/quality/retention/reputation outcomes, exclusive access, and employee-endorsement claims", () => {
-    const content = serviceContent.find((c) => c.slug === "employer-branding-and-employee-value-proposition-evp-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "employer-branding-and-employee-value-proposition-evp-firm")!;
     const scope = (content.outOfScope ?? []).join(" ").toLowerCase();
     expect(scope).toMatch(/guaranteed applicant numbers, quality of hire, candidate acceptance, retention or reputation improvement/);
     expect(scope).toMatch(/exclusive access to candidates or recruitment channels/);
@@ -231,14 +214,14 @@ describe("Employee Experience & Engagement children (Batch 6H) — catalogue int
   });
 
   it("Employer Branding & EVP is distinguished from recruitment delivery and recruitment marketing execution", () => {
-    const content = serviceContent.find((c) => c.slug === "employer-branding-and-employee-value-proposition-evp-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "employer-branding-and-employee-value-proposition-evp-firm")!;
     const note = content.differentiationNote?.toLowerCase() ?? "";
     expect(note).toMatch(/permanent recruitment/);
     expect(note).toMatch(/recruitment marketing campaign execution/);
   });
 
   it("Workplace Wellbeing excludes medical/clinical/occupational-health provision, fitness-for-work decisions, diagnostic/treatment/emergency guidance and unconditional confidentiality", () => {
-    const content = serviceContent.find((c) => c.slug === "workplace-wellbeing-and-mental-health-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "workplace-wellbeing-and-mental-health-firm")!;
     const scope = (content.outOfScope ?? []).join(" ").toLowerCase();
     expect(scope).toMatch(/medical care, diagnosis, treatment, therapy, counselling or occupational-health provision/);
     expect(scope).toMatch(/medically fit for work/);
@@ -247,7 +230,7 @@ describe("Employee Experience & Engagement children (Batch 6H) — catalogue int
   });
 
   it("Workplace Wellbeing has no unqualified diagnostic/treatment/medical-authority claim outside outOfScope, and adds no medical or LegalService schema justification", () => {
-    const content = serviceContent.find((c) => c.slug === "workplace-wellbeing-and-mental-health-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "workplace-wellbeing-and-mental-health-firm")!;
     const bodyFields = [
       content.heroSummary,
       content.employerChallenge,
@@ -262,7 +245,7 @@ describe("Employee Experience & Engagement children (Batch 6H) — catalogue int
   });
 
   it("Workplace Wellbeing is distinguished from occupational health, EAPs and clinical/therapeutic services", () => {
-    const content = serviceContent.find((c) => c.slug === "workplace-wellbeing-and-mental-health-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "workplace-wellbeing-and-mental-health-firm")!;
     const note = content.differentiationNote?.toLowerCase() ?? "";
     expect(note).toMatch(/occupational health/);
     expect(note).toMatch(/employee assistance programmes/);
@@ -270,7 +253,7 @@ describe("Employee Experience & Engagement children (Batch 6H) — catalogue int
   });
 
   it("DEI Consulting excludes guaranteed outcomes, bias/discrimination elimination, compliance/certification claims, automated decision-making and invented demographic data", () => {
-    const content = serviceContent.find((c) => c.slug === "diversity-equity-and-inclusion-dei-consulting-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "diversity-equity-and-inclusion-dei-consulting-firm")!;
     const scope = (content.outOfScope ?? []).join(" ").toLowerCase();
     expect(scope).toMatch(/guaranteed representation, hiring, promotion, retention, belonging, inclusion or cultural outcomes/);
     expect(scope).toMatch(/eliminates bias or discrimination/);
@@ -281,7 +264,7 @@ describe("Employee Experience & Engagement children (Batch 6H) — catalogue int
   });
 
   it("DEI Consulting keeps legalReviewRequired true and states data sources/access/purpose/reporting need to be agreed, without claiming anonymity or confidentiality by default", () => {
-    const content = serviceContent.find((c) => c.slug === "diversity-equity-and-inclusion-dei-consulting-firm-in-the-uk")!;
+    const content = serviceContent.find((c) => c.slug === "diversity-equity-and-inclusion-dei-consulting-firm")!;
     expect(content.legalReviewRequired).toBe(true);
     const allFaqs = [...content.faqs, ...(content.additionalFaqs ?? [])];
     const dataFaq = allFaqs.find((f) => /demographic data/i.test(f.question));
@@ -317,7 +300,7 @@ describe("Employee Experience & Engagement children (Batch 6H) — rendered cont
           />,
         );
         const links = getAllByRole("link").map((el) => el.getAttribute("href")?.replace(/\/$/, ""));
-        expect(links).toContain("/services/employee-experience-and-engagement-firm-in-the-uk");
+        expect(links).toContain("/services/employee-experience-and-engagement-firm");
         expect(links).toContain("/for-employers");
       });
 
@@ -392,53 +375,4 @@ describe("Employee Experience & Engagement children (Batch 6H) — rendered cont
       });
     });
   }
-});
-
-describe("Employer Branding & EVP — London location-page regression protection", () => {
-  const content = serviceContent.find((c) => c.slug === "employer-branding-and-employee-value-proposition-evp-firm-in-the-uk")!;
-
-  it("the London service-location page still renders the untouched shared heroSummary, whatItIncludes and first FAQ, with no canonical-only leakage", () => {
-    const combo = serviceLocationCombos.find(
-      (c) => c.serviceSlug === "employer-branding-and-employee-value-proposition-evp-firm-in-the-uk" && c.locationSlug === "london",
-    )!;
-    const location = getLocation(combo.locationSlug)!;
-    const locationInfo = locationContent.find((l) => l.slug === combo.locationSlug)!;
-
-    const { container } = render(
-      <ServiceLocationTemplate
-        breadcrumbTrail={[]}
-        entityTitle="Employer Branding & Employee Value Proposition (EVP)"
-        entityHref="/services/employer-branding-and-employee-value-proposition-evp-firm-in-the-uk/"
-        entitySummary={content.heroSummary}
-        bulletListTitle="What this includes"
-        bulletList={content.whatItIncludes}
-        locationTitle={location.title}
-        locationRegion={locationInfo.region}
-        locationHref={`/locations/${location.slug}/`}
-        localContext={locationInfo.localContext}
-        faqs={[...content.faqs.slice(0, 3)]}
-      />,
-    );
-    const scoped = within(container);
-    expect(scoped.getByText(content.heroSummary)).toBeInTheDocument();
-    for (const item of content.whatItIncludes) {
-      expect(scoped.getByText(item)).toBeInTheDocument();
-    }
-    expect(scoped.getByText(content.faqs[0].question)).toBeInTheDocument();
-    for (const scopeItem of content.outOfScope ?? []) {
-      expect(scoped.queryByText(scopeItem)).toBeNull();
-    }
-    if (content.differentiationNote) {
-      expect(scoped.queryByText(content.differentiationNote)).toBeNull();
-    }
-    for (const faq of content.additionalFaqs ?? []) {
-      expect(scoped.queryByText(faq.question)).toBeNull();
-    }
-  });
-
-  it("heroSummary was not altered by this batch (still the original, un-corrected wording)", () => {
-    expect(content.heroSummary).toBe(
-      "Employer branding and Employee Value Proposition development that reflects what it's genuinely like to work for you.",
-    );
-  });
 });

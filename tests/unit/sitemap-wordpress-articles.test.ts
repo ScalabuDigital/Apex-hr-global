@@ -88,7 +88,7 @@ describe("sitemap data — WordPress article entries", () => {
 
       expect(groups.vacancy).toEqual([
         {
-          loc: "https://www.apexhrllc.co.uk/jobs/senior-hr-manager/",
+          loc: "https://www.apexhrllc.com/jobs/senior-hr-manager/",
           lastModified: new Date("2026-09-21T10:00:00.000Z"),
         },
       ]);
@@ -103,7 +103,7 @@ describe("sitemap data — WordPress article entries", () => {
 
       const groups = await getSitemapGroups();
 
-      expect(groups.vacancy).toEqual([{ loc: "https://www.apexhrllc.co.uk/jobs/people-partner/" }]);
+      expect(groups.vacancy).toEqual([{ loc: "https://www.apexhrllc.com/jobs/people-partner/" }]);
     });
   });
 
@@ -140,7 +140,7 @@ describe("sitemap data — WordPress article entries", () => {
     getAllPublishedPostsForSitemap.mockResolvedValueOnce([buildArticle()]);
     const groups = await getSitemapGroups();
     expect(groups.insight.some((e) => e.loc.endsWith("/how-to-build-a-great-hr-team/"))).toBe(true);
-    for (const key of ["page", "service", "sector", "location", "talentAcquisition"] as const) {
+    for (const key of ["page", "service", "sector", "location"] as const) {
       expect(groups[key].some((e) => e.loc.endsWith("/how-to-build-a-great-hr-team/"))).toBe(false);
     }
   });
@@ -169,7 +169,7 @@ describe("sitemap data — WordPress article entries", () => {
     // the /privacy-policy/ and /partnership/ pages) — see
     // tests/unit/final-consolidated-seo-phase.test.tsx for the authoritative
     // count assertion.
-    expect(entries.length).toBe(223);
+    expect(entries.length).toBe(187);
   });
 
   it("handles an empty WordPress response gracefully", async () => {

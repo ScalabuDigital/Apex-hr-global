@@ -2,13 +2,13 @@ import type { ContentManifestEntry } from "@/types/content";
 import { routes } from "@/config/routes";
 import { getServicesByCategory, serviceCategories, services } from "@/config/services";
 import { sectors } from "@/config/sectors";
-import { locations, getLocation } from "@/config/locations";
+import { locations, getLocation, locationPath, withArticle } from "@/config/locations";
 import { buildComboMetaDescription, categoryLocationCombos, serviceLocationCombos } from "@/config/service-locations";
 import { insightCategories } from "@/config/insight-categories";
 import { serviceCategoryContent, serviceContent } from "@/content/services-data";
 import { sectorContent } from "@/content/sectors-data";
 import { locationContent } from "@/content/locations-data";
-import { talentRoleContent } from "@/content/talent-roles-data";
+import { cityContent, cityPath } from "@/content/cities";
 import {
   aboutPageContent,
   contactPageContent,
@@ -51,11 +51,11 @@ function buildManifest(): ContentManifestEntry[] {
     contentStatus: "ai-draft",
     reviewStatus: "stakeholder-review-required",
     primaryAudience: "employer",
-    primaryIntent: "Establish Apex HR as a UK HR and recruitment partner for employers",
-    primaryKeyword: "HR company in the UK",
-    metaTitle: "Apex HR — HR Company in the UK",
+    primaryIntent: "Establish Apex HR as a global HR and recruitment partner for employers",
+    primaryKeyword: "global HR company",
+    metaTitle: "Apex HR — Global HR & Recruitment Company",
     metaDescription:
-      "Apex HR is an employer-first HR company in the UK, combining outsourced HR support, recruitment and workforce advisory, with a separate pathway for candidates.",
+      "Apex HR is a global HR and recruitment company for employers across Africa, North America, Europe and the Middle East, combining outsourced HR, recruitment and workforce advisory.",
     h1: "A people partner built for growing employers",
     relatedPages: [
       routes.services.path,
@@ -78,7 +78,7 @@ function buildManifest(): ContentManifestEntry[] {
     reviewStatus: "stakeholder-review-required",
     primaryAudience: "employer",
     primaryIntent: "Let employers browse the full HR and recruitment service catalogue",
-    primaryKeyword: "HR services UK",
+    primaryKeyword: "global HR services",
     metaTitle: "HR & Recruitment Services | Apex HR",
     metaDescription: "Explore Apex HR's HR, recruitment and people-consulting services.",
     h1: "HR, recruitment and people-consulting services",
@@ -89,7 +89,7 @@ function buildManifest(): ContentManifestEntry[] {
     const content = serviceCategoryContent.find((entry) => entry.slug === category.slug);
     // URL-to-H1 alignment correction (docs/URL-DECISION-REGISTER.md D-017):
     // h1/metaTitle now match the actual rendered hero exactly —
-    // `{title} Firm in the UK`, per ServiceCategoryTemplate's <h1> JSX —
+    // `Global {title} Firm`, per ServiceCategoryTemplate's <h1> JSX —
     // rather than the bare family name this field previously (incorrectly)
     // recorded. The rendered <title> tag also carries the root layout's
     // " | Apex HR" template on top of this metaTitle value.
@@ -109,9 +109,9 @@ function buildManifest(): ContentManifestEntry[] {
       primaryAudience: "employer",
       primaryIntent: `Introduce the ${category.title} service family`,
       primaryKeyword: category.title.toLowerCase(),
-      metaTitle: `${category.title} Firm in the UK | Apex HR`,
+      metaTitle: `Global ${category.title} Firm | Apex HR`,
       metaDescription: content?.metaDescription ?? content?.summary ?? "",
-      h1: `${category.title} Firm in the UK`,
+      h1: `Global ${category.title} Firm`,
       parent: routes.services.path,
       relatedPages: [...childPaths, ...relatedFamilyPaths],
       legalReviewRequired: false,
@@ -125,65 +125,65 @@ function buildManifest(): ContentManifestEntry[] {
   // Compliance Audit no longer share a near-identical recorded intent.
   const primaryIntentOverrides: Record<string, string> = {
     // Batch 6A — Outsourced HR Services
-    "retained-hr-services-firm-in-the-uk": "Ongoing retained HR support for UK employers",
-    "hr-support-for-small-businesses-and-startups-firm-in-the-uk": "HR support for UK small businesses and startups",
-    "fractional-hr-director-chief-people-officer-firm-in-the-uk": "Part-time senior HR leadership",
-    "hr-compliance-audit-firm-in-the-uk": "Review of an organisation's HR compliance, policies and processes",
-    "employee-handbooks-and-hr-policies-firm-in-the-uk": "Creation and review of employee handbooks and workplace policies",
-    "payroll-advisory-firm-in-the-uk": "HR-focused payroll guidance and process support",
+    "retained-hr-services-firm": "Ongoing retained HR support for employers",
+    "hr-support-for-small-businesses-and-startups-firm": "HR support for small businesses and startups",
+    "fractional-hr-director-chief-people-officer-firm": "Part-time senior HR leadership",
+    "hr-compliance-audit-firm": "Review of an organisation's HR compliance, policies and processes",
+    "employee-handbooks-and-hr-policies-firm": "Creation and review of employee handbooks and workplace policies",
+    "payroll-advisory-firm": "HR-focused payroll guidance and process support",
     // Batch 6B — Recruitment & Talent Acquisition
-    "permanent-recruitment-firm-in-the-uk": "Recruitment support for permanent employees",
-    "executive-search-firm-in-the-uk": "Search and recruitment for senior, executive and leadership appointments",
-    "contract-staffing-firm-in-the-uk": "Recruitment support for temporary, interim or contract staffing needs",
-    "recruitment-process-outsourcing-rpo-firm-in-the-uk": "Outsourcing some or all recruitment-process activity",
-    "graduate-schemes-and-early-careers-design-firm-in-the-uk": "Designing structured graduate and early-career recruitment programmes",
+    "permanent-recruitment-firm": "Recruitment support for permanent employees",
+    "executive-search-firm": "Search and recruitment for senior, executive and leadership appointments",
+    "contract-staffing-firm": "Recruitment support for temporary, interim or contract staffing needs",
+    "recruitment-process-outsourcing-rpo-firm": "Outsourcing some or all recruitment-process activity",
+    "graduate-schemes-and-early-careers-design-firm": "Designing structured graduate and early-career recruitment programmes",
     // Batch 6C1 — Employment Law & Employee Relations (first four)
-    "redundancy-and-restructuring-support-firm-in-the-uk": "HR process and people support during redundancy or organisational restructuring",
-    "tupe-advisory-firm-in-the-uk": "HR and people-process support for organisational transfers where TUPE may be relevant",
-    "workplace-investigations-firm-in-the-uk": "Structured workplace fact-finding and investigation support",
-    "workplace-mediation-and-conflict-resolution-firm-in-the-uk": "Facilitated workplace mediation and conflict-resolution support",
+    "redundancy-and-restructuring-support-firm": "HR process and people support during redundancy or organisational restructuring",
+    "tupe-advisory-firm": "HR and people-process support for organisational transfers where TUPE may be relevant",
+    "workplace-investigations-firm": "Structured workplace fact-finding and investigation support",
+    "workplace-mediation-and-conflict-resolution-firm": "Facilitated workplace mediation and conflict-resolution support",
     // Batch 6C2 — Employment Law & Employee Relations (remaining four)
-    "employment-tribunal-hr-support-firm-in-the-uk": "HR documentation, process and management support connected with employment tribunal matters",
-    "outplacement-and-career-transition-services-firm-in-the-uk": "Employer-funded support for employees leaving an organisation and moving towards new employment",
-    "industrial-relations-and-trade-union-negotiations-firm-in-the-uk": "Employer-side HR support for trade-union engagement and collective workplace matters",
-    "skilled-worker-sponsorship-hr-support-firm-in-the-uk": "HR process and workforce support connected with UK Skilled Worker sponsorship",
+    "employment-tribunal-hr-support-firm": "HR documentation, process and management support connected with employment tribunal matters",
+    "outplacement-and-career-transition-services-firm": "Employer-funded support for employees leaving an organisation and moving towards new employment",
+    "industrial-relations-and-trade-union-negotiations-firm": "Employer-side HR support for trade-union engagement and collective workplace matters",
+    "skilled-worker-sponsorship-hr-support-firm": "HR process and workforce support connected with work permit and visa sponsorship",
     // Batch 6D — Organisation Development & Change Management
-    "organisation-design-firm-in-the-uk": "Designing organisational structures, roles, responsibilities and ways of working",
-    "change-management-firm-in-the-uk": "Supporting the people side of organisational change and adoption",
-    "culture-transformation-firm-in-the-uk": "Assessing and intentionally developing workplace culture and behaviours",
-    "ma-people-due-diligence-and-post-merger-integration-firm-in-the-uk": "Identifying and managing people-related considerations before and after mergers or acquisitions",
+    "organisation-design-firm": "Designing organisational structures, roles, responsibilities and ways of working",
+    "change-management-firm": "Supporting the people side of organisational change and adoption",
+    "culture-transformation-firm": "Assessing and intentionally developing workplace culture and behaviours",
+    "ma-people-due-diligence-and-post-merger-integration-firm": "Identifying and managing people-related considerations before and after mergers or acquisitions",
     // Batch 6E1 — Compensation, Reward & Benefits (first three)
-    "salary-benchmarking-firm-in-the-uk": "Comparing roles and pay against relevant external market data",
-    "job-evaluation-and-pay-structures-firm-in-the-uk": "Assessing role value and developing consistent job grades, pay bands or structures",
-    "reward-strategy-firm-in-the-uk": "Developing an organisation-wide approach to pay, recognition, incentives and benefits",
+    "salary-benchmarking-firm": "Comparing roles and pay against relevant external market data",
+    "job-evaluation-and-pay-structures-firm": "Assessing role value and developing consistent job grades, pay bands or structures",
+    "reward-strategy-firm": "Developing an organisation-wide approach to pay, recognition, incentives and benefits",
     // Batch 6E2 — Compensation, Reward & Benefits (remaining three)
-    "pay-equity-and-pay-gap-reporting-firm-in-the-uk": "Reviewing pay patterns and supporting appropriate pay-gap analysis and reporting",
-    "employee-benefits-consulting-firm-in-the-uk": "Helping employers review and develop employee-benefits arrangements",
-    "executive-compensation-and-share-schemes-firm-in-the-uk": "Supporting the design and governance of executive reward and employee share arrangements",
+    "pay-equity-and-pay-gap-reporting-firm": "Reviewing pay patterns and supporting appropriate pay-gap analysis and reporting",
+    "employee-benefits-consulting-firm": "Helping employers review and develop employee-benefits arrangements",
+    "executive-compensation-and-share-schemes-firm": "Supporting the design and governance of executive reward and employee share arrangements",
     // Batch 6F — Learning & Leadership Development
-    "leadership-and-management-training-firm-in-the-uk": "Structured training for managers and organisational leaders",
-    "executive-coaching-and-360-feedback-firm-in-the-uk": "Individual leadership coaching and structured multi-source feedback",
-    "learning-strategy-and-capability-development-firm-in-the-uk": "Organisation-wide learning strategy and workforce capability planning",
+    "leadership-and-management-training-firm": "Structured training for managers and organisational leaders",
+    "executive-coaching-and-360-feedback-firm": "Individual leadership coaching and structured multi-source feedback",
+    "learning-strategy-and-capability-development-firm": "Organisation-wide learning strategy and workforce capability planning",
     // Batch 6G — Performance & Talent Management
-    "performance-management-firm-in-the-uk": "Designing and improving structured employee-performance processes",
-    "succession-planning-and-talent-mapping-firm-in-the-uk": "Identifying critical roles, succession needs and internal talent considerations",
-    "competency-frameworks-firm-in-the-uk": "Defining the skills, knowledge and behaviours associated with roles or organisational levels",
+    "performance-management-firm": "Designing and improving structured employee-performance processes",
+    "succession-planning-and-talent-mapping-firm": "Identifying critical roles, succession needs and internal talent considerations",
+    "competency-frameworks-firm": "Defining the skills, knowledge and behaviours associated with roles or organisational levels",
     // Batch 6H — Employee Experience & Engagement
-    "employee-experience-strategy-firm-in-the-uk": "Designing a coherent employee-experience approach across relevant stages of the employee journey",
-    "employee-engagement-surveys-and-action-planning-firm-in-the-uk": "Supporting the design, delivery and interpretation of employee-engagement surveys and turning findings into practical action planning",
-    "employer-branding-and-employee-value-proposition-evp-firm-in-the-uk": "Helping an employer define and communicate what it offers employees and prospective employees",
-    "workplace-wellbeing-and-mental-health-firm-in-the-uk": "HR-led support for workplace wellbeing and organisational approaches to mental-health-related work issues",
-    "diversity-equity-and-inclusion-dei-consulting-firm-in-the-uk": "Organisational HR support for diversity, equity and inclusion strategy, policies, practices and implementation",
+    "employee-experience-strategy-firm": "Designing a coherent employee-experience approach across relevant stages of the employee journey",
+    "employee-engagement-surveys-and-action-planning-firm": "Supporting the design, delivery and interpretation of employee-engagement surveys and turning findings into practical action planning",
+    "employer-branding-and-employee-value-proposition-evp-firm": "Helping an employer define and communicate what it offers employees and prospective employees",
+    "workplace-wellbeing-and-mental-health-firm": "HR-led support for workplace wellbeing and organisational approaches to mental-health-related work issues",
+    "diversity-equity-and-inclusion-dei-consulting-firm": "Organisational HR support for diversity, equity and inclusion strategy, policies, practices and implementation",
     // Final consolidated phase — HR Technology & People Analytics
-    "hris-implementation-firm-in-the-uk": "Planning and implementing a Human Resources Information System (HRIS)",
-    "hr-software-selection-firm-in-the-uk": "Helping employers define requirements and assess suitable HR software",
-    "people-analytics-and-hr-dashboards-firm-in-the-uk": "Defining workforce measures, analysing people data and presenting useful HR reporting",
-    "digital-hr-transformation-firm-in-the-uk": "Wider organisational change involving HR technology, processes, data and working practices",
-    "ai-workplace-policy-and-hr-integration-firm-in-the-uk": "Workplace policy, governance and HR-process considerations involving artificial intelligence",
+    "hris-implementation-firm": "Planning and implementing a Human Resources Information System (HRIS)",
+    "hr-software-selection-firm": "Helping employers define requirements and assess suitable HR software",
+    "people-analytics-and-hr-dashboards-firm": "Defining workforce measures, analysing people data and presenting useful HR reporting",
+    "digital-hr-transformation-firm": "Wider organisational change involving HR technology, processes, data and working practices",
+    "ai-workplace-policy-and-hr-integration-firm": "Workplace policy, governance and HR-process considerations involving artificial intelligence",
     // Final consolidated phase — Strategic HR & Workforce Advisory
-    "people-strategy-firm-in-the-uk": "Helping employers align people priorities with organisational needs",
-    "strategic-workforce-planning-firm-in-the-uk": "Considering future workforce demand, supply, capability, skills and possible scenarios",
-    "global-mobility-and-expatriate-hr-management-firm-in-the-uk": "HR coordination for employees working across borders",
+    "people-strategy-firm": "Helping employers align people priorities with organisational needs",
+    "strategic-workforce-planning-firm": "Considering future workforce demand, supply, capability, skills and possible scenarios",
+    "global-mobility-and-expatriate-hr-management-firm": "HR coordination for employees working across borders",
   };
 
   for (const service of services) {
@@ -201,9 +201,9 @@ function buildManifest(): ContentManifestEntry[] {
       primaryAudience: "employer",
       primaryIntent: primaryIntentOverrides[service.slug] ?? `Convert employer interest in ${service.title}`,
       primaryKeyword: content.primaryKeyword,
-      metaTitle: `${service.title} Firm in the UK | Apex HR`,
+      metaTitle: `Global ${service.title} Firm | Apex HR`,
       metaDescription: content.metaDescription,
-      h1: `${service.title} Firm in the UK`,
+      h1: `Global ${service.title} Firm`,
       parent: `/services/${service.categorySlug}/`,
       relatedPages: content.relatedServiceSlugs.map((slug) => `/services/${slug}/`),
       sourceReferences: ["docs/MASTER-SITEMAP.md", "docs/Apex_HR_Master_Sitemap_and_URL_Register.xlsx"],
@@ -244,9 +244,9 @@ function buildManifest(): ContentManifestEntry[] {
       primaryAudience: "employer",
       primaryIntent: `Explain how Apex HR can support ${sector.title} employers`,
       primaryKeyword: `HR support for ${sector.title.toLowerCase()}`,
-      metaTitle: `HR Company for ${sector.title} in the UK | Apex HR`,
+      metaTitle: `Global HR Company for ${sector.title} | Apex HR`,
       metaDescription: content.metaDescription,
-      h1: `HR Company for ${sector.title} in the UK`,
+      h1: `Global HR Company for ${sector.title}`,
       parent: routes.sectors.path,
       relatedPages: content.relatedServiceSlugs.map((slug) => `/services/${slug}/`),
       legalReviewRequired: false,
@@ -264,10 +264,10 @@ function buildManifest(): ContentManifestEntry[] {
     reviewStatus: "stakeholder-review-required",
     primaryAudience: "employer",
     primaryIntent: "Let employers find location-specific HR and recruitment coverage",
-    primaryKeyword: "locations we support",
-    metaTitle: "Locations We Support | Apex HR",
-    metaDescription: "Explore the UK locations Apex HR can support with HR and recruitment.",
-    h1: "HR and recruitment support across the UK",
+    primaryKeyword: "countries we support",
+    metaTitle: "Countries We Support | Apex HR",
+    metaDescription: "Explore the countries Apex HR supports with HR and recruitment, across Africa, North America, Europe and the Middle East.",
+    h1: "HR and recruitment support around the world",
     legalReviewRequired: false,
   });
 
@@ -278,19 +278,43 @@ function buildManifest(): ContentManifestEntry[] {
       pageType: "location",
       title: location.title,
       slug: location.slug,
-      canonicalPath: `/locations/${location.slug}/`,
+      canonicalPath: locationPath(location.slug),
       routeStatus: "confirmed",
       indexable: true,
       contentStatus: "ai-draft",
       reviewStatus: "stakeholder-review-required",
       primaryAudience: "employer",
-      primaryIntent: `Explain HR and recruitment coverage in ${location.title}`,
+      primaryIntent: `Explain HR and recruitment coverage in ${withArticle(location.title)}`,
       primaryKeyword: `HR support in ${location.title.toLowerCase()}`,
-      metaTitle: `HR & Recruitment Support in ${location.title} | Apex HR`,
+      metaTitle: `HR & Recruitment Support in ${withArticle(location.title)} | Apex HR`,
       metaDescription: content.metaDescription,
-      h1: `HR and recruitment support in ${location.title}`,
+      h1: `HR and recruitment support in ${withArticle(location.title)}`,
       parent: routes.locations.path,
       legalReviewRequired: false,
+    });
+  }
+
+  // City sub-location pages (`/{countryCode}/{city}/`) — src/content/cities/.
+  for (const city of cityContent) {
+    const country = getLocation(city.countrySlug);
+    if (!country) continue;
+    entries.push({
+      pageType: "location",
+      title: city.name,
+      slug: city.slug,
+      canonicalPath: cityPath(city),
+      routeStatus: "confirmed",
+      indexable: routes.locations.readyToIndex,
+      contentStatus: "ai-draft",
+      reviewStatus: "stakeholder-review-required",
+      primaryAudience: "employer",
+      primaryIntent: `Explain HR and recruitment support in ${city.name}`,
+      primaryKeyword: `HR support in ${city.name.toLowerCase()}`,
+      metaTitle: `HR & Recruitment Support in ${city.name}, ${country.title} | Apex HR`,
+      metaDescription: city.metaDescription,
+      h1: `HR and recruitment support in ${city.name}`,
+      parent: locationPath(country.slug),
+      legalReviewRequired: true,
     });
   }
 
@@ -304,7 +328,7 @@ function buildManifest(): ContentManifestEntry[] {
     if (!service || !content || !location || !locationInfo) continue;
     entries.push({
       pageType: "serviceLocation",
-      title: `${service.title} in ${location.title}`,
+      title: `${service.title} in ${withArticle(location.title)}`,
       slug: combo.slug,
       canonicalPath: `/services/${combo.slug}/`,
       routeStatus: "confirmed",
@@ -312,11 +336,11 @@ function buildManifest(): ContentManifestEntry[] {
       contentStatus: "ai-draft",
       reviewStatus: "stakeholder-review-required",
       primaryAudience: "employer",
-      primaryIntent: `Explain ${service.title} coverage in ${location.title}`,
+      primaryIntent: `Explain ${service.title} coverage in ${withArticle(location.title)}`,
       primaryKeyword: `${service.title.toLowerCase()} ${location.title.toLowerCase()}`,
-      metaTitle: `${service.title} in ${location.title} | Apex HR`,
-      metaDescription: buildComboMetaDescription(content.metaDescription, location.title, locationInfo.region),
-      h1: `${service.title} in ${location.title}`,
+      metaTitle: `${service.title} in ${withArticle(location.title)} | Apex HR`,
+      metaDescription: buildComboMetaDescription(content.metaDescription, withArticle(location.title), locationInfo.region),
+      h1: `${service.title} in ${withArticle(location.title)}`,
       parent: `/services/${service.slug}/`,
       legalReviewRequired: content.legalReviewRequired,
     });
@@ -330,7 +354,7 @@ function buildManifest(): ContentManifestEntry[] {
     if (!category || !content || !location || !locationInfo) continue;
     entries.push({
       pageType: "serviceCategoryLocation",
-      title: `${category.title} in ${location.title}`,
+      title: `${category.title} in ${withArticle(location.title)}`,
       slug: combo.slug,
       canonicalPath: `/services/${combo.slug}/`,
       routeStatus: "confirmed",
@@ -338,34 +362,12 @@ function buildManifest(): ContentManifestEntry[] {
       contentStatus: "ai-draft",
       reviewStatus: "stakeholder-review-required",
       primaryAudience: "employer",
-      primaryIntent: `Explain ${category.title} coverage in ${location.title}`,
+      primaryIntent: `Explain ${category.title} coverage in ${withArticle(location.title)}`,
       primaryKeyword: `${category.title.toLowerCase()} ${location.title.toLowerCase()}`,
-      metaTitle: `${category.title} in ${location.title} | Apex HR`,
-      metaDescription: buildComboMetaDescription(content.summary, location.title, locationInfo.region),
-      h1: `${category.title} in ${location.title}`,
+      metaTitle: `${category.title} in ${withArticle(location.title)} | Apex HR`,
+      metaDescription: buildComboMetaDescription(content.summary, withArticle(location.title), locationInfo.region),
+      h1: `${category.title} in ${withArticle(location.title)}`,
       parent: `/services/${category.slug}/`,
-      legalReviewRequired: false,
-    });
-  }
-
-  for (const role of talentRoleContent) {
-    entries.push({
-      pageType: "talentAcquisitionRole",
-      title: role.title,
-      slug: role.slug,
-      canonicalPath: `/talent-acquisition/${role.slug}/`,
-      routeStatus: "confirmed",
-      indexable: true,
-      contentStatus: "ai-draft",
-      reviewStatus: "stakeholder-review-required",
-      primaryAudience: "employer",
-      primaryIntent: `Support employers hiring for ${role.title}`,
-      primaryKeyword: `${role.title.toLowerCase()} recruitment`,
-      metaTitle: `${role.seoTitle ?? `${role.title} Recruitment`} | Apex HR`,
-      metaDescription: role.metaDescription,
-      h1: role.title,
-      relatedPages: role.relatedServiceSlugs.map((slug) => `/services/${slug}/`),
-      sourceReferences: ["docs/Apex_HR_Master_Sitemap_and_URL_Register.xlsx"],
       legalReviewRequired: false,
     });
   }
@@ -433,9 +435,9 @@ function buildManifest(): ContentManifestEntry[] {
       route: routes.contact,
       audience: "general",
       lead: contactPageContent.lead,
-      intent: "Give employers and candidates a way to get in touch with Apex HR in London, UK",
+      intent: "Give employers and candidates worldwide a way to get in touch with Apex HR",
       h1: "Let's talk about what your people need next.",
-      primaryKeyword: "Contact Apex HR in London, UK",
+      primaryKeyword: "Contact Apex HR",
       relatedPages: [routes.forEmployers.path, routes.forCandidates.path, routes.findTalent.path],
     },
     {
@@ -446,7 +448,7 @@ function buildManifest(): ContentManifestEntry[] {
       intent: "Orient employers toward the right HR or recruitment support and route to Find Talent/Contact",
       title: "HR & Recruitment Support for Employers",
       h1: "The right people support, exactly when you need it",
-      primaryKeyword: "HR support and recruitment support for UK employers",
+      primaryKeyword: "HR support and recruitment support for international employers",
       relatedPages: [routes.services.path, routes.findTalent.path, routes.contact.path],
     },
     {

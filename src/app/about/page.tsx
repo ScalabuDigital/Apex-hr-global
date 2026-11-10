@@ -28,6 +28,8 @@ import { serviceCategoryContent } from "@/content/services-data";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { getAboutPageJsonLd, getBreadcrumbJsonLd, toJsonLdScript } from "@/lib/seo/structured-data";
 import { routes } from "@/config/routes";
+import { MarketsBand } from "@/components/sections/markets-band";
+import { FaqWithContactForm } from "@/components/content/faq-with-contact-form";
 
 // Bare page title — the root layout's "%s | Apex HR" template appends the
 // brand name once. Passing "About Apex HR" here previously rendered as
@@ -44,9 +46,9 @@ export const metadata = buildMetadata({
 // The three pillars reuse real, already-authored service-family content
 // and link to real category pages — see src/content/services-data.ts.
 const pillars = [
-  { categorySlug: "recruitment-and-talent-acquisition-firm-in-the-uk", title: "Recruitment & talent", icon: UserRoundSearch },
-  { categorySlug: "outsourced-hr-services-firm-in-the-uk", title: "Practical HR support", icon: UsersRound },
-  { categorySlug: "strategic-hr-and-workforce-advisory-firm-in-the-uk", title: "Workforce advisory", icon: Telescope },
+  { categorySlug: "recruitment-and-talent-acquisition-firm", title: "Recruitment & talent", icon: UserRoundSearch },
+  { categorySlug: "outsourced-hr-services-firm", title: "Practical HR support", icon: UsersRound },
+  { categorySlug: "strategic-hr-and-workforce-advisory-firm", title: "Workforce advisory", icon: Telescope },
 ];
 
 // Original, non-quantified positioning statements — see the doc comment
@@ -103,7 +105,7 @@ const growthStages = [
   {
     icon: Compass,
     title: "Growing internationally",
-    detail: "Navigate UK people practice and workforce needs as operations expand.",
+    detail: "Navigate people practice and workforce needs as operations expand across countries.",
   },
 ];
 
@@ -305,6 +307,23 @@ export default function AboutPage() {
               ))}
             </StaggerContainer>
           </section>
+
+          <MarketsBand
+            heading="One partner across four regions"
+            intro="Apex HR supports employers in twelve countries across Africa, North America, Europe and the Middle East. Each market has its own talent pool, employment rules and expectations, so we combine consistent standards with local knowledge, and work alongside in-country legal counsel where formal advice is needed."
+          />
+
+          {aboutPageContent.faqs && aboutPageContent.faqs.length > 0 && (
+            <section className="bg-surface-page p-8 sm:p-10 lg:p-14">
+              <RevealHeading>
+                <SectionKicker tone="light">Frequently asked questions</SectionKicker>
+                <h2 className="mt-4 max-w-2xl font-display text-h2 font-bold text-navy">About Apex HR</h2>
+              </RevealHeading>
+              <div className="mt-10">
+                <FaqWithContactForm items={aboutPageContent.faqs} />
+              </div>
+            </section>
+          )}
 
       <div className="flex flex-col gap-6 bg-gold p-8 sm:flex-row sm:items-center sm:justify-between sm:p-10 lg:p-14">
         <RevealHeading>

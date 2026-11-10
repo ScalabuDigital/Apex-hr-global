@@ -17,6 +17,7 @@ import { InsightsSection } from "@/components/sections/insights-section";
 import { FaqSection } from "@/components/sections/faq-section";
 import { FinalCtaSection } from "@/components/sections/final-cta-section";
 import { buildMetadata } from "@/lib/seo/metadata";
+import { homeHreflang } from "@/lib/seo/hreflang";
 import { getOrganizationJsonLd, getWebsiteJsonLd, toJsonLdScript } from "@/lib/seo/structured-data";
 import { routes } from "@/config/routes";
 import { siteConfig } from "@/config/site";
@@ -32,9 +33,10 @@ import { siteConfig } from "@/config/site";
 export const metadata: Metadata = buildMetadata({
   title: siteConfig.defaultTitle,
   description:
-    "Apex HR is an employer-first HR company in the UK, combining outsourced HR support, recruitment and workforce advisory, with a separate pathway for candidates.",
+    "Apex HR is a global HR and recruitment company for employers across Africa, North America, Europe and the Middle East, combining outsourced HR, recruitment and workforce advisory.",
   path: routes.home.path,
   index: routes.home.readyToIndex,
+  hreflang: homeHreflang(),
 });
 
 /**

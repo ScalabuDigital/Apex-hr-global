@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, TrendingUp } from "lucide-react";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { SectionKicker } from "@/components/ui/section-kicker";
 import { LinkButton } from "@/components/ui/link-button";
@@ -16,7 +16,8 @@ import { routes } from "@/config/routes";
 import type { RouteRecord } from "@/types/route";
 import type { SectorContent } from "@/content/sectors-data";
 import { getService } from "@/config/services";
-import { talentRoleContent } from "@/content/talent-roles-data";
+import { countryRegions, locationPath, locations } from "@/config/locations";
+import { sectorMarketContent } from "@/content/sector-markets-data";
 
 interface SectorPageTemplateProps {
   title: string;
@@ -53,10 +54,11 @@ interface SectorPageTemplateProps {
  */
 export function SectorPageTemplate({ title, breadcrumbTrail, sector }: SectorPageTemplateProps) {
   const Icon = sectorIcons[sector.slug];
+  const markets = sectorMarketContent[sector.slug];
+  const allFaqs = [...sector.faqs, ...(markets?.extraFaqs ?? [])];
   const relatedServices = sector.relatedServiceSlugs
     .map((slug) => getService(slug))
     .filter((entry): entry is NonNullable<typeof entry> => Boolean(entry));
-  const relatedRoles = talentRoleContent.filter((role) => role.relatedSectorSlugs.includes(sector.slug));
 
   return (
     <div className="bg-surface-page">
@@ -65,7 +67,7 @@ export function SectorPageTemplate({ title, breadcrumbTrail, sector }: SectorPag
               <Breadcrumbs trail={breadcrumbTrail} tone="dark" />
               <RevealHeading>
                 <SectionKicker tone="dark">Sector expertise</SectionKicker>
-                <h1 className="mt-4 max-w-xl font-display text-display font-bold text-white">{`HR Company for ${title} in the UK`}</h1>
+                <h1 className="mt-4 max-w-xl font-display text-display font-bold text-white">{`Global HR Company for ${title}`}</h1>
                 <p className="mt-3 max-w-xl font-display text-h3 font-bold text-gold">{sector.tagline}</p>
               </RevealHeading>
               <FadeUp delay={0.15} className="flex flex-col gap-6">
@@ -143,6 +145,66 @@ export function SectorPageTemplate({ title, breadcrumbTrail, sector }: SectorPag
             </StaggerContainer>
           </section>
 
+          {markets && (
+            <section aria-labelledby="sector-international" className="bg-surface-card p-8 sm:p-10 lg:p-14">
+              <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+                <div>
+                  <RevealHeading>
+                    <SectionKicker tone="light">The sector internationally</SectionKicker>
+                    <h2 id="sector-international" className="mt-4 max-w-lg font-display text-h1 font-bold text-navy">
+                      {title} workforces across borders
+                    </h2>
+                  </RevealHeading>
+                  <FadeUp delay={0.1} className="mt-4 flex max-w-xl flex-col gap-4">
+                    {markets.globalContext.map((paragraph) => (
+                      <p key={paragraph.slice(0, 32)} className="text-body text-text-secondary">
+                        {paragraph}
+                      </p>
+                    ))}
+                  </FadeUp>
+                </div>
+                <div className="rounded-md bg-surface-page p-6 sm:p-8">
+                  <h3 className="text-caption font-bold uppercase tracking-widest text-gold-ink">Workforce trends</h3>
+                  <StaggerContainer>
+                    <ul className="mt-4 flex flex-col gap-3">
+                      {markets.workforceTrends.map((trend) => (
+                        <StaggerItem key={trend} as="li" className="flex items-start gap-3 text-body text-navy">
+                          <TrendingUp aria-hidden="true" className="mt-0.5 h-5 w-5 shrink-0 text-gold-ink" />
+                          {trend}
+                        </StaggerItem>
+                      ))}
+                    </ul>
+                  </StaggerContainer>
+                </div>
+              </div>
+
+              <h3 className="mt-14 font-display text-h3 font-bold text-navy">
+                {title} across the regions we support
+              </h3>
+              <StaggerContainer className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
+                {countryRegions.map((region) => (
+                  <StaggerItem key={region} className="flex flex-col gap-3 rounded-md border border-border-subtle bg-surface-page p-6">
+                    <p className="text-caption font-bold uppercase tracking-widest text-gold-ink">{region}</p>
+                    <p className="text-body text-text-secondary">{markets.regionalNotes[region]}</p>
+                    <p className="mt-auto flex flex-wrap gap-x-3 gap-y-1 text-small">
+                      {locations
+                        .filter((location) => location.region === region)
+                        .map((location) => (
+                          <Link
+                            key={location.slug}
+                            href={locationPath(location.slug)}
+                            className="font-semibold text-navy underline-offset-4 hover:underline"
+                          >
+                            {location.title}
+                          </Link>
+                        ))}
+                    </p>
+                  </StaggerItem>
+                ))}
+              </StaggerContainer>
+            </section>
+          )}
+
           <section className="grid grid-cols-1 bg-navy lg:grid-cols-2">
             <SlideInLeft className="relative min-h-64 overflow-hidden bg-linear-to-br from-navy via-slate to-gold/40 p-8 sm:p-10 lg:min-h-full lg:p-12">
               <div className="flex h-full items-end">
@@ -202,31 +264,7 @@ export function SectorPageTemplate({ title, breadcrumbTrail, sector }: SectorPag
             </section>
           )}
 
-          {relatedRoles.length > 0 && (
-            <section className="bg-navy p-8 sm:p-10 lg:p-14">
-              <RevealHeading>
-                <SectionKicker tone="dark">Relevant talent needs</SectionKicker>
-                <h2 className="mt-4 max-w-lg font-display text-h1 font-bold text-white">
-                  Roles that keep {title.toLowerCase()} moving
-                </h2>
-              </RevealHeading>
-              <StaggerContainer className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2">
-                {relatedRoles.slice(0, 6).map((role) => (
-                  <StaggerItem key={role.slug}>
-                    <Link
-                      href={`/talent-acquisition/${role.slug}/`}
-                      className="flex items-center justify-between gap-4 rounded-md border border-white/15 bg-white/5 px-5 py-4 text-body font-semibold text-white transition-colors duration-(--duration-fast) hover:border-gold hover:bg-white/10"
-                    >
-                      {role.title}
-                      <ArrowUpRight aria-hidden="true" className="h-4 w-4 shrink-0" />
-                    </Link>
-                  </StaggerItem>
-                ))}
-              </StaggerContainer>
-            </section>
-          )}
-
-          {sector.faqs.length > 0 && (
+          {allFaqs.length > 0 && (
             <section className="bg-surface-card p-8 sm:p-10 lg:p-14">
               <RevealHeading>
                 <SectionKicker tone="light">Frequently asked questions</SectionKicker>
@@ -235,7 +273,7 @@ export function SectorPageTemplate({ title, breadcrumbTrail, sector }: SectorPag
                 </h2>
               </RevealHeading>
               <div className="mt-10">
-                <FaqWithContactForm items={sector.faqs} />
+                <FaqWithContactForm items={allFaqs} />
               </div>
             </section>
           )}

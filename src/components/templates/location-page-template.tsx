@@ -26,7 +26,7 @@ import { sectorImages } from "@/lib/sector-images";
 import { routes } from "@/config/routes";
 import type { RouteRecord } from "@/types/route";
 import type { LocationContent } from "@/content/locations-data";
-import { getLocation } from "@/config/locations";
+import { comboSlug, withArticle } from "@/config/locations";
 import { getService } from "@/config/services";
 import { getSector } from "@/config/sectors";
 import { serviceContent } from "@/content/services-data";
@@ -56,7 +56,7 @@ const trustPointsSecondary = [
 const whyApexPoints = [
   {
     title: "Local market understanding",
-    detail: "We know the regional talent market and what makes it unique.",
+    detail: "We take time to understand each market's talent pool and what makes it different.",
   },
   {
     title: "Senior HR expertise",
@@ -102,8 +102,8 @@ export function buildLocationFaqs(title: string, location: LocationContent) {
     ...location.faqs,
     {
       id: "business-types",
-      question: `What types of businesses do you work with in ${title}?`,
-      answer: `Apex HR supports employers of all sizes in ${title} and the wider ${location.region}, from growing startups to established organisations.`,
+      question: `What types of businesses do you work with in ${withArticle(title)}?`,
+      answer: `Apex HR supports employers of all sizes in ${withArticle(title)} and the wider ${location.region}, from growing startups to established organisations.`,
     },
     {
       id: "permanent-and-temporary",
@@ -119,7 +119,6 @@ export function buildLocationFaqs(title: string, location: LocationContent) {
 }
 
 export function LocationPageTemplate({ title, breadcrumbTrail, location }: LocationPageTemplateProps) {
-  const locationItem = getLocation(location.slug);
   const relatedServices = location.relatedServiceSlugs
     .map((slug) => getService(slug))
     .filter((entry): entry is NonNullable<typeof entry> => Boolean(entry));
@@ -137,7 +136,7 @@ export function LocationPageTemplate({ title, breadcrumbTrail, location }: Locat
           <RevealHeading>
             <SectionKicker tone="dark">{location.region}</SectionKicker>
             <h1 className="mt-4 max-w-xl font-display text-display font-bold text-white">
-              HR and recruitment support in {title}
+              HR and recruitment support in {withArticle(title)}
             </h1>
           </RevealHeading>
           <FadeUp delay={0.15} className="flex flex-col gap-6">
@@ -169,7 +168,7 @@ export function LocationPageTemplate({ title, breadcrumbTrail, location }: Locat
             <p className="text-small font-semibold text-navy">
               Local insight.
               <br />
-              UK-wide expertise.
+              Global expertise.
             </p>
           </div>
         </SlideInRight>
@@ -193,19 +192,78 @@ export function LocationPageTemplate({ title, breadcrumbTrail, location }: Locat
         ))}
       </StaggerContainer>
 
-      {locationItem && (
-        <LocationContextSection
-          title={title}
-          location={locationItem}
-          region={location.region}
-          localContext={location.localContext}
-        />
-      )}
+      <LocationContextSection title={title} location={location} />
+
+      <section aria-labelledby="at-a-glance" className="bg-surface-card p-8 sm:p-10 lg:p-14">
+        <RevealHeading>
+          <SectionKicker tone="light">At a glance</SectionKicker>
+          <h2 id="at-a-glance" className="mt-4 max-w-2xl font-display text-h1 font-bold text-navy">
+            Employing people in {withArticle(title)}: the essentials
+          </h2>
+        </RevealHeading>
+        <StaggerContainer>
+          <dl className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            {location.atAGlance.map((fact) => (
+              <StaggerItem key={fact.label} className="rounded-md border border-border-subtle bg-surface-page p-5">
+                <dt className="text-caption font-bold uppercase tracking-widest text-gold-ink">{fact.label}</dt>
+                <dd className="mt-2 text-body font-semibold text-navy">{fact.value}</dd>
+              </StaggerItem>
+            ))}
+          </dl>
+        </StaggerContainer>
+      </section>
+
+      <section aria-labelledby="employment-framework" className="grid grid-cols-1 gap-10 bg-navy p-8 sm:p-10 lg:grid-cols-[0.8fr_1.2fr] lg:p-14">
+        <div>
+          <RevealHeading>
+            <SectionKicker tone="dark">Employment framework</SectionKicker>
+            <h2 id="employment-framework" className="mt-4 max-w-md font-display text-h1 font-bold text-white">
+              The rules that shape employment in {withArticle(title)}
+            </h2>
+          </RevealHeading>
+          <FadeUp delay={0.1}>
+            <p className="mt-4 max-w-md text-body text-white/70">{location.employmentFramework.intro}</p>
+            <p className="mt-6 max-w-md text-small text-white/50">
+              General information only, not legal advice. Laws, rates and thresholds change, so confirm current
+              requirements with qualified in-country counsel. Apex HR works alongside your legal advisers.
+            </p>
+          </FadeUp>
+        </div>
+        <StaggerContainer className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          {location.employmentFramework.points.map((point) => (
+            <StaggerItem key={point.title} className="rounded-md border border-white/15 bg-white/5 p-5">
+              <h3 className="font-display text-body-lg font-bold text-white">{point.title}</h3>
+              <p className="mt-2 text-small text-white/70">{point.detail}</p>
+            </StaggerItem>
+          ))}
+        </StaggerContainer>
+      </section>
+
+      <section aria-labelledby="hiring-considerations" className="bg-surface-page p-8 sm:p-10 lg:p-14">
+        <RevealHeading>
+          <SectionKicker tone="light">Hiring in {withArticle(title)}</SectionKicker>
+          <h2 id="hiring-considerations" className="mt-4 max-w-2xl font-display text-h1 font-bold text-navy">
+            What to plan for when you hire in {withArticle(title)}
+          </h2>
+        </RevealHeading>
+        <StaggerContainer>
+          <ul className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2">
+            {location.hiringConsiderations.map((item, index) => (
+              <StaggerItem as="li" key={item} className="flex gap-4 rounded-md border border-border-subtle bg-surface-card p-5">
+                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-gold/20 text-small font-bold text-gold-ink">
+                  {index + 1}
+                </span>
+                <p className="text-body text-text-secondary">{item}</p>
+              </StaggerItem>
+            ))}
+          </ul>
+        </StaggerContainer>
+      </section>
 
       {relatedServices.length > 0 && (
         <section id="relevant-services" className="bg-surface-card p-8 sm:p-10 lg:p-14">
           <RevealHeading>
-            <SectionKicker tone="light">{`How we can help in ${title}`}</SectionKicker>
+            <SectionKicker tone="light">{`How we can help in ${withArticle(title)}`}</SectionKicker>
             <h2 className="mt-4 max-w-2xl font-display text-h1 font-bold text-navy">
               Relevant HR and recruitment services
             </h2>
@@ -224,14 +282,14 @@ export function LocationPageTemplate({ title, breadcrumbTrail, location }: Locat
                   )}
                   <div>
                     <h3 className="font-display text-h4 font-bold text-navy">
-                      {service.title} in {title}
+                      {service.title} in {withArticle(title)}
                     </h3>
-                    {content && (
-                      <p className="mt-2 text-body text-text-secondary">{content.heroSummary}</p>
-                    )}
+                    <p className="mt-2 text-body text-text-secondary">
+                      {location.serviceAngles[service.slug] ?? content?.heroSummary}
+                    </p>
                   </div>
                   <Link
-                    href={`/services/${service.slug}-${location.slug}/`}
+                    href={`/services/${comboSlug(service.slug, location.slug)}/`}
                     className="group mt-auto inline-flex w-fit items-center gap-2 text-caption font-bold uppercase tracking-widest text-gold-ink"
                   >
                     Find out more
@@ -250,7 +308,7 @@ export function LocationPageTemplate({ title, breadcrumbTrail, location }: Locat
             <div>
               <SectionKicker tone="dark">Sector expertise</SectionKicker>
               <h2 className="mt-4 max-w-xl font-display text-h1 font-bold text-white">
-                {`Experience across ${title}'s key sectors`}
+                {`Experience across key sectors in ${withArticle(title)}`}
               </h2>
             </div>
             <Link
@@ -343,7 +401,7 @@ export function LocationPageTemplate({ title, breadcrumbTrail, location }: Locat
           <RevealHeading>
             <SectionKicker tone="light">Why employers choose Apex HR</SectionKicker>
             <h2 className="mt-4 max-w-md font-display text-h1 font-bold text-navy">
-              A local partner, national expertise
+              A local partner, international expertise
             </h2>
           </RevealHeading>
           <StaggerContainer className="mt-8 flex flex-col gap-6">

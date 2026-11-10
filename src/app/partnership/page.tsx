@@ -266,6 +266,11 @@ export default function PartnershipPage() {
               Ongoing people partnership, built around your growth stage.
             </h2>
             <p className="mt-4 text-body-lg text-text-secondary">Choose the level that fits your stage.</p>
+            <p className="mt-3 text-small text-text-secondary">
+              Prices are shown in pounds sterling (GBP) and exclude local taxes. Quotes in your local currency,
+              including USD, EUR, AED, SAR, NGN, KES, ZAR and CAD, are available on request, and partnerships can
+              cover teams in more than one country.
+            </p>
           </RevealHeading>
 
           <StaggerContainer className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">

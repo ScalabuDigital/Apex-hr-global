@@ -2,8 +2,8 @@ import { describe, expect, it } from "vitest";
 import { redirectRules } from "@/config/redirects";
 
 describe("redirect registry", () => {
-  it("contains the full 72-rule master-workbook registry plus the 44 Batch 3 category-location redirects", () => {
-    expect(redirectRules.length).toBe(116);
+  it("contains the 69 legacy taxonomy rules", () => {
+    expect(redirectRules.length).toBe(69);
   });
 
   it("has no duplicate source URLs", () => {

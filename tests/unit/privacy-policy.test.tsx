@@ -45,8 +45,8 @@ describe("4, 5 & 11. Page is indexable with the correct canonical; no accidental
     expect(metadata.robots).toEqual({ index: true, follow: true });
   });
 
-  it("canonical is exactly https://www.apexhrllc.co.uk/privacy-policy/", () => {
-    expect(metadata.alternates?.canonical).toBe("https://www.apexhrllc.co.uk/privacy-policy/");
+  it("canonical is exactly https://www.apexhrllc.com/privacy-policy/", () => {
+    expect(metadata.alternates?.canonical).toBe("https://www.apexhrllc.com/privacy-policy/");
   });
 
   it("title and description match the approved SEO brief", () => {
@@ -57,9 +57,9 @@ describe("4, 5 & 11. Page is indexable with the correct canonical; no accidental
   });
 });
 
-describe("6. Production domain is .co.uk", () => {
-  it("siteConfig.productionUrl is the .co.uk domain, never .com", () => {
-    expect(siteConfig.productionUrl).toBe("https://www.apexhrllc.co.uk");
+describe("6. Production domain is the global .com", () => {
+  it("siteConfig.productionUrl is the global .com domain", () => {
+    expect(siteConfig.productionUrl).toBe("https://www.apexhrllc.com");
   });
 });
 
@@ -74,7 +74,7 @@ describe("7. the public business email uses the Apex HR contact address", () => 
     expect(html).toContain(siteConfig.contactEmail);
     // The general contact email is on apexhrllc.com; the retired .com
     // *website* domain must still never appear anywhere else on the page.
-    expect(html.split(siteConfig.contactEmail).join("")).not.toContain(".com");
+    expect(html.split(siteConfig.contactEmail).join("")).not.toContain("apexhrllc.co.uk");
   });
 });
 
@@ -160,12 +160,12 @@ describe("9. Footer contains /privacy-policy/", () => {
 describe("10. Sitemap contains /privacy-policy/ exactly once", () => {
   it("appears exactly once, in the page-sitemap group, never in any other group", () => {
     const groups = getLocalSitemapGroups();
-    const privacyPolicyUrl = "https://www.apexhrllc.co.uk/privacy-policy/";
+    const privacyPolicyUrl = "https://www.apexhrllc.com/privacy-policy/";
 
     const pageMatches = groups.page.filter((e) => e.loc === privacyPolicyUrl);
     expect(pageMatches).toHaveLength(1);
 
-    for (const key of ["service", "sector", "location", "talentAcquisition"] as const) {
+    for (const key of ["service", "sector", "location"] as const) {
       expect(groups[key].some((e) => e.loc === privacyPolicyUrl)).toBe(false);
     }
   });
@@ -186,26 +186,26 @@ describe("12. No accidental X-Robots-Tag noindex configuration was introduced", 
 });
 
 describe("13. Existing service/sector URL architecture remains unchanged", () => {
-  it("every service/category slug still ends in -firm-in-the-uk", () => {
+  it("every service/category slug still ends in -firm", () => {
     for (const entry of [...serviceCategories, ...services]) {
-      expect(entry.slug.endsWith("-firm-in-the-uk"), entry.slug).toBe(true);
+      expect(entry.slug.endsWith("-firm"), entry.slug).toBe(true);
     }
     expect(services.length).toBe(48);
     expect(serviceCategories.length).toBe(10);
   });
 
-  it("every sector slug still follows hr-company-for-...-in-the-uk", () => {
+  it("every sector slug still follows hr-company-for-...", () => {
     for (const sector of sectors) {
       expect(sector.slug.startsWith("hr-company-for-"), sector.slug).toBe(true);
-      expect(sector.slug.endsWith("-in-the-uk"), sector.slug).toBe(true);
+      expect(sector.slug.endsWith("-in-the-uk"), sector.slug).toBe(false);
     }
     expect(sectors.length).toBe(17);
   });
 });
 
-describe("14. Existing redirect count remains 116", () => {
-  it("redirectRules.length is still exactly 116 — no new redirects introduced", () => {
-    expect(redirectRules.length).toBe(116);
+describe("14. Existing redirect count remains 69", () => {
+  it("redirectRules.length is still exactly 69 — no new redirects introduced", () => {
+    expect(redirectRules.length).toBe(69);
   });
 
   it("no redirect rule targets or originates from /privacy-policy/", () => {
@@ -226,9 +226,9 @@ describe("Structured data: WebPage + BreadcrumbList, using real shared entities 
 
     const webPage = jsonLd.find((entry: { "@type": string }) => entry["@type"] === "WebPage");
     expect(webPage).toBeTruthy();
-    expect(webPage.url).toBe("https://www.apexhrllc.co.uk/privacy-policy/");
-    expect(webPage.about).toEqual({ "@id": "https://www.apexhrllc.co.uk/#organization" });
-    expect(webPage.isPartOf).toEqual({ "@id": "https://www.apexhrllc.co.uk/#website" });
+    expect(webPage.url).toBe("https://www.apexhrllc.com/privacy-policy/");
+    expect(webPage.about).toEqual({ "@id": "https://www.apexhrllc.com/#organization" });
+    expect(webPage.isPartOf).toEqual({ "@id": "https://www.apexhrllc.com/#website" });
     expect(webPage).not.toHaveProperty("aggregateRating");
     expect(webPage).not.toHaveProperty("review");
     expect(webPage).not.toHaveProperty("author");
@@ -237,7 +237,7 @@ describe("Structured data: WebPage + BreadcrumbList, using real shared entities 
     expect(breadcrumb).toBeTruthy();
     expect(breadcrumb.itemListElement).toHaveLength(2);
     expect(breadcrumb.itemListElement[1].name).toBe("Privacy Policy");
-    expect(breadcrumb.itemListElement[1].item).toBe("https://www.apexhrllc.co.uk/privacy-policy/");
+    expect(breadcrumb.itemListElement[1].item).toBe("https://www.apexhrllc.com/privacy-policy/");
   });
 });
 

@@ -71,8 +71,6 @@ export interface ServiceCategoryContent {
   /** Ordered process stages; `detail` may contain inline links. */
   lifecycle?: ServiceCategoryApproachStep[];
   guide?: ContentGuide;
-  /** Renders the grouped hub-to-role-page directory. */
-  showRoleDirectory?: boolean;
   relatedInsights?: RelatedInsightLink[];
 }
 
@@ -133,7 +131,7 @@ export interface ServiceContent {
 
 export const serviceCategoryContent: ServiceCategoryContent[] = [
   {
-    slug: "outsourced-hr-services-firm-in-the-uk",
+    slug: "outsourced-hr-services-firm",
     tagline: "HR support, without the overhead of an HR department.",
     summary: "Day-to-day HR support and outsourced HR leadership for businesses without a full in-house team.",
     introduction:
@@ -165,7 +163,7 @@ export const serviceCategoryContent: ServiceCategoryContent[] = [
       "A clearer, more predictable route to HR advice for managers",
       "A shift away from ad hoc, reactive people decisions",
     ],
-    relatedFamilySlugs: ["employment-law-and-employee-relations-firm-in-the-uk", "strategic-hr-and-workforce-advisory-firm-in-the-uk"],
+    relatedFamilySlugs: ["employment-law-and-employee-relations-firm", "strategic-hr-and-workforce-advisory-firm"],
     faqs: [
       {
         id: "retained-vs-fractional",
@@ -194,7 +192,7 @@ export const serviceCategoryContent: ServiceCategoryContent[] = [
     ],
   },
   {
-    slug: "recruitment-and-talent-acquisition-firm-in-the-uk",
+    slug: "recruitment-and-talent-acquisition-firm",
     tagline: "Hire well, without slowing down.",
     summary: "Permanent, contract and executive recruitment delivered alongside genuine HR expertise.",
     introduction:
@@ -226,7 +224,7 @@ export const serviceCategoryContent: ServiceCategoryContent[] = [
       "Greater flexibility when recruitment demand changes",
       "A more structured route into the organisation for entry-level and graduate talent",
     ],
-    relatedFamilySlugs: ["outsourced-hr-services-firm-in-the-uk", "strategic-hr-and-workforce-advisory-firm-in-the-uk"],
+    relatedFamilySlugs: ["outsourced-hr-services-firm", "strategic-hr-and-workforce-advisory-firm"],
     faqs: [
       {
         id: "executive-vs-permanent",
@@ -277,14 +275,14 @@ export const serviceCategoryContent: ServiceCategoryContent[] = [
           "Useful measures include time to hire, cost per hire, offer-acceptance rate, candidate experience, hiring-manager satisfaction and quality of hire, which looks at how new starters perform and whether they stay through probation and their first year. Choose a small set you can track consistently rather than every possible metric.",
       },
       {
-        id: "uk-compliance",
-        question: "What legal checks apply when recruiting in the UK?",
+        id: "hiring-compliance",
+        question: "What legal checks apply when recruiting in different countries?",
         answer:
-          "There is no single legally required recruitment process, but employers must follow discrimination and data protection law throughout, and must check a candidate's right to work in the UK before employment starts. Some roles also need DBS checks, professional registration or licence checks. Apex HR builds these steps into the process; formal legal questions should be confirmed with a qualified employment lawyer.",
+          "Requirements differ by country, but most employers must follow local anti-discrimination and data protection law throughout hiring and confirm a candidate's legal right to work before employment starts. Some roles also need background, professional registration or licence checks. Apex HR builds the relevant steps into the process for each market; formal legal questions should be confirmed with qualified in-country employment counsel.",
       },
     ],
     metaDescription:
-      "Talent acquisition for UK employers: workforce planning, sourcing, assessment and onboarding across permanent, executive, contract, RPO and graduate hiring.",
+      "Talent acquisition for employers: workforce planning, sourcing, assessment and onboarding across permanent, executive, contract, RPO and graduate hiring.",
     lifecycleKicker: "The talent acquisition lifecycle",
     lifecycleHeading: "How does the talent acquisition process work?",
     lifecycleIntro:
@@ -293,7 +291,7 @@ export const serviceCategoryContent: ServiceCategoryContent[] = [
       {
         title: "Workforce planning",
         detail:
-          "Translate business plans into the roles, skills and headcount you need, and decide what to hire, develop or resource flexibly. Larger or longer-term plans are supported through [strategic workforce planning](/services/strategic-workforce-planning-firm-in-the-uk/).",
+          "Translate business plans into the roles, skills and headcount you need, and decide what to hire, develop or resource flexibly. Larger or longer-term plans are supported through [strategic workforce planning](/services/strategic-workforce-planning-firm/).",
       },
       {
         title: "Vacancy definition",
@@ -303,22 +301,22 @@ export const serviceCategoryContent: ServiceCategoryContent[] = [
       {
         title: "Employer brand and attraction",
         detail:
-          "Decide where suitable candidates are and what will persuade them to apply. A clear [employer brand and employee value proposition](/services/employer-branding-and-employee-value-proposition-evp-firm-in-the-uk/) makes every advert and approach more credible.",
+          "Decide where suitable candidates are and what will persuade them to apply. A clear [employer brand and employee value proposition](/services/employer-branding-and-employee-value-proposition-evp-firm/) makes every advert and approach more credible.",
       },
       {
         title: "Sourcing",
         detail:
-          "Combine advertising, talent pools and direct approach. Senior and scarce roles usually need [executive search](/services/executive-search-firm-in-the-uk/) to reach people who are not actively looking.",
+          "Combine advertising, talent pools and direct approach. Senior and scarce roles usually need [executive search](/services/executive-search-firm/) to reach people who are not actively looking.",
       },
       {
         title: "Screening and assessment",
         detail:
-          "Assess candidates consistently against the agreed criteria using structured interviews, work samples or, for early-careers intakes, [graduate assessment centres](/services/graduate-schemes-and-early-careers-design-firm-in-the-uk/).",
+          "Assess candidates consistently against the agreed criteria using structured interviews, work samples or, for early-careers intakes, [graduate assessment centres](/services/graduate-schemes-and-early-careers-design-firm/).",
       },
       {
         title: "Selection and offer",
         detail:
-          "Make a fair, evidence-based decision, complete references and right to work checks, and manage the offer and any counter-offer. This is the core of [permanent recruitment](/services/permanent-recruitment-firm-in-the-uk/) and [contract staffing](/services/contract-staffing-firm-in-the-uk/).",
+          "Make a fair, evidence-based decision, complete references and right to work checks, and manage the offer and any counter-offer. This is the core of [permanent recruitment](/services/permanent-recruitment-firm/) and [contract staffing](/services/contract-staffing-firm/).",
       },
       {
         title: "Onboarding",
@@ -328,12 +326,12 @@ export const serviceCategoryContent: ServiceCategoryContent[] = [
       {
         title: "Retention and measurement",
         detail:
-          "Review quality of hire, early attrition and hiring-manager feedback, and feed what you learn back into planning. Organisations hiring continuously often run this cycle through [recruitment process outsourcing (RPO)](/services/recruitment-process-outsourcing-rpo-firm-in-the-uk/).",
+          "Review quality of hire, early attrition and hiring-manager feedback, and feed what you learn back into planning. Organisations hiring continuously often run this cycle through [recruitment process outsourcing (RPO)](/services/recruitment-process-outsourcing-rpo-firm/).",
       },
     ],
     guide: {
       kicker: "Talent acquisition explained",
-      heading: "What UK employers need to know about talent acquisition",
+      heading: "What employers need to know about talent acquisition",
       intro:
         "Most hiring problems start before a vacancy is advertised: unclear requirements, no pipeline, inconsistent interviews or no way of knowing whether past hires worked out. These are the building blocks of a talent acquisition approach that holds up.",
       sections: [
@@ -347,7 +345,7 @@ export const serviceCategoryContent: ServiceCategoryContent[] = [
           heading: "Strategic workforce planning and skills-gap analysis",
           paragraphs: [
             "Workforce planning compares the capability the organisation has with the capability its plans require, then decides how to close the gaps: hire permanently, hire on a contract or interim basis, develop existing people or redesign roles. The CIPD's [Resourcing and talent planning report 2026](https://www.cipd.org/en/about/press-releases/rtp-2026/) found that 46% of organisations still take an ad hoc approach to recruitment, which is why planning is often the quickest improvement available.",
-            "Where gaps sit in leadership roles, workforce planning links directly to [succession planning and talent mapping](/services/succession-planning-and-talent-mapping-firm-in-the-uk/).",
+            "Where gaps sit in leadership roles, workforce planning links directly to [succession planning and talent mapping](/services/succession-planning-and-talent-mapping-firm/).",
           ],
         },
         {
@@ -359,24 +357,23 @@ export const serviceCategoryContent: ServiceCategoryContent[] = [
         {
           heading: "Recruitment technology and applicant tracking systems",
           paragraphs: [
-            "An applicant tracking system (ATS) keeps candidate records, communication and interview feedback in one place and makes reporting possible. The value comes from a clear process configured in the system, not from the software alone; [HR software selection](/services/hr-software-selection-firm-in-the-uk/) and [HRIS implementation](/services/hris-implementation-firm-in-the-uk/) help where recruitment technology is part of a wider HR systems change. Any automated screening should keep meaningful human review of decisions.",
+            "An applicant tracking system (ATS) keeps candidate records, communication and interview feedback in one place and makes reporting possible. The value comes from a clear process configured in the system, not from the software alone; [HR software selection](/services/hr-software-selection-firm/) and [HRIS implementation](/services/hris-implementation-firm/) help where recruitment technology is part of a wider HR systems change. Any automated screening should keep meaningful human review of decisions.",
           ],
         },
         {
           heading: "Measuring recruitment performance and quality of hire",
           paragraphs: [
-            "Time to hire and cost per hire show efficiency; quality of hire shows effectiveness, using measures such as new-starter performance, probation outcomes and first-year retention. The same CIPD survey found only 19% of organisations calculate the return on investment of their recruitment processes. [People analytics and HR dashboards](/services/people-analytics-and-hr-dashboards-firm-in-the-uk/) can bring these measures together.",
+            "Time to hire and cost per hire show efficiency; quality of hire shows effectiveness, using measures such as new-starter performance, probation outcomes and first-year retention. The same CIPD survey found only 19% of organisations calculate the return on investment of their recruitment processes. [People analytics and HR dashboards](/services/people-analytics-and-hr-dashboards-firm/) can bring these measures together.",
           ],
         },
         {
-          heading: "Fair, compliant hiring in the UK",
+          heading: "Fair, compliant hiring across borders",
           paragraphs: [
-            "[Acas](https://www.acas.org.uk/recruitment) notes there is no recruitment process set by law, but discrimination and data protection law apply at every stage. Employers must [check a job applicant's right to work](https://www.gov.uk/check-job-applicant-right-to-work) before employment starts, and should tell candidates how their information is used and how long it is kept, in line with the [ICO's recruitment and selection guidance](https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/employment/recruitment-and-selection/). This content is general information rather than legal advice.",
+            "Hiring rules are set country by country, but the same principles apply almost everywhere: treat candidates fairly and consistently, avoid discriminatory criteria, confirm the right to work before employment starts, and tell candidates how their personal data is used and how long it is kept. Data protection regimes such as the EU GDPR, Nigeria's Data Protection Act, South Africa's POPIA and Kenya's Data Protection Act all apply to candidate data. Apex HR builds market-specific checks into each hiring process and works alongside in-country legal counsel where formal advice is needed. This content is general information rather than legal advice.",
           ],
         },
       ],
     },
-    showRoleDirectory: true,
     relatedInsights: [
       {
         title: "Talent acquisition vs recruitment vs talent management",
@@ -387,7 +384,7 @@ export const serviceCategoryContent: ServiceCategoryContent[] = [
     ],
   },
   {
-    slug: "employment-law-and-employee-relations-firm-in-the-uk",
+    slug: "employment-law-and-employee-relations-firm",
     tagline: "Handle difficult situations with confidence.",
     summary: "Practical, informational support for redundancy, TUPE, investigations, mediation and other employee-relations situations.",
     introduction:
@@ -419,7 +416,7 @@ export const serviceCategoryContent: ServiceCategoryContent[] = [
       "Practical HR support that works alongside legal advice, not instead of it",
       "A more structured, respectful experience for employees going through a difficult situation",
     ],
-    relatedFamilySlugs: ["outsourced-hr-services-firm-in-the-uk", "organisation-development-and-change-management-firm-in-the-uk"],
+    relatedFamilySlugs: ["outsourced-hr-services-firm", "organisation-development-and-change-management-firm"],
     faqs: [
       {
         id: "is-this-legal-advice",
@@ -448,7 +445,7 @@ export const serviceCategoryContent: ServiceCategoryContent[] = [
     ],
   },
   {
-    slug: "organisation-development-and-change-management-firm-in-the-uk",
+    slug: "organisation-development-and-change-management-firm",
     tagline: "Change the organisation, without losing the people.",
     summary: "Structuring, restructuring and transforming organisations through periods of growth or change.",
     introduction:
@@ -480,7 +477,7 @@ export const serviceCategoryContent: ServiceCategoryContent[] = [
       "Closer alignment between everyday behaviour and stated culture or strategy",
       "A more structured approach to integrating people through a merger or acquisition",
     ],
-    relatedFamilySlugs: ["strategic-hr-and-workforce-advisory-firm-in-the-uk", "employee-experience-and-engagement-firm-in-the-uk"],
+    relatedFamilySlugs: ["strategic-hr-and-workforce-advisory-firm", "employee-experience-and-engagement-firm"],
     faqs: [
       {
         id: "design-vs-change",
@@ -509,7 +506,7 @@ export const serviceCategoryContent: ServiceCategoryContent[] = [
     ],
   },
   {
-    slug: "compensation-reward-and-benefits-firm-in-the-uk",
+    slug: "compensation-reward-and-benefits-firm",
     tagline: "Pay and reward that's fair, and easy to defend.",
     summary: "Pay structures, reward strategy and benefits design that support recruitment, retention and fairness.",
     introduction:
@@ -541,7 +538,7 @@ export const serviceCategoryContent: ServiceCategoryContent[] = [
       "Reward that's more closely aligned with recruitment and retention goals",
       "Greater confidence in pay fairness and reporting",
     ],
-    relatedFamilySlugs: ["performance-and-talent-management-firm-in-the-uk", "outsourced-hr-services-firm-in-the-uk"],
+    relatedFamilySlugs: ["performance-and-talent-management-firm", "outsourced-hr-services-firm"],
     faqs: [
       {
         id: "benchmarking-vs-evaluation",
@@ -553,7 +550,7 @@ export const serviceCategoryContent: ServiceCategoryContent[] = [
         id: "statutory-reporting",
         question: "Does Apex HR handle statutory pay gap reporting requirements?",
         answer:
-          "Pay Equity & Pay Gap Reporting provides HR support around fairness analysis and reporting. Specific statutory thresholds and deadlines should be confirmed against current GOV.UK guidance, and this service does not replace specialist legal or regulatory advice where that's required.",
+          "Pay Equity & Pay Gap Reporting provides HR support around fairness analysis and reporting. Pay gap reporting rules differ by country (for example the UK gender pay gap regulations and the EU Pay Transparency Directive), so specific statutory thresholds and deadlines should be confirmed against current official guidance in each country, and this service does not replace specialist legal or regulatory advice where that's required.",
       },
       {
         id: "exec-comp-separate",
@@ -570,7 +567,7 @@ export const serviceCategoryContent: ServiceCategoryContent[] = [
     ],
   },
   {
-    slug: "learning-and-leadership-development-firm-in-the-uk",
+    slug: "learning-and-leadership-development-firm",
     tagline: "Build leaders who bring out the best in their teams.",
     summary: "Leadership training, coaching and capability development for managers and teams.",
     introduction:
@@ -602,7 +599,7 @@ export const serviceCategoryContent: ServiceCategoryContent[] = [
       "A learning approach targeted at the organisation's actual capability gaps",
       "Development that's more likely to be applied after a programme ends",
     ],
-    relatedFamilySlugs: ["performance-and-talent-management-firm-in-the-uk", "employee-experience-and-engagement-firm-in-the-uk"],
+    relatedFamilySlugs: ["performance-and-talent-management-firm", "employee-experience-and-engagement-firm"],
     faqs: [
       {
         id: "training-vs-strategy",
@@ -631,7 +628,7 @@ export const serviceCategoryContent: ServiceCategoryContent[] = [
     ],
   },
   {
-    slug: "performance-and-talent-management-firm-in-the-uk",
+    slug: "performance-and-talent-management-firm",
     tagline: "Make consistent, defensible people decisions.",
     summary: "Performance management, succession planning and competency frameworks that support consistent decision-making.",
     introduction:
@@ -663,7 +660,7 @@ export const serviceCategoryContent: ServiceCategoryContent[] = [
       "A shared, transparent basis for promotion and development decisions",
       "Greater clarity for managers on what 'good' looks like in a role",
     ],
-    relatedFamilySlugs: ["learning-and-leadership-development-firm-in-the-uk", "compensation-reward-and-benefits-firm-in-the-uk"],
+    relatedFamilySlugs: ["learning-and-leadership-development-firm", "compensation-reward-and-benefits-firm"],
     faqs: [
       {
         id: "framework-first",
@@ -691,7 +688,7 @@ export const serviceCategoryContent: ServiceCategoryContent[] = [
     ],
   },
   {
-    slug: "employee-experience-and-engagement-firm-in-the-uk",
+    slug: "employee-experience-and-engagement-firm",
     tagline: "An employee experience people actually believe in.",
     summary: "Employee experience strategy, engagement surveys, employer branding, wellbeing and DEI consulting.",
     introduction:
@@ -723,7 +720,7 @@ export const serviceCategoryContent: ServiceCategoryContent[] = [
       "Wellbeing practices embedded in everyday management, rather than treated as a one-off initiative",
       "More consistent, inclusive people practices across the organisation",
     ],
-    relatedFamilySlugs: ["learning-and-leadership-development-firm-in-the-uk", "organisation-development-and-change-management-firm-in-the-uk"],
+    relatedFamilySlugs: ["learning-and-leadership-development-firm", "organisation-development-and-change-management-firm"],
     faqs: [
       {
         id: "survey-before-plan",
@@ -752,7 +749,7 @@ export const serviceCategoryContent: ServiceCategoryContent[] = [
     ],
   },
   {
-    slug: "hr-technology-and-people-analytics-firm-in-the-uk",
+    slug: "hr-technology-and-people-analytics-firm",
     tagline: "HR technology that works for your business, not the other way round.",
     summary: "HRIS implementation, HR software selection, people analytics and digital HR transformation.",
     introduction:
@@ -784,7 +781,7 @@ export const serviceCategoryContent: ServiceCategoryContent[] = [
       "Easier, more confident access to workforce information from real data",
       "A more considered, documented approach to AI use in HR and the workplace",
     ],
-    relatedFamilySlugs: ["strategic-hr-and-workforce-advisory-firm-in-the-uk", "organisation-development-and-change-management-firm-in-the-uk"],
+    relatedFamilySlugs: ["strategic-hr-and-workforce-advisory-firm", "organisation-development-and-change-management-firm"],
     faqs: [
       {
         id: "selection-vs-implementation",
@@ -813,7 +810,7 @@ export const serviceCategoryContent: ServiceCategoryContent[] = [
     ],
   },
   {
-    slug: "strategic-hr-and-workforce-advisory-firm-in-the-uk",
+    slug: "strategic-hr-and-workforce-advisory-firm",
     tagline: "Plan the workforce you'll need, not just the one you have.",
     summary: "People strategy, strategic workforce planning and global mobility advisory for growing organisations.",
     introduction:
@@ -845,7 +842,7 @@ export const serviceCategoryContent: ServiceCategoryContent[] = [
       "A more structured, considered approach to international assignments",
       "Better-informed strategic decisions as the organisation scales",
     ],
-    relatedFamilySlugs: ["organisation-development-and-change-management-firm-in-the-uk", "recruitment-and-talent-acquisition-firm-in-the-uk"],
+    relatedFamilySlugs: ["organisation-development-and-change-management-firm", "recruitment-and-talent-acquisition-firm"],
     faqs: [
       {
         id: "people-strategy-vs-workforce-planning",
@@ -878,9 +875,9 @@ export const serviceCategoryContent: ServiceCategoryContent[] = [
 export const serviceContent: ServiceContent[] = [
   // ---- Outsourced HR Services ----
   {
-    slug: "retained-hr-services-firm-in-the-uk",
-    categorySlug: "outsourced-hr-services-firm-in-the-uk",
-    metaDescription: "Apex HR is a retained HR services firm giving UK employers ongoing advisory access to policy, compliance and employee-relations support without an in-house team.",
+    slug: "retained-hr-services-firm",
+    categorySlug: "outsourced-hr-services-firm",
+    metaDescription: "Apex HR is a retained HR services firm giving employers ongoing advisory access to policy, compliance and employee-relations support without an in-house team.",
     primaryKeyword: "retained HR services",
     heroSummary: "Ongoing HR support and advice, so your business always has someone to call when a people issue comes up.",
     employerChallenge:
@@ -912,8 +909,8 @@ export const serviceContent: ServiceContent[] = [
     engagementOptions: ["Ongoing retained support", "Fixed-term project support", "Ad hoc advisory sessions"],
     whyApex:
       "Apex HR combines HR advisory with recruitment and organisational expertise, so retained support can flex as your priorities change rather than being limited to one narrow specialism.",
-    relatedServiceSlugs: ["hr-support-for-small-businesses-and-startups-firm-in-the-uk", "hr-compliance-audit-firm-in-the-uk", "employee-handbooks-and-hr-policies-firm-in-the-uk", "fractional-hr-director-chief-people-officer-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-startups-and-scale-ups-in-the-uk", "hr-company-for-professional-services-in-the-uk", "hr-company-for-construction-in-the-uk"],
+    relatedServiceSlugs: ["hr-support-for-small-businesses-and-startups-firm", "hr-compliance-audit-firm", "employee-handbooks-and-hr-policies-firm", "fractional-hr-director-chief-people-officer-firm"],
+    relatedSectorSlugs: ["hr-company-for-startups-and-scale-ups", "hr-company-for-professional-services", "hr-company-for-construction"],
     faqs: [
       { id: "scope", question: "What does retained HR support typically cover?", answer: "Retained support usually covers day-to-day advisory access, policy and contract review, and support with individual employee situations as they come up. The exact scope is agreed at the outset." },
       { id: "response", question: "How quickly can Apex HR respond to an issue?", answer: "Response expectations are agreed as part of the engagement, so you know what to expect before a situation arises." },
@@ -937,9 +934,9 @@ export const serviceContent: ServiceContent[] = [
     legalReviewRequired: false,
   },
   {
-    slug: "hr-support-for-small-businesses-and-startups-firm-in-the-uk",
-    categorySlug: "outsourced-hr-services-firm-in-the-uk",
-    metaDescription: "Apex HR is an HR support firm for UK small businesses and startups, helping lean teams build practical HR foundations without an in-house function.",
+    slug: "hr-support-for-small-businesses-and-startups-firm",
+    categorySlug: "outsourced-hr-services-firm",
+    metaDescription: "Apex HR is an HR support firm for small businesses and startups, helping lean teams build practical HR foundations without an in-house function.",
     primaryKeyword: "HR support for startups",
     heroSummary: "Right-sized HR support for small businesses and startups, so people processes are in place from the start without slowing you down.",
     employerChallenge:
@@ -970,8 +967,8 @@ export const serviceContent: ServiceContent[] = [
     engagementOptions: ["Fixed-scope HR foundations project", "Ongoing lightweight retained support"],
     whyApex:
       "Apex HR works with founders directly, in plain language, rather than handing over generic templates and leaving you to interpret them.",
-    relatedServiceSlugs: ["retained-hr-services-firm-in-the-uk", "employee-handbooks-and-hr-policies-firm-in-the-uk", "fractional-hr-director-chief-people-officer-firm-in-the-uk", "permanent-recruitment-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-startups-and-scale-ups-in-the-uk", "hr-company-for-it-in-the-uk", "hr-company-for-professional-services-in-the-uk"],
+    relatedServiceSlugs: ["retained-hr-services-firm", "employee-handbooks-and-hr-policies-firm", "fractional-hr-director-chief-people-officer-firm", "permanent-recruitment-firm"],
+    relatedSectorSlugs: ["hr-company-for-startups-and-scale-ups", "hr-company-for-it", "hr-company-for-professional-services"],
     faqs: [
       { id: "first-hire", question: "Do we need this before our first hire?", answer: "It's usually best to have core contracts and policies in place before your first hire, so expectations are clear from day one." },
       { id: "growth", question: "What happens as we grow beyond a startup team?", answer: "Support can scale into retained HR services or a fractional HR director arrangement as headcount and complexity increase." },
@@ -994,9 +991,9 @@ export const serviceContent: ServiceContent[] = [
     legalReviewRequired: false,
   },
   {
-    slug: "fractional-hr-director-chief-people-officer-firm-in-the-uk",
-    categorySlug: "outsourced-hr-services-firm-in-the-uk",
-    metaDescription: "Apex HR is a fractional HR director firm giving UK businesses senior HR leadership on a part-time basis, without the cost of a full-time hire.",
+    slug: "fractional-hr-director-chief-people-officer-firm",
+    categorySlug: "outsourced-hr-services-firm",
+    metaDescription: "Apex HR is a fractional HR director firm giving growing businesses senior HR leadership on a part-time basis, without the cost of a full-time hire.",
     primaryKeyword: "fractional HR director",
     heroSummary: "Senior HR leadership on a part-time or fractional basis, for businesses that need strategic people leadership before they're ready for a full-time hire.",
     employerChallenge:
@@ -1027,8 +1024,8 @@ export const serviceContent: ServiceContent[] = [
     engagementOptions: ["Fixed days per month", "Project-based leadership for a defined initiative"],
     whyApex:
       "Apex HR's fractional leadership draws on both HR strategy and recruitment delivery experience, useful when growth and hiring plans are closely linked.",
-    relatedServiceSlugs: ["retained-hr-services-firm-in-the-uk", "people-strategy-firm-in-the-uk", "strategic-workforce-planning-firm-in-the-uk", "organisation-design-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-startups-and-scale-ups-in-the-uk", "hr-company-for-it-in-the-uk", "hr-company-for-financial-services-in-the-uk"],
+    relatedServiceSlugs: ["retained-hr-services-firm", "people-strategy-firm", "strategic-workforce-planning-firm", "organisation-design-firm"],
+    relatedSectorSlugs: ["hr-company-for-startups-and-scale-ups", "hr-company-for-it", "hr-company-for-financial-services"],
     faqs: [
       { id: "vs-retained", question: "How is this different from retained HR support?", answer: "Retained HR support is typically operational and advisory; a fractional HR Director or CPO sits at leadership-team level and focuses on strategic direction." },
       { id: "time", question: "How much time is typically involved?", answer: "This is agreed based on the business's needs, from a set number of days per month to project-based leadership for a specific initiative." },
@@ -1051,9 +1048,9 @@ export const serviceContent: ServiceContent[] = [
     legalReviewRequired: false,
   },
   {
-    slug: "hr-compliance-audit-firm-in-the-uk",
-    categorySlug: "outsourced-hr-services-firm-in-the-uk",
-    metaDescription: "Apex HR is an HR compliance audit firm helping UK employers identify gaps in contracts, policies and processes, with clear, practical recommendations.",
+    slug: "hr-compliance-audit-firm",
+    categorySlug: "outsourced-hr-services-firm",
+    metaDescription: "Apex HR is an HR compliance audit firm helping employers worldwide identify gaps in contracts, policies and processes, with clear, practical recommendations.",
     primaryKeyword: "HR compliance audit",
     // SEO audit Phase 3 Batch 6C2: "independent" removed as an unsupported
     // positioning claim (no accreditation or verified independent-auditor
@@ -1098,8 +1095,8 @@ export const serviceContent: ServiceContent[] = [
     engagementOptions: ["Fixed-scope audit", "Audit plus implementation support"],
     whyApex:
       "The audit results in a practical, prioritised plan rather than a generic checklist, so you know what to fix first.",
-    relatedServiceSlugs: ["employee-handbooks-and-hr-policies-firm-in-the-uk", "retained-hr-services-firm-in-the-uk", "workplace-investigations-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-professional-services-in-the-uk", "hr-company-for-financial-services-in-the-uk", "hr-company-for-construction-in-the-uk"],
+    relatedServiceSlugs: ["employee-handbooks-and-hr-policies-firm", "retained-hr-services-firm", "workplace-investigations-firm"],
+    relatedSectorSlugs: ["hr-company-for-professional-services", "hr-company-for-financial-services", "hr-company-for-construction"],
     faqs: [
       { id: "outcome", question: "What do we get at the end of the audit?", answer: "A written report identifying gaps and risks, with practical, prioritised recommendations for closing them." },
       { id: "legal", question: "Is this a legal audit?", answer: "This is an HR practice review, not a substitute for formal legal advice. Higher-risk findings may be recommended for review by a qualified employment lawyer." },
@@ -1122,9 +1119,9 @@ export const serviceContent: ServiceContent[] = [
     legalReviewRequired: true,
   },
   {
-    slug: "employee-handbooks-and-hr-policies-firm-in-the-uk",
-    categorySlug: "outsourced-hr-services-firm-in-the-uk",
-    metaDescription: "Apex HR is an HR policy firm helping UK employers create clear, practical employee handbooks and policies tailored to their business, not generic templates.",
+    slug: "employee-handbooks-and-hr-policies-firm",
+    categorySlug: "outsourced-hr-services-firm",
+    metaDescription: "Apex HR is an HR policy firm helping employers create clear, practical employee handbooks and policies tailored to their business, not generic templates.",
     primaryKeyword: "employee handbook and HR policies",
     heroSummary: "Employee handbooks and HR policies written in plain language and tailored to how your business actually operates.",
     employerChallenge:
@@ -1155,8 +1152,8 @@ export const serviceContent: ServiceContent[] = [
     engagementOptions: ["Full handbook and policy suite", "Individual policy drafting", "Annual policy review retainer"],
     whyApex:
       "Policies are written to reflect your actual business, not lifted from a generic template library.",
-    relatedServiceSlugs: ["hr-compliance-audit-firm-in-the-uk", "retained-hr-services-firm-in-the-uk", "hr-support-for-small-businesses-and-startups-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-professional-services-in-the-uk", "hr-company-for-care-homes-in-the-uk", "hr-company-for-hospitality-in-the-uk"],
+    relatedServiceSlugs: ["hr-compliance-audit-firm", "retained-hr-services-firm", "hr-support-for-small-businesses-and-startups-firm"],
+    relatedSectorSlugs: ["hr-company-for-professional-services", "hr-company-for-care-homes", "hr-company-for-hospitality"],
     faqs: [
       { id: "template", question: "Are these generic templates?", answer: "No. Policies are drafted around how your business actually operates, then refined with your input." },
       { id: "update", question: "How often should policies be reviewed?", answer: "Good practice is an annual review, or sooner if employment practice or your business changes materially." },
@@ -1178,9 +1175,9 @@ export const serviceContent: ServiceContent[] = [
     legalReviewRequired: true,
   },
   {
-    slug: "payroll-advisory-firm-in-the-uk",
-    categorySlug: "outsourced-hr-services-firm-in-the-uk",
-    metaDescription: "Apex HR is a payroll advisory firm helping UK employers get payroll processes, controls and provider relationships right.",
+    slug: "payroll-advisory-firm",
+    categorySlug: "outsourced-hr-services-firm",
+    metaDescription: "Apex HR is a payroll advisory firm helping employers worldwide get payroll processes, controls and provider relationships right.",
     primaryKeyword: "payroll advisory",
     heroSummary: "Advisory support to help you get payroll processes, controls and provider relationships right.",
     employerChallenge:
@@ -1211,8 +1208,8 @@ export const serviceContent: ServiceContent[] = [
     engagementOptions: ["One-off payroll process review", "Provider selection support", "Ongoing advisory retainer"],
     whyApex:
       "This is advisory support around your payroll process and provider relationship, not payroll processing itself, so it stays independent of any one provider.",
-    relatedServiceSlugs: ["hr-compliance-audit-firm-in-the-uk", "hris-implementation-firm-in-the-uk", "reward-strategy-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-professional-services-in-the-uk", "hr-company-for-manufacturers-in-the-uk", "hr-company-for-distribution-in-the-uk"],
+    relatedServiceSlugs: ["hr-compliance-audit-firm", "hris-implementation-firm", "reward-strategy-firm"],
+    relatedSectorSlugs: ["hr-company-for-professional-services", "hr-company-for-manufacturers", "hr-company-for-distribution"],
     faqs: [
       { id: "process-payroll", question: "Does Apex HR run our payroll?", answer: "This service is advisory: reviewing and improving your payroll processes and provider relationship, not processing payroll itself." },
       { id: "provider", question: "Can you help us choose a new payroll provider?", answer: "Yes, this includes support comparing providers against your specific requirements." },
@@ -1244,9 +1241,9 @@ export const serviceContent: ServiceContent[] = [
 
   // ---- Recruitment & Talent Acquisition ----
   {
-    slug: "permanent-recruitment-firm-in-the-uk",
-    categorySlug: "recruitment-and-talent-acquisition-firm-in-the-uk",
-    metaDescription: "Apex HR is a permanent recruitment firm for UK employers: role scoping, candidate sourcing, structured interviews, offer and onboarding, backed by HR expertise.",
+    slug: "permanent-recruitment-firm",
+    categorySlug: "recruitment-and-talent-acquisition-firm",
+    metaDescription: "Apex HR is a permanent recruitment firm for employers: role scoping, candidate sourcing, structured interviews, offer and onboarding, backed by HR expertise.",
     primaryKeyword: "permanent recruitment",
     heroSummary: "Permanent recruitment support from role definition through to offer, informed by genuine HR expertise, not just CV matching.",
     employerChallenge:
@@ -1277,8 +1274,8 @@ export const serviceContent: ServiceContent[] = [
     engagementOptions: ["Single-role recruitment", "Multiple concurrent roles", "Ongoing recruitment partnership"],
     whyApex:
       "Recruitment is informed by HR expertise in role design and team fit, not just keyword matching against a CV.",
-    relatedServiceSlugs: ["executive-search-firm-in-the-uk", "contract-staffing-firm-in-the-uk", "recruitment-process-outsourcing-rpo-firm-in-the-uk", "graduate-schemes-and-early-careers-design-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-professional-services-in-the-uk", "hr-company-for-it-in-the-uk", "hr-company-for-financial-services-in-the-uk"],
+    relatedServiceSlugs: ["executive-search-firm", "contract-staffing-firm", "recruitment-process-outsourcing-rpo-firm", "graduate-schemes-and-early-careers-design-firm"],
+    relatedSectorSlugs: ["hr-company-for-professional-services", "hr-company-for-it", "hr-company-for-financial-services"],
     faqs: [
       { id: "timescale", question: "How long does permanent recruitment typically take?", answer: "Timescales vary by role and market, and are discussed as part of scoping. Apex HR does not commit to a fixed placement time without understanding the role first." },
       { id: "guarantee", question: "Is the hire guaranteed?", answer: "Engagement terms, including any rebate or replacement arrangements, are agreed and confirmed before the search begins." },
@@ -1301,7 +1298,7 @@ export const serviceContent: ServiceContent[] = [
         id: "permanent-fees",
         question: "How are permanent recruitment fees usually structured?",
         answer:
-          "UK permanent recruitment is commonly charged either on a contingency basis (a fee payable only if you hire a candidate introduced by the recruiter) or on a retained or staged basis, where part of the fee is paid up front in return for a dedicated search. Fees are often calculated as a percentage of first-year salary. Apex HR confirms its fee basis, payment stages and any rebate terms in writing before work starts.",
+          "Permanent recruitment is commonly charged either on a contingency basis (a fee payable only if you hire a candidate introduced by the recruiter) or on a retained or staged basis, where part of the fee is paid up front in return for a dedicated search. Fees are often calculated as a percentage of first-year salary. Apex HR confirms its fee basis, payment stages and any rebate terms in writing before work starts.",
       },
       {
         id: "permanent-vs-contract",
@@ -1355,19 +1352,19 @@ export const serviceContent: ServiceContent[] = [
         {
           heading: "5. Offer, checks and counter-offers",
           paragraphs: [
-            "Before a start date is confirmed, employers must [check the candidate's right to work in the UK](https://www.gov.uk/check-job-applicant-right-to-work), and should complete references and any role-specific checks such as DBS or professional registration. Managing the offer conversation and any counter-offer from the current employer is often where hires are won or lost.",
+            "Before a start date is confirmed, employers must confirm the candidate's legal right to work in the country of employment, and should complete references and any role-specific checks such as background screening or professional registration. Managing the offer conversation and any counter-offer from the current employer is often where hires are won or lost.",
           ],
         },
         {
           heading: "6. Onboarding, probation and retention",
           paragraphs: [
-            "Staying in touch through the notice period, a planned induction and clear probation objectives reduce early leaving. Probation matters more as the law changes: according to the [GOV.UK Employment Rights Act timeline](https://www.gov.uk/government/publications/implementing-the-plan-to-make-work-pay-and-employment-rights-act/plan-to-make-work-pay-and-employment-rights-act-timeline-update), the qualifying period for unfair dismissal protection reduces from two years to six months for dismissals from 1 January 2027. Employers should take advice on how this affects their probation arrangements.",
+            "Staying in touch through the notice period, a planned induction and clear probation objectives reduce early leaving. Probation rules, notice periods and dismissal protections differ from country to country, so probation arrangements should be set up to match local requirements, with in-country legal advice where needed.",
           ],
         },
         {
           heading: "Permanent recruitment, executive search or contract staffing?",
           paragraphs: [
-            "Permanent recruitment suits most ongoing roles. Senior or confidential appointments are better served by [executive search](/services/executive-search-firm-in-the-uk/); time-limited needs by [contract staffing](/services/contract-staffing-firm-in-the-uk/); and planned entry-level intakes by [graduate schemes and early careers design](/services/graduate-schemes-and-early-careers-design-firm-in-the-uk/). Our guide to [contract staffing vs permanent staffing](/contract-staffing-vs-permanent-staffing/) compares the two in more detail, and the [recruitment and talent acquisition](/services/recruitment-and-talent-acquisition-firm-in-the-uk/) overview shows how they fit together.",
+            "Permanent recruitment suits most ongoing roles. Senior or confidential appointments are better served by [executive search](/services/executive-search-firm/); time-limited needs by [contract staffing](/services/contract-staffing-firm/); and planned entry-level intakes by [graduate schemes and early careers design](/services/graduate-schemes-and-early-careers-design-firm/). Our guide to [contract staffing vs permanent staffing](/contract-staffing-vs-permanent-staffing/) compares the two in more detail, and the [recruitment and talent acquisition](/services/recruitment-and-talent-acquisition-firm/) overview shows how they fit together.",
           ],
         },
       ],
@@ -1382,9 +1379,9 @@ export const serviceContent: ServiceContent[] = [
     legalReviewRequired: true,
   },
   {
-    slug: "executive-search-firm-in-the-uk",
-    categorySlug: "recruitment-and-talent-acquisition-firm-in-the-uk",
-    metaDescription: "Apex HR is an executive search firm for UK C-suite and senior leadership hiring: confidential search, market mapping, leadership assessment and onboarding.",
+    slug: "executive-search-firm",
+    categorySlug: "recruitment-and-talent-acquisition-firm",
+    metaDescription: "Apex HR is an executive search firm for C-suite and senior leadership hiring: confidential search, market mapping, leadership assessment and onboarding.",
     primaryKeyword: "executive search",
     heroSummary: "A targeted, confidential search approach for senior and leadership hires where the wrong appointment carries real organisational risk.",
     employerChallenge:
@@ -1415,8 +1412,8 @@ export const serviceContent: ServiceContent[] = [
     engagementOptions: ["Retained executive search", "Confidential replacement search"],
     whyApex:
       "Search is grounded in organisational and HR context, not just a market map of job titles.",
-    relatedServiceSlugs: ["permanent-recruitment-firm-in-the-uk", "fractional-hr-director-chief-people-officer-firm-in-the-uk", "succession-planning-and-talent-mapping-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-financial-services-in-the-uk", "hr-company-for-professional-services-in-the-uk", "hr-company-for-life-sciences-in-the-uk"],
+    relatedServiceSlugs: ["permanent-recruitment-firm", "fractional-hr-director-chief-people-officer-firm", "succession-planning-and-talent-mapping-firm"],
+    relatedSectorSlugs: ["hr-company-for-financial-services", "hr-company-for-professional-services", "hr-company-for-life-sciences"],
     faqs: [
       { id: "confidential", question: "Can a search be run confidentially?", answer: "Confidential search (including for replacement hires) is Apex HR's standard approach for senior appointments, though the extent of confidentiality achievable depends on the specific situation and is agreed and managed case by case." },
       { id: "levels", question: "What seniority levels does this cover?", answer: "Typically senior leadership, director and executive-level roles, agreed at the outset of the engagement." },
@@ -1487,19 +1484,19 @@ export const serviceContent: ServiceContent[] = [
         {
           heading: "Leadership assessment and fit",
           paragraphs: [
-            "Senior hires fail more often on fit with the leadership team, culture and stakeholders than on technical capability. Assessment therefore tests evidence of results, leadership style, judgement and motivation, and involves the people the new leader will work with most closely. After appointment, [executive coaching and 360 feedback](/services/executive-coaching-and-360-feedback-firm-in-the-uk/) can support the transition.",
+            "Senior hires fail more often on fit with the leadership team, culture and stakeholders than on technical capability. Assessment therefore tests evidence of results, leadership style, judgement and motivation, and involves the people the new leader will work with most closely. After appointment, [executive coaching and 360 feedback](/services/executive-coaching-and-360-feedback-firm/) can support the transition.",
           ],
         },
         {
           heading: "Succession planning and leadership continuity",
           paragraphs: [
-            "The best time to plan a senior appointment is before it is urgent. [Succession planning and talent mapping](/services/succession-planning-and-talent-mapping-firm-in-the-uk/) identifies critical roles and internal successors, and [strategic workforce planning](/services/strategic-workforce-planning-firm-in-the-uk/) shows which leadership capabilities the organisation will need next. External search then fills the gaps that internal development cannot.",
+            "The best time to plan a senior appointment is before it is urgent. [Succession planning and talent mapping](/services/succession-planning-and-talent-mapping-firm/) identifies critical roles and internal successors, and [strategic workforce planning](/services/strategic-workforce-planning-firm/) shows which leadership capabilities the organisation will need next. External search then fills the gaps that internal development cannot.",
           ],
         },
         {
           heading: "When executive search is not the right tool",
           paragraphs: [
-            "For mid-level and specialist roles with an active candidate market, [permanent recruitment](/services/permanent-recruitment-firm-in-the-uk/) is usually quicker and more cost-effective. If leadership is needed immediately while a search runs, an interim appointment through [contract staffing](/services/contract-staffing-firm-in-the-uk/) or a [fractional HR director](/services/fractional-hr-director-chief-people-officer-firm-in-the-uk/) for people leadership can bridge the gap. See how these fit together in our [recruitment and talent acquisition](/services/recruitment-and-talent-acquisition-firm-in-the-uk/) overview.",
+            "For mid-level and specialist roles with an active candidate market, [permanent recruitment](/services/permanent-recruitment-firm/) is usually quicker and more cost-effective. If leadership is needed immediately while a search runs, an interim appointment through [contract staffing](/services/contract-staffing-firm/) or a [fractional HR director](/services/fractional-hr-director-chief-people-officer-firm/) for people leadership can bridge the gap. See how these fit together in our [recruitment and talent acquisition](/services/recruitment-and-talent-acquisition-firm/) overview.",
           ],
         },
       ],
@@ -1514,9 +1511,9 @@ export const serviceContent: ServiceContent[] = [
     legalReviewRequired: false,
   },
   {
-    slug: "contract-staffing-firm-in-the-uk",
-    categorySlug: "recruitment-and-talent-acquisition-firm-in-the-uk",
-    metaDescription: "Apex HR is a contract staffing firm for UK employers: interim, fixed-term and project-based talent, with contractor screening, onboarding and IR35 awareness.",
+    slug: "contract-staffing-firm",
+    categorySlug: "recruitment-and-talent-acquisition-firm",
+    metaDescription: "Apex HR is a contract staffing firm for interim, fixed-term and project-based talent, with contractor screening, onboarding and employment-status awareness.",
     primaryKeyword: "contract staffing",
     heroSummary: "Contract and interim staffing support to cover short-term needs, projects or absence without the overhead of a permanent hire.",
     employerChallenge:
@@ -1546,8 +1543,8 @@ export const serviceContent: ServiceContent[] = [
     engagementOptions: ["Single contract placement", "Ongoing flexible resourcing support"],
     whyApex:
       "Contract staffing is handled with the same HR rigour as permanent recruitment, reducing risk around engagement terms and onboarding.",
-    relatedServiceSlugs: ["permanent-recruitment-firm-in-the-uk", "recruitment-process-outsourcing-rpo-firm-in-the-uk", "outplacement-and-career-transition-services-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-construction-in-the-uk", "hr-company-for-distribution-in-the-uk", "hr-company-for-it-in-the-uk"],
+    relatedServiceSlugs: ["permanent-recruitment-firm", "recruitment-process-outsourcing-rpo-firm", "outplacement-and-career-transition-services-firm"],
+    relatedSectorSlugs: ["hr-company-for-construction", "hr-company-for-distribution", "hr-company-for-it"],
     faqs: [
       { id: "ir35", question: "Do you advise on IR35 or employment status?", answer: "General guidance on engagement structure can be discussed, but formal IR35 or employment-status determinations should be confirmed with a qualified adviser." },
     ],
@@ -1586,7 +1583,7 @@ export const serviceContent: ServiceContent[] = [
     ],
     guide: {
       kicker: "Contract staffing explained",
-      heading: "When and how to use contract staffing in the UK",
+      heading: "When and how to use contract staffing",
       intro:
         "Contract staffing gives organisations access to skills for a defined period without adding permanent headcount. It works best when the requirement, the engagement model and the compliance responsibilities are all clear before anyone starts.",
       sections: [
@@ -1599,31 +1596,31 @@ export const serviceContent: ServiceContent[] = [
         {
           heading: "Contract staffing as part of workforce planning",
           paragraphs: [
-            "A contingent workforce of contractors, interim and temporary workers lets organisations flex capacity without long-term commitments, but it works best as a planned part of the workforce mix rather than a series of urgent fixes. [Strategic workforce planning](/services/strategic-workforce-planning-firm-in-the-uk/) helps decide which capabilities should be permanent and which can be resourced flexibly. Where flexible hiring becomes continuous, [recruitment process outsourcing (RPO)](/services/recruitment-process-outsourcing-rpo-firm-in-the-uk/) can be more efficient.",
+            "A contingent workforce of contractors, interim and temporary workers lets organisations flex capacity without long-term commitments, but it works best as a planned part of the workforce mix rather than a series of urgent fixes. [Strategic workforce planning](/services/strategic-workforce-planning-firm/) helps decide which capabilities should be permanent and which can be resourced flexibly. Where flexible hiring becomes continuous, [recruitment process outsourcing (RPO)](/services/recruitment-process-outsourcing-rpo-firm/) can be more efficient.",
           ],
         },
         {
-          heading: "Employment status and off-payroll working (IR35)",
+          heading: "Employment status and contractor classification",
           paragraphs: [
-            "Where a contractor works through their own limited company, the off-payroll working rules (IR35) may apply. According to [HMRC guidance on off-payroll working](https://www.gov.uk/guidance/understanding-off-payroll-working-ir35), in most cases the client decides the worker's employment status and should give a status determination statement explaining its reasons; for small clients outside the public sector, the worker's intermediary is responsible instead. Company-size thresholds change from time to time, so check the current GOV.UK guidance. Apex HR helps structure engagements but does not make formal status determinations, which should be confirmed with a qualified adviser.",
+            "Most countries distinguish between employees and independent contractors, and the consequences of getting it wrong (back taxes, social contributions, benefits and penalties) can be significant. The tests differ by country: the UK applies off-payroll working rules (IR35), the United States uses federal and state classification tests, and many African, European and Gulf jurisdictions have their own criteria. Apex HR helps structure engagements and document the working relationship but does not make formal status determinations, which should be confirmed with a qualified in-country adviser.",
           ],
         },
         {
-          heading: "Agency workers and the 12-week qualifying period",
+          heading: "Agency and temporary worker rights",
           paragraphs: [
-            "Temporary workers supplied through an agency have some rights from the start of an assignment. [Acas explains](https://www.acas.org.uk/agency-workers/understanding-your-employment-rights-after-12-weeks) that after 12 weeks in the same role with the same hirer they become entitled to the same basic pay, holiday and working patterns as comparable direct employees. Planning for this at the outset avoids unexpected cost changes part-way through an assignment.",
+            "In many countries, temporary workers supplied through an agency gain rights over the course of an assignment. In the UK and across the EU, for example, agency workers become entitled to comparable basic pay and working conditions after a qualifying period or from day one. Planning for these rules at the outset avoids unexpected cost changes part-way through an assignment.",
           ],
         },
         {
           heading: "Contractor screening and onboarding",
           paragraphs: [
-            "Contractors need the same care at the start as employees: confirming skills and references, [right to work checks](https://www.gov.uk/check-job-applicant-right-to-work) where the engagement requires them, any sector-specific checks, system access, a clear statement of deliverables and a named contact. Good onboarding is what lets a contractor be productive in days rather than weeks.",
+            "Contractors need the same care at the start as employees: confirming skills and references, right-to-work checks where the engagement requires them, any sector-specific checks, system access, a clear statement of deliverables and a named contact. Good onboarding is what lets a contractor be productive in days rather than weeks.",
           ],
         },
         {
           heading: "Contract staffing vs permanent staffing",
           paragraphs: [
-            "Contract staffing trades a higher day rate for speed, flexibility and no long-term commitment; permanent hiring builds lasting capability and knowledge. Read our comparison of [contract staffing vs permanent staffing](/contract-staffing-vs-permanent-staffing/), or see [permanent recruitment](/services/permanent-recruitment-firm-in-the-uk/) and the wider [recruitment and talent acquisition](/services/recruitment-and-talent-acquisition-firm-in-the-uk/) services.",
+            "Contract staffing trades a higher day rate for speed, flexibility and no long-term commitment; permanent hiring builds lasting capability and knowledge. Read our comparison of [contract staffing vs permanent staffing](/contract-staffing-vs-permanent-staffing/), or see [permanent recruitment](/services/permanent-recruitment-firm/) and the wider [recruitment and talent acquisition](/services/recruitment-and-talent-acquisition-firm/) services.",
           ],
         },
       ],
@@ -1635,9 +1632,9 @@ export const serviceContent: ServiceContent[] = [
     legalReviewRequired: true,
   },
   {
-    slug: "recruitment-process-outsourcing-rpo-firm-in-the-uk",
-    categorySlug: "recruitment-and-talent-acquisition-firm-in-the-uk",
-    metaDescription: "Apex HR is a Recruitment Process Outsourcing (RPO) firm for UK employers: end-to-end or project RPO for high-volume hiring, with ATS-led reporting.",
+    slug: "recruitment-process-outsourcing-rpo-firm",
+    categorySlug: "recruitment-and-talent-acquisition-firm",
+    metaDescription: "Apex HR is a Recruitment Process Outsourcing (RPO) firm for international employers: end-to-end or project RPO for high-volume hiring, with ATS-led reporting.",
     primaryKeyword: "recruitment process outsourcing",
     heroSummary: "An outsourced recruitment function for employers with ongoing or high-volume hiring needs, run as an extension of your team.",
     employerChallenge:
@@ -1667,8 +1664,8 @@ export const serviceContent: ServiceContent[] = [
     engagementOptions: ["Full RPO partnership", "Project-based RPO for a defined hiring period"],
     whyApex:
       "RPO capacity is grounded in HR practice as well as recruitment delivery, supporting a consistent and fair candidate experience at volume.",
-    relatedServiceSlugs: ["permanent-recruitment-firm-in-the-uk", "graduate-schemes-and-early-careers-design-firm-in-the-uk", "contract-staffing-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-distribution-in-the-uk", "hr-company-for-hospitality-in-the-uk", "hr-company-for-manufacturers-in-the-uk"],
+    relatedServiceSlugs: ["permanent-recruitment-firm", "graduate-schemes-and-early-careers-design-firm", "contract-staffing-firm"],
+    relatedSectorSlugs: ["hr-company-for-distribution", "hr-company-for-hospitality", "hr-company-for-manufacturers"],
     faqs: [
       { id: "volume", question: "What volume of hiring does RPO suit?", answer: "RPO tends to suit sustained or high-volume hiring where dedicated capacity is more efficient than ad hoc recruitment support." },
     ],
@@ -1732,25 +1729,25 @@ export const serviceContent: ServiceContent[] = [
         {
           heading: "High-volume and scalable recruitment",
           paragraphs: [
-            "Volume hiring for contact centres, warehousing, retail, care or seasonal peaks depends on fast, consistent screening and a good candidate experience at scale. RPO builds repeatable assessment steps, interview scheduling and candidate communication so quality holds up as volumes rise, and capacity can scale up or down with demand. Seasonal or short-term roles can be combined with [contract staffing](/services/contract-staffing-firm-in-the-uk/).",
+            "Volume hiring for contact centres, warehousing, retail, care or seasonal peaks depends on fast, consistent screening and a good candidate experience at scale. RPO builds repeatable assessment steps, interview scheduling and candidate communication so quality holds up as volumes rise, and capacity can scale up or down with demand. Seasonal or short-term roles can be combined with [contract staffing](/services/contract-staffing-firm/).",
           ],
         },
         {
           heading: "Recruitment technology and applicant tracking systems",
           paragraphs: [
-            "An applicant tracking system is the backbone of RPO: it holds candidate data, automates communication and scheduling, and produces the reporting that governance relies on. Where the right system is not yet in place, [HR software selection](/services/hr-software-selection-firm-in-the-uk/) helps choose one that fits your process and data protection obligations.",
+            "An applicant tracking system is the backbone of RPO: it holds candidate data, automates communication and scheduling, and produces the reporting that governance relies on. Where the right system is not yet in place, [HR software selection](/services/hr-software-selection-firm/) helps choose one that fits your process and data protection obligations.",
           ],
         },
         {
           heading: "Recruitment metrics: time to hire, cost per hire and quality of hire",
           paragraphs: [
-            "RPO engagements are governed through agreed measures, typically time to hire, cost per hire, offer-acceptance rate, candidate experience, hiring-manager satisfaction and quality of hire. The CIPD's [Resourcing and talent planning report 2026](https://www.cipd.org/en/about/press-releases/rtp-2026/) found that 31% of organisations track time to hire and 33% collect data on candidate experience, so many organisations start from limited data. [People analytics and HR dashboards](/services/people-analytics-and-hr-dashboards-firm-in-the-uk/) can make these measures visible across the business.",
+            "RPO engagements are governed through agreed measures, typically time to hire, cost per hire, offer-acceptance rate, candidate experience, hiring-manager satisfaction and quality of hire. The CIPD's [Resourcing and talent planning report 2026](https://www.cipd.org/en/about/press-releases/rtp-2026/) found that 31% of organisations track time to hire and 33% collect data on candidate experience, so many organisations start from limited data. [People analytics and HR dashboards](/services/people-analytics-and-hr-dashboards-firm/) can make these measures visible across the business.",
           ],
         },
         {
           heading: "When to consider RPO",
           paragraphs: [
-            "Consider RPO when you are hiring continuously or in large numbers, agency spend is rising, candidate experience is inconsistent between teams, or growth means hiring faster than an internal team can manage. For single roles, [permanent recruitment](/services/permanent-recruitment-firm-in-the-uk/) remains simpler; for planned entry-level intakes, combine RPO with [graduate schemes and early careers design](/services/graduate-schemes-and-early-careers-design-firm-in-the-uk/). The [recruitment and talent acquisition](/services/recruitment-and-talent-acquisition-firm-in-the-uk/) overview shows how the options fit together.",
+            "Consider RPO when you are hiring continuously or in large numbers, agency spend is rising, candidate experience is inconsistent between teams, or growth means hiring faster than an internal team can manage. For single roles, [permanent recruitment](/services/permanent-recruitment-firm/) remains simpler; for planned entry-level intakes, combine RPO with [graduate schemes and early careers design](/services/graduate-schemes-and-early-careers-design-firm/). The [recruitment and talent acquisition](/services/recruitment-and-talent-acquisition-firm/) overview shows how the options fit together.",
           ],
         },
       ],
@@ -1762,9 +1759,9 @@ export const serviceContent: ServiceContent[] = [
     legalReviewRequired: false,
   },
   {
-    slug: "graduate-schemes-and-early-careers-design-firm-in-the-uk",
-    categorySlug: "recruitment-and-talent-acquisition-firm-in-the-uk",
-    metaDescription: "Apex HR is a graduate recruitment firm helping UK employers design graduate schemes and early-careers programmes: attraction, assessment centres and retention.",
+    slug: "graduate-schemes-and-early-careers-design-firm",
+    categorySlug: "recruitment-and-talent-acquisition-firm",
+    metaDescription: "Apex HR is a graduate recruitment firm helping employers design graduate schemes and early-careers programmes: attraction, assessment centres and retention.",
     primaryKeyword: "graduate scheme design",
     heroSummary: "Design and delivery support for graduate schemes and early-careers programmes that build a genuine talent pipeline.",
     employerChallenge:
@@ -1794,8 +1791,8 @@ export const serviceContent: ServiceContent[] = [
     engagementOptions: ["Full programme design and delivery", "Programme design only, delivered in-house"],
     whyApex:
       "Programmes are designed with both recruitment and long-term development in mind, not just a single hiring push.",
-    relatedServiceSlugs: ["permanent-recruitment-firm-in-the-uk", "recruitment-process-outsourcing-rpo-firm-in-the-uk", "learning-strategy-and-capability-development-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-professional-services-in-the-uk", "hr-company-for-financial-services-in-the-uk", "hr-company-for-engineers-in-the-uk"],
+    relatedServiceSlugs: ["permanent-recruitment-firm", "recruitment-process-outsourcing-rpo-firm", "learning-strategy-and-capability-development-firm"],
+    relatedSectorSlugs: ["hr-company-for-professional-services", "hr-company-for-financial-services", "hr-company-for-engineers"],
     faqs: [
       { id: "size", question: "Does this suit smaller employers, or only large graduate schemes?", answer: "Programmes are scaled to the employer: this can support a small, structured early-careers intake as well as larger schemes." },
     ],
@@ -1852,7 +1849,7 @@ export const serviceContent: ServiceContent[] = [
         {
           heading: "Employer branding and graduate attraction",
           paragraphs: [
-            "Early-career candidates compare employers on development, culture, flexibility and how they are treated during the process. A credible [employer brand and employee value proposition](/services/employer-branding-and-employee-value-proposition-evp-firm-in-the-uk/), honest content from current graduates and a mix of university, social and job-board channels reach a broader pool than relying on a few campuses.",
+            "Early-career candidates compare employers on development, culture, flexibility and how they are treated during the process. A credible [employer brand and employee value proposition](/services/employer-branding-and-employee-value-proposition-evp-firm/), honest content from current graduates and a mix of university, social and job-board channels reach a broader pool than relying on a few campuses.",
           ],
         },
         {
@@ -1870,13 +1867,13 @@ export const serviceContent: ServiceContent[] = [
         {
           heading: "Graduate development and retention",
           paragraphs: [
-            "Rotations, real responsibility, mentoring and, where relevant, professional qualifications keep graduates engaged and build the capability the scheme was created for. Linking the programme to the organisation's [learning strategy and capability development](/services/learning-strategy-and-capability-development-firm-in-the-uk/) makes development consistent beyond the first year.",
+            "Rotations, real responsibility, mentoring and, where relevant, professional qualifications keep graduates engaged and build the capability the scheme was created for. Linking the programme to the organisation's [learning strategy and capability development](/services/learning-strategy-and-capability-development-firm/) makes development consistent beyond the first year.",
           ],
         },
         {
           heading: "Building a sustainable early-careers pipeline",
           paragraphs: [
-            "Track application quality, diversity of the intake, offer-acceptance, completion of the programme and retention at two to three years, then refine each cycle. Larger or recurring intakes can be run through [recruitment process outsourcing (RPO)](/services/recruitment-process-outsourcing-rpo-firm-in-the-uk/); individual entry-level vacancies outside a programme suit [permanent recruitment](/services/permanent-recruitment-firm-in-the-uk/). See how early careers fits into the wider [recruitment and talent acquisition](/services/recruitment-and-talent-acquisition-firm-in-the-uk/) lifecycle.",
+            "Track application quality, diversity of the intake, offer-acceptance, completion of the programme and retention at two to three years, then refine each cycle. Larger or recurring intakes can be run through [recruitment process outsourcing (RPO)](/services/recruitment-process-outsourcing-rpo-firm/); individual entry-level vacancies outside a programme suit [permanent recruitment](/services/permanent-recruitment-firm/). See how early careers fits into the wider [recruitment and talent acquisition](/services/recruitment-and-talent-acquisition-firm/) lifecycle.",
           ],
         },
       ],
@@ -1890,9 +1887,9 @@ export const serviceContent: ServiceContent[] = [
 
   // ---- Employment Law & Employee Relations ----
   {
-    slug: "redundancy-and-restructuring-support-firm-in-the-uk",
-    categorySlug: "employment-law-and-employee-relations-firm-in-the-uk",
-    metaDescription: "Apex HR is a redundancy and restructuring firm helping UK employers run a fair, well-documented process that protects both the business and its people.",
+    slug: "redundancy-and-restructuring-support-firm",
+    categorySlug: "employment-law-and-employee-relations-firm",
+    metaDescription: "Apex HR is a redundancy and restructuring firm helping employers worldwide run a fair, well-documented process that protects both the business and its people.",
     primaryKeyword: "redundancy and restructuring support",
     heroSummary: "Practical HR support for redundancy and restructuring situations, focused on running a fair, well-documented process.",
     employerChallenge:
@@ -1923,8 +1920,8 @@ export const serviceContent: ServiceContent[] = [
     engagementOptions: ["Full process support", "Documentation and planning only", "Manager coaching through an existing process"],
     whyApex:
       "This is informational HR process support, not legal advice. Apex HR recommends qualified legal review for complex, large-scale or contested situations.",
-    relatedServiceSlugs: ["tupe-advisory-firm-in-the-uk", "outplacement-and-career-transition-services-firm-in-the-uk", "employment-tribunal-hr-support-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-manufacturers-in-the-uk", "hr-company-for-construction-in-the-uk", "hr-company-for-distribution-in-the-uk"],
+    relatedServiceSlugs: ["tupe-advisory-firm", "outplacement-and-career-transition-services-firm", "employment-tribunal-hr-support-firm"],
+    relatedSectorSlugs: ["hr-company-for-manufacturers", "hr-company-for-construction", "hr-company-for-distribution"],
     faqs: [
       { id: "legal-advice", question: "Is this a substitute for legal advice?", answer: "No. This is practical HR process support. Complex, large-scale or high-risk redundancy situations should be reviewed by a qualified employment lawyer." },
       { id: "timeline", question: "How long does a redundancy process take?", answer: "Timelines depend on the number of affected employees and any statutory consultation requirements, and are planned as part of the process." },
@@ -1932,7 +1929,7 @@ export const serviceContent: ServiceContent[] = [
     outOfScope: [
       "A determination of whether a specific redundancy or restructuring process is fair or lawful: this is a legal question for a qualified employment lawyer",
       "A guarantee that the process will avoid disputes, grievances or tribunal claims",
-      "Setting or confirming statutory consultation thresholds or timescales: these should be confirmed against current GOV.UK/Acas guidance and legal advice",
+      "Setting or confirming statutory consultation thresholds or timescales: these differ by country and should be confirmed against current official guidance and in-country legal advice",
       "Ongoing support for departing employees after they leave (see Outplacement & Career Transition Services)",
     ],
     differentiationNote:
@@ -1948,12 +1945,12 @@ export const serviceContent: ServiceContent[] = [
     legalReviewRequired: true,
   },
   {
-    slug: "tupe-advisory-firm-in-the-uk",
-    categorySlug: "employment-law-and-employee-relations-firm-in-the-uk",
-    metaDescription: "Apex HR is a TUPE advisory firm helping UK employers manage transfers with clear process, communication and integration support.",
+    slug: "tupe-advisory-firm",
+    categorySlug: "employment-law-and-employee-relations-firm",
+    metaDescription: "Apex HR is a TUPE and business transfer advisory firm helping employers manage employee transfers with clear process, communication and integration support.",
     primaryKeyword: "TUPE advisory",
     heroSummary:
-      "Practical HR support through a TUPE transfer, the Transfer of Undertakings (Protection of Employment) Regulations, covering process, employee communication and integration planning.",
+      "Practical HR support through a business transfer, including UK TUPE (Transfer of Undertakings (Protection of Employment)) transfers and transfers under equivalent rules such as the EU Acquired Rights Directive, covering process, employee communication and integration planning.",
     employerChallenge:
       "Whether TUPE applies depends on the specific circumstances of a transaction, and getting this wrong has real consequences, yet transfers often move on a tight timeline with significant people-management complexity. Apex HR supports the HR process and communication around a transfer; the legal determination of whether and how TUPE applies should come from a qualified employment lawyer.",
     businessOutcomes: [
@@ -1971,7 +1968,7 @@ export const serviceContent: ServiceContent[] = [
       "Planning employee communication for an upcoming transfer",
       "Integrating transferred employees into existing teams",
     ],
-    whoWeSupport: "Employers involved in a business transfer or service change where TUPE applies.",
+    whoWeSupport: "Employers involved in a business transfer or service change where TUPE or equivalent employee-transfer rules apply.",
     deliveryApproach: [
       "Understand the transaction and transfer scope",
       "Plan communication and consultation activity",
@@ -1981,8 +1978,8 @@ export const serviceContent: ServiceContent[] = [
     engagementOptions: ["Full transfer support", "Communication and integration support only"],
     whyApex:
       "This is HR process and communication support alongside your legal advisers. TUPE has specific legal requirements that should be confirmed with a qualified employment lawyer.",
-    relatedServiceSlugs: ["redundancy-and-restructuring-support-firm-in-the-uk", "organisation-design-firm-in-the-uk", "ma-people-due-diligence-and-post-merger-integration-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-care-homes-in-the-uk", "hr-company-for-construction-in-the-uk", "hr-company-for-distribution-in-the-uk"],
+    relatedServiceSlugs: ["redundancy-and-restructuring-support-firm", "organisation-design-firm", "ma-people-due-diligence-and-post-merger-integration-firm"],
+    relatedSectorSlugs: ["hr-company-for-care-homes", "hr-company-for-construction", "hr-company-for-distribution"],
     faqs: [
       { id: "legal", question: "Does Apex HR provide the legal TUPE assessment?", answer: "No. Apex HR provides HR process and communication support. Legal assessment of whether and how TUPE applies should come from a qualified employment lawyer." },
     ],
@@ -2004,9 +2001,9 @@ export const serviceContent: ServiceContent[] = [
     legalReviewRequired: true,
   },
   {
-    slug: "workplace-investigations-firm-in-the-uk",
-    categorySlug: "employment-law-and-employee-relations-firm-in-the-uk",
-    metaDescription: "Apex HR is a workplace investigations firm helping UK employers examine conduct, grievance or misconduct concerns, carried out outside internal reporting lines.",
+    slug: "workplace-investigations-firm",
+    categorySlug: "employment-law-and-employee-relations-firm",
+    metaDescription: "Apex HR is a workplace investigations firm helping employers examine conduct, grievance or misconduct concerns, carried out outside internal reporting lines.",
     primaryKeyword: "workplace investigations",
     heroSummary:
       "Structured workplace investigations carried out by someone external to your internal reporting lines, helping you gather the facts fairly before deciding next steps.",
@@ -2037,8 +2034,8 @@ export const serviceContent: ServiceContent[] = [
     engagementOptions: ["Full investigation support", "Investigation support alongside internal HR"],
     whyApex:
       "The investigator's role is to establish the facts fairly and consistently. Any subsequent decision remains yours, informed by the findings and appropriate advice.",
-    relatedServiceSlugs: ["workplace-mediation-and-conflict-resolution-firm-in-the-uk", "employment-tribunal-hr-support-firm-in-the-uk", "hr-compliance-audit-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-professional-services-in-the-uk", "hr-company-for-care-homes-in-the-uk", "hr-company-for-education-in-the-uk"],
+    relatedServiceSlugs: ["workplace-mediation-and-conflict-resolution-firm", "employment-tribunal-hr-support-firm", "hr-compliance-audit-firm"],
+    relatedSectorSlugs: ["hr-company-for-professional-services", "hr-company-for-care-homes", "hr-company-for-education"],
     faqs: [
       { id: "outcome", question: "Does Apex HR decide the outcome?", answer: "No. An investigation establishes the facts. Any disciplinary or other decision remains the employer's, informed by the findings and appropriate advice." },
     ],
@@ -2068,9 +2065,9 @@ export const serviceContent: ServiceContent[] = [
     legalReviewRequired: true,
   },
   {
-    slug: "workplace-mediation-and-conflict-resolution-firm-in-the-uk",
-    categorySlug: "employment-law-and-employee-relations-firm-in-the-uk",
-    metaDescription: "Apex HR is a workplace mediation firm helping UK employers resolve conflict between employees or teams through structured, facilitated support.",
+    slug: "workplace-mediation-and-conflict-resolution-firm",
+    categorySlug: "employment-law-and-employee-relations-firm",
+    metaDescription: "Apex HR is a workplace mediation firm helping employers worldwide resolve conflict between employees or teams through structured, facilitated support.",
     primaryKeyword: "workplace mediation",
     heroSummary:
       "Structured, facilitated mediation to help address workplace conflict before it escalates further, led by someone outside your internal reporting lines.",
@@ -2101,8 +2098,8 @@ export const serviceContent: ServiceContent[] = [
     engagementOptions: ["Single mediation session", "Ongoing conflict-resolution support for a team"],
     whyApex:
       "The facilitator sits outside the internal reporting lines involved, which can make it easier for both parties to engage openly.",
-    relatedServiceSlugs: ["workplace-investigations-firm-in-the-uk", "employee-experience-strategy-firm-in-the-uk", "leadership-and-management-training-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-professional-services-in-the-uk", "hr-company-for-healthcare-in-the-uk", "hr-company-for-education-in-the-uk"],
+    relatedServiceSlugs: ["workplace-investigations-firm", "employee-experience-strategy-firm", "leadership-and-management-training-firm"],
+    relatedSectorSlugs: ["hr-company-for-professional-services", "hr-company-for-healthcare", "hr-company-for-education"],
     faqs: [
       { id: "voluntary", question: "Is mediation voluntary?", answer: "Mediation works best when all parties engage voluntarily and in good faith: this is discussed and agreed before a session takes place." },
     ],
@@ -2131,11 +2128,11 @@ export const serviceContent: ServiceContent[] = [
     legalReviewRequired: true,
   },
   {
-    slug: "employment-tribunal-hr-support-firm-in-the-uk",
-    categorySlug: "employment-law-and-employee-relations-firm-in-the-uk",
-    metaDescription: "Apex HR is an employment tribunal HR support firm helping UK employers coordinate records and internal processes alongside appointed legal advisers where applicable.",
+    slug: "employment-tribunal-hr-support-firm",
+    categorySlug: "employment-law-and-employee-relations-firm",
+    metaDescription: "Apex HR is an employment dispute HR support firm coordinating records and processes for tribunal claims, alongside appointed legal advisers where applicable.",
     primaryKeyword: "employment tribunal HR support",
-    heroSummary: "HR process and evidence support for employers responding to an employment tribunal claim, working alongside your legal representation.",
+    heroSummary: "HR process and evidence support for employers responding to an employment tribunal, labour court or employment dispute claim, working alongside your legal representation.",
     employerChallenge:
       "A tribunal claim is stressful and time-consuming, and pulling together an accurate HR record under pressure is difficult without dedicated support.",
     businessOutcomes: [
@@ -2162,14 +2159,14 @@ export const serviceContent: ServiceContent[] = [
     engagementOptions: ["Full tribunal support", "Documentation and evidence preparation only"],
     whyApex:
       "This service supports your legal representation with HR process and evidence. It is not a substitute for qualified legal representation at tribunal.",
-    relatedServiceSlugs: ["workplace-investigations-firm-in-the-uk", "redundancy-and-restructuring-support-firm-in-the-uk", "hr-compliance-audit-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-professional-services-in-the-uk", "hr-company-for-manufacturers-in-the-uk", "hr-company-for-care-homes-in-the-uk"],
+    relatedServiceSlugs: ["workplace-investigations-firm", "redundancy-and-restructuring-support-firm", "hr-compliance-audit-firm"],
+    relatedSectorSlugs: ["hr-company-for-professional-services", "hr-company-for-manufacturers", "hr-company-for-care-homes"],
     faqs: [
-      { id: "represent", question: "Does Apex HR represent us at tribunal?", answer: "No. Apex HR provides HR-side support and evidence preparation. Tribunal representation should come from a qualified solicitor or barrister." },
+      { id: "represent", question: "Does Apex HR represent us at tribunal?", answer: "No. Apex HR provides HR-side support and evidence preparation. Representation should come from a qualified lawyer in the relevant country." },
     ],
     outOfScope: [
       "Legal strategy or advice on the merits of the claim",
-      "Legal representation at tribunal: this should come from a qualified solicitor or barrister",
+      "Legal representation at a tribunal or labour court: this should come from a qualified lawyer in the relevant country",
       "Drafting tribunal pleadings or other formal legal filings",
       "Predicting or guaranteeing the outcome of a tribunal claim",
       "Any claim of legal privilege over materials Apex HR prepares",
@@ -2187,9 +2184,9 @@ export const serviceContent: ServiceContent[] = [
     legalReviewRequired: true,
   },
   {
-    slug: "outplacement-and-career-transition-services-firm-in-the-uk",
-    categorySlug: "employment-law-and-employee-relations-firm-in-the-uk",
-    metaDescription: "Apex HR is an outplacement firm helping UK employers support employees leaving through redundancy or restructuring into their next career step.",
+    slug: "outplacement-and-career-transition-services-firm",
+    categorySlug: "employment-law-and-employee-relations-firm",
+    metaDescription: "Apex HR is an outplacement firm helping employers worldwide support employees leaving through redundancy or restructuring into their next career step.",
     primaryKeyword: "outplacement support",
     heroSummary: "Career transition support for departing employees, helping them move forward positively after redundancy or restructuring.",
     employerChallenge:
@@ -2218,8 +2215,8 @@ export const serviceContent: ServiceContent[] = [
     engagementOptions: ["Individual outplacement support", "Group outplacement programme for larger exercises"],
     whyApex:
       "Support is practical and personal, not a generic careers pack handed over at the exit meeting.",
-    relatedServiceSlugs: ["redundancy-and-restructuring-support-firm-in-the-uk", "employee-experience-strategy-firm-in-the-uk", "permanent-recruitment-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-manufacturers-in-the-uk", "hr-company-for-financial-services-in-the-uk", "hr-company-for-distribution-in-the-uk"],
+    relatedServiceSlugs: ["redundancy-and-restructuring-support-firm", "employee-experience-strategy-firm", "permanent-recruitment-firm"],
+    relatedSectorSlugs: ["hr-company-for-manufacturers", "hr-company-for-financial-services", "hr-company-for-distribution"],
     faqs: [
       { id: "who-pays", question: "Who pays for outplacement support?", answer: "This is typically funded by the employer as part of supporting departing employees through a redundancy or restructuring process." },
     ],
@@ -2248,9 +2245,9 @@ export const serviceContent: ServiceContent[] = [
     legalReviewRequired: false,
   },
   {
-    slug: "industrial-relations-and-trade-union-negotiations-firm-in-the-uk",
-    categorySlug: "employment-law-and-employee-relations-firm-in-the-uk",
-    metaDescription: "Apex HR is an industrial relations firm helping UK employers prepare for and engage constructively in trade union negotiations.",
+    slug: "industrial-relations-and-trade-union-negotiations-firm",
+    categorySlug: "employment-law-and-employee-relations-firm",
+    metaDescription: "Apex HR is an industrial relations firm helping employers worldwide prepare for and engage constructively in trade union negotiations.",
     primaryKeyword: "industrial relations support",
     heroSummary: "Practical support preparing for and engaging in trade union negotiations and wider industrial relations matters.",
     employerChallenge:
@@ -2280,8 +2277,8 @@ export const serviceContent: ServiceContent[] = [
     engagementOptions: ["Negotiation preparation support", "Ongoing industrial relations advisory"],
     whyApex:
       "This is informational HR support. Specific legal questions about collective bargaining obligations should be confirmed with a qualified employment lawyer.",
-    relatedServiceSlugs: ["redundancy-and-restructuring-support-firm-in-the-uk", "employee-engagement-surveys-and-action-planning-firm-in-the-uk", "reward-strategy-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-manufacturers-in-the-uk", "hr-company-for-distribution-in-the-uk", "hr-company-for-construction-in-the-uk"],
+    relatedServiceSlugs: ["redundancy-and-restructuring-support-firm", "employee-engagement-surveys-and-action-planning-firm", "reward-strategy-firm"],
+    relatedSectorSlugs: ["hr-company-for-manufacturers", "hr-company-for-distribution", "hr-company-for-construction"],
     faqs: [
       { id: "recognised", question: "Does this require a recognised union already in place?", answer: "This service is typically most relevant where a union is already recognised, but early guidance can also help employers approaching recognition discussions." },
     ],
@@ -2305,13 +2302,13 @@ export const serviceContent: ServiceContent[] = [
     legalReviewRequired: true,
   },
   {
-    slug: "skilled-worker-sponsorship-hr-support-firm-in-the-uk",
-    categorySlug: "employment-law-and-employee-relations-firm-in-the-uk",
-    metaDescription: "Apex HR is a Skilled Worker sponsorship HR firm helping UK employers manage the HR process for the UK Skilled Worker route, working alongside qualified immigration advisers.",
-    primaryKeyword: "skilled worker sponsorship HR support",
+    slug: "skilled-worker-sponsorship-hr-support-firm",
+    categorySlug: "employment-law-and-employee-relations-firm",
+    metaDescription: "Apex HR is a work visa and sponsorship HR firm helping employers run the HR process for sponsored international hires, alongside qualified immigration advisers.",
+    primaryKeyword: "work visa sponsorship HR support",
     heroSummary: "HR-side process support for employers sponsoring international talent, working alongside qualified immigration advisers.",
     employerChallenge:
-      "Skilled Worker sponsorship involves detailed record-keeping and process obligations that sit alongside, but are distinct from, the formal immigration application itself.",
+      "Sponsoring international hires, whether through the UK Skilled Worker route, a US employment visa, a Gulf work permit or an EU skilled-worker permit, involves detailed record-keeping and process obligations that sit alongside, but are distinct from, the formal immigration application itself.",
     businessOutcomes: [
       "Clearer internal sponsorship processes",
       "Better-organised right-to-work and compliance records",
@@ -2323,11 +2320,11 @@ export const serviceContent: ServiceContent[] = [
       "Onboarding support for sponsored employees",
     ],
     whenNeeded: [
-      "Becoming a licensed sponsor for the first time",
-      "Scaling international hiring under an existing licence",
+      "Sponsoring international hires for the first time",
+      "Scaling international hiring across one or more countries",
       "Reviewing current sponsorship record-keeping practices",
     ],
-    whoWeSupport: "Employers who sponsor, or are considering sponsoring, Skilled Worker visas.",
+    whoWeSupport: "Employers who sponsor, or are considering sponsoring, work visas or permits for international hires.",
     deliveryApproach: [
       "Understand your current or planned sponsorship activity",
       "Review internal HR processes and record-keeping",
@@ -2336,26 +2333,26 @@ export const serviceContent: ServiceContent[] = [
     ],
     engagementOptions: ["HR process review", "Ongoing sponsorship HR support"],
     whyApex:
-      "This is HR process support only. Formal sponsor licence applications, compliance and immigration status questions must be handled by a qualified immigration adviser or solicitor.",
-    relatedServiceSlugs: ["hr-compliance-audit-firm-in-the-uk", "employee-handbooks-and-hr-policies-firm-in-the-uk", "permanent-recruitment-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-it-in-the-uk", "hr-company-for-healthcare-in-the-uk", "hr-company-for-life-sciences-in-the-uk"],
+      "This is HR process support only. Formal sponsorship applications, immigration compliance and status questions must be handled by a qualified immigration adviser or lawyer in the relevant country.",
+    relatedServiceSlugs: ["hr-compliance-audit-firm", "employee-handbooks-and-hr-policies-firm", "permanent-recruitment-firm"],
+    relatedSectorSlugs: ["hr-company-for-it", "hr-company-for-healthcare", "hr-company-for-life-sciences"],
     faqs: [
       { id: "immigration-advice", question: "Does Apex HR provide immigration advice?", answer: "No. This is HR process support alongside your qualified immigration adviser. Apex HR does not provide immigration or visa legal advice." },
     ],
     outOfScope: [
-      "Determining whether a specific individual qualifies for a Skilled Worker visa: this is an immigration-law question",
+      "Determining whether a specific individual qualifies for a work visa or permit: this is an immigration-law question",
       "Guaranteeing a sponsor licence, visa approval or any immigration outcome",
-      "Current salary thresholds, fees or processing times: these change and should be confirmed against current GOV.UK guidance",
+      "Current salary thresholds, quotas, fees or processing times: these change and should be confirmed against current official government guidance in each country",
       "Acting as an immigration adviser or government body",
     ],
     differentiationNote:
-      "Being a licensed sponsor and an individual holding a Skilled Worker visa are related but distinct: the sponsor licence sits with the employer, while eligibility for the visa itself is determined by the Home Office for each individual. This service supports the employer's HR processes around sponsorship, not the individual immigration application or determination.",
+      "Employer sponsorship and an individual's work visa are related but distinct: sponsorship obligations sit with the employer, while eligibility for the visa itself is determined by the relevant immigration authority (for example the UK Home Office, US Citizenship and Immigration Services or a Gulf ministry of labour) for each individual. This service supports the employer's HR processes around sponsorship, not the individual immigration application or determination.",
     additionalFaqs: [
       {
         id: "visa-vs-sponsorship",
-        question: "Are 'sponsorship' and a 'Skilled Worker visa' the same thing?",
+        question: "Are 'sponsorship' and a 'work visa' the same thing?",
         answer:
-          "No. Sponsorship refers to the employer's licence and processes for supporting a worker's visa application; the Skilled Worker visa itself is the individual's immigration status, determined by the Home Office. Apex HR supports the employer's HR side of sponsorship, not individual visa determinations.",
+          "No. Sponsorship refers to the employer's obligations and processes for supporting a worker's visa application; the visa itself is the individual's immigration status, determined by the relevant immigration authority. Apex HR supports the employer's HR side of sponsorship, not individual visa determinations.",
       },
     ],
     legalReviewRequired: true,
@@ -2363,9 +2360,9 @@ export const serviceContent: ServiceContent[] = [
 
   // ---- Organisation Development & Change Management ----
   {
-    slug: "organisation-design-firm-in-the-uk",
-    categorySlug: "organisation-development-and-change-management-firm-in-the-uk",
-    metaDescription: "Apex HR is an organisation design firm helping UK employers build structures that match their strategy and support how work actually gets done.",
+    slug: "organisation-design-firm",
+    categorySlug: "organisation-development-and-change-management-firm",
+    metaDescription: "Apex HR is an organisation design firm helping employers worldwide build structures that match their strategy and support how work actually gets done.",
     primaryKeyword: "organisation design",
     heroSummary: "Organisation design support to build a structure that matches your strategy and how work actually gets done.",
     employerChallenge:
@@ -2395,8 +2392,8 @@ export const serviceContent: ServiceContent[] = [
     engagementOptions: ["Structure review and design", "Design plus transition support"],
     whyApex:
       "Design work starts from your strategy and how work actually flows, not a generic organisational template.",
-    relatedServiceSlugs: ["change-management-firm-in-the-uk", "strategic-workforce-planning-firm-in-the-uk", "competency-frameworks-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-professional-services-in-the-uk", "hr-company-for-it-in-the-uk", "hr-company-for-financial-services-in-the-uk"],
+    relatedServiceSlugs: ["change-management-firm", "strategic-workforce-planning-firm", "competency-frameworks-firm"],
+    relatedSectorSlugs: ["hr-company-for-professional-services", "hr-company-for-it", "hr-company-for-financial-services"],
     faqs: [
       { id: "redundancy", question: "Does organisation design always involve redundancies?", answer: "No. Design changes can involve role changes without headcount reduction. Where redundancies are involved, this is planned separately and carefully." },
     ],
@@ -2415,9 +2412,9 @@ export const serviceContent: ServiceContent[] = [
     legalReviewRequired: false,
   },
   {
-    slug: "change-management-firm-in-the-uk",
-    categorySlug: "organisation-development-and-change-management-firm-in-the-uk",
-    metaDescription: "Apex HR is a change management firm helping UK employers plan the people side of organisational change through clear communication, engagement and adoption planning.",
+    slug: "change-management-firm",
+    categorySlug: "organisation-development-and-change-management-firm",
+    metaDescription: "Apex HR is a change management firm helping employers plan the people side of change through clear communication, engagement and adoption planning.",
     primaryKeyword: "change management",
     heroSummary: "Practical change management support, helping you plan the people side of organisational change through clear communication, engagement and adoption planning.",
     employerChallenge:
@@ -2447,8 +2444,8 @@ export const serviceContent: ServiceContent[] = [
     engagementOptions: ["Change planning support", "Full change delivery support"],
     whyApex:
       "Change management here focuses on the people side of change alongside the practical plan, not just a project timeline.",
-    relatedServiceSlugs: ["organisation-design-firm-in-the-uk", "culture-transformation-firm-in-the-uk", "employee-experience-strategy-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-professional-services-in-the-uk", "hr-company-for-manufacturers-in-the-uk", "hr-company-for-it-in-the-uk"],
+    relatedServiceSlugs: ["organisation-design-firm", "culture-transformation-firm", "employee-experience-strategy-firm"],
+    relatedSectorSlugs: ["hr-company-for-professional-services", "hr-company-for-manufacturers", "hr-company-for-it"],
     faqs: [
       { id: "size", question: "Does this only apply to large-scale change?", answer: "No. The same principles apply to smaller changes, scaled to fit the size of the initiative." },
     ],
@@ -2467,9 +2464,9 @@ export const serviceContent: ServiceContent[] = [
     legalReviewRequired: false,
   },
   {
-    slug: "culture-transformation-firm-in-the-uk",
-    categorySlug: "organisation-development-and-change-management-firm-in-the-uk",
-    metaDescription: "Apex HR is a culture transformation firm helping UK employers shift how their organisation actually operates day to day, not just what it states.",
+    slug: "culture-transformation-firm",
+    categorySlug: "organisation-development-and-change-management-firm",
+    metaDescription: "Apex HR is a culture transformation firm helping employers worldwide shift how their organisation actually operates day to day, not just what it states.",
     primaryKeyword: "culture transformation",
     heroSummary: "Practical support shifting organisational culture, focused on how the business actually operates day to day, not just stated values.",
     employerChallenge:
@@ -2499,8 +2496,8 @@ export const serviceContent: ServiceContent[] = [
     engagementOptions: ["Culture diagnosis", "Diagnosis plus ongoing transformation support"],
     whyApex:
       "Work starts with an honest diagnosis of current culture, not an assumption about what the culture should say.",
-    relatedServiceSlugs: ["change-management-firm-in-the-uk", "employee-experience-strategy-firm-in-the-uk", "leadership-and-management-training-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-it-in-the-uk", "hr-company-for-startups-and-scale-ups-in-the-uk", "hr-company-for-professional-services-in-the-uk"],
+    relatedServiceSlugs: ["change-management-firm", "employee-experience-strategy-firm", "leadership-and-management-training-firm"],
+    relatedSectorSlugs: ["hr-company-for-it", "hr-company-for-startups-and-scale-ups", "hr-company-for-professional-services"],
     faqs: [
       { id: "quick-fix", question: "How quickly can culture change?", answer: "Genuine culture change takes sustained effort over time. Apex HR does not promise a quick fix, but focuses on practical, visible initiatives." },
     ],
@@ -2519,9 +2516,9 @@ export const serviceContent: ServiceContent[] = [
     legalReviewRequired: false,
   },
   {
-    slug: "ma-people-due-diligence-and-post-merger-integration-firm-in-the-uk",
-    categorySlug: "organisation-development-and-change-management-firm-in-the-uk",
-    metaDescription: "Apex HR is an M&A people due diligence firm helping UK employers understand workforce risk before a transaction and manage integration afterwards.",
+    slug: "ma-people-due-diligence-and-post-merger-integration-firm",
+    categorySlug: "organisation-development-and-change-management-firm",
+    metaDescription: "Apex HR is an M&A people due diligence firm helping employers worldwide understand workforce risk before a transaction and manage integration afterwards.",
     primaryKeyword: "M&A people due diligence",
     heroSummary: "People due diligence and post-merger integration support for Mergers and Acquisitions (M&A), so workforce risk is understood before a transaction and managed after it.",
     employerChallenge:
@@ -2550,8 +2547,8 @@ export const serviceContent: ServiceContent[] = [
     engagementOptions: ["Due diligence review only", "Due diligence plus integration support"],
     whyApex:
       "This is HR and organisational due diligence support alongside your legal and financial advisers, not a substitute for them.",
-    relatedServiceSlugs: ["organisation-design-firm-in-the-uk", "change-management-firm-in-the-uk", "tupe-advisory-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-professional-services-in-the-uk", "hr-company-for-financial-services-in-the-uk", "hr-company-for-it-in-the-uk"],
+    relatedServiceSlugs: ["organisation-design-firm", "change-management-firm", "tupe-advisory-firm"],
+    relatedSectorSlugs: ["hr-company-for-professional-services", "hr-company-for-financial-services", "hr-company-for-it"],
     faqs: [
       { id: "scope", question: "Does this replace financial or legal due diligence?", answer: "No. This focuses specifically on people and organisational risk, alongside your financial and legal due diligence workstreams." },
     ],
@@ -2573,9 +2570,9 @@ export const serviceContent: ServiceContent[] = [
 
   // ---- Compensation, Reward & Benefits ----
   {
-    slug: "salary-benchmarking-firm-in-the-uk",
-    categorySlug: "compensation-reward-and-benefits-firm-in-the-uk",
-    metaDescription: "Apex HR is a salary benchmarking firm helping UK employers compare roles and pay against relevant external market data to inform pay decisions.",
+    slug: "salary-benchmarking-firm",
+    categorySlug: "compensation-reward-and-benefits-firm",
+    metaDescription: "Apex HR is a salary benchmarking firm helping employers worldwide compare roles and pay against relevant external market data to inform pay decisions.",
     primaryKeyword: "salary benchmarking",
     heroSummary: "Salary benchmarking to help you set pay levels that are competitive, defensible and aligned to your market.",
     employerChallenge:
@@ -2605,8 +2602,8 @@ export const serviceContent: ServiceContent[] = [
     engagementOptions: ["One-off benchmarking exercise", "Annual benchmarking review"],
     whyApex:
       "Benchmarking is tied back to your actual pay structure and recruitment experience, not delivered as a standalone data dump.",
-    relatedServiceSlugs: ["job-evaluation-and-pay-structures-firm-in-the-uk", "reward-strategy-firm-in-the-uk", "pay-equity-and-pay-gap-reporting-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-it-in-the-uk", "hr-company-for-financial-services-in-the-uk", "hr-company-for-professional-services-in-the-uk"],
+    relatedServiceSlugs: ["job-evaluation-and-pay-structures-firm", "reward-strategy-firm", "pay-equity-and-pay-gap-reporting-firm"],
+    relatedSectorSlugs: ["hr-company-for-it", "hr-company-for-financial-services", "hr-company-for-professional-services"],
     faqs: [
       { id: "data-source", question: "Where does the benchmarking data come from?", answer: "Benchmarking draws on relevant available market data sources appropriate to the roles and sector being reviewed." },
     ],
@@ -2627,9 +2624,9 @@ export const serviceContent: ServiceContent[] = [
     legalReviewRequired: false,
   },
   {
-    slug: "job-evaluation-and-pay-structures-firm-in-the-uk",
-    categorySlug: "compensation-reward-and-benefits-firm-in-the-uk",
-    metaDescription: "Apex HR is a job evaluation firm helping UK employers build a consistent, structured basis for valuing roles and designing pay structures.",
+    slug: "job-evaluation-and-pay-structures-firm",
+    categorySlug: "compensation-reward-and-benefits-firm",
+    metaDescription: "Apex HR is a job evaluation firm helping employers worldwide build a consistent, structured basis for valuing roles and designing pay structures.",
     primaryKeyword: "job evaluation and pay structures",
     heroSummary: "Job evaluation and pay structure design, creating a consistent, structured basis for how roles are valued and paid.",
     employerChallenge:
@@ -2659,8 +2656,8 @@ export const serviceContent: ServiceContent[] = [
     engagementOptions: ["Job evaluation only", "Evaluation plus full pay-structure design"],
     whyApex:
       "The structure is designed to be usable day to day by your managers, not just a one-off consultancy deliverable.",
-    relatedServiceSlugs: ["salary-benchmarking-firm-in-the-uk", "reward-strategy-firm-in-the-uk", "pay-equity-and-pay-gap-reporting-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-manufacturers-in-the-uk", "hr-company-for-care-homes-in-the-uk", "hr-company-for-distribution-in-the-uk"],
+    relatedServiceSlugs: ["salary-benchmarking-firm", "reward-strategy-firm", "pay-equity-and-pay-gap-reporting-firm"],
+    relatedSectorSlugs: ["hr-company-for-manufacturers", "hr-company-for-care-homes", "hr-company-for-distribution"],
     faqs: [
       { id: "maintain", question: "Who maintains the structure afterwards?", answer: "Guidance is provided so your team can apply and maintain the structure, with ongoing support available if needed." },
     ],
@@ -2682,9 +2679,9 @@ export const serviceContent: ServiceContent[] = [
     legalReviewRequired: true,
   },
   {
-    slug: "reward-strategy-firm-in-the-uk",
-    categorySlug: "compensation-reward-and-benefits-firm-in-the-uk",
-    metaDescription: "Apex HR is a reward strategy firm helping UK employers connect pay, benefits and recognition to their business and people goals.",
+    slug: "reward-strategy-firm",
+    categorySlug: "compensation-reward-and-benefits-firm",
+    metaDescription: "Apex HR is a reward strategy firm helping employers worldwide connect pay, benefits and recognition to their business and people goals.",
     primaryKeyword: "reward strategy",
     heroSummary: "A reward strategy that connects pay, benefits and recognition to your business goals and what your people actually value.",
     employerChallenge:
@@ -2714,8 +2711,8 @@ export const serviceContent: ServiceContent[] = [
     engagementOptions: ["Reward strategy review", "Strategy plus implementation support"],
     whyApex:
       "Recommendations are grounded in your actual business priorities and budget, not a generic best-practice checklist.",
-    relatedServiceSlugs: ["salary-benchmarking-firm-in-the-uk", "employee-benefits-consulting-firm-in-the-uk", "executive-compensation-and-share-schemes-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-it-in-the-uk", "hr-company-for-startups-and-scale-ups-in-the-uk", "hr-company-for-professional-services-in-the-uk"],
+    relatedServiceSlugs: ["salary-benchmarking-firm", "employee-benefits-consulting-firm", "executive-compensation-and-share-schemes-firm"],
+    relatedSectorSlugs: ["hr-company-for-it", "hr-company-for-startups-and-scale-ups", "hr-company-for-professional-services"],
     faqs: [
       { id: "budget", question: "Does this require increasing reward spend?", answer: "Not necessarily. Strategy work often focuses on using existing spend more effectively, as well as identifying where investment would have the most impact." },
     ],
@@ -2738,9 +2735,9 @@ export const serviceContent: ServiceContent[] = [
     legalReviewRequired: false,
   },
   {
-    slug: "pay-equity-and-pay-gap-reporting-firm-in-the-uk",
-    categorySlug: "compensation-reward-and-benefits-firm-in-the-uk",
-    metaDescription: "Apex HR is a pay equity firm helping UK employers understand and address pay disparities through careful analysis and considered reporting.",
+    slug: "pay-equity-and-pay-gap-reporting-firm",
+    categorySlug: "compensation-reward-and-benefits-firm",
+    metaDescription: "Apex HR is a pay equity firm helping employers worldwide understand and address pay disparities through careful analysis and considered reporting.",
     primaryKeyword: "pay equity and pay gap reporting",
     heroSummary: "Pay equity analysis and reporting support, helping you understand pay disparities and plan a considered response.",
     employerChallenge:
@@ -2770,8 +2767,8 @@ export const serviceContent: ServiceContent[] = [
     engagementOptions: ["Pay equity analysis", "Analysis plus reporting support"],
     whyApex:
       "Analysis and reporting are approached carefully and factually, without overstating findings or committing to specific figures the data doesn't support.",
-    relatedServiceSlugs: ["job-evaluation-and-pay-structures-firm-in-the-uk", "reward-strategy-firm-in-the-uk", "diversity-equity-and-inclusion-dei-consulting-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-financial-services-in-the-uk", "hr-company-for-professional-services-in-the-uk", "hr-company-for-education-in-the-uk"],
+    relatedServiceSlugs: ["job-evaluation-and-pay-structures-firm", "reward-strategy-firm", "diversity-equity-and-inclusion-dei-consulting-firm"],
+    relatedSectorSlugs: ["hr-company-for-financial-services", "hr-company-for-professional-services", "hr-company-for-education"],
     faqs: [
       { id: "statutory", question: "Does this cover statutory gender pay gap reporting obligations?", answer: "Support is provided at a process and analysis level. Employers should confirm their specific statutory obligations with a qualified adviser, since requirements and thresholds can change." },
     ],
@@ -2781,7 +2778,7 @@ export const serviceContent: ServiceContent[] = [
       "A guarantee that identified pay gaps will close or narrow by any particular amount.",
       "A guarantee of statutory reporting compliance: employers remain responsible for confirming their own statutory reporting obligations.",
       "Legal representation in connection with a pay equity or discrimination claim.",
-      "Statutory reporting thresholds, deadlines or calculation rules: these should be confirmed against current GOV.UK guidance, as they can change.",
+      "Statutory reporting thresholds, deadlines or calculation rules: these differ by country and should be confirmed against current official guidance, as they can change.",
     ],
     differentiationNote:
       "Pay Equity & Pay Gap Reporting analyses pay outcomes across groups and supports reporting and action planning. It is distinct from Salary Benchmarking (external market comparison), Job Evaluation & Pay Structures (internal role-value consistency) and Reward Strategy (the broader, organisation-wide reward approach), though findings from this analysis often inform work in those areas.",
@@ -2793,9 +2790,9 @@ export const serviceContent: ServiceContent[] = [
     legalReviewRequired: true,
   },
   {
-    slug: "employee-benefits-consulting-firm-in-the-uk",
-    categorySlug: "compensation-reward-and-benefits-firm-in-the-uk",
-    metaDescription: "Apex HR is an employee benefits consulting firm helping UK employers design a benefits offering that genuinely fits their people and budget.",
+    slug: "employee-benefits-consulting-firm",
+    categorySlug: "compensation-reward-and-benefits-firm",
+    metaDescription: "Apex HR is an employee benefits consulting firm helping employers worldwide design a benefits offering that genuinely fits their people and budget.",
     primaryKeyword: "employee benefits consulting",
     heroSummary: "Employee benefits consulting to help you design an offering that genuinely fits your people and your budget.",
     employerChallenge:
@@ -2825,8 +2822,8 @@ export const serviceContent: ServiceContent[] = [
     engagementOptions: ["Benefits review", "Review plus implementation support"],
     whyApex:
       "Recommendations are grounded in what your specific workforce values, not a generic benefits list.",
-    relatedServiceSlugs: ["reward-strategy-firm-in-the-uk", "workplace-wellbeing-and-mental-health-firm-in-the-uk", "salary-benchmarking-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-it-in-the-uk", "hr-company-for-professional-services-in-the-uk", "hr-company-for-startups-and-scale-ups-in-the-uk"],
+    relatedServiceSlugs: ["reward-strategy-firm", "workplace-wellbeing-and-mental-health-firm", "salary-benchmarking-firm"],
+    relatedSectorSlugs: ["hr-company-for-it", "hr-company-for-professional-services", "hr-company-for-startups-and-scale-ups"],
     faqs: [
       { id: "provider", question: "Does Apex HR arrange the benefits providers?", answer: "No. Apex HR is not an insurance broker, financial adviser or pension adviser, and does not arrange, select or endorse specific benefits providers. This service focuses on reviewing your current benefits and helping design a considered benefits approach; any provider decision, and any regulated advice around it, remain with your organisation and appropriately regulated advisers." },
     ],
@@ -2848,9 +2845,9 @@ export const serviceContent: ServiceContent[] = [
     legalReviewRequired: false,
   },
   {
-    slug: "executive-compensation-and-share-schemes-firm-in-the-uk",
-    categorySlug: "compensation-reward-and-benefits-firm-in-the-uk",
-    metaDescription: "Apex HR is an executive compensation firm helping UK employers design senior leadership reward and share schemes aligned to their business goals.",
+    slug: "executive-compensation-and-share-schemes-firm",
+    categorySlug: "compensation-reward-and-benefits-firm",
+    metaDescription: "Apex HR is an executive compensation firm helping employers worldwide design senior leadership reward and share schemes aligned to their business goals.",
     primaryKeyword: "executive compensation and share schemes",
     heroSummary: "Advisory support designing executive compensation and share schemes that align leadership incentives with business goals.",
     employerChallenge:
@@ -2880,8 +2877,8 @@ export const serviceContent: ServiceContent[] = [
     engagementOptions: ["Executive reward review", "Design plus implementation support"],
     whyApex:
       "This is reward design and market-context advisory support: share scheme legal and tax structuring must be confirmed with qualified legal and tax advisers.",
-    relatedServiceSlugs: ["reward-strategy-firm-in-the-uk", "fractional-hr-director-chief-people-officer-firm-in-the-uk", "salary-benchmarking-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-financial-services-in-the-uk", "hr-company-for-it-in-the-uk", "hr-company-for-professional-services-in-the-uk"],
+    relatedServiceSlugs: ["reward-strategy-firm", "fractional-hr-director-chief-people-officer-firm", "salary-benchmarking-firm"],
+    relatedSectorSlugs: ["hr-company-for-financial-services", "hr-company-for-it", "hr-company-for-professional-services"],
     faqs: [
       { id: "tax", question: "Does Apex HR provide tax advice on share schemes?", answer: "No. Share scheme structuring should always involve qualified legal and tax advisers. Apex HR advises on reward design and market context." },
     ],
@@ -2907,9 +2904,9 @@ export const serviceContent: ServiceContent[] = [
 
   // ---- Learning & Leadership Development ----
   {
-    slug: "leadership-and-management-training-firm-in-the-uk",
-    categorySlug: "learning-and-leadership-development-firm-in-the-uk",
-    metaDescription: "Apex HR is a leadership and management training firm helping UK employers build capable, confident people managers, not just theory.",
+    slug: "leadership-and-management-training-firm",
+    categorySlug: "learning-and-leadership-development-firm",
+    metaDescription: "Apex HR is a leadership and management training firm helping employers worldwide build capable, confident people managers, not just theory.",
     primaryKeyword: "leadership and management training",
     heroSummary: "Practical leadership and management training that builds capable, confident people managers, not just theory.",
     employerChallenge:
@@ -2939,8 +2936,8 @@ export const serviceContent: ServiceContent[] = [
     engagementOptions: ["Single training workshop", "Structured management development programme"],
     whyApex:
       "Training is designed around your actual management challenges, not delivered as an off-the-shelf course.",
-    relatedServiceSlugs: ["executive-coaching-and-360-feedback-firm-in-the-uk", "learning-strategy-and-capability-development-firm-in-the-uk", "performance-management-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-care-homes-in-the-uk", "hr-company-for-hospitality-in-the-uk", "hr-company-for-manufacturers-in-the-uk"],
+    relatedServiceSlugs: ["executive-coaching-and-360-feedback-firm", "learning-strategy-and-capability-development-firm", "performance-management-firm"],
+    relatedSectorSlugs: ["hr-company-for-care-homes", "hr-company-for-hospitality", "hr-company-for-manufacturers"],
     faqs: [
       { id: "format", question: "Is training delivered in person or online?", answer: "Format is agreed based on your team's needs and preferences, including in-person, virtual or blended delivery." },
     ],
@@ -2961,9 +2958,9 @@ export const serviceContent: ServiceContent[] = [
     legalReviewRequired: false,
   },
   {
-    slug: "executive-coaching-and-360-feedback-firm-in-the-uk",
-    categorySlug: "learning-and-leadership-development-firm-in-the-uk",
-    metaDescription: "Apex HR is an executive coaching firm helping UK employers support senior leaders' development through coaching and structured 360-degree feedback.",
+    slug: "executive-coaching-and-360-feedback-firm",
+    categorySlug: "learning-and-leadership-development-firm",
+    metaDescription: "Apex HR is an executive coaching firm helping employers worldwide support senior leaders' development through coaching and structured 360-degree feedback.",
     primaryKeyword: "executive coaching",
     heroSummary: "One-to-one executive coaching and structured 360-degree feedback to support senior leaders' development.",
     employerChallenge:
@@ -2993,8 +2990,8 @@ export const serviceContent: ServiceContent[] = [
     engagementOptions: ["Coaching only", "360 feedback only", "Combined coaching and 360 programme"],
     whyApex:
       "Coaching is grounded in structured feedback and organisational context, not generic leadership theory alone.",
-    relatedServiceSlugs: ["leadership-and-management-training-firm-in-the-uk", "succession-planning-and-talent-mapping-firm-in-the-uk", "fractional-hr-director-chief-people-officer-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-financial-services-in-the-uk", "hr-company-for-professional-services-in-the-uk", "hr-company-for-it-in-the-uk"],
+    relatedServiceSlugs: ["leadership-and-management-training-firm", "succession-planning-and-talent-mapping-firm", "fractional-hr-director-chief-people-officer-firm"],
+    relatedSectorSlugs: ["hr-company-for-financial-services", "hr-company-for-professional-services", "hr-company-for-it"],
     faqs: [
       { id: "confidential", question: "Is coaching confidential?", answer: "Coaching conversations are treated as confidential between coach and leader, with themes (not verbatim content) shared with sponsors where agreed in advance." },
     ],
@@ -3016,9 +3013,9 @@ export const serviceContent: ServiceContent[] = [
     legalReviewRequired: false,
   },
   {
-    slug: "learning-strategy-and-capability-development-firm-in-the-uk",
-    categorySlug: "learning-and-leadership-development-firm-in-the-uk",
-    metaDescription: "Apex HR is a learning strategy firm helping UK employers build a coherent, connected approach to developing workforce capability.",
+    slug: "learning-strategy-and-capability-development-firm",
+    categorySlug: "learning-and-leadership-development-firm",
+    metaDescription: "Apex HR is a learning strategy firm helping employers worldwide build a coherent, connected approach to developing workforce capability.",
     primaryKeyword: "learning strategy",
     heroSummary: "Learning strategy support to help you build a coherent, sustainable approach to developing your workforce.",
     employerChallenge:
@@ -3048,8 +3045,8 @@ export const serviceContent: ServiceContent[] = [
     engagementOptions: ["Learning strategy review", "Strategy plus implementation support"],
     whyApex:
       "Strategy is grounded in the capabilities your business actually needs next, not a generic learning framework.",
-    relatedServiceSlugs: ["leadership-and-management-training-firm-in-the-uk", "competency-frameworks-firm-in-the-uk", "hr-software-selection-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-it-in-the-uk", "hr-company-for-professional-services-in-the-uk", "hr-company-for-engineers-in-the-uk"],
+    relatedServiceSlugs: ["leadership-and-management-training-firm", "competency-frameworks-firm", "hr-software-selection-firm"],
+    relatedSectorSlugs: ["hr-company-for-it", "hr-company-for-professional-services", "hr-company-for-engineers"],
     faqs: [
       { id: "content", question: "Does Apex HR create training content?", answer: "Strategy and roadmap design is the primary focus; specific content or course delivery can be discussed as part of the engagement." },
     ],
@@ -3072,9 +3069,9 @@ export const serviceContent: ServiceContent[] = [
 
   // ---- Performance & Talent Management ----
   {
-    slug: "performance-management-firm-in-the-uk",
-    categorySlug: "performance-and-talent-management-firm-in-the-uk",
-    metaDescription: "Apex HR is a performance management firm helping UK employers design consistent, genuinely useful performance conversations for managers and employees.",
+    slug: "performance-management-firm",
+    categorySlug: "performance-and-talent-management-firm",
+    metaDescription: "Apex HR is a performance management firm helping employers worldwide design consistent, genuinely useful performance conversations for managers and employees.",
     primaryKeyword: "performance management design",
     heroSummary: "Performance management design that supports consistent conversations managers and employees actually find useful.",
     employerChallenge:
@@ -3104,8 +3101,8 @@ export const serviceContent: ServiceContent[] = [
     engagementOptions: ["Process design", "Design plus manager training"],
     whyApex:
       "The design starts from what managers and employees actually find useful, not a generic annual-review template.",
-    relatedServiceSlugs: ["succession-planning-and-talent-mapping-firm-in-the-uk", "competency-frameworks-firm-in-the-uk", "leadership-and-management-training-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-professional-services-in-the-uk", "hr-company-for-it-in-the-uk", "hr-company-for-manufacturers-in-the-uk"],
+    relatedServiceSlugs: ["succession-planning-and-talent-mapping-firm", "competency-frameworks-firm", "leadership-and-management-training-firm"],
+    relatedSectorSlugs: ["hr-company-for-professional-services", "hr-company-for-it", "hr-company-for-manufacturers"],
     faqs: [
       { id: "annual", question: "Does this have to be an annual review process?", answer: "No. Many organisations now prefer more frequent, lighter-touch check-ins. The right cadence is designed around your context." },
     ],
@@ -3127,9 +3124,9 @@ export const serviceContent: ServiceContent[] = [
     legalReviewRequired: true,
   },
   {
-    slug: "succession-planning-and-talent-mapping-firm-in-the-uk",
-    categorySlug: "performance-and-talent-management-firm-in-the-uk",
-    metaDescription: "Apex HR is a succession planning firm helping UK employers prepare for key role transitions with practical talent mapping and development plans.",
+    slug: "succession-planning-and-talent-mapping-firm",
+    categorySlug: "performance-and-talent-management-firm",
+    metaDescription: "Apex HR is a succession planning firm helping employers worldwide prepare for key role transitions with practical talent mapping and development plans.",
     primaryKeyword: "succession planning",
     heroSummary: "Succession planning and talent mapping, so you know who could step up when a key role becomes vacant.",
     employerChallenge:
@@ -3159,8 +3156,8 @@ export const serviceContent: ServiceContent[] = [
     engagementOptions: ["Succession risk review", "Full talent mapping and development planning"],
     whyApex:
       "The focus is on practical readiness: real development plans, not just a list of names on an org chart.",
-    relatedServiceSlugs: ["performance-management-firm-in-the-uk", "competency-frameworks-firm-in-the-uk", "executive-coaching-and-360-feedback-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-professional-services-in-the-uk", "hr-company-for-manufacturers-in-the-uk", "hr-company-for-financial-services-in-the-uk"],
+    relatedServiceSlugs: ["performance-management-firm", "competency-frameworks-firm", "executive-coaching-and-360-feedback-firm"],
+    relatedSectorSlugs: ["hr-company-for-professional-services", "hr-company-for-manufacturers", "hr-company-for-financial-services"],
     faqs: [
       { id: "small-business", question: "Is this only relevant for large organisations?", answer: "No. Even a small leadership team benefits from understanding succession risk in a handful of critical roles." },
     ],
@@ -3184,9 +3181,9 @@ export const serviceContent: ServiceContent[] = [
     legalReviewRequired: false,
   },
   {
-    slug: "competency-frameworks-firm-in-the-uk",
-    categorySlug: "performance-and-talent-management-firm-in-the-uk",
-    metaDescription: "Apex HR is a competency framework firm helping UK employers create a consistent basis for recruitment, development and performance decisions.",
+    slug: "competency-frameworks-firm",
+    categorySlug: "performance-and-talent-management-firm",
+    metaDescription: "Apex HR is a competency framework firm helping employers worldwide create a consistent basis for recruitment, development and performance decisions.",
     primaryKeyword: "competency frameworks",
     heroSummary: "Competency framework design that creates one consistent basis for recruitment, development and performance decisions.",
     employerChallenge:
@@ -3215,8 +3212,8 @@ export const serviceContent: ServiceContent[] = [
     engagementOptions: ["Framework design", "Design plus embedding support"],
     whyApex:
       "Frameworks are built to be genuinely usable across recruitment, performance and development, not filed away after launch.",
-    relatedServiceSlugs: ["performance-management-firm-in-the-uk", "succession-planning-and-talent-mapping-firm-in-the-uk", "job-evaluation-and-pay-structures-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-professional-services-in-the-uk", "hr-company-for-financial-services-in-the-uk", "hr-company-for-it-in-the-uk"],
+    relatedServiceSlugs: ["performance-management-firm", "succession-planning-and-talent-mapping-firm", "job-evaluation-and-pay-structures-firm"],
+    relatedSectorSlugs: ["hr-company-for-professional-services", "hr-company-for-financial-services", "hr-company-for-it"],
     faqs: [
       { id: "roles", question: "Does the framework cover every role individually?", answer: "Frameworks typically define core organisation-wide competencies plus role-family-specific ones, rather than a unique framework per individual role." },
     ],
@@ -3240,9 +3237,9 @@ export const serviceContent: ServiceContent[] = [
 
   // ---- Employee Experience & Engagement ----
   {
-    slug: "employee-experience-strategy-firm-in-the-uk",
-    categorySlug: "employee-experience-and-engagement-firm-in-the-uk",
-    metaDescription: "Apex HR is an employee experience firm helping UK employers design a coherent approach across the full employee journey, from attraction through to exit.",
+    slug: "employee-experience-strategy-firm",
+    categorySlug: "employee-experience-and-engagement-firm",
+    metaDescription: "Apex HR is an employee experience firm helping employers worldwide design a coherent approach across the full employee journey, from attraction through to exit.",
     primaryKeyword: "employee experience strategy",
     heroSummary: "An employee experience strategy that looks at the full journey (from attraction through to exit), not just isolated initiatives.",
     employerChallenge:
@@ -3272,8 +3269,8 @@ export const serviceContent: ServiceContent[] = [
     engagementOptions: ["Journey mapping and strategy", "Strategy plus implementation support"],
     whyApex:
       "The starting point is your actual employee journey and data, not a generic experience framework.",
-    relatedServiceSlugs: ["employee-engagement-surveys-and-action-planning-firm-in-the-uk", "culture-transformation-firm-in-the-uk", "workplace-wellbeing-and-mental-health-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-it-in-the-uk", "hr-company-for-hospitality-in-the-uk", "hr-company-for-professional-services-in-the-uk"],
+    relatedServiceSlugs: ["employee-engagement-surveys-and-action-planning-firm", "culture-transformation-firm", "workplace-wellbeing-and-mental-health-firm"],
+    relatedSectorSlugs: ["hr-company-for-it", "hr-company-for-hospitality", "hr-company-for-professional-services"],
     faqs: [
       { id: "size", question: "Does this suit smaller employers?", answer: "Yes. Journey mapping and prioritisation scale to the size of the organisation and the resources available." },
     ],
@@ -3293,9 +3290,9 @@ export const serviceContent: ServiceContent[] = [
     legalReviewRequired: false,
   },
   {
-    slug: "employee-engagement-surveys-and-action-planning-firm-in-the-uk",
-    categorySlug: "employee-experience-and-engagement-firm-in-the-uk",
-    metaDescription: "Apex HR is an employee engagement firm helping UK employers run surveys and turn honest feedback into practical, visible action.",
+    slug: "employee-engagement-surveys-and-action-planning-firm",
+    categorySlug: "employee-experience-and-engagement-firm",
+    metaDescription: "Apex HR is an employee engagement firm helping employers worldwide run surveys and turn honest feedback into practical, visible action.",
     primaryKeyword: "employee engagement survey",
     heroSummary: "Employee engagement surveys designed to get honest input, paired with practical action planning that turns results into change.",
     employerChallenge:
@@ -3325,8 +3322,8 @@ export const serviceContent: ServiceContent[] = [
     engagementOptions: ["Survey and analysis only", "Survey plus facilitated action planning"],
     whyApex:
       "The focus is as much on what happens after the survey as the survey itself.",
-    relatedServiceSlugs: ["employee-experience-strategy-firm-in-the-uk", "leadership-and-management-training-firm-in-the-uk", "workplace-wellbeing-and-mental-health-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-professional-services-in-the-uk", "hr-company-for-manufacturers-in-the-uk", "hr-company-for-care-homes-in-the-uk"],
+    relatedServiceSlugs: ["employee-experience-strategy-firm", "leadership-and-management-training-firm", "workplace-wellbeing-and-mental-health-firm"],
+    relatedSectorSlugs: ["hr-company-for-professional-services", "hr-company-for-manufacturers", "hr-company-for-care-homes"],
     faqs: [
       { id: "anonymous", question: "Are survey responses anonymous?", answer: "Anonymity or confidentiality settings are agreed upfront and clearly communicated to employees before the survey is launched." },
     ],
@@ -3349,9 +3346,9 @@ export const serviceContent: ServiceContent[] = [
     legalReviewRequired: false,
   },
   {
-    slug: "employer-branding-and-employee-value-proposition-evp-firm-in-the-uk",
-    categorySlug: "employee-experience-and-engagement-firm-in-the-uk",
-    metaDescription: "Apex HR is an employer branding firm helping UK employers define and communicate an Employee Value Proposition (EVP) that reflects genuine experience.",
+    slug: "employer-branding-and-employee-value-proposition-evp-firm",
+    categorySlug: "employee-experience-and-engagement-firm",
+    metaDescription: "Apex HR is an employer branding firm helping employers worldwide define and communicate an Employee Value Proposition (EVP) that reflects genuine experience.",
     primaryKeyword: "employer branding and EVP",
     heroSummary: "Employer branding and Employee Value Proposition development that reflects what it's genuinely like to work for you.",
     employerChallenge:
@@ -3381,8 +3378,8 @@ export const serviceContent: ServiceContent[] = [
     engagementOptions: ["EVP research and definition", "EVP plus rollout support"],
     whyApex:
       "The EVP is built from genuine employee input, not written in isolation by a marketing team.",
-    relatedServiceSlugs: ["employee-experience-strategy-firm-in-the-uk", "permanent-recruitment-firm-in-the-uk", "graduate-schemes-and-early-careers-design-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-it-in-the-uk", "hr-company-for-startups-and-scale-ups-in-the-uk", "hr-company-for-hospitality-in-the-uk"],
+    relatedServiceSlugs: ["employee-experience-strategy-firm", "permanent-recruitment-firm", "graduate-schemes-and-early-careers-design-firm"],
+    relatedSectorSlugs: ["hr-company-for-it", "hr-company-for-startups-and-scale-ups", "hr-company-for-hospitality"],
     faqs: [
       { id: "marketing", question: "Does this include recruitment marketing design?", answer: "This service focuses on defining the EVP and messaging framework; visual/creative execution can be coordinated with your marketing function or agency." },
     ],
@@ -3404,9 +3401,9 @@ export const serviceContent: ServiceContent[] = [
     legalReviewRequired: false,
   },
   {
-    slug: "workplace-wellbeing-and-mental-health-firm-in-the-uk",
-    categorySlug: "employee-experience-and-engagement-firm-in-the-uk",
-    metaDescription: "Apex HR is a workplace wellbeing firm helping UK employers build a genuinely supportive working environment, beyond a single awareness day.",
+    slug: "workplace-wellbeing-and-mental-health-firm",
+    categorySlug: "employee-experience-and-engagement-firm",
+    metaDescription: "Apex HR is a workplace wellbeing firm helping employers worldwide build a genuinely supportive working environment, beyond a single awareness day.",
     primaryKeyword: "workplace wellbeing and mental health",
     heroSummary: "Practical support building a workplace wellbeing approach that goes beyond a single awareness day.",
     employerChallenge:
@@ -3436,8 +3433,8 @@ export const serviceContent: ServiceContent[] = [
     engagementOptions: ["Wellbeing strategy review", "Strategy plus manager training"],
     whyApex:
       "This is HR strategy and manager-capability support. It is not a substitute for clinical or occupational health advice, which is signposted where appropriate.",
-    relatedServiceSlugs: ["employee-experience-strategy-firm-in-the-uk", "culture-transformation-firm-in-the-uk", "employee-engagement-surveys-and-action-planning-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-care-homes-in-the-uk", "hr-company-for-healthcare-in-the-uk", "hr-company-for-education-in-the-uk"],
+    relatedServiceSlugs: ["employee-experience-strategy-firm", "culture-transformation-firm", "employee-engagement-surveys-and-action-planning-firm"],
+    relatedSectorSlugs: ["hr-company-for-care-homes", "hr-company-for-healthcare", "hr-company-for-education"],
     faqs: [
       { id: "clinical", question: "Does Apex HR provide clinical mental health support?", answer: "No. This is HR strategy and manager-capability support. Employees needing clinical support should be signposted to appropriate occupational health or medical services." },
     ],
@@ -3460,9 +3457,9 @@ export const serviceContent: ServiceContent[] = [
     legalReviewRequired: false,
   },
   {
-    slug: "diversity-equity-and-inclusion-dei-consulting-firm-in-the-uk",
-    categorySlug: "employee-experience-and-engagement-firm-in-the-uk",
-    metaDescription: "Apex HR is a Diversity, Equity & Inclusion (DEI) consulting firm helping UK employers build a genuinely inclusive workplace, grounded in practical action.",
+    slug: "diversity-equity-and-inclusion-dei-consulting-firm",
+    categorySlug: "employee-experience-and-engagement-firm",
+    metaDescription: "Apex HR is a Diversity, Equity & Inclusion (DEI) consulting firm helping employers build a genuinely inclusive workplace, grounded in practical action.",
     primaryKeyword: "DEI consulting",
     heroSummary: "Diversity, Equity & Inclusion (DEI) consulting grounded in practical action, not just a policy statement.",
     employerChallenge:
@@ -3492,8 +3489,8 @@ export const serviceContent: ServiceContent[] = [
     engagementOptions: ["DEI review and priority-setting", "Review plus implementation support"],
     whyApex:
       "The focus is on practical, achievable initiatives grounded in your actual data, not generic commitments.",
-    relatedServiceSlugs: ["pay-equity-and-pay-gap-reporting-firm-in-the-uk", "culture-transformation-firm-in-the-uk", "employee-experience-strategy-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-professional-services-in-the-uk", "hr-company-for-education-in-the-uk", "hr-company-for-charity-in-the-uk"],
+    relatedServiceSlugs: ["pay-equity-and-pay-gap-reporting-firm", "culture-transformation-firm", "employee-experience-strategy-firm"],
+    relatedSectorSlugs: ["hr-company-for-professional-services", "hr-company-for-education", "hr-company-for-charity"],
     faqs: [
       { id: "legal", question: "Does this cover legal compliance around equality law?", answer: "This is a practical HR and strategy service. Specific equality-law compliance questions should be confirmed with a qualified employment lawyer." },
     ],
@@ -3520,9 +3517,9 @@ export const serviceContent: ServiceContent[] = [
 
   // ---- HR Technology & People Analytics ----
   {
-    slug: "hris-implementation-firm-in-the-uk",
-    categorySlug: "hr-technology-and-people-analytics-firm-in-the-uk",
-    metaDescription: "Apex HR is an HRIS implementation firm helping UK employers roll out a new HR information system smoothly, with processes reviewed, not just replicated.",
+    slug: "hris-implementation-firm",
+    categorySlug: "hr-technology-and-people-analytics-firm",
+    metaDescription: "Apex HR is an HRIS implementation firm helping employers worldwide roll out a new HR information system smoothly, with processes reviewed, not just replicated.",
     primaryKeyword: "HRIS implementation",
     heroSummary: "Practical support implementing a new HRIS, so the rollout actually improves how HR data and processes work.",
     employerChallenge:
@@ -3552,8 +3549,8 @@ export const serviceContent: ServiceContent[] = [
     engagementOptions: ["Requirements and planning support", "Full implementation project support"],
     whyApex:
       "Implementation is grounded in reviewing your HR processes first, not just replicating existing spreadsheets in a new system.",
-    relatedServiceSlugs: ["hr-software-selection-firm-in-the-uk", "people-analytics-and-hr-dashboards-firm-in-the-uk", "digital-hr-transformation-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-professional-services-in-the-uk", "hr-company-for-it-in-the-uk", "hr-company-for-manufacturers-in-the-uk"],
+    relatedServiceSlugs: ["hr-software-selection-firm", "people-analytics-and-hr-dashboards-firm", "digital-hr-transformation-firm"],
+    relatedSectorSlugs: ["hr-company-for-professional-services", "hr-company-for-it", "hr-company-for-manufacturers"],
     faqs: [
       { id: "vendor", question: "Does Apex HR sell HR software?", answer: "No. Apex HR is not a software vendor or reseller. Implementation support focuses on your processes, requirements and data, not on selling any particular system." },
     ],
@@ -3574,9 +3571,9 @@ export const serviceContent: ServiceContent[] = [
     legalReviewRequired: false,
   },
   {
-    slug: "hr-software-selection-firm-in-the-uk",
-    categorySlug: "hr-technology-and-people-analytics-firm-in-the-uk",
-    metaDescription: "Apex HR is an HR software selection firm helping UK employers define requirements and choose a system that genuinely fits their needs.",
+    slug: "hr-software-selection-firm",
+    categorySlug: "hr-technology-and-people-analytics-firm",
+    metaDescription: "Apex HR is an HR software selection firm helping employers worldwide define requirements and choose a system that genuinely fits their needs.",
     primaryKeyword: "HR software selection",
     heroSummary: "Requirements-led support choosing HR software, based on your actual needs rather than a vendor's sales pitch.",
     employerChallenge:
@@ -3606,8 +3603,8 @@ export const serviceContent: ServiceContent[] = [
     engagementOptions: ["Requirements and shortlist support", "Full selection process support"],
     whyApex:
       "Apex HR is not a software vendor or reseller and does not receive vendor commission, so recommendations are based on fit for your requirements.",
-    relatedServiceSlugs: ["hris-implementation-firm-in-the-uk", "people-analytics-and-hr-dashboards-firm-in-the-uk", "digital-hr-transformation-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-professional-services-in-the-uk", "hr-company-for-it-in-the-uk", "hr-company-for-financial-services-in-the-uk"],
+    relatedServiceSlugs: ["hris-implementation-firm", "people-analytics-and-hr-dashboards-firm", "digital-hr-transformation-firm"],
+    relatedSectorSlugs: ["hr-company-for-professional-services", "hr-company-for-it", "hr-company-for-financial-services"],
     faqs: [
       { id: "independent", question: "Is Apex HR affiliated with any software vendor?", answer: "No. Apex HR is not affiliated with, and does not receive commission from, any software vendor. Recommendations are based on your requirements, not a vendor relationship." },
     ],
@@ -3627,9 +3624,9 @@ export const serviceContent: ServiceContent[] = [
     legalReviewRequired: false,
   },
   {
-    slug: "people-analytics-and-hr-dashboards-firm-in-the-uk",
-    categorySlug: "hr-technology-and-people-analytics-firm-in-the-uk",
-    metaDescription: "Apex HR is a people analytics firm helping UK employers turn existing HR data into clearer, genuinely useful workforce dashboards and insight.",
+    slug: "people-analytics-and-hr-dashboards-firm",
+    categorySlug: "hr-technology-and-people-analytics-firm",
+    metaDescription: "Apex HR is a people analytics firm helping employers worldwide turn existing HR data into clearer, genuinely useful workforce dashboards and insight.",
     primaryKeyword: "people analytics and HR dashboards",
     heroSummary: "People analytics and dashboard design that give leaders genuinely useful visibility of their workforce.",
     employerChallenge:
@@ -3659,8 +3656,8 @@ export const serviceContent: ServiceContent[] = [
     engagementOptions: ["Metrics and dashboard design", "Design plus ongoing analytics support"],
     whyApex:
       "The focus is on metrics that are genuinely useful to your decisions, not a generic dashboard template.",
-    relatedServiceSlugs: ["hris-implementation-firm-in-the-uk", "digital-hr-transformation-firm-in-the-uk", "strategic-workforce-planning-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-it-in-the-uk", "hr-company-for-financial-services-in-the-uk", "hr-company-for-professional-services-in-the-uk"],
+    relatedServiceSlugs: ["hris-implementation-firm", "digital-hr-transformation-firm", "strategic-workforce-planning-firm"],
+    relatedSectorSlugs: ["hr-company-for-it", "hr-company-for-financial-services", "hr-company-for-professional-services"],
     faqs: [
       { id: "system", question: "Do we need a specific HR system for this?", answer: "Analytics can often be built from existing data sources; a dedicated system can make this easier but isn't always essential to get started." },
     ],
@@ -3684,9 +3681,9 @@ export const serviceContent: ServiceContent[] = [
     legalReviewRequired: false,
   },
   {
-    slug: "digital-hr-transformation-firm-in-the-uk",
-    categorySlug: "hr-technology-and-people-analytics-firm-in-the-uk",
-    metaDescription: "Apex HR is a digital HR transformation firm helping UK employers modernise HR processes, systems and ways of working sustainably.",
+    slug: "digital-hr-transformation-firm",
+    categorySlug: "hr-technology-and-people-analytics-firm",
+    metaDescription: "Apex HR is a digital HR transformation firm helping employers worldwide modernise HR processes, systems and ways of working sustainably.",
     primaryKeyword: "digital HR transformation",
     heroSummary: "Digital HR transformation support that modernises processes and systems in a way your team can actually sustain.",
     employerChallenge:
@@ -3716,8 +3713,8 @@ export const serviceContent: ServiceContent[] = [
     engagementOptions: ["Transformation roadmap", "Roadmap plus delivery support"],
     whyApex:
       "The roadmap is scoped to be realistic and sustainable for your team, not an unlimited technology wish-list.",
-    relatedServiceSlugs: ["hris-implementation-firm-in-the-uk", "hr-software-selection-firm-in-the-uk", "people-analytics-and-hr-dashboards-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-professional-services-in-the-uk", "hr-company-for-manufacturers-in-the-uk", "hr-company-for-financial-services-in-the-uk"],
+    relatedServiceSlugs: ["hris-implementation-firm", "hr-software-selection-firm", "people-analytics-and-hr-dashboards-firm"],
+    relatedSectorSlugs: ["hr-company-for-professional-services", "hr-company-for-manufacturers", "hr-company-for-financial-services"],
     faqs: [
       { id: "scope", question: "Does transformation always mean a new system?", answer: "Not necessarily. Transformation can include process redesign and better use of existing systems, not only new technology." },
     ],
@@ -3737,9 +3734,9 @@ export const serviceContent: ServiceContent[] = [
     legalReviewRequired: false,
   },
   {
-    slug: "ai-workplace-policy-and-hr-integration-firm-in-the-uk",
-    categorySlug: "hr-technology-and-people-analytics-firm-in-the-uk",
-    metaDescription: "Apex HR is an AI workplace policy firm helping UK employers set clear, considered guidelines for how artificial intelligence tools are used at work.",
+    slug: "ai-workplace-policy-and-hr-integration-firm",
+    categorySlug: "hr-technology-and-people-analytics-firm",
+    metaDescription: "Apex HR is an AI workplace policy firm helping employers worldwide set clear, considered guidelines for how artificial intelligence tools are used at work.",
     primaryKeyword: "AI workplace policy",
     heroSummary: "Practical support setting clear, considered workplace policy for how artificial intelligence (AI) tools are used across your organisation.",
     employerChallenge:
@@ -3769,8 +3766,8 @@ export const serviceContent: ServiceContent[] = [
     engagementOptions: ["AI policy drafting", "Policy plus wider HR-process AI advisory"],
     whyApex:
       "This is HR policy and process guidance, not legal or data-protection advice. Specific legal questions should be confirmed with a qualified adviser.",
-    relatedServiceSlugs: ["employee-handbooks-and-hr-policies-firm-in-the-uk", "digital-hr-transformation-firm-in-the-uk", "hr-compliance-audit-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-it-in-the-uk", "hr-company-for-professional-services-in-the-uk", "hr-company-for-financial-services-in-the-uk"],
+    relatedServiceSlugs: ["employee-handbooks-and-hr-policies-firm", "digital-hr-transformation-firm", "hr-compliance-audit-firm"],
+    relatedSectorSlugs: ["hr-company-for-it", "hr-company-for-professional-services", "hr-company-for-financial-services"],
     faqs: [
       { id: "data-protection", question: "Does this cover data protection compliance for AI tools?", answer: "General HR policy guidance is provided; specific data-protection compliance questions should be confirmed with a qualified data-protection or legal adviser." },
     ],
@@ -3795,9 +3792,9 @@ export const serviceContent: ServiceContent[] = [
 
   // ---- Strategic HR & Workforce Advisory ----
   {
-    slug: "people-strategy-firm-in-the-uk",
-    categorySlug: "strategic-hr-and-workforce-advisory-firm-in-the-uk",
-    metaDescription: "Apex HR is a people strategy firm helping UK employers connect HR priorities directly to what the business is trying to achieve.",
+    slug: "people-strategy-firm",
+    categorySlug: "strategic-hr-and-workforce-advisory-firm",
+    metaDescription: "Apex HR is a people strategy firm helping employers worldwide connect HR priorities directly to what the business is trying to achieve.",
     primaryKeyword: "people strategy",
     heroSummary: "A people strategy that connects HR priorities directly to what the business is actually trying to achieve.",
     employerChallenge:
@@ -3827,8 +3824,8 @@ export const serviceContent: ServiceContent[] = [
     engagementOptions: ["Strategy definition", "Strategy plus ongoing delivery support"],
     whyApex:
       "Strategy work starts from your business goals, not a generic HR framework applied regardless of context.",
-    relatedServiceSlugs: ["strategic-workforce-planning-firm-in-the-uk", "fractional-hr-director-chief-people-officer-firm-in-the-uk", "organisation-design-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-it-in-the-uk", "hr-company-for-professional-services-in-the-uk", "hr-company-for-startups-and-scale-ups-in-the-uk"],
+    relatedServiceSlugs: ["strategic-workforce-planning-firm", "fractional-hr-director-chief-people-officer-firm", "organisation-design-firm"],
+    relatedSectorSlugs: ["hr-company-for-it", "hr-company-for-professional-services", "hr-company-for-startups-and-scale-ups"],
     faqs: [
       { id: "size", question: "Is this only relevant for larger organisations?", answer: "No. Even a small leadership team benefits from a clear, deliberate people strategy connected to business goals." },
     ],
@@ -3847,9 +3844,9 @@ export const serviceContent: ServiceContent[] = [
     legalReviewRequired: false,
   },
   {
-    slug: "strategic-workforce-planning-firm-in-the-uk",
-    categorySlug: "strategic-hr-and-workforce-advisory-firm-in-the-uk",
-    metaDescription: "Apex HR is a strategic workforce planning firm helping UK employers understand future headcount and capability needs before they arise.",
+    slug: "strategic-workforce-planning-firm",
+    categorySlug: "strategic-hr-and-workforce-advisory-firm",
+    metaDescription: "Apex HR is a strategic workforce planning firm helping employers worldwide understand future headcount and capability needs before they arise.",
     primaryKeyword: "strategic workforce planning",
     heroSummary: "Strategic workforce planning to help you understand future headcount and capability needs before you need them.",
     employerChallenge:
@@ -3879,8 +3876,8 @@ export const serviceContent: ServiceContent[] = [
     engagementOptions: ["Workforce planning exercise", "Ongoing workforce planning support"],
     whyApex:
       "Planning is grounded in your actual business plans and growth drivers, not generic workforce modelling.",
-    relatedServiceSlugs: ["people-strategy-firm-in-the-uk", "permanent-recruitment-firm-in-the-uk", "recruitment-process-outsourcing-rpo-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-it-in-the-uk", "hr-company-for-manufacturers-in-the-uk", "hr-company-for-financial-services-in-the-uk"],
+    relatedServiceSlugs: ["people-strategy-firm", "permanent-recruitment-firm", "recruitment-process-outsourcing-rpo-firm"],
+    relatedSectorSlugs: ["hr-company-for-it", "hr-company-for-manufacturers", "hr-company-for-financial-services"],
     faqs: [
       { id: "accuracy", question: "How accurate can workforce planning really be?", answer: "Workforce plans are a planning tool based on reasonable assumptions, reviewed and adjusted as circumstances change, not a guarantee of exact future headcount." },
     ],
@@ -3901,9 +3898,9 @@ export const serviceContent: ServiceContent[] = [
     legalReviewRequired: false,
   },
   {
-    slug: "global-mobility-and-expatriate-hr-management-firm-in-the-uk",
-    categorySlug: "strategic-hr-and-workforce-advisory-firm-in-the-uk",
-    metaDescription: "Apex HR is a global mobility HR firm helping UK employers coordinate international assignments, working alongside immigration, tax and legal advisers.",
+    slug: "global-mobility-and-expatriate-hr-management-firm",
+    categorySlug: "strategic-hr-and-workforce-advisory-firm",
+    metaDescription: "Apex HR is a global mobility HR firm helping employers worldwide coordinate international assignments, working alongside immigration, tax and legal advisers.",
     primaryKeyword: "global mobility HR management",
     heroSummary: "HR support for global mobility and expatriate assignments, working alongside your immigration, tax and legal advisers.",
     employerChallenge:
@@ -3933,8 +3930,8 @@ export const serviceContent: ServiceContent[] = [
     engagementOptions: ["Single assignment support", "Global mobility process design"],
     whyApex:
       "This is HR process and coordination support: immigration, tax and local employment law advice must come from qualified specialists in each relevant jurisdiction.",
-    relatedServiceSlugs: ["skilled-worker-sponsorship-hr-support-firm-in-the-uk", "strategic-workforce-planning-firm-in-the-uk", "people-strategy-firm-in-the-uk"],
-    relatedSectorSlugs: ["hr-company-for-financial-services-in-the-uk", "hr-company-for-it-in-the-uk", "hr-company-for-life-sciences-in-the-uk"],
+    relatedServiceSlugs: ["skilled-worker-sponsorship-hr-support-firm", "strategic-workforce-planning-firm", "people-strategy-firm"],
+    relatedSectorSlugs: ["hr-company-for-financial-services", "hr-company-for-it", "hr-company-for-life-sciences"],
     faqs: [
       { id: "tax-legal", question: "Does Apex HR handle tax and immigration for the assignment?", answer: "No. Apex HR coordinates the HR process. Tax, immigration and local employment law must be handled by qualified specialists in the relevant jurisdiction." },
     ],

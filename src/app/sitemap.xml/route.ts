@@ -15,15 +15,19 @@ export const revalidate = 300;
 export async function GET(): Promise<Response> {
   const groups = await getSitemapGroups();
 
-  const entries: SitemapIndexEntry[] = [
-    { loc: absoluteUrl("/page-sitemap.xml"), lastModified: latestLastModified(groups.page) },
-    { loc: absoluteUrl("/service-sitemap.xml"), lastModified: latestLastModified(groups.service) },
-    { loc: absoluteUrl("/sector-sitemap.xml"), lastModified: latestLastModified(groups.sector) },
-    { loc: absoluteUrl("/location-sitemap.xml"), lastModified: latestLastModified(groups.location) },
-    { loc: absoluteUrl("/talent-acquisition-sitemap.xml"), lastModified: latestLastModified(groups.talentAcquisition) },
-    { loc: absoluteUrl("/insight-sitemap.xml"), lastModified: latestLastModified(groups.insight) },
-    { loc: absoluteUrl("/vacancy-sitemap.xml"), lastModified: latestLastModified(groups.vacancy) },
+  const candidates: Array<[string, (typeof groups)[keyof typeof groups]]> = [
+    ["/page-sitemap.xml", groups.page],
+    ["/service-sitemap.xml", groups.service],
+    ["/sector-sitemap.xml", groups.sector],
+    ["/location-sitemap.xml", groups.location],
+    ["/insight-sitemap.xml", groups.insight],
+    ["/vacancy-sitemap.xml", groups.vacancy],
   ];
+  // Empty child sitemaps (for example no open vacancies) are left out of
+  // the index rather than submitted with no URLs.
+  const entries: SitemapIndexEntry[] = candidates
+    .filter(([, group]) => group.length > 0)
+    .map(([path, group]) => ({ loc: absoluteUrl(path), lastModified: latestLastModified(group) }));
 
   const xml = buildSitemapIndexXml(entries, "/sitemap.xsl");
   return new Response(xml, { headers: { "Content-Type": SITEMAP_CONTENT_TYPE } });

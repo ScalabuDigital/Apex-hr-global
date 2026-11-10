@@ -3,9 +3,7 @@ import { render } from "@testing-library/react";
 import { getServicesByCategory, getService, services } from "@/config/services";
 import { serviceContent } from "@/content/services-data";
 import { redirectRules } from "@/config/redirects";
-import { serviceLocationCombos } from "@/config/service-locations";
 import { ServicePageTemplate } from "@/components/templates/service-page-template";
-import { ServiceLocationTemplate } from "@/components/templates/service-location-template";
 import { getBreadcrumbJsonLd, getServiceJsonLd } from "@/lib/seo/structured-data";
 import { routes } from "@/config/routes";
 
@@ -17,12 +15,12 @@ import { routes } from "@/config/routes";
  */
 
 const APPROVED_SIX = [
-  "retained-hr-services-firm-in-the-uk",
-  "hr-support-for-small-businesses-and-startups-firm-in-the-uk",
-  "fractional-hr-director-chief-people-officer-firm-in-the-uk",
-  "hr-compliance-audit-firm-in-the-uk",
-  "employee-handbooks-and-hr-policies-firm-in-the-uk",
-  "payroll-advisory-firm-in-the-uk",
+  "retained-hr-services-firm",
+  "hr-support-for-small-businesses-and-startups-firm",
+  "fractional-hr-director-chief-people-officer-firm",
+  "hr-compliance-audit-firm",
+  "employee-handbooks-and-hr-policies-firm",
+  "payroll-advisory-firm",
 ];
 
 const NOINDEX_HUB_PATHS = ["/insights/", "/resources/", "/case-study/"];
@@ -38,7 +36,7 @@ function buildBreadcrumbTrail(serviceTitle: string, categoryTitle: string, categ
 }
 
 describe("Outsourced HR Services children — catalogue integrity", () => {
-  const family = getServicesByCategory("outsourced-hr-services-firm-in-the-uk");
+  const family = getServicesByCategory("outsourced-hr-services-firm");
 
   it("has exactly six children, matching the approved slug list exactly", () => {
     expect(family.length).toBe(6);
@@ -139,7 +137,7 @@ describe("Outsourced HR Services children — rendered content, per service", ()
         const { getAllByRole } = render(
           <ServicePageTemplate
             title={service.title}
-            breadcrumbTrail={buildBreadcrumbTrail(service.title, "Outsourced HR Services", "outsourced-hr-services-firm-in-the-uk", slug)}
+            breadcrumbTrail={buildBreadcrumbTrail(service.title, "Outsourced HR Services", "outsourced-hr-services-firm", slug)}
             service={content}
           />,
         );
@@ -152,19 +150,19 @@ describe("Outsourced HR Services children — rendered content, per service", ()
         const { getAllByRole } = render(
           <ServicePageTemplate
             title={service.title}
-            breadcrumbTrail={buildBreadcrumbTrail(service.title, "Outsourced HR Services", "outsourced-hr-services-firm-in-the-uk", slug)}
+            breadcrumbTrail={buildBreadcrumbTrail(service.title, "Outsourced HR Services", "outsourced-hr-services-firm", slug)}
             service={content}
           />,
         );
         const links = getAllByRole("link").map((el) => el.getAttribute("href")?.replace(/\/$/, ""));
-        expect(links).toContain("/services/outsourced-hr-services-firm-in-the-uk");
+        expect(links).toContain("/services/outsourced-hr-services-firm");
       });
 
       it("never links to a redirect source or an empty noindex hub", () => {
         const { getAllByRole } = render(
           <ServicePageTemplate
             title={service.title}
-            breadcrumbTrail={buildBreadcrumbTrail(service.title, "Outsourced HR Services", "outsourced-hr-services-firm-in-the-uk", slug)}
+            breadcrumbTrail={buildBreadcrumbTrail(service.title, "Outsourced HR Services", "outsourced-hr-services-firm", slug)}
             service={content}
             showForEmployersLink
           />,
@@ -188,7 +186,7 @@ describe("Outsourced HR Services children — rendered content, per service", ()
         const { container, getByText } = render(
           <ServicePageTemplate
             title={service.title}
-            breadcrumbTrail={buildBreadcrumbTrail(service.title, "Outsourced HR Services", "outsourced-hr-services-firm-in-the-uk", slug)}
+            breadcrumbTrail={buildBreadcrumbTrail(service.title, "Outsourced HR Services", "outsourced-hr-services-firm", slug)}
             service={content}
           />,
         );
@@ -213,62 +211,11 @@ describe("Outsourced HR Services children — rendered content, per service", ()
         expect(serviceLd.description).toBe(content.metaDescription);
         expect(serviceLd.url).toContain(path);
 
-        const trail = buildBreadcrumbTrail(service.title, "Outsourced HR Services", "outsourced-hr-services-firm-in-the-uk", slug);
+        const trail = buildBreadcrumbTrail(service.title, "Outsourced HR Services", "outsourced-hr-services-firm", slug);
         const breadcrumbLd = getBreadcrumbJsonLd(routes.home.label, trail);
         expect(breadcrumbLd.itemListElement.some((item) => item.name === "Outsourced HR Services")).toBe(true);
         expect(breadcrumbLd.itemListElement.at(-1)?.name).toBe(service.title);
       });
-    });
-  }
-});
-
-describe("Outsourced HR Services children — service-location pages unaffected", () => {
-  // The two of the six services with real service-location combinations —
-  // confirmed via src/config/service-locations.ts. This test renders those
-  // combo pages with the exact original heroSummary/whatItIncludes/faqs
-  // values (byte-for-byte, hardcoded here as the pre-Batch-6A baseline) and
-  // checks the template output still matches, proving the new Batch 6A
-  // fields (outOfScope, differentiationNote, additionalFaqs) never reached
-  // location-page rendering.
-  const AFFECTED = [
-    { serviceSlug: "hr-compliance-audit-firm-in-the-uk", locationSlug: "birmingham", locationTitle: "Birmingham" },
-    { serviceSlug: "hr-support-for-small-businesses-and-startups-firm-in-the-uk", locationSlug: "bristol", locationTitle: "Bristol" },
-  ];
-
-  for (const { serviceSlug, locationSlug, locationTitle } of AFFECTED) {
-    it(`${serviceSlug} service-location page (${locationSlug}) still renders the original shared fields`, () => {
-      const combo = serviceLocationCombos.find((c) => c.serviceSlug === serviceSlug && c.locationSlug === locationSlug);
-      expect(combo, `No combo found for ${serviceSlug}-${locationSlug}`).toBeDefined();
-
-      const content = serviceContent.find((c) => c.slug === serviceSlug)!;
-      const service = getService(serviceSlug)!;
-
-      const { getByText } = render(
-        <ServiceLocationTemplate
-          breadcrumbTrail={[]}
-          entityTitle={service.title}
-          entityHref={`/services/${serviceSlug}/`}
-          entitySummary={content.heroSummary}
-          bulletListTitle="What this includes"
-          bulletList={content.whatItIncludes}
-          locationTitle={locationTitle}
-          locationRegion="Test Region"
-          locationHref={`/locations/${locationSlug}/`}
-          localContext="Test local context."
-          faqs={[...content.faqs.slice(0, 3)]}
-        />,
-      );
-
-      // heroSummary and every whatItIncludes item must still be exactly
-      // what they were before this batch (unchanged fields).
-      expect(getByText(content.heroSummary)).toBeInTheDocument();
-      for (const item of content.whatItIncludes) {
-        expect(getByText(item)).toBeInTheDocument();
-      }
-      // additionalFaqs must never appear on a location page.
-      for (const extra of content.additionalFaqs ?? []) {
-        expect(() => getByText(extra.question)).toThrow();
-      }
     });
   }
 });

@@ -22,7 +22,6 @@ export type PageType =
   | "serviceLocation"
   | "serviceCategoryLocation"
   | "talentAcquisitionHub"
-  | "talentAcquisitionRole"
   | "employerLanding"
   | "candidateLanding"
   | "insightsHub"

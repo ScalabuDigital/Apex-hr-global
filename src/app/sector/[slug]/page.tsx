@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const sector = getSector(slug);
   const content = sectorContent.find((entry) => entry.slug === slug);
   return buildMetadata({
-    title: sector ? `HR Company for ${sector.title} in the UK` : "Sector",
+    title: sector ? `Global HR Company for ${sector.title}` : "Sector",
     description: content?.metaDescription,
     path: `/sector/${slug}/`,
     index: routes.sectors.readyToIndex,
@@ -51,7 +51,7 @@ export default async function SectorPage({ params }: PageProps) {
   // here too would duplicate the schema block.
   const jsonLd = [
     getServiceJsonLd({
-      name: `HR Company for ${sector.title} in the UK`,
+      name: `Global HR Company for ${sector.title}`,
       description: content.metaDescription,
       path: `/sector/${sector.slug}/`,
     }),

@@ -8,7 +8,7 @@ import {
   services,
 } from "@/config/services";
 import { serviceCategoryContent, serviceContent } from "@/content/services-data";
-import { getLocation } from "@/config/locations";
+import { comboSlug, getLocation, locationPath, withArticle } from "@/config/locations";
 import { locationContent } from "@/content/locations-data";
 import {
   buildComboMetaDescription,
@@ -22,6 +22,7 @@ import { ServiceCategoryTemplate } from "@/components/templates/service-category
 import { ServiceLocationTemplate } from "@/components/templates/service-location-template";
 import { CategoryLocationTemplate } from "@/components/templates/category-location-template";
 import { buildMetadata } from "@/lib/seo/metadata";
+import { serviceHreflang } from "@/lib/seo/hreflang";
 import { getBreadcrumbJsonLd, getServiceJsonLd, toJsonLdScript } from "@/lib/seo/structured-data";
 import { routes } from "@/config/routes";
 import type { RouteRecord } from "@/types/route";
@@ -47,20 +48,22 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (category) {
     const content = serviceCategoryContent.find((entry) => entry.slug === slug);
     return buildMetadata({
-      title: `${category.title} Firm in the UK`,
+      title: `Global ${category.title} Firm`,
       description: content?.metaDescription ?? content?.summary,
       path: `/services/${slug}/`,
       index: routes.services.readyToIndex,
+      hreflang: serviceHreflang(slug),
     });
   }
 
   if (service) {
     const content = serviceContent.find((entry) => entry.slug === slug);
     return buildMetadata({
-      title: `${service.title} Firm in the UK`,
+      title: `Global ${service.title} Firm`,
       description: content?.metaDescription,
       path: `/services/${slug}/`,
       index: routes.services.readyToIndex,
+      hreflang: serviceHreflang(slug),
     });
   }
 
@@ -68,7 +71,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (combo) {
     const location = getLocation(combo.locationSlug);
     const locationInfo = locationContent.find((entry) => entry.slug === combo.locationSlug);
-    const locationTitle = location?.title ?? combo.locationSlug;
+    const locationTitle = location ? withArticle(location.title) : combo.locationSlug;
     if (combo.type === "service") {
       const entity = getService(combo.serviceSlug);
       const content = serviceContent.find((entry) => entry.slug === combo.serviceSlug);
@@ -80,6 +83,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
             : content?.metaDescription,
         path: `/services/${slug}/`,
         index: routes.locations.readyToIndex,
+        hreflang: serviceHreflang(combo.serviceSlug),
       });
     }
     const entity = getServiceCategory(combo.categorySlug);
@@ -114,7 +118,7 @@ export default async function ServiceOrCategoryPage({ params }: PageProps) {
     const breadcrumbTrail = [routes.services, toRoute(category.title, `/services/${category.slug}/`)];
     const jsonLd = [
       getServiceJsonLd({
-        name: `${category.title} Firm in the UK`,
+        name: `Global ${category.title} Firm`,
         description: content.metaDescription ?? content.summary,
         path: `/services/${category.slug}/`,
       }),
@@ -151,7 +155,7 @@ export default async function ServiceOrCategoryPage({ params }: PageProps) {
     ];
     const jsonLd = [
       getServiceJsonLd({
-        name: `${service.title} Firm in the UK`,
+        name: `Global ${service.title} Firm`,
         description: content.metaDescription,
         path: `/services/${service.slug}/`,
       }),
@@ -192,7 +196,7 @@ export default async function ServiceOrCategoryPage({ params }: PageProps) {
           ? [toRoute(parentCategory.title, `/services/${parentCategory.slug}/`)]
           : []),
         toRoute(entity.title, `/services/${entity.slug}/`),
-        toRoute(`${entity.title} in ${location.title}`, `/services/${slug}/`),
+        toRoute(`${entity.title} in ${withArticle(location.title)}`, `/services/${slug}/`),
       ];
 
       // No FAQPage schema here: the FAQs this page renders are each
@@ -203,8 +207,8 @@ export default async function ServiceOrCategoryPage({ params }: PageProps) {
       // category-location pages below.
       const jsonLd = [
         getServiceJsonLd({
-          name: `${entity.title} Firm in ${location.title}`,
-          description: buildComboMetaDescription(content.metaDescription, location.title, locationInfo.region),
+          name: `${entity.title} Firm in ${withArticle(location.title)}`,
+          description: buildComboMetaDescription(content.metaDescription, withArticle(location.title), locationInfo.region),
           path: `/services/${slug}/`,
         }),
         getBreadcrumbJsonLd(routes.home.label, breadcrumbTrail),
@@ -223,10 +227,14 @@ export default async function ServiceOrCategoryPage({ params }: PageProps) {
             entitySummary={content.heroSummary}
             bulletListTitle="What this includes"
             bulletList={content.whatItIncludes}
-            locationTitle={location.title}
+            locationTitle={withArticle(location.title)}
             locationRegion={locationInfo.region}
-            locationHref={`/locations/${location.slug}/`}
+            locationHref={locationPath(location.slug)}
             localContext={locationInfo.localContext}
+            marketOverview={locationInfo.marketOverview}
+            localAngle={locationInfo.serviceAngles[entity.slug]}
+            considerations={locationInfo.hiringConsiderations}
+            frameworkPoints={locationInfo.employmentFramework.points.slice(0, 3)}
             faqs={[...content.faqs.slice(0, 3), ...locationInfo.faqs]}
           />
         </>
@@ -240,7 +248,7 @@ export default async function ServiceOrCategoryPage({ params }: PageProps) {
     const breadcrumbTrail = [
       routes.services,
       toRoute(entity.title, `/services/${entity.slug}/`),
-      toRoute(`${entity.title} in ${location.title}`, `/services/${slug}/`),
+      toRoute(`${entity.title} in ${withArticle(location.title)}`, `/services/${slug}/`),
     ];
 
     // Only reached for the two retained multi-child category-location pages
@@ -254,8 +262,8 @@ export default async function ServiceOrCategoryPage({ params }: PageProps) {
         if (!childContent) return null;
         return {
           title: childService.title,
-          href: `/services/${childService.slug}-${location.slug}/`,
-          summary: childContent.heroSummary,
+          href: `/services/${comboSlug(childService.slug, location.slug)}/`,
+          summary: locationInfo.serviceAngles[childService.slug] ?? childContent.heroSummary,
         };
       })
       .filter((entry): entry is NonNullable<typeof entry> => entry !== null);
@@ -263,8 +271,8 @@ export default async function ServiceOrCategoryPage({ params }: PageProps) {
 
     const jsonLd = [
       getServiceJsonLd({
-        name: `${entity.title} in ${location.title}`,
-        description: buildComboMetaDescription(content.summary, location.title, locationInfo.region),
+        name: `${entity.title} in ${withArticle(location.title)}`,
+        description: buildComboMetaDescription(content.summary, withArticle(location.title), locationInfo.region),
         path: `/services/${slug}/`,
       }),
       getBreadcrumbJsonLd(routes.home.label, breadcrumbTrail),
@@ -284,9 +292,9 @@ export default async function ServiceOrCategoryPage({ params }: PageProps) {
           bulletListTitle="Where this family helps"
           bulletList={content.challenges.map((challenge) => challenge.title)}
           childServices={childServices}
-          locationTitle={location.title}
+          locationTitle={withArticle(location.title)}
           locationRegion={locationInfo.region}
-          locationHref={`/locations/${location.slug}/`}
+          locationHref={locationPath(location.slug)}
           localContext={locationInfo.localContext}
           faqs={locationInfo.faqs}
         />

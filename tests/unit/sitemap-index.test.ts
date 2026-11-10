@@ -4,7 +4,6 @@ import { GET as pageSitemapGET } from "@/app/page-sitemap.xml/route";
 import { GET as serviceSitemapGET } from "@/app/service-sitemap.xml/route";
 import { GET as sectorSitemapGET } from "@/app/sector-sitemap.xml/route";
 import { GET as locationSitemapGET } from "@/app/location-sitemap.xml/route";
-import { GET as talentAcquisitionSitemapGET } from "@/app/talent-acquisition-sitemap.xml/route";
 import { GET as insightSitemapGET } from "@/app/insight-sitemap.xml/route";
 import { GET as vacancySitemapGET } from "@/app/vacancy-sitemap.xml/route";
 import { GET as sitemapXslGET } from "@/app/sitemap.xsl/route";
@@ -14,8 +13,7 @@ import { redirectRules } from "@/config/redirects";
 import { routes } from "@/config/routes";
 import { services, serviceCategories } from "@/config/services";
 import { sectors } from "@/config/sectors";
-import { locations } from "@/config/locations";
-import { talentRoleContent } from "@/content/talent-roles-data";
+import { locationPath, locations } from "@/config/locations";
 import { serviceLocationCombos, categoryLocationCombos } from "@/config/service-locations";
 
 /**
@@ -33,7 +31,6 @@ const CHILD_SITEMAP_PATHS = [
   "/service-sitemap.xml",
   "/sector-sitemap.xml",
   "/location-sitemap.xml",
-  "/talent-acquisition-sitemap.xml",
   "/insight-sitemap.xml",
   "/vacancy-sitemap.xml",
 ] as const;
@@ -43,7 +40,6 @@ const CHILD_SITEMAP_HANDLERS = {
   "/service-sitemap.xml": serviceSitemapGET,
   "/sector-sitemap.xml": sectorSitemapGET,
   "/location-sitemap.xml": locationSitemapGET,
-  "/talent-acquisition-sitemap.xml": talentAcquisitionSitemapGET,
   "/insight-sitemap.xml": insightSitemapGET,
   "/vacancy-sitemap.xml": vacancySitemapGET,
 } as const;
@@ -73,11 +69,16 @@ describe("1. /sitemap.xml is a valid sitemap index", () => {
   });
 });
 
-describe("2. All seven child sitemap URLs are present exactly once", () => {
-  it("lists exactly the seven expected child sitemap URLs, each once", async () => {
+describe("2. Every non-empty child sitemap URL is present exactly once", () => {
+  // WordPress is unconfigured in tests, so there are no open vacancies and
+  // the index leaves the empty vacancy sitemap out.
+  const EMPTY_IN_TESTS: string[] = ["/vacancy-sitemap.xml"];
+
+  it("lists exactly the five non-empty child sitemap URLs, each once", async () => {
     const { doc } = await xmlDocFrom(await sitemapIndexGET());
     const locs = locsOf(doc, "sitemap");
-    const expected = CHILD_SITEMAP_PATHS.map((p) => absoluteUrl(p));
+    const expected = CHILD_SITEMAP_PATHS.filter((p) => !EMPTY_IN_TESTS.includes(p)).map((p) => absoluteUrl(p));
+    expect(expected).toHaveLength(5);
     expect(locs.slice().sort()).toEqual(expected.slice().sort());
     expect(new Set(locs).size).toBe(locs.length);
   });
@@ -110,17 +111,17 @@ describe("4 & 5. Every indexable URL appears exactly once across the child sitem
     expect(new Set(actual).size).toBe(actual.length);
   });
 
-  it("totals 223 unique URLs across the seven child sitemaps in this WordPress-unconfigured test environment", async () => {
+  it("totals 187 unique URLs across the child sitemaps in this WordPress-unconfigured test environment", async () => {
     const actual: string[] = [];
     for (const path of CHILD_SITEMAP_PATHS) {
       const { doc } = await xmlDocFrom(await CHILD_SITEMAP_HANDLERS[path]());
       actual.push(...locsOf(doc, "url"));
     }
-    expect(new Set(actual).size).toBe(223);
+    expect(new Set(actual).size).toBe(187);
   });
 });
 
-describe("6, 7 & 8. service-sitemap.xml contains all 58 service/category, 48 service-location and both category-location pages", () => {
+describe("6, 7 & 8. service-sitemap.xml contains all 58 service/category, 36 service-country and both category-country pages", () => {
   it("contains every one of the 10 service-category and 48 service pages", async () => {
     const { doc } = await xmlDocFrom(await serviceSitemapGET());
     const locs = new Set(locsOf(doc, "url"));
@@ -132,8 +133,8 @@ describe("6, 7 & 8. service-sitemap.xml contains all 58 service/category, 48 ser
     }
   });
 
-  it("contains every one of the 48 service-location combination pages", async () => {
-    expect(serviceLocationCombos.length).toBe(48);
+  it("contains every one of the 36 service-country combination pages", async () => {
+    expect(serviceLocationCombos.length).toBe(36);
     const { doc } = await xmlDocFrom(await serviceSitemapGET());
     const locs = new Set(locsOf(doc, "url"));
     for (const combo of serviceLocationCombos) {
@@ -150,9 +151,9 @@ describe("6, 7 & 8. service-sitemap.xml contains all 58 service/category, 48 ser
     }
   });
 
-  it("service-sitemap.xml contains exactly 108 URLs (10 + 48 + 48 + 2)", async () => {
+  it("service-sitemap.xml contains exactly 96 URLs (10 + 48 + 36 + 2)", async () => {
     const { doc } = await xmlDocFrom(await serviceSitemapGET());
-    expect(locsOf(doc, "url").length).toBe(108);
+    expect(locsOf(doc, "url").length).toBe(96);
   });
 });
 
@@ -169,14 +170,14 @@ describe("9. sector-sitemap.xml contains all 17 sector pages", () => {
 });
 
 describe("10. No retired service or sector slug is present in any child sitemap", () => {
-  it("every /services/ URL uses the '-firm-in-the-uk' suffix (D-017) and every /sector/ URL uses the 'hr-company-for-' prefix", async () => {
+  it("every /services/ URL uses the '-firm' suffix (D-017) and every /sector/ URL uses the 'hr-company-for-' prefix", async () => {
     const offenders: string[] = [];
     for (const path of CHILD_SITEMAP_PATHS) {
       const { doc } = await xmlDocFrom(await CHILD_SITEMAP_HANDLERS[path]());
       for (const loc of locsOf(doc, "url")) {
         const pathname = new URL(loc).pathname;
         if (pathname === "/services/" || pathname === "/sector/") continue;
-        if (pathname.startsWith("/services/") && !pathname.includes("firm-in-the-uk")) offenders.push(loc);
+        if (pathname.startsWith("/services/") && !pathname.includes("-firm")) offenders.push(loc);
         if (pathname.startsWith("/sector/") && !pathname.includes("hr-company-for-")) offenders.push(loc);
       }
     }
@@ -185,7 +186,7 @@ describe("10. No retired service or sector slug is present in any child sitemap"
 });
 
 describe("11. No redirect source or noindex URL is included", () => {
-  it("no child sitemap contains any of the 116 redirect rule sources", async () => {
+  it("no child sitemap contains any of the 69 redirect rule sources", async () => {
     const allLocs = new Set<string>();
     for (const path of CHILD_SITEMAP_PATHS) {
       const { doc } = await xmlDocFrom(await CHILD_SITEMAP_HANDLERS[path]());
@@ -216,7 +217,7 @@ describe("11. No redirect source or noindex URL is included", () => {
   });
 });
 
-describe("12. Every production URL uses https://www.apexhrllc.co.uk", () => {
+describe("12. Every production URL uses https://www.apexhrllc.com", () => {
   it("every <loc> in the index and every child sitemap starts with the production origin", async () => {
     const { doc: indexDoc } = await xmlDocFrom(await sitemapIndexGET());
     const allLocs = [...locsOf(indexDoc, "sitemap")];
@@ -226,7 +227,7 @@ describe("12. Every production URL uses https://www.apexhrllc.co.uk", () => {
     }
     expect(allLocs.length).toBeGreaterThan(0);
     for (const loc of allLocs) {
-      expect(loc.startsWith("https://www.apexhrllc.co.uk/"), loc).toBe(true);
+      expect(loc.startsWith("https://www.apexhrllc.com/"), loc).toBe(true);
     }
   });
 });
@@ -294,15 +295,8 @@ describe("Location and talent-acquisition child sitemaps stay complete", () => {
     const { doc } = await xmlDocFrom(await locationSitemapGET());
     const locs = new Set(locsOf(doc, "url"));
     for (const location of locations) {
-      expect(locs.has(absoluteUrl(`/locations/${location.slug}/`)), location.slug).toBe(true);
+      expect(locs.has(absoluteUrl(locationPath(location.slug))), location.slug).toBe(true);
     }
   });
 
-  it("talent-acquisition-sitemap.xml contains every talent-acquisition role page", async () => {
-    const { doc } = await xmlDocFrom(await talentAcquisitionSitemapGET());
-    const locs = new Set(locsOf(doc, "url"));
-    for (const role of talentRoleContent) {
-      expect(locs.has(absoluteUrl(`/talent-acquisition/${role.slug}/`)), role.slug).toBe(true);
-    }
-  });
 });

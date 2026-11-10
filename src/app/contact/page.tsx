@@ -21,6 +21,7 @@ import { contactPageContent } from "@/content/supporting-pages-data";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { getBreadcrumbJsonLd, getContactPageJsonLd, getFaqPageJsonLd, toJsonLdScript } from "@/lib/seo/structured-data";
 import { routes } from "@/config/routes";
+import { MarketsBand } from "@/components/sections/markets-band";
 import { siteConfig } from "@/config/site";
 
 export const metadata = buildMetadata({
@@ -249,6 +250,13 @@ export default function ContactPage() {
               </a>
             </StaggerItem>
           </StaggerContainer>
+
+          <MarketsBand
+            kicker="Markets we support"
+            heading="Talk to us about any of these countries"
+            intro="Mention the country or countries your enquiry relates to and we will involve an adviser with the right market experience. We arrange calls around your time zone and working week."
+            tone="dark"
+          />
 
           {contactPageContent.faqs && contactPageContent.faqs.length > 0 && (
             <section className="grid grid-cols-1 gap-12 p-8 sm:p-10 lg:grid-cols-[0.8fr_1.2fr] lg:p-14">

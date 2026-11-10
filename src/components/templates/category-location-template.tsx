@@ -128,7 +128,7 @@ export function CategoryLocationTemplate({
           <RevealHeading>
             <SectionKicker tone="light">Local context</SectionKicker>
             <h2 className="mt-4 max-w-lg font-display text-h1 font-bold text-navy">
-              {locationTitle}&apos;s people market
+              The people market in {locationTitle}
             </h2>
           </RevealHeading>
           <FadeUp delay={0.15}>

@@ -25,7 +25,6 @@ describe("reserved-slugs guard", () => {
   });
 
   it("reserves segments that are real app routes without a routes.ts entry", () => {
-    expect(isReservedSlug("talent-acquisition")).toBe(true);
     expect(isReservedSlug("api")).toBe(true);
   });
 

@@ -198,7 +198,7 @@ describe("Job Board rendering and structured data", () => {
       "@type": "JobPosting",
       title: "Senior HR Manager",
       employmentType: "FULL_TIME",
-      url: "https://www.apexhrllc.co.uk/jobs/senior-hr-manager/",
+      url: "https://www.apexhrllc.com/jobs/senior-hr-manager/",
       baseSalary: {
         "@type": "MonetaryAmount",
         currency: "GBP",

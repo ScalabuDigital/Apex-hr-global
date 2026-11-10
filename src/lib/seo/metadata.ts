@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { absoluteUrl, siteConfig } from "@/config/site";
+import type { HreflangMap } from "@/lib/seo/hreflang";
 
 interface BuildMetadataOptions {
   title: string;
@@ -8,6 +9,10 @@ interface BuildMetadataOptions {
   /** Set false for placeholder/development pages so they are not indexed. */
   index?: boolean;
   ogImagePath?: string;
+  /** hreflang cluster for this page — see src/lib/seo/hreflang.ts. */
+  hreflang?: HreflangMap;
+  /** Absolute canonical URL override; only for a deliberate exception. */
+  canonicalUrl?: string;
 }
 
 // Default, site-wide Open Graph/Twitter image — see src/app/api/og/route.tsx
@@ -31,8 +36,10 @@ export function buildMetadata({
   path,
   index = false,
   ogImagePath = DEFAULT_OG_IMAGE_PATH,
+  hreflang,
+  canonicalUrl,
 }: BuildMetadataOptions): Metadata {
-  const canonical = absoluteUrl(path);
+  const canonical = canonicalUrl ?? absoluteUrl(path);
   const ogImage = {
     url: absoluteUrl(ogImagePath),
     width: OG_IMAGE_WIDTH,
@@ -45,6 +52,7 @@ export function buildMetadata({
     description,
     alternates: {
       canonical,
+      ...(hreflang ? { languages: hreflang } : {}),
     },
     robots: {
       index,
@@ -55,7 +63,7 @@ export function buildMetadata({
       description,
       url: canonical,
       siteName: siteConfig.name,
-      locale: siteConfig.defaultLocale.replace("-", "_"),
+      locale: "en_GB",
       type: "website",
       images: [ogImage],
     },

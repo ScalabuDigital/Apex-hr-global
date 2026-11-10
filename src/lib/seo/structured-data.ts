@@ -1,4 +1,8 @@
 import { absoluteUrl, siteConfig } from "@/config/site";
+import { locations } from "@/config/locations";
+
+/** Countries served by the global site (every country hub). ISO 3166-1 alpha-2 codes. */
+const AREAS_SERVED = locations.map((location) => location.countryCode.toUpperCase());
 import type { RouteRecord } from "@/types/route";
 import { stripHtmlToPlainText, type Vacancy } from "@/lib/wordpress";
 
@@ -11,8 +15,8 @@ import { stripHtmlToPlainText, type Vacancy } from "@/lib/wordpress";
  * `contactPoint`/`address` use confirmed public contact details and location.
  * The contact point is email-only because the public number is WhatsApp-only;
  * `address` deliberately omits `streetAddress`, since only the city is
- * verified, not a specific office. `areaServed: "GB"` reflects genuine
- * UK-wide service coverage, not a claim of a physical presence in every area.
+ * verified, not a specific office. `areaServed` lists the countries the
+ * global site covers — not a claim of a physical presence in any of them.
  */
 export function getOrganizationJsonLd() {
   return {
@@ -21,7 +25,7 @@ export function getOrganizationJsonLd() {
     "@id": `${siteConfig.productionUrl}/#organization`,
     name: siteConfig.legalName,
     url: siteConfig.productionUrl,
-    areaServed: "GB",
+    areaServed: AREAS_SERVED,
     address: {
       "@type": "PostalAddress",
       addressLocality: "London",
@@ -31,7 +35,7 @@ export function getOrganizationJsonLd() {
       "@type": "ContactPoint",
       contactType: "customer service",
       email: siteConfig.contactEmail,
-      areaServed: "GB",
+      areaServed: AREAS_SERVED,
     },
     ...(siteConfig.socialProfiles.length > 0
       ? { sameAs: siteConfig.socialProfiles }
@@ -54,6 +58,8 @@ interface ServiceJsonLdInput {
   name: string;
   description: string;
   path: string;
+  /** ISO country code(s); defaults to every country the global site serves. */
+  areaServed?: string | string[];
 }
 
 /**
@@ -63,7 +69,7 @@ interface ServiceJsonLdInput {
  * Not used on the curated service/category + location combination pages
  * (SEO audit Batch 2 item 3 explicitly excludes those this batch).
  */
-export function getServiceJsonLd({ name, description, path }: ServiceJsonLdInput) {
+export function getServiceJsonLd({ name, description, path, areaServed = AREAS_SERVED }: ServiceJsonLdInput) {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -71,7 +77,7 @@ export function getServiceJsonLd({ name, description, path }: ServiceJsonLdInput
     description,
     url: absoluteUrl(path),
     provider: { "@id": `${siteConfig.productionUrl}/#organization` },
-    areaServed: "GB",
+    areaServed,
   };
 }
 

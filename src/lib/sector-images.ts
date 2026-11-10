@@ -6,12 +6,12 @@
  * per-location "sectors we support" cards.
  */
 export const sectorImages: Record<string, string> = {
-  "hr-company-for-startups-and-scale-ups-in-the-uk": "/images/startup.jpg",
-  "hr-company-for-professional-services-in-the-uk": "/images/professional-services.png",
-  "hr-company-for-healthcare-in-the-uk": "/images/healthcare.png",
-  "hr-company-for-it-in-the-uk": "/images/IT.png",
-  "hr-company-for-construction-in-the-uk": "/images/construction.png",
-  "hr-company-for-distribution-in-the-uk": "/images/distribution.png",
-  "hr-company-for-manufacturers-in-the-uk": "/images/manufacturing.png",
-  "hr-company-for-hospitality-in-the-uk": "/images/hospitality.png",
+  "hr-company-for-startups-and-scale-ups": "/images/startup.jpg",
+  "hr-company-for-professional-services": "/images/professional-services.png",
+  "hr-company-for-healthcare": "/images/healthcare.png",
+  "hr-company-for-it": "/images/IT.png",
+  "hr-company-for-construction": "/images/construction.png",
+  "hr-company-for-distribution": "/images/distribution.png",
+  "hr-company-for-manufacturers": "/images/manufacturing.png",
+  "hr-company-for-hospitality": "/images/hospitality.png",
 };

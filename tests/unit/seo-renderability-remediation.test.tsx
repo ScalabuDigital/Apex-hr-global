@@ -322,11 +322,11 @@ describe("6. Sector Service Explorer: all curated related services crawlable in 
 
   it("never links to a service outside the sector's own curated relatedServiceSlugs", async () => {
     const { SectorPageTemplate } = await import("@/components/templates/sector-page-template");
-    const healthcareContent = sectorContent.find((entry) => entry.slug === "hr-company-for-healthcare-in-the-uk")!;
+    const healthcareContent = sectorContent.find((entry) => entry.slug === "hr-company-for-healthcare")!;
     const html = renderToString(
       <SectorPageTemplate title="Healthcare" breadcrumbTrail={[routes.sectors]} sector={healthcareContent} />,
     );
-    const linkedServiceSlugs = [...html.matchAll(/href="\/services\/([a-z0-9-]+-firm-in-the-uk)\/?"/g)].map((m) => m[1]);
+    const linkedServiceSlugs = [...html.matchAll(/href="\/services\/([a-z0-9-]+-firm)\/?"/g)].map((m) => m[1]);
     const approved = new Set(healthcareContent.relatedServiceSlugs);
     const offenders = linkedServiceSlugs.filter((slug) => services.some((s) => s.slug === slug) && !approved.has(slug));
     expect(offenders).toEqual([]);
@@ -415,20 +415,20 @@ describe("12. WordPress article content remains server-rendered", () => {
 });
 
 describe("13. New service and sector URL architecture remains intact", () => {
-  it("every service/category slug still ends in -firm-in-the-uk", () => {
+  it("every service/category slug still ends in -firm", () => {
     for (const entry of [...serviceCategories, ...services]) {
-      expect(entry.slug.endsWith("-firm-in-the-uk"), entry.slug).toBe(true);
+      expect(entry.slug.endsWith("-firm"), entry.slug).toBe(true);
     }
   });
 
-  it("every sector slug still follows hr-company-for-...-in-the-uk", () => {
+  it("every sector slug still follows hr-company-for-...", () => {
     for (const sector of sectors) {
       expect(sector.slug.startsWith("hr-company-for-"), sector.slug).toBe(true);
-      expect(sector.slug.endsWith("-in-the-uk"), sector.slug).toBe(true);
+      expect(sector.slug.endsWith("-in-the-uk"), sector.slug).toBe(false);
     }
   });
 
-  it("redirect rule count is unchanged (116) — no new redirects introduced by this remediation", () => {
-    expect(redirectRules.length).toBe(116);
+  it("redirect rule count is unchanged (69) — no new redirects introduced by this remediation", () => {
+    expect(redirectRules.length).toBe(69);
   });
 });

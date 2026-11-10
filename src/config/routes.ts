@@ -43,7 +43,7 @@ export const routes = {
   },
   locations: {
     id: "locations",
-    label: "Locations",
+    label: "Countries",
     path: "/locations/",
     status: "confirmed",
     readyToIndex: true,
