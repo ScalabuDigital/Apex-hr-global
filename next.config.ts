@@ -36,13 +36,20 @@ const nextConfig: NextConfig = {
   // 2. The legacy permanent redirect registry — see src/config/redirects.ts.
   //    Validated for duplicate sources/loops in tests/unit/redirects.test.ts.
   async redirects() {
+    // Three bare-domain rules so each request lands on its final URL in ONE
+    // hop (no chain): the homepage, file-like paths (sitemap.xml, robots.txt
+    // — no trailing slash), and every page path (trailing slash restored,
+    // since `:path+` captures it without the slash `trailingSlash: true` wants).
+    const bareHost = [{ type: "host" as const, value: "apexhrllc.com" }];
     return [
+      { source: "/", has: bareHost, destination: "https://www.apexhrllc.com/", permanent: true },
       {
-        source: "/:path*",
-        has: [{ type: "host" as const, value: "apexhrllc.com" }],
-        destination: "https://www.apexhrllc.com/:path*",
+        source: "/:file(.*\\.[a-zA-Z0-9]+)",
+        has: bareHost,
+        destination: "https://www.apexhrllc.com/:file",
         permanent: true,
       },
+      { source: "/:path+", has: bareHost, destination: "https://www.apexhrllc.com/:path+/", permanent: true },
       ...redirectRules.map((rule) => ({
         source: rule.source,
         destination: rule.destination,
