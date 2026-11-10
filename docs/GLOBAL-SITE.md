@@ -112,8 +112,8 @@ hreflang, only a self-canonical.
 - **Privacy policy** describes processing under UK GDPR and needs legal
   review for international data subjects (EU GDPR, POPIA, NDPA, etc.).
 - **Trust stats and client logos** are the original placeholders.
-- **Google Search Console token** in `src/app/layout.tsx` belongs to the UK
-  property; replace it with this site's own token.
+- **Google Search Console:** `src/app/layout.tsx` carries the verification
+  token for the www.apexhrllc.com property.
 - All copy remains an AI first draft pending stakeholder review.
 
 ## Deployment
